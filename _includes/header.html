@@ -1,11 +1,11 @@
-<header class="site-header"></header>
-<div class="wrapper">
-    {% assign is_first_language = true %}
-    <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
-    {% for tongue in site.languages %}
-      {% if is_first_language == false %}|{% endif %}
-      <a {% if tongue == site.active_lang %}style="font-weight: bold;"{% endif %} {% static_href %}href="{% if tongue == site.default_lang %}{{site.baseurl}}{{page.url}}{% else %}{{site.baseurl}}/{{ tongue }}{{page.url}}{% endif %}"{% endstatic_href %} >{{ tongue }}</a>
-      {% assign is_first_language = false %}
-    {% endfor %}
-  </div>
-  
+<header class="site-header">
+    <div class="wrapper">
+        {% assign is_first_language = true %}
+        <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
+        {% for tongue in site.languages %}
+          {% if is_first_language == false %}|{% endif %}
+          <a {% if tongue == site.active_lang %}style="font-weight: bold;"{% endif %} {% static_href %}href="{% if tongue == site.default_lang %}{{site.baseurl}}{{page.url}}{% else %}{{site.baseurl}}/{{ tongue }}{{page.url}}{% endif %}"{% endstatic_href %} >{{ tongue }}</a>
+          {% assign is_first_language = false %}
+        {% endfor %}
+      </div>
+  </header>

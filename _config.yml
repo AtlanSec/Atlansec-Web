@@ -8,7 +8,7 @@ url: "https://atlansec.github.io" # the base hostname & protocol for your site, 
 twitter_username: atlansec
 github_username:  AtlanSec
 languages: ["en", "es"]
-default_lang: "en"
+default_lang: "es"
 exclude_from_localization: ["assets", "javascript", "images", "css", "public"]
 parallel_localization: true
 

@@ -1,7 +1,7 @@
 ---
 title: "Atlansec"
 mainPage: "true"
-layout: home
+layout: default
 permalink: /index/
 lang: en
 ---

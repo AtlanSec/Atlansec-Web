@@ -2,7 +2,7 @@
 title: "Atlansec"
 mainPage: "true"
 layout: home
-permalink: /
+permalink: /index/
 lang: en
 ---
 

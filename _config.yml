@@ -1,6 +1,6 @@
 title: AtlanSec blog
 email: contactoatlansec@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
+description: # this means to ignore newlines until "baseurl:"
   en: Blog with researching articles, news and tutorials by Atlansec.
   es: Bloc con articulos de researching , noticias y tutoriales creado y mantenido por Atlansec.
 baseurl: "/" # the subpath of your site, e.g. /blog

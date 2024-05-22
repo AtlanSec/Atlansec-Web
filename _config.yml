@@ -12,6 +12,12 @@ default_lang: "en"
 exclude_from_localization: ["assets", "javascript", "images", "css", "public"]
 parallel_localization: true
 
+header_pages:
+  en:
+    - index-en.markdown
+  es:
+    - index-es.markdown
+
 
 # Build settings
 remote_theme: pages-themes/midnight@v0.2.0

@@ -7,24 +7,28 @@ baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://atlansec.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: atlansec
 github_username:  AtlanSec
-languages: ["en", "es"]
-default_lang: "es"
-exclude_from_localization: ["assets", "javascript", "images", "css", "public"]
-parallel_localization: true
 
-header_pages:
-  en:
-    - index-en.markdown
-  es:
-    - index-es.markdown
+languages: 
+  - "en"
+  - "es"
+
+default_lang: "es"
+exclude_from_localization: 
+  - "assets"
+  - "javascript"
+  - "images"
+  - "css"
+  - "public"
+
+parallel_localization: true
 
 
 # Build settings
 remote_theme: pages-themes/cayman@v0.2.0
 plugins:
-- jekyll-remote-theme
-- jekyll-feed
-- jekyll-polyglot
+  - jekyll-remote-theme
+  - jekyll-feed
+  - jekyll-multiple-languages-plugin
 
 # Exclude from processing.
 # The following items will not be processed, by default.

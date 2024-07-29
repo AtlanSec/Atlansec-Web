@@ -1,14 +1,30 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang }}">
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title }}</title>
+  <title>{{ page.title | escape }} | {{ site.title | escape }}</title>
+  <meta name="description" content="{{ page.description | default: site.description | escape }}">
+
+  <!-- Link to the Cayman theme's CSS -->
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
-  {% include header.html %}
-  <div class="content">
+  <header>
+    <div class="inner">
+      <h1>{{ site.title | escape }}</h1>
+      <h2>{{ site.description | escape }}</h2>
+      <nav>
+        <ul>
+          <li><a href="{{ '/' | relative_url }}">Home</a></li>
+          <li><a href="{{ '/about' | relative_url }}">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content">
     {{ content }}
-  </div>
+  </main>
 </body>
 </html>

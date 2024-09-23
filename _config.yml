@@ -5,7 +5,6 @@ baseurl: "/es" # the subpath of your site, e.g. /blog
 url: "https://atlansec.github.io"
 twitter_username: atlansec
 github_username:  AtlanSec
-theme: jekyll-theme-cayman
 
 languages: 
   - "en"

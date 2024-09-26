@@ -1,13 +1,18 @@
 title: AtlanSec blog
 email: contactoatlansec@gmail.com
 description: # this means to ignore newlines until "baseurl:"
+t:
+  es:
+    description: "Bloc con articulos de investigación, noticias y tutoriales creado y mantenido por Atlansec."
+  en:
+    description: "Blog with researching articles, news and tutorials by Atalansec."
 baseurl: "/es" # the subpath of your site, e.g. /blog
 url: "https://atlansec.github.io"
 twitter_username: atlansec
 github_username:  AtlanSec
 
 languages: 
-  - "en"
+  - "en": 
   - "es"
 
 default_lang: "es"

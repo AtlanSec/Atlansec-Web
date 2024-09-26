@@ -4,8 +4,12 @@ description: # this means to ignore newlines until "baseurl:"
 t:
   es:
     description: "Bloc con articulos de investigación, noticias y tutoriales creado y mantenido por Atlansec."
+    home: "Inicio"
+    about: "Información"
   en:
     description: "Blog with researching articles, news and tutorials by Atalansec."
+    home: "Home"
+    about: "About"
 baseurl: "/es" # the subpath of your site, e.g. /blog
 url: "https://atlansec.github.io"
 twitter_username: atlansec

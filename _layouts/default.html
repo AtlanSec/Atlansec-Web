@@ -20,8 +20,8 @@
       <h2>{{ site.t[page.lang].description | escape }}</h2>
       <nav>
         <ul>
-          <li><a href="{{ '/' | relative_url }}">site.t[page.lang].home | escape</a></li>
-          <li><a href="{{ '/about' | relative_url }}">site.t[page.lang].about | escape</a></li>
+          <li><a href="{{ '/' | relative_url }}">{{site.t[page.lang].home | escape}}</a></li>
+          <li><a href="{{ '/about' | relative_url }}">{{site.t[page.lang].about | escape}}</a></li>
         </ul>
       </nav>
     </div>

@@ -34,7 +34,7 @@ parallel_localization: true
 theme: jekyll-theme-cayman
 plugins:
 - jekyll-feed
-- jekyll-multiple-languages-plugin
+- jekyll-polyglot
 
 # Exclude from processing.
 # The following items will not be processed, by default.

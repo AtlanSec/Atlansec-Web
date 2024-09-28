@@ -10,7 +10,7 @@ t:
     description: "Blog with researching articles, news and tutorials by Atalansec."
     home: "Home"
     about: "About"
-baseurl: "/es" # the subpath of your site, e.g. /blog
+baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://atlansec.github.io"
 twitter_username: atlansec
 github_username:  AtlanSec

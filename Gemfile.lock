@@ -41,11 +41,6 @@ GEM
       logger
     faraday-net_http (3.3.0)
       net-http
-    ffi (1.17.0-aarch64-linux-gnu)
-    ffi (1.17.0-arm-linux-gnu)
-    ffi (1.17.0-arm64-darwin)
-    ffi (1.17.0-x86-linux-gnu)
-    ffi (1.17.0-x86_64-darwin)
     ffi (1.17.0-x86_64-linux-gnu)
     forwardable-extended (2.6.0)
     gemoji (4.1.0)
@@ -237,16 +232,6 @@ GEM
     minitest (5.25.1)
     net-http (0.4.1)
       uri
-    nokogiri (1.16.7-aarch64-linux)
-      racc (~> 1.4)
-    nokogiri (1.16.7-arm-linux)
-      racc (~> 1.4)
-    nokogiri (1.16.7-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.16.7-x86-linux)
-      racc (~> 1.4)
-    nokogiri (1.16.7-x86_64-darwin)
-      racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
     octokit (4.25.1)
@@ -259,8 +244,7 @@ GEM
     rb-fsevent (0.11.2)
     rb-inotify (0.11.1)
       ffi (~> 1.0)
-    rexml (3.3.6)
-      strscan
+    rexml (3.3.7)
     rouge (3.30.0)
     rubyzip (2.3.2)
     safe_yaml (1.0.5)
@@ -282,14 +266,9 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (1.8.0)
     uri (0.13.1)
-    webrick (1.8.1)
+    webrick (1.8.2)
 
 PLATFORMS
-  aarch64-linux
-  arm-linux
-  arm64-darwin
-  x86-linux
-  x86_64-darwin
   x86_64-linux
 
 DEPENDENCIES

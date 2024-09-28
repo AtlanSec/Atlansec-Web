@@ -31,7 +31,7 @@ parallel_localization: true
 
 
 # Build settings
-remote_theme: cayman
+theme: jekill-theme-cayman
 plugins:
 - jekyll-feed
 - jekyll-multiple-languages-plugin

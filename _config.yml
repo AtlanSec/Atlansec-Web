@@ -33,9 +33,9 @@ parallel_localization: true
 # Build settings
 remote_theme: pages-themes/cayman@v0.2.0
 plugins:
-  - jekyll-remote-theme
-  - jekyll-feed
-  - jekyll-multiple-languages-plugin
+- jekyll-remote-theme
+- jekyll-feed
+- jekyll-polyglot
 
 # Exclude from processing.
 # The following items will not be processed, by default.

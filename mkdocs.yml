@@ -1,0 +1,19 @@
+site_name: My MkDocs Material Documentation
+site_url: https://sitename.example
+theme:
+  name: material
+  features:
+    - navigation.footer
+  palette:
+    scheme: slate
+  icon:
+  logo: fontawesome/solid/w
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences

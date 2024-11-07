@@ -4,11 +4,12 @@
       "**/material": true,
     },
     "yaml.schemas": {
-      "https://squidfunk.github.io/mkdocs-material/schema.json": [
-        "mkdocs.yml",
-        "file:///home/wazos/Code/Atlansoft/Qr-Api/mkdocs.yml"
-      ],
-      "docs/schema.json": "mkdocs.yml"
+        "https://squidfunk.github.io/mkdocs-material/schema.json": [
+            "mkdocs.yml",
+            "file:///home/wazos/Code/Atlansoft/Qr-Api/mkdocs.yml",
+            "file:///home/wazos/Code/Atlansec/AtlanSec.github.io/mkdocs.yml"
+        ],
+        "docs/schema.json": "mkdocs.yml"
     },
     "yaml.customTags": [
       "!ENV scalar",

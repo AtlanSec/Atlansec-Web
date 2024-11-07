@@ -1,13 +1,25 @@
-site_name: My MkDocs Material Documentation
+site_name: Blog
 site_url: https://sitename.example
 theme:
   name: material
   features:
+    - hide_title
     - navigation.footer
+    - navigation.indexes
+    - navigation.tabs
   palette:
-    scheme: slate
+    primary: white
   icon:
-  logo: fontawesome/solid/w
+  logo: assets/logo.png
+  custom_dir: "docs/overrides"
+
+plugins:
+  - search
+  - social
+  - blog:
+      categories: false
+      categories_name: Categories
+
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -17,3 +29,8 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+  - attr_list
+  - md_in_html
+  - pymdownx.blocks.caption
+  - admonition
+  - pymdownx.details

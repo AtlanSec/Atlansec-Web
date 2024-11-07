@@ -13,6 +13,14 @@ theme:
   logo: assets/logo.png
   custom_dir: "docs/overrides"
 
+nav:
+  - Home:
+      - index.md
+  - Services:
+      - services/index.md
+  - Blog:
+      - blog/index.md
+
 plugins:
   - search
   - social

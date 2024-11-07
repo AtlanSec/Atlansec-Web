@@ -2,5 +2,3 @@
 hide:
   - navigation
 ---
-
-Hello

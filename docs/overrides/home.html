@@ -78,11 +78,20 @@
         }
     }
 
+    @media screen and (max-width: 60em) {
+        .mdx-container {
+            max-width: 80%;
+            margin: auto;
+        }
+    }
+
+
     /* Hide navigation */
     @media screen and (min-width: 76.25em) {
         .md-sidebar--primary {
             display: none;
         }
+
     }
 </style>
 
@@ -94,7 +103,7 @@
     // Function to change the word
     function changeWord() {
         const actionWordElement = document.getElementById("action-word");
-        
+
         // Fade out effect
         actionWordElement.classList.remove("show");
 
@@ -103,7 +112,7 @@
             // Update word
             currentIndex = (currentIndex + 1) % words.length;
             actionWordElement.textContent = words[currentIndex];
-            
+
             // Fade in effect
             actionWordElement.classList.add("show");
         }, 500); // Match the transition time from CSS
@@ -147,4 +156,3 @@
 
 <!-- Application footer -->
 {% block footer %}{% endblock %}
-

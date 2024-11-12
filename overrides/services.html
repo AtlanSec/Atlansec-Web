@@ -1,0 +1,187 @@
+{% extends "main.html" %}
+
+
+<!-- Content -->
+{% block content %}
+
+<style>
+    .container {
+        width: 1200px !important;
+        padding: 0 !important;
+        margin-right: auto;
+        margin-left: auto;
+
+        @media screen and (min-width: 992px) and (max-width: 1439px) {
+            max-width: 1279px !important;
+            padding: 0 !important;
+            margin: 0 80px !important;
+            width: auto !important;
+        }
+
+        @media screen and (max-width: 991px) {
+            max-width: 959px !important;
+            margin: 0 16px !important;
+            padding: 0 !important;
+            width: auto !important;
+        }
+    }
+
+    .gradient-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+        padding-top: 10px;
+        padding-bottom: 20px;
+
+        @media screen and (max-width: 991px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .container-title {
+        text-align: center;
+        padding: 0 !important;
+        margin-bottom: 40px;
+        font-size: 40px;
+        color: #1A1A36;
+        font-weight: 600;
+        line-height: 60px;
+    }
+
+    .card {
+        max-width: 400px;
+        border: 0;
+        width: 100%;
+        margin-inline: auto;
+    }
+
+    .container-card {
+        position: relative;
+        border: 2px solid transparent;
+        background: linear-gradient(71deg, #080509, #1A1A36, #080509);
+        background-clip: padding-box;
+        border-radius: 45px;
+        padding: 40px;
+
+        img {
+            margin-bottom: 32px;
+        }
+    }
+
+    .bg-green-box,
+    .bg-white-box,
+    .bg-yellow-box,
+    .bg-blue-box {
+        position: relative;
+    }
+
+    .bg-green-box::after,
+    .bg-white-box::after,
+    .bg-yellow-box::after,
+    .bg-blue-box::after {
+        position: absolute;
+        top: -1px;
+        bottom: -1px;
+        left: -1px;
+        right: -1px;
+        content: "";
+        z-index: -1;
+        border-radius: 45px;
+    }
+
+    .bg-green-box::after {
+        background: linear-gradient(71deg, #0d1212, #3da077, #0d1212);
+    }
+
+    .bg-white-box::after {
+        background: linear-gradient(71deg, #121013, #b0afb0, #121013);
+    }
+
+    .bg-yellow-box::after {
+        background: linear-gradient(71deg, #110e0e, #afa220, #110e0e);
+    }
+
+    .bg-blue-box::after {
+        background: linear-gradient(71deg, #0c0a0e, #5f6fad, #0c0a0e);
+    }
+
+    .card-title {
+        font-weight: 600;
+        color: white;
+        letter-spacing: -0.02em;
+        line-height: 40px;
+        font-style: normal;
+        font-size: 24px;
+    }
+
+    .card-description {
+        font-weight: 600;
+        line-height: 32px;
+        color: hsla(0, 0%, 100%, 0.5);
+        font-size: 16px;
+        max-width: 470px;
+    }
+</style>
+
+<div class="container">
+    <p class="container-title">Services we offer on demand</p>
+    <div class="gradient-cards">
+        <div class="card">
+            <div class="container-card bg-green-box">
+                <p class="card-title">Custom Feature Development</p>
+                <p class="card-description">On-demand feature development tailored to meet every client’s unique needs,
+                    ensuring seamless integration and functionality that align with their vision.</p>
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="container-card bg-white-box">
+                <p class="card-title">Infrastructure Solutions</p>
+                <p class="card-description">Expert consulting and infrastructure setup to build scalable, secure, and
+                    resilient applications that meet the highest standards of performance and reliability.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="container-card bg-blue-box">
+                <p class="card-title">UI/UX Enhancements</p>
+                <p class="card-description">Refine your website's interface and user experience to captivate users,
+                    increase engagement, and boost client retention with a design that truly resonates.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="container-card bg-yellow-box">
+                <p class="card-title">Application Enhancement & Maintenance</p>
+                <p class="card-description">Optimize your app's performance and security with in-depth audits and
+                    targeted improvements, ensuring a reliable, high-quality user experience over time.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="container-card bg-yellow-box">
+                <p class="card-title">Process Automation</p>
+                <p class="card-description">Design and implementation of automation solutions to streamline your
+                    operations. We simplify complex processes to optimize time and reduce error margins.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="container-card bg-yellow-box">
+                <p class="card-title">Audit Services</p>
+                <p class="card-description">Comprehensive auditing services to review every aspect of your application,
+                    from security to performance. We identify and address potential vulnerabilities and areas for
+                    improvement.</p>
+            </div>
+        </div>
+    </div>
+
+    <p class="container-title">Contact us</p>
+    <p class="container-title">contactoatlansec@gmail.com</p>
+
+</div>
+
+
+
+{% endblock %}

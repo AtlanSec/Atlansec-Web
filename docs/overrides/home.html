@@ -71,6 +71,16 @@
         opacity: 1;
     }
 
+    .future__regular{
+        font-family: 'Futura', sans-serif;
+        font-weight: 400;
+    }
+
+    .futura__heavy{
+        font-family: 'Futura', sans-serif;
+        font-weight: 900;
+    }
+
     /* Hide table of contents */
     @media screen and (min-width: 60em) {
         .md-sidebar--secondary {
@@ -136,13 +146,13 @@
 
 <section class="mdx-container">
     <div class="md-grid md-typeset">
-        <div class="mdx-hero__content">
-            <h1><span id="action-word" class="dynamic-word show">Develop</span> your software with us</h1>
+        <div class="mdx-hero__content future__regular">
+            <h1 class="future__heavy"><span id="action-word" class="dynamic-word show futura__heavy">Develop</span> your software with us</h1>
             <a href="{{ 'services/' | url }}" title="{{ page.next_page.title | e }}"
                 class="md-button md-button--primary">
                 Services
             </a>
-            <a href="{{ 'blog/' | url }}" title="Read the blog" class="md-button">
+            <a href="{{ 'blog/' | url }}" title="Read the blog" class="md-button futura">
                 Read the blog
             </a>
         </div>

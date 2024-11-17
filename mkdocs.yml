@@ -1,5 +1,5 @@
 site_name: Blog
-site_url: https://sitename.example
+site_url: https://atlansec.es
 theme:
   name: material
   features:

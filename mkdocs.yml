@@ -12,6 +12,8 @@ theme:
   icon:
   logo: assets/logo.png
   custom_dir: "docs/overrides"
+  extra_css:
+    - stylesheets/extra.css
 
 nav:
   - Home:

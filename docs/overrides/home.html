@@ -23,130 +23,145 @@
 {% extends "main.html" %}
 
 <!-- Render hero under tabs -->
-{% block tabs %}
-
-{{ super() }}
+{% block tabs %} {{ super() }}
 
 <!-- Additional styles for landing page -->
 <style>
-    /* Application header should be static for the landing page */
-    .md-header {
-        position: initial;
+  .main__section {
+    width: 100%;
+
+    margin-top: 5rem;
+    transform: translate(8%, 0%);
+  }
+
+  .hero__section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 2rem;
+  }
+
+  .hero__title {
+    font-size: 43px !important;
+    font-weight: 900;
+    text-align: center;
+    color: var(--Primary-Blue) !important;
+  }
+
+  .services__button,
+  .blog__button {
+    color: var(--Primary_Blue) !important;
+    fill: rgba(255, 255, 255, 0.22);
+    stroke-width: 1.5px;
+    stroke: var(--Primary_Blue, #000f2c);
+    backdrop-filter: blur(6.699999809265137px);
+    font-size: 1rem;
+    margin-left: 3rem;
+  }
+
+  .blog__button {
+    margin-left: 5.4rem;
+  }
+
+  .paralelogramo {
+    width: auto;
+    height: auto;
+    padding: 0.2rem 1.5rem;
+    background: rgba(255, 255, 255, 0.22);
+    border: 2px, solid var(--Primary_Blue, #000f2c);
+    -webkit-transform: skew(30deg);
+    -moz-transform: skew(30deg);
+    -o-transform: skew(30deg);
+  }
+
+  .button__content {
+    -webkit-transform: skew(-30deg);
+    -moz-transform: skew(-30deg);
+    -o-transform: skew(-30deg);
+    margin: 0;
+  }
+
+  /* Application header should be static for the landing page */
+  .md-header {
+    position: initial;
+  }
+
+  /* Remove spacing, as we cannot hide it completely */
+  .md-main__inner {
+    margin: 0;
+  }
+
+  /* Hide main content for now */
+  .md-content {
+    display: none;
+  }
+
+  .mdx-hero {
+    display: flex;
+    justify-content: center;
+    /* Horizontal centering */
+    align-items: center;
+    /* Vertical centering */
+    height: 55vh;
+    /* Full viewport height */
+  }
+
+  .mdx-hero__image img {
+    max-width: 100%;
+    /* Responsive image size */
+    height: auto;
+  }
+
+  .dynamic-word {
+    color: #1a1a36;
+    display: inline-block;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+  }
+
+  .dynamic-word.show {
+    opacity: 1;
+  }
+
+  /* Hide table of contents */
+  @media screen and (min-width: 60em) {
+    .md-sidebar--secondary {
+      display: none;
     }
+  }
 
-    /* Remove spacing, as we cannot hide it completely */
-    .md-main__inner {
-        margin: 0;
+  @media screen and (max-width: 60em) {
+    .mdx-container {
+      max-width: 80%;
+      margin: auto;
     }
+  }
 
-    /* Hide main content for now */
-    .md-content {
-        display: none;
+  /* Hide navigation */
+  @media screen and (min-width: 76.25em) {
+    .md-sidebar--primary {
+      display: none;
     }
-
-    .mdx-hero {
-        display: flex;
-        justify-content: center;
-        /* Horizontal centering */
-        align-items: center;
-        /* Vertical centering */
-        height: 55vh;
-        /* Full viewport height */
-    }
-
-    .mdx-hero__image img {
-        max-width: 100%;
-        /* Responsive image size */
-        height: auto;
-    }
-
-    .dynamic-word {
-        color: #1A1A36;
-        display: inline-block;
-        transition: opacity 0.5s ease-in-out;
-        opacity: 0;
-    }
-
-    .dynamic-word.show {
-        opacity: 1;
-    }
-
-    /* Hide table of contents */
-    @media screen and (min-width: 60em) {
-        .md-sidebar--secondary {
-            display: none;
-        }
-    }
-
-    @media screen and (max-width: 60em) {
-        .mdx-container {
-            max-width: 80%;
-            margin: auto;
-        }
-    }
-
-
-    /* Hide navigation */
-    @media screen and (min-width: 76.25em) {
-        .md-sidebar--primary {
-            display: none;
-        }
-
-    }
+  }
 </style>
 
-<script>
-    // Words to cycle through
-    const words = ["Develop", "Secure", "Protect", "Design"];
-    let currentIndex = 0;
-
-    // Function to change the word
-    function changeWord() {
-        const actionWordElement = document.getElementById("action-word");
-
-        // Fade out effect
-        actionWordElement.classList.remove("show");
-
-        // Wait for fade out to complete before changing the word
-        setTimeout(() => {
-            // Update word
-            currentIndex = (currentIndex + 1) % words.length;
-            actionWordElement.textContent = words[currentIndex];
-
-            // Fade in effect
-            actionWordElement.classList.add("show");
-        }, 500); // Match the transition time from CSS
-    }
-
-    // Change word every 2 seconds
-    setInterval(changeWord, 2000);
-</script>
+<script></script>
 
 <!-- Hero for landing page -->
-<section class="mdx-container">
-    <div class="md-grid md-typeset">
-        <div class="mdx-hero">
-            <!-- Hero image -->
-            <div class="mdx-hero__image">
-                <img src="assets/only_logo.png" alt="" width="300" height="300" draggable="false">
-            </div>
-        </div>
-    </div>
-</section>
 
-<section class="mdx-container">
-    <div class="md-grid md-typeset">
-        <div class="mdx-hero__content">
-            <h1><span id="action-word" class="dynamic-word show">Develop</span> your software with us</h1>
-            <a href="{{ 'services/' | url }}" title="{{ page.next_page.title | e }}"
-                class="md-button md-button--primary">
-                Services
-            </a>
-            <a href="{{ 'blog/' | url }}" title="Read the blog" class="md-button">
-                Read the blog
-            </a>
-        </div>
+<section class="main__section">
+  <div class="md-grid md-typeset">
+    <div class="hero__section">
+      <h1 class="hero__title">// <span>BUILD</span> YOUR SOFTWARE WITH US</h1>
+      <a class="services__button paralelogramo" href="/services">
+        <p class="button__content">Services</p>
+      </a>
+      <a class="blog__button paralelogramo" href="/blog">
+        <p class="button__content">Read Our Blog</p>
+      </a>
     </div>
+  </div>
 </section>
 
 {% endblock %}

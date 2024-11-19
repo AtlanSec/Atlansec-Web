@@ -2,6 +2,9 @@ site_name: Blog
 site_url: https://sitename.example
 theme:
   name: material
+  fonts:
+    text: "poppins"
+    code: "poppins"
   features:
     - hide_title
     - navigation.footer
@@ -12,6 +15,9 @@ theme:
   icon:
   logo: assets/logo.png
   custom_dir: "docs/overrides"
+
+extra_css:
+  - stylesheets/extra.css
 
 nav:
   - Home:
@@ -27,7 +33,6 @@ plugins:
   - blog:
       categories: false
       categories_name: Categories
-
 
 markdown_extensions:
   - pymdownx.highlight:

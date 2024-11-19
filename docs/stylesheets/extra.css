@@ -1,0 +1,12 @@
+:root {
+  --Primary-Blue: #000f2c;
+  --Secondary-Blue: #d0ebfc;
+}
+
+.primary__Blue {
+  color: var(--Primary-Blue) !important;
+}
+
+.secondary__Blue {
+  color: var(--Secondary-Blue) !important;
+}

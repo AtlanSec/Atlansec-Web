@@ -1,4 +1,38 @@
-:root{
+:root {
     --Primary-Blue: #000f2c;
     --Secondary-Blue: #48BFBF;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+    url('../assets/A_blue.svg') no-repeat, /* Imagen de fondo */
+        radial-gradient(circle, rgba(128, 128, 128, 0.3) 1px, transparent 1px); /* Fondo de puntos */
+    background-size:
+    900px 900px, /* Tamaño de la imagen (ancho x alto) */
+        15px 15px; /* Tamaño de los puntos */
+    background-position:
+    calc(-14rem) 50%, /* La imagen se coloca con 3rem de overflow hacia la izquierda */
+    center; /* Los puntos se centran automáticamente */
+    background-color: #FFFFFF; /* Fondo base blanco */
+    font-family: 'JetBrains Mono', monospace;
+}
+
+
+.md-header .md-nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.md-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff; /* Cambia al color deseado */
+    padding: 0 1rem; /* Ajusta el padding */
 }

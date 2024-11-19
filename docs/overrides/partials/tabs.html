@@ -1,0 +1,29 @@
+<!-- tab.html -->
+
+<style>
+  .header__nav__link {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+  }
+</style>
+
+<!-- for item in (mkdocs.yml)nav: recorremos los objetos del apartado nav que se encuentran en
+ el mkdocs. Estos son los tabs y, en el código se comprueba si estos tuviesen hijos, en tal caso,
+ aparecería un modal.
+  -->
+{% for tab in nav %} 
+    {% if tab.children %}
+        <!-- Accedemos al primer hijo para obtener la URL -->
+        <li class="header__nav__link">
+        <a href="{{ tab.children[0].url | url }}">{{ tab.title }}</a>
+        </li>
+        {% else %}
+        <!-- Si no tiene hijos, usamos la URL directamente -->
+        <li class="header__nav__link">
+        <a href="{{ tab.url | url }}">{{ tab.title }}</a>
+        </li>
+    {% endif %} 
+{% endfor %}

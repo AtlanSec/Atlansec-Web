@@ -1,19 +1,21 @@
 site_name: Blog
 site_url: https://sitename.example
 theme:
+  font: 
+    text: JetBrains Mono
   name: material
   features:
     - hide_title
     - navigation.footer
     - navigation.indexes
-    - navigation.tabs
   palette:
     primary: white
   icon:
+    search: material/magnify
   logo: assets/logo.png
   custom_dir: "docs/overrides"
-  extra_css:
-    - stylesheets/extra.css
+extra_css:
+  - stylesheets/extra.css
 
 nav:
   - Home:

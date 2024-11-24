@@ -1,18 +1,7 @@
 :root {
   --Primary-Blue: #000f2c;
   --Secondary-Blue: #48bfbf;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: url("../assets/A_blue.svg") no-repeat,
-    radial-gradient(circle, rgba(128, 128, 128, 0.3) 1px, transparent 1px);
-  background-size: 1050px 1050px, 15px 15px;
-  background-position: calc(-14rem) 50%, center;
-  background-color: #ffffff;
-  font-family: "JetBrains Mono", monospace;
+  --Blue-Soft: #000f2c33;
 }
 
 .md-header .md-nav {
@@ -28,4 +17,7 @@ body {
   justify-content: space-between;
   background-color: #ffffff;
   padding: 0 1rem;
+}
+html {
+  overflow-y: hidden;
 }

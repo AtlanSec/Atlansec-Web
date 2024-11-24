@@ -27,23 +27,90 @@
 
 <!-- Additional styles for landing page -->
 <style>
+  body {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(
+      circle,
+      rgba(128, 128, 128, 0.3) 1px,
+      transparent 1px
+    );
+    background-size: 15px 15px;
+    background-position: center;
+    background-color: #ffffff;
+    font-family: "JetBrains Mono", monospace;
+    background-attachment: fixed;
+    overflow: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 50%;
+    left: calc(-30%);
+    transform: translateY(-50%);
+    width: 1050px;
+    height: 1050px;
+    background-image: url("../assets/A_blue.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    animation: slide-in-logo 3s forwards;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  @keyframes slide-in-logo {
+    from {
+      left: calc(-30%);
+    }
+    to {
+      left: calc(-14rem);
+    }
+  }
+
   .main__section {
     width: 100%;
+    padding-top: 10rem;
+    margin-left: 8%;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
 
-    margin-top: 5rem;
-    transform: translate(8%, 0%);
+  .md-container {
+    width: 95%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .hero__section {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: start;
-    gap: 2rem;
+    justify-content: start;
+    align-items: flex-start;
+    padding-left: 8rem;
+    min-height: 500px;
+    animation: slide-in-diagonal 4s forwards;
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
+  }
+
+  @keyframes slide-in-diagonal {
+    from {
+      transform: translate(10%, 60%);
+      opacity: 0;
+    }
+    to {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
   }
 
   .hero__title {
-    font-size: 43px !important;
+    font-size: 50px !important;
     font-weight: 900;
     text-align: center;
     color: var(--Primary-Blue) !important;
@@ -57,22 +124,30 @@
     stroke: var(--Primary_Blue, #000f2c);
     backdrop-filter: blur(6.699999809265137px);
     font-size: 1rem;
-    margin-left: 3rem;
+    margin-left: 2.5rem;
   }
 
   .blog__button {
-    margin-left: 5.4rem;
+    margin-top: 1.3rem;
+    margin-left: 4.3rem;
   }
 
   .paralelogramo {
     width: auto;
     height: auto;
-    padding: 0.2rem 1.5rem;
+    padding: 0.3rem 2rem;
     background: rgba(255, 255, 255, 0.22);
-    border: 2px, solid var(--Primary_Blue, #000f2c);
+    border: 2px solid var(--Primary_Blue, #000f2c);
     -webkit-transform: skew(30deg);
     -moz-transform: skew(30deg);
     -o-transform: skew(30deg);
+    transition: all 0.3s ease;
+  }
+
+  .paralelogramo:hover {
+    transition: all 0.3s ease;
+    transform: scale(1.1) skew(30deg);
+    box-shadow: 10px 8px 0px 3px var(--Primary_Blue, #000f2c);
   }
 
   .button__content {
@@ -80,6 +155,50 @@
     -moz-transform: skew(-30deg);
     -o-transform: skew(-30deg);
     margin: 0;
+  }
+
+  #typewriter::after {
+    content: "|";
+    animation: blink 0.7s infinite;
+  }
+
+  @keyframes blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    50.01%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .scroll__arrow {
+    align-self: center;
+    margin-top: 10rem;
+    animation: scroll-arrow 2s ease-in-out infinite;
+  }
+
+  .ri-arrow-down-double-line {
+    font-size: 2rem;
+    color: var(--Blue-Soft);
+  }
+
+  @keyframes scroll-arrow {
+    0% {
+      transform: translateY(-20px);
+    }
+    50% {
+      transform: translateY(0px);
+    }
+    100% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .our__work {
+    position: relative;
+    margin-bottom: 10rem;
   }
 
   /* Application header should be static for the landing page */
@@ -113,17 +232,6 @@
     height: auto;
   }
 
-  .dynamic-word {
-    color: #1a1a36;
-    display: inline-block;
-    transition: opacity 0.5s ease-in-out;
-    opacity: 0;
-  }
-
-  .dynamic-word.show {
-    opacity: 1;
-  }
-
   /* Hide table of contents */
   @media screen and (min-width: 60em) {
     .md-sidebar--secondary {
@@ -146,21 +254,74 @@
   }
 </style>
 
-<script></script>
+<script>
+  const words = ["BUILD", "DESIGN", "SECURE", "DEVELOP"];
+  let wordIndex = 0;
+  let letterIndex = 0;
+  let currentText = "";
+  let isDeleting = false;
+  let typingSpeed = 150;
+  let deletingSpeed = 100;
+  let delayBetweenWords = 2000;
+
+  function type() {
+    const typewriter = document.getElementById("typewriter");
+    const currentWord = words[wordIndex];
+
+    if (isDeleting) {
+      currentText = currentWord.substring(0, letterIndex);
+      typewriter.textContent = currentText;
+      letterIndex--;
+
+      if (letterIndex < 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        setTimeout(type, typingSpeed);
+      } else {
+        setTimeout(type, deletingSpeed);
+      }
+    } else {
+      currentText = currentWord.substring(0, letterIndex);
+      typewriter.textContent = currentText;
+      letterIndex++;
+
+      if (letterIndex > currentWord.length) {
+        isDeleting = true;
+        setTimeout(type, delayBetweenWords);
+      } else {
+        setTimeout(type, typingSpeed);
+      }
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(type, 4000);
+  });
+</script>
+
+<link
+  href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+  rel="stylesheet"
+/>
 
 <!-- Hero for landing page -->
 
 <section class="main__section">
   <div class="md-grid md-typeset">
-    <div class="hero__section">
-      <h1 class="hero__title">// <span>BUILD</span> YOUR SOFTWARE WITH US</h1>
+    <section class="hero__section">
+      <h1 class="hero__title">
+        // <span id="typewriter">BUILD</span>YOUR SOFTWARE WITH US
+      </h1>
       <a class="services__button paralelogramo" href="/services">
         <p class="button__content">Services</p>
       </a>
       <a class="blog__button paralelogramo" href="/blog">
         <p class="button__content">Read Our Blog</p>
       </a>
-    </div>
+      <div class="scroll__arrow">
+        <i class="ri-arrow-down-double-line"></i>
+      </div>
+    </section>
   </div>
 </section>
 

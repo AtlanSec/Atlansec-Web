@@ -52,19 +52,6 @@
       {% include ".icons/" ~ icon ~ ".svg" %}
     </label>
 
-    <!-- Header title -->
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
-            {% if page.meta and page.meta.title %}
-              {{ page.meta.title }}
-            {% endif %}
-          </span>
-        </div>
-      </div>
-    </div>
-
     <!-- Color palette toggle -->
     {% if config.theme.palette %}
       {% if not config.theme.palette is mapping %}

@@ -48,6 +48,16 @@
         line-height: 60px;
     }
 
+    .contact-title {
+        text-align: center;
+        padding: 0 !important;
+        margin-bottom: 40px;
+        font-size: 40px;
+        color: #1A1A36;
+        font-weight: 600;
+        line-height: 60px;
+    }
+
     .card {
         max-width: 400px;
         border: 0;
@@ -62,6 +72,8 @@
         background-clip: padding-box;
         border-radius: 45px;
         padding: 40px;
+
+        min-height: 350px;
 
         img {
             margin-bottom: 32px;
@@ -121,6 +133,145 @@
         font-size: 16px;
         max-width: 470px;
     }
+
+
+    .screen {
+        position: relative;
+        background: transparent;
+        border-radius: 15px;
+    }
+
+    .screen:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 20px;
+        right: 20px;
+        bottom: 0;
+        border-radius: 15px;
+        z-index: -1;
+    }
+
+
+    .screen-body {
+        display: flex;
+    }
+
+    .screen-body-item {
+        flex: 1;
+        padding: 50px;
+    }
+
+    .screen-body-item.left {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .app-title {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        color: #1A1A36;
+        font-size: 26px;
+    }
+
+    .app-title:after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        width: 25px;
+        height: 4px;
+        background: #1A1A36;
+        width: 35%;
+    }
+
+    .app-contact {
+        margin-top: auto;
+        font-size: 8px;
+        color: #1A1A36;
+    }
+
+    .app-form-group {
+        margin-bottom: 15px;
+    }
+
+    .app-form-group.message {
+        margin-top: 40px;
+    }
+
+    .app-form-group.buttons {
+        margin-bottom: 0;
+        text-align: right;
+    }
+
+    .app-form-control {
+        width: 100%;
+        padding: 10px 0;
+        background: none;
+        border: none;
+        border-bottom: 1px solid #666;
+        color: #1A1A36;
+        font-size: 14px;
+        text-transform: uppercase;
+        outline: none;
+        transition: border-color .2s;
+    }
+
+    .app-form-control::placeholder {
+        color: #1A1A36;
+    }
+
+    .app-form-control:focus {
+        border-bottom-color: #ddd;
+    }
+
+    @media screen and (max-width: 520px) {
+        .screen-body {
+            flex-direction: column;
+        }
+
+        .screen-body-item.left {
+            margin-bottom: 30px;
+        }
+
+        .app-title {
+            margin: auto;
+            width: 100%;
+            justify-content: center;
+            flex-direction: row;
+        }
+
+        .app-form {
+            margin-top: 20px;
+        }
+
+        .app-form-control {
+            margin: auto;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .app-title span {
+            margin-right: 12px;
+        }
+
+        .app-title:after {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .screen-body {
+            padding: 10px;
+        }
+
+        .screen-body-item {
+            padding: 0;
+        }
+    }
 </style>
 
 <div class="container">
@@ -128,12 +279,48 @@
     <div class="gradient-cards">
         <div class="card">
             <div class="container-card bg-green-box">
-                <p class="card-title">Custom Feature Development</p>
-                <p class="card-description">On-demand feature development tailored to meet every client’s unique needs,
-                    ensuring seamless integration and functionality that align with their vision.</p>
+                <p class="card-title">Software Development</p>
+                <p class="card-description">We turn your ideas into reality, guiding you through the full software
+                    lifecycle from requirements definition to post-launch maintenance by keeping the security in mind.
+                </p>
                 </p>
             </div>
         </div>
+
+        <div class="card">
+            <div class="container-card bg-white-box">
+                <p class="card-title">Web Security Assessment</p>
+                <p class="card-description">We assess the security of your web assets by identifying vulnerabilities in
+                    design, configuration, and deployment using recognized standards like the OWASP framework. Then, we
+                    provide a detailed report with necessary recommendations to strengthen your web application and give
+                    you the needed help to fix the flaws.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="container-card bg-white-box">
+                <p class="card-title">Hardening</p>
+                <p class="card-description">We help you validate the robustness of your asset configuration according to
+                    best practices, providing you technical reports about how to implement tailored mitigations to
+                    strengthen your defenses.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="container-card bg-white-box">
+                <p class="card-title">Software Maintenance</p>
+                <p class="card-description">We ensure your software remains functional, secure, and optimized by providing updates, bug fixes, and compatibility adjustments                </p>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="container-card bg-white-box">
+                <p class="card-title">Corporate Security Assessment</p>
+                <p class="card-description">We mimic a real attacker to evaluate your organization's overall security posture by simulating external and internal threats to identify critical vulnerabilities. Then, we provide a detailed report with necessary recommendations to strengthen your assets and give you the needed help to fix the flaws.</p>
+            </div>
+        </div>
+
 
         <div class="card">
             <div class="container-card bg-white-box">
@@ -153,32 +340,114 @@
 
         <div class="card">
             <div class="container-card bg-yellow-box">
-                <p class="card-title">Application Enhancement & Maintenance</p>
-                <p class="card-description">Optimize your app's performance and security with in-depth audits and
-                    targeted improvements, ensuring a reliable, high-quality user experience over time.</p>
+                <p class="card-title">Assumed Breach Exercise</p>
+                <p class="card-description">We test privilege escalation and lateral movement within your corporate network to uncover and address internal security vulnerabilities. Then, we provide a detailed report with necessary recommendations to strengthen your internal network and give you the needed help to fix the flaws.</p>
             </div>
         </div>
 
         <div class="card">
             <div class="container-card bg-yellow-box">
-                <p class="card-title">Process Automation</p>
-                <p class="card-description">Design and implementation of automation solutions to streamline your
-                    operations. We simplify complex processes to optimize time and reduce error margins.</p>
+                <p class="card-title">Process Optimization</p>
+                <p class="card-description">We refine your workflows and systems to eliminate inefficiencies, reduce costs, and achieve optimal outcomes.</p>
             </div>
         </div>
 
         <div class="card">
             <div class="container-card bg-yellow-box">
-                <p class="card-title">Audit Services</p>
-                <p class="card-description">Comprehensive auditing services to review every aspect of your application,
-                    from security to performance. We identify and address potential vulnerabilities and areas for
-                    improvement.</p>
+                <p class="card-title">External QA</p>
+                <p class="card-description">We independently test your software to uncover and resolve functional, performance, usability, and security issues before deployment.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="container-card bg-yellow-box">
+                <p class="card-title">Mobile Application Security Assessment</p>
+                <p class="card-description">We evaluate the security of your mobile apps across platforms, identifying vulnerabilities and bypassing protections to ensure robust security, all acording to OWASP Testing framework. Then, we provide a detailed report with necessary recommendations to strengthen your application and give you the needed help to fix the flaws.</p>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="container-card bg-yellow-box">
+                <p class="card-title">Periodic Security Scans</p>
+                <p class="card-description">We conduct regular scans of your infrastructure to identify new know vulnerabilities. We periodically provide technical reports with the findings and advise you to solution the flaws.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="container-card bg-yellow-box">
+                <p class="card-title">Project Dockerization</p>
+                <p class="card-description">We transform your project into a scalable, containerized application by creating a tailored Dockerfile using best development practices.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="container-card bg-yellow-box">
+                <p class="card-title">Wi-Fi Security Assessment</p>
+                <p class="card-description">We test the security of your wireless network on-site, simulating potential threats to assess access feasibility and internal resource exposure. </p>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="container-card bg-yellow-box">
+                <p class="card-title">Perimeter Infrastructure Security Assessment</p>
+                <p class="card-description">We analyze your external-facing infrastructure to identify vulnerabilities and configuration issues that could expose your systems to risks. Then, we provide a detailed report with necessary recommendations to strengthen your external facing assets and give you the needed help to fix the flaws.                </p>
+            </div>
+        </div>
+
+        
+
+        <div class="card">
+            <div class="container-card bg-yellow-box">
+                <p class="card-title">Code Review</p>
+                <p class="card-description">We inspect your codebase to ensure adherence to best practices, security standards, and performance optimization.  Then, we provide a detailed report with necessary recommendations to strengthen your codebase and give you the needed help to fix the flaws.</p>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="container-card bg-yellow-box">
+                <p class="card-title">Social Engineering Awareness Assessment</p>
+                <p class="card-description">We simulate phishing campaigns to test and improve employee awareness of social engineering attacks. Then, we provide a detailed report with metrics about the success rate of the campagin.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="container-card bg-yellow-box">
+                <p class="card-title">Internal Infrastructure Security Assessment</p>
+                <p class="card-description">We review the security of your internal network to identify and mitigate vulnerabilities or misconfigurations that could compromise your corporate systems. Then, we provide a detailed report with necessary recommendations to strengthen your internal assets and give you the needed help to fix the flaws.</p>
+            </div>
+        </div>
+
+       
+
+
+    </div>
+
+    <div class="container">
+        <div class="screen">
+            <div class="screen-body">
+                <div class="screen-body-item center">
+                    <div class="app-title">
+                        <span>CONTACT US</span>
+                    </div>
+                </div>
+                <div class="screen-body-item">
+                    <div class="app-form">
+                        <div class="app-form-group">
+                            <p class="app-form-control">Atlansec</p>
+                        </div>
+                        <div class="app-form-group">
+                            <p class="app-form-control">contactoatlansec@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-    <p class="container-title">Contact us</p>
-    <p class="container-title">contactoatlansec@gmail.com</p>
 
 </div>
 

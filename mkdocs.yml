@@ -4,7 +4,6 @@ theme:
   name: material
   features:
     - hide_title
-    - navigation.footer
     - navigation.indexes
     - navigation.tabs
     - content.code.copy

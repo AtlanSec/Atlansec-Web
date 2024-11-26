@@ -1,4 +1,5 @@
 ---
+title: Atlansec
 template: home.html
 social:
   cards_layout_options:

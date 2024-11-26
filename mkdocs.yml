@@ -1,6 +1,7 @@
-site_name: Blog
+site_name: Atlansec
 site_url: https://atlansec.es
 theme:
+  favicon: assets/favicon.png
   name: material
   features:
     - hide_title

@@ -82,6 +82,7 @@
       {% include "partials/alternate.html" %}
     {% endif %}
 
+    {%if "blog/" in page.url %}
     <!-- Button to open search modal -->
     {% if "material/search" in config.plugins %}
       <label class="md-header__button md-icon" for="__search">
@@ -98,6 +99,7 @@
       <div class="md-header__source">
         {% include "partials/source.html" %}
       </div>
+    {% endif %}
     {% endif %}
   </nav>
 

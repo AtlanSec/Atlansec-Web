@@ -19,16 +19,13 @@ body {
   background-attachment: fixed;
 }
 
-@media screen and (max-width: 1919px) {
+@media screen and (max-width: 1918px) {
   body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: -webkit-radial-gradient(circle,
-        rgba(128, 128, 128, 0.15) 1px,
-        transparent 1px);
     background: radial-gradient(circle,
-        rgba(128, 128, 128, 0.15) 1px,
+        rgba(128, 128, 128, 0.55) 1px,
         transparent 1px);
     background-size: 15px 15px;
     background-position: center;

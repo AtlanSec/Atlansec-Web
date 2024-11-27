@@ -39,12 +39,13 @@
     }
 
     .container__title {
+        position: relative;
         text-align: start;
         padding: 0 !important;
         margin-bottom: 40px;
         font-size: 40px;
         color: var(--Primary-Blue);
-        font-weight: 300;
+        font-weight: 400;
     }
 
     .contact-title {
@@ -67,6 +68,8 @@
         position: relative;
         border: 2px solid var(--Primary-Blue);
         background-clip: padding-box;
+        background-color: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(1px);
         padding: 35px;
         transition: all 0.3s ease;
         min-height: 450px;
@@ -75,18 +78,20 @@
         }
     }
 
-    .container__card:hover {
-        transition: all 0.3s ease;
-        background-color: rgba(255, 255, 255, 0.219);
-        backdrop-filter: blur(5px);
-        box-shadow: 10px 10px 0px -2px var(--Primary-Blue);
-        transform: scale(1.05);
-        clip-path: none;
+    @media (hover: hover) and (pointer: fine) {
+        .container__card:hover {
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.219);
+            backdrop-filter: blur(5px);
+            box-shadow: 10px 10px 0px -2px var(--Primary-Blue);
+            transform: scale(1.05);
+            clip-path: none;
+        }
     }
     
 
     .card-title {
-        font-weight: 600;
+        font-weight: 400;
         color: var(--Primary-Blue);
         letter-spacing: -0.02em;
         line-height: 40px;
@@ -103,6 +108,7 @@
         color: var(--Primary-Blue);
         font-size: 16px;
         max-width: 470px;
+        text-wrap: balance;
     }
 
 
@@ -202,10 +208,18 @@
     @media screen and (max-width: 520px) {
         .container__title{
             font-size: 4.5vw;
+            font-weight: 500;
         }
 
         .card-title{
             font-size: 4vw;
+            font-weight: 400;
+            height: 80px;
+        }
+
+        .card-description{
+            font-size: 3vw;
+            font-weight: 300;
         }
 
         .container__card {
@@ -214,11 +228,8 @@
             background-clip: padding-box;
             padding: 35px;
             transition: all 0.3s ease;
-            min-height: 200px;
+            min-height: 150px;
             clip-path: polygon(0px 0px, calc(100% - 40px) 0px, 100% 40px, 100% 100%, calc(0% + 40px) 100%, 0px calc(100% - 40px));
-            img {
-                margin-bottom: 32px;
-            }
         }
 
         .screen-body {

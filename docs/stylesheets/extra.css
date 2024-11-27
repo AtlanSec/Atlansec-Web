@@ -1,0 +1,51 @@
+:root {
+  --Primary-Blue: #000f2c;
+  --Secondary-Blue: #48bfbf;
+  --Blue-Soft: #000f2c33;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle,
+      rgba(128, 128, 128, 0.555) 1px,
+      transparent 1px);
+  background-size: 15px 15px;
+  background-position: center;
+  background-color: #ffffff;
+  font-family: "JetBrains Mono", monospace;
+  background-attachment: fixed;
+}
+
+@media screen and (max-width: 1920px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle,
+        rgba(128, 128, 128, 0.255) 0.2,
+        transparent 1px);
+    background-size: 15px 15px;
+    background-position: center;
+    background-color: #ffffff;
+    font-family: "JetBrains Mono", monospace;
+    background-attachment: fixed;
+  }
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--Primary-Blue) rgba(0, 0, 0, 0);
+  scroll-behavior: smooth;
+}
+
+.md-container {
+  width: 100%;
+}
+
+@media screen and (max-width: 960px) {
+  .md-header__button.md-logo {
+    display: block;
+  }
+}

@@ -23,130 +23,341 @@
 {% extends "main.html" %}
 
 <!-- Render hero under tabs -->
-{% block tabs %}
+{% block tabs %} {{ super() }}
 
-{{ super() }}
+<link
+  href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+  rel="stylesheet"
+/>
 
 <!-- Additional styles for landing page -->
 <style>
-    /* Application header should be static for the landing page */
-    .md-header {
-        position: initial;
+  .main__section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .md-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero__section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
+    margin-top: 10rem;
+    width: 75%;
+  }
+
+  .atlansec__main__logo {
+    width: 400px;
+  }
+
+  .hero__section__texts {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+  }
+
+  .hero__title {
+    font-size: 53px;
+    font-weight: 300;
+    text-align: start;
+    color: var(--Primary-Blue);
+  }
+
+  .services__button,
+  .blog__button {
+    color: var(--Primary_Blue) !important;
+    fill: rgba(255, 255, 255, 0.22);
+    stroke-width: 1.5px;
+    stroke: var(--Primary_Blue, #000f2c);
+    backdrop-filter: blur(6.699999809265137px);
+    font-size: 1rem;
+    margin-left: 2.5rem;
+  }
+
+  .blog__button {
+    margin-top: 1.3rem;
+    margin-left: 4rem;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    margin-top: 2rem;
+  }
+  .paralelogramo {
+    width: auto;
+    height: auto;
+    padding: 0.3rem 2rem;
+    background: rgba(255, 255, 255, 0.22);
+    border: 2px solid var(--Primary_Blue, #000f2c);
+    -webkit-transform: skew(30deg);
+    -moz-transform: skew(30deg);
+    -o-transform: skew(30deg);
+    transition: all 0.3s ease;
+  }
+
+  .paralelogramo:hover {
+    transition: all 0.3s ease;
+    transform: scale(1.1) skew(30deg);
+    box-shadow: 10px 8px 0px 3px var(--Primary_Blue, #000f2c);
+  }
+
+  .button__content {
+    -webkit-transform: skew(-30deg);
+    -moz-transform: skew(-30deg);
+    -o-transform: skew(-30deg);
+    margin: 0;
+  }
+
+  #typewriter::after {
+    content: "|";
+    animation: blink 0.7s infinite;
+  }
+
+  @keyframes blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    50.01%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .scroll__arrow {
+    color: var(--Primary-Blue);
+    align-self: center;
+    margin-top: 7rem;
+    animation: scroll-arrow 2s ease-in-out infinite;
+  }
+
+  .ri-arrow-down-double-line {
+    font-size: 2rem;
+    color: var(--Blue-Soft);
+  }
+
+  @keyframes scroll-arrow {
+    0% {
+      transform: translateY(-20px);
+    }
+    50% {
+      transform: translateY(0px);
+    }
+    100% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .hero__section {
+      flex-direction: column;
+      align-items: center;
+      margin-top: 6rem;
+      width: 80%;
     }
 
-    /* Remove spacing, as we cannot hide it completely */
-    .md-main__inner {
-        margin: 0;
+    .atlansec__main__logo {
+      width: 200px;
     }
 
-    /* Hide main content for now */
-    .md-content {
-        display: none;
+    .hero__title {
+      width: 100%;
+      font-size: 20px;
+      font-weight: 400;
+      margin-top: 2rem;
     }
 
-    .mdx-hero {
-        display: flex;
-        justify-content: center;
-        /* Horizontal centering */
-        align-items: center;
-        /* Vertical centering */
-        height: 55vh;
-        /* Full viewport height */
+    .buttons{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
     }
 
-    .mdx-hero__image img {
-        max-width: 100%;
-        /* Responsive image size */
-        height: auto;
-    }
-
-    .dynamic-word {
-        color: #1A1A36;
-        display: inline-block;
-        transition: opacity 0.5s ease-in-out;
-        opacity: 0;
-    }
-
-    .dynamic-word.show {
-        opacity: 1;
-    }
-
-    /* Hide table of contents */
-    @media screen and (min-width: 60em) {
-        .md-sidebar--secondary {
-            display: none;
-        }
-    }
-
-    @media screen and (max-width: 60em) {
-        .mdx-container {
-            max-width: 80%;
-            margin: auto;
-        }
+    .services__button,
+    .blog__button {
+      color: var(--Primary_Blue) !important;
+      fill: rgba(255, 255, 255, 0.22);
+      stroke-width: 1.5px;
+      stroke: var(--Primary_Blue, #000f2c);
+      backdrop-filter: blur(6.699999809265137px);
+      font-size: 14px;
+      margin-left: 1rem;
+      margin-top: 0;
     }
 
 
-    /* Hide navigation */
-    @media screen and (min-width: 76.25em) {
-        .md-sidebar--primary {
-            display: none;
-        }
 
+    .paralelogramo {
+      width: auto;
+      height: auto;
+      padding: 0.2rem 0.8rem;
+      background: rgba(255, 255, 255, 0.22);
+      border: 1px solid var(--Primary_Blue, #000f2c);
+      -webkit-transform: skew(30deg);
+      -moz-transform: skew(30deg);
+      -o-transform: skew(30deg);
+      transition: all 0.3s ease;
     }
+
+    .button__content {
+    -webkit-transform: skew(-30deg);
+    -moz-transform: skew(-30deg);
+    -o-transform: skew(-30deg);
+    margin: 0;
+  }
+  }
+
+  /* Application header should be static for the landing page */
+  .md-header {
+    position: initial;
+  }
+
+  /* Remove spacing, as we cannot hide it completely */
+  .md-main__inner {
+    margin: 0;
+  }
+
+  /* Hide main content for now */
+  .md-content {
+    display: none;
+  }
+
+  .mdx-hero {
+    display: flex;
+    justify-content: center;
+    /* Horizontal centering */
+    align-items: center;
+    /* Vertical centering */
+    height: 55vh;
+    /* Full viewport height */
+  }
+
+  .mdx-hero__image img {
+    max-width: 100%;
+    /* Responsive image size */
+    height: auto;
+  }
+
+  .dynamic-word {
+    color: #1a1a36;
+    display: inline-block;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+  }
+
+  .dynamic-word.show {
+    opacity: 1;
+  }
+
+  /* Hide table of contents */
+  @media screen and (min-width: 60em) {
+    .md-sidebar--secondary {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 60em) {
+    .mdx-container {
+      max-width: 80%;
+      margin: auto;
+    }
+  }
+
+  /* Hide navigation */
+  @media screen and (min-width: 76.25em) {
+    .md-sidebar--primary {
+      display: none;
+    }
+  }
 </style>
 
 <script>
-    // Words to cycle through
-    const words = ["Develop", "Secure", "Protect", "Design"];
-    let currentIndex = 0;
+  const words = ["BUILD", "DESIGN", "SECURE", "DEVELOP"];
+  let wordIndex = 0;
+  let letterIndex = 0;
+  let currentText = "";
+  let isDeleting = false;
+  let typingSpeed = 150;
+  let deletingSpeed = 100;
+  let delayBetweenWords = 2000;
 
-    // Function to change the word
-    function changeWord() {
-        const actionWordElement = document.getElementById("action-word");
+  function type() {
+    const typewriter = document.getElementById("typewriter");
+    const currentWord = words[wordIndex];
 
-        // Fade out effect
-        actionWordElement.classList.remove("show");
+    if (isDeleting) {
+      currentText = currentWord.substring(0, letterIndex);
+      typewriter.textContent = currentText;
+      letterIndex--;
 
-        // Wait for fade out to complete before changing the word
-        setTimeout(() => {
-            // Update word
-            currentIndex = (currentIndex + 1) % words.length;
-            actionWordElement.textContent = words[currentIndex];
+      if (letterIndex < 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        setTimeout(type, typingSpeed);
+      } else {
+        setTimeout(type, deletingSpeed);
+      }
+    } else {
+      currentText = currentWord.substring(0, letterIndex);
+      typewriter.textContent = currentText;
+      letterIndex++;
 
-            // Fade in effect
-            actionWordElement.classList.add("show");
-        }, 500); // Match the transition time from CSS
+      if (letterIndex > currentWord.length) {
+        isDeleting = true;
+        setTimeout(type, delayBetweenWords);
+      } else {
+        setTimeout(type, typingSpeed);
+      }
     }
+  }
 
-    // Change word every 2 seconds
-    setInterval(changeWord, 2000);
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(type, 1000);
+  });
 </script>
 
-<!-- Hero for landing page -->
-<section class="mdx-container">
-    <div class="md-grid md-typeset">
-        <div class="mdx-hero">
-            <!-- Hero image -->
-            <div class="mdx-hero__image">
-                <img src="assets/only_logo.png" alt="" width="300" height="300" draggable="false">
-            </div>
-        </div>
+<section class="main__section">
+  <section class="hero__section">
+    <img
+      class="atlansec__main__logo"
+      src="assets/only_logo.png"
+      alt="Atlansec main logo"
+      draggable="false"
+    />
+    <div class="hero__section__texts">
+      <h1 class="hero__title">
+        // <span id="typewriter"></span>YOUR SOFTWARE WITH US
+      </h1>
+      <div class="buttons">
+        <a class="services__button paralelogramo" href="/services">
+          <p class="button__content">Services</p>
+        </a>
+        <a class="blog__button paralelogramo" href="/blog">
+          <p class="button__content">Read Our Blog</p>
+        </a>
+      </div>
     </div>
-</section>
-
-<section class="mdx-container">
-    <div class="md-grid md-typeset">
-        <div class="mdx-hero__content">
-            <h1><span id="action-word" class="dynamic-word show">Develop</span> your software with us</h1>
-            <a href="{{ 'services/' | url }}" title="{{ page.next_page.title | e }}"
-                class="md-button md-button--primary">
-                Services
-            </a>
-            <a href="{{ 'blog/' | url }}" title="Read the blog" class="md-button">
-                Read the blog
-            </a>
-        </div>
-    </div>
+  </section>
+  <!-- <div class="scroll__arrow">
+    <i class="ri-arrow-down-double-line"></i>
+  </div> -->
 </section>
 
 {% endblock %}

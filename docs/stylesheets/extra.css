@@ -25,7 +25,7 @@ body {
     justify-content: center;
     align-items: center;
     background: radial-gradient(circle,
-        rgba(128, 128, 128, 0.55) 1px,
+        rgba(128, 128, 128, 0.25) 1px,
         transparent 1px);
     background-size: 15px 15px;
     background-position: center;

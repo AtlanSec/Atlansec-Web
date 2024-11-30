@@ -21,32 +21,28 @@
 -->
 
 <!-- Determine classes -->
-{% set class = "md-header" %}
-{% if "navigation.tabs.sticky" in features %}
-  {% set class = class ~ " md-header--shadow md-header--lifted" %}
-{% elif "navigation.tabs" not in features %}
-  {% set class = class ~ " md-header--shadow" %}
-{% endif %}
+{% set class = "md-header" %} {% if "navigation.tabs.sticky" in features %} {%
+set class = class ~ " md-header--shadow md-header--lifted" %} {% elif
+"navigation.tabs" not in features %} {% set class = class ~ " md-header--shadow"
+%} {% endif %}
 
 <style>
-  .md-header{
+  .md-header {
     box-shadow: none;
+  }
+
+  .md-post__back {
+    border-bottom: none !important;
   }
 </style>
 
 <!-- Header -->
-<header class="{{ class }}" data-md-component="header" style="width: 100%;">
-  <nav
-    class="md-header__inner md-grid"
-    aria-label="{{ lang.t('header') }}"
-  >
-
-    
-
+<header class="{{ class }}" data-md-component="header" style="width: 100%">
+  <nav class="md-header__inner md-grid" aria-label="{{ lang.t('header') }}">
     <!-- Button to open drawer -->
     <label class="md-header__button md-icon" for="__drawer">
-      {% set icon = config.theme.icon.menu or "material/menu" %}
-      {% include ".icons/" ~ icon ~ ".svg" %}
+      {% set icon = config.theme.icon.menu or "material/menu" %} {% include
+      ".icons/" ~ icon ~ ".svg" %}
     </label>
 
     <!-- Link to home -->
@@ -61,47 +57,45 @@
     </a>
 
     <!-- Color palette toggle -->
-    {% if config.theme.palette %}
-      {% if not config.theme.palette is mapping %}
-        {% include "partials/palette.html" %}
-      {% endif %}
-    {% endif %}
+    {% if config.theme.palette %} {% if not config.theme.palette is mapping %}
+    {% include "partials/palette.html" %} {% endif %} {% endif %}
 
     <!-- User preference: color palette -->
-    {% if not config.theme.palette is mapping %}
-      {% include "partials/javascripts/palette.html" %}
-    {% endif %}
+    {% if not config.theme.palette is mapping %} {% include
+    "partials/javascripts/palette.html" %} {% endif %}
 
     <!-- Site language selector -->
-    {% if config.extra.alternate %}
-      {% include "partials/alternate.html" %}
-    {% endif %}
-
-    {%if "blog/" in page.url %}
+    {% if config.extra.alternate %} {% include "partials/alternate.html" %} {%
+    endif %} {%if "blog/" in page.url %}
+    <style>
+      .md-header__inner,
+      .md-grid {
+        justify-content: space-between;
+      }
+      @media screen and (max-width: 1219px) {
+        .md-search {
+          position: absolute;
+          right: 0;
+        }
+      }
+    </style>
     <!-- Button to open search modal -->
     {% if "material/search" in config.plugins %}
-      <label class="md-header__button md-icon" for="__search">
-        {% set icon = config.theme.icon.search or "material/magnify" %}
-        {% include ".icons/" ~ icon ~ ".svg" %}
-      </label>
+    <label class="md-header__button md-icon" for="__search">
+      {% set icon = config.theme.icon.search or "material/magnify" %} {% include
+      ".icons/" ~ icon ~ ".svg" %}
+    </label>
 
-      <!-- Search interface -->
-      {% include "partials/search.html" %}
-    {% endif %}
+    <!-- Search interface -->
+    {% include "partials/search.html" %} {% endif %}
 
     <!-- Repository information -->
     {% if config.repo_url %}
-      <div class="md-header__source">
-        {% include "partials/source.html" %}
-      </div>
-    {% endif %}
-    {% endif %}
+    <div class="md-header__source">{% include "partials/source.html" %}</div>
+    {% endif %} {% endif %}
   </nav>
 
   <!-- Navigation tabs (sticky) -->
-  {% if "navigation.tabs.sticky" in features %}
-    {% if "navigation.tabs" in features %}
-      {% include "partials/tabs.html" %}
-    {% endif %}
-  {% endif %}
+  {% if "navigation.tabs.sticky" in features %} {% if "navigation.tabs" in
+  features %} {% include "partials/tabs.html" %} {% endif %} {% endif %}
 </header>

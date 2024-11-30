@@ -9,9 +9,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle,
-      rgba(128, 128, 128, 0.555) 1px,
-      transparent 1px);
+  background: radial-gradient(
+    circle,
+    rgba(128, 128, 128, 0.555) 6%,
+    transparent 1%
+  );
   background-size: 15px 15px;
   background-position: center;
   background-color: #ffffff;
@@ -24,9 +26,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(circle,
-        rgba(128, 128, 128, 0.25) 1px,
-        transparent 1px);
+    background: radial-gradient(
+      circle,
+      rgba(128, 128, 128, 0.25) 8%,
+      transparent 10%
+    );
     background-size: 15px 15px;
     background-position: center;
     background-color: #ffffff;

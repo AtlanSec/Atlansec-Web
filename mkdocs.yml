@@ -24,6 +24,7 @@ nav:
       - services/index.md
   - Blog:
       - blog/index.md
+  
 
 plugins:
   - search

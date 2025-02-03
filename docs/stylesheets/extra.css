@@ -45,11 +45,18 @@ html {
   scroll-behavior: smooth;
 }
 
+
+/* Esto es para quitar el drawer (primero) que aparece doble */
+.md-nav__list { 
+  nav {
+    display: none !important;
+  }
+}
 .md-container {
   width: 100%;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1917px) {
   .md-header__button.md-logo {
     display: block;
   }

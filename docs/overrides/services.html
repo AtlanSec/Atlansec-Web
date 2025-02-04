@@ -46,6 +46,7 @@
     font-size: 40px;
     color: var(--Primary-Blue);
     font-weight: 400;
+    align-items: center;
   }
 
   .contact-title {
@@ -452,6 +453,10 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  .only_logo{
+    width: 6vw;
+  }
 </style>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -481,7 +486,11 @@
 </script>
 
 <div class="container">
-  <p class="container__title">// SERVICES WE OFFER ON DEMAND<span id="blinkingCursor">|</span></p>
+  <p class="container__title">
+    <img class="only_logo" src="../assets/only_logo.png"/>
+    // SERVICES WE OFFER ON DEMAND
+    <span id="blinkingCursor">|</span>
+  </p>
   <div class="gradient__cards">
     <div class="card button-group-1">
       <div class="container__card">

@@ -20,7 +20,8 @@
     padding-top: 10px;
     padding-bottom: 20px;
     grid-template-columns: repeat(auto-fit, minmax(15vw, 1fr));
-    gap: 3%;
+    gap: inherit;
+    column-gap: 3%;
     width: 57vw;
     margin-inline: auto;
 
@@ -74,12 +75,9 @@
     min-height: 450px;
     max-height: 28vh;
     display: flex;
-    /* Alinea los elementos en fila */
     align-items: center;
-    /* Centra verticalmente */
     gap: 20px;
     overflow: hidden;
-    /* Evita que la imagen sobresalga */
   }
 
   .container__card-compact {
@@ -234,8 +232,12 @@
       background-clip: padding-box;
       padding: 35px;
       transition: all 0.3s ease;
+      max-height: 100%;
     }
 
+    .container__card-compact {
+      padding: 35px;
+    }
 
     .screen-body {
       flex-direction: column;
@@ -327,7 +329,6 @@
 
   .card-content-left {
     flex: 1.2;
-    /* Más espacio para el contenido */
     min-width: 50%;
 
     .card-title {
@@ -350,9 +351,7 @@
 
   .card-image-left img {
     flex: 1;
-    /* La imagen ocupa el espacio restante */
     object-fit: contain;
-    /* Ajusta la imagen sin deformarse, recortándola si es necesario */
     border-radius: 10px;
 
   }
@@ -371,7 +370,6 @@
 
     .card-image-right {
       order: -1;
-      /* Moves the image to the top */
     }
 
     .card-content-right {
@@ -459,28 +457,24 @@
   document.addEventListener('DOMContentLoaded', function () {
     const acordeon = document.querySelector('.group-1');
     document.querySelector('.button-group-1').addEventListener('click', function () {
-      console.log("test");
       acordeon.classList.toggle('open');
     });
   });
   document.addEventListener('DOMContentLoaded', function () {
     const acordeon = document.querySelector('.group-2');
     document.querySelector('.button-group-2').addEventListener('click', function () {
-      console.log("test");
       acordeon.classList.toggle('open');
     });
   });
   document.addEventListener('DOMContentLoaded', function () {
     const acordeon = document.querySelector('.group-3');
     document.querySelector('.button-group-3').addEventListener('click', function () {
-      console.log("test");
       acordeon.classList.toggle('open');
     });
   });
   document.addEventListener('DOMContentLoaded', function () {
     const acordeon = document.querySelector('.group-4');
     document.querySelector('.button-group-4').addEventListener('click', function () {
-      console.log("test");
       acordeon.classList.toggle('open');
     });
   });

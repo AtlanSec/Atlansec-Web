@@ -3,20 +3,21 @@
   --Primary-Blue-2: #455270;
   --Secondary-Blue: #48bfbf;
   --Blue-Soft: #000f2c33;
+  --Cyber-Red: #FF246E;
 }
 
 body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(
+  /* background: radial-gradient(
     circle,
     rgba(128, 128, 128, 0.555) 6%,
     transparent 1%
-  );
-  background-size: 15px 15px;
-  background-position: center;
-  background-color: #ffffff;
+    background-size: 15px 15px;
+    background-position: center;
+    background-color: #ffffff;
+    ); */
   font-family: "JetBrains Mono", monospace;
   background-attachment: fixed;
 }
@@ -26,14 +27,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(
+    /* background: radial-gradient(
       circle,
       rgba(128, 128, 128, 0.25) 8%,
       transparent 10%
     );
     background-size: 15px 15px;
     background-position: center;
-    background-color: #ffffff;
+    background-color: #ffffff; */
     font-family: "JetBrains Mono", monospace;
     background-attachment: fixed;
   }

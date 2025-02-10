@@ -1,0 +1,63 @@
+:root {
+  --Primary-Blue: #000f2c;
+  --Primary-Blue-2: #455270;
+  --Secondary-Blue: #48bfbf;
+  --Blue-Soft: #000f2c33;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(
+    circle,
+    rgba(128, 128, 128, 0.555) 6%,
+    transparent 1%
+  );
+  background-size: 15px 15px;
+  background-position: center;
+  background-color: #ffffff;
+  font-family: "JetBrains Mono", monospace;
+  background-attachment: fixed;
+}
+
+@media screen and (max-width: 1918px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(
+      circle,
+      rgba(128, 128, 128, 0.25) 8%,
+      transparent 10%
+    );
+    background-size: 15px 15px;
+    background-position: center;
+    background-color: #ffffff;
+    font-family: "JetBrains Mono", monospace;
+    background-attachment: fixed;
+  }
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--Primary-Blue) rgba(0, 0, 0, 0);
+  scroll-behavior: smooth;
+}
+
+
+/* Esto es para quitar el drawer (primero) que aparece doble */
+.md-nav__list { 
+  nav {
+    display: none !important;
+  }
+}
+.md-container {
+  width: 100%;
+}
+
+@media screen and (max-width: 1917px) {
+  .md-header__button.md-logo {
+    display: block;
+  }
+}

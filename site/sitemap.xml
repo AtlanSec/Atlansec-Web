@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://atlansec.es/</loc>
+        <lastmod>2025-02-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://atlansec.es/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://atlansec.es/es/"/>
+    </url>
+    <url>
+        <loc>https://atlansec.es/blog/</loc>
+        <lastmod>2025-02-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://atlansec.es/blog/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://atlansec.es/es/blog/"/>
+    </url>
+    <url>
+        <loc>https://atlansec.es/services/</loc>
+        <lastmod>2025-02-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://atlansec.es/services/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://atlansec.es/es/services/"/>
+    </url>
+    <url>
+        <loc>https://atlansec.es/es/</loc>
+        <lastmod>2025-02-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://atlansec.es/es/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://atlansec.es/"/>
+    </url>
+    <url>
+        <loc>https://atlansec.es/es/blog/</loc>
+        <lastmod>2025-02-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://atlansec.es/es/blog/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://atlansec.es/blog/"/>
+    </url>
+    <url>
+        <loc>https://atlansec.es/es/services/</loc>
+        <lastmod>2025-02-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://atlansec.es/es/services/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://atlansec.es/services/"/>
+    </url>
+</urlset>

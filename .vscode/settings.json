@@ -18,6 +18,11 @@
       "tag:yaml.org,2002:python/name:material.extensions.emoji.twemoji",
       "tag:yaml.org,2002:python/name:pymdownx.superfences.fence_code_format"
     ],
-    "semgrep.scan.onlyGitDirty": false
+    "semgrep.scan.onlyGitDirty": false,
+    "cSpell.words": [
+      "contenedorización",
+      "contenerizada",
+      "ineficiencias"
+    ]
   }
   

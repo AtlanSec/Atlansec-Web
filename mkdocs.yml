@@ -24,8 +24,7 @@ nav:
       - services/index.md
   - Blog:
       - blog/index.md
-  
-
+      
 plugins:
   - search
   - social
@@ -33,6 +32,26 @@ plugins:
       categories: false
       categories_name: Categories
 
+  - i18n:
+      docs_structure: folder
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: es
+          name: Spanish
+          build: true
+      reconfigure_material: true
+
+extra:
+  alternate:
+    - name: English
+      link: /
+      lang: en
+    - name: Spanish
+      link: /es/
+      lang: es
 
 markdown_extensions:
   - pymdownx.highlight:

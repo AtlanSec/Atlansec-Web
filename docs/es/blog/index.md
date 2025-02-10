@@ -1,6 +1,6 @@
 ---
 title: Blog
-template: bloges.html
+template: blog.html
 hide:
   - navigation
 ---

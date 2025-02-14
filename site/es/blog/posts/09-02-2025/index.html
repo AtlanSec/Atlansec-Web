@@ -1,0 +1,768 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://atlansec.es/es/blog/posts/09-02-2025/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.2">
+    
+    
+      
+        <title>Technical Debt: A Necessary Evil in Software Development - Atlansec</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.d7758b05.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Technical Debt: A Necessary Evil in Software Development - Atlansec" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="https://atlansec.es/assets/images/social/en/blog/posts/09-02-2025.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://atlansec.es/es/blog/posts/09-02-2025/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Technical Debt: A Necessary Evil in Software Development - Atlansec" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="https://atlansec.es/assets/images/social/en/blog/posts/09-02-2025.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#what-is-technical-debt" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine classes -->
+ 
+
+<style>
+  .md-header {
+    box-shadow: none;
+  }
+
+  .md-post__back {
+    border-bottom: none !important;
+  }
+</style>
+
+<!-- Header -->
+<header class="md-header" data-md-component="header" style="width: 100%">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Link to home -->
+    <a
+      href="../../../"
+      title="Atlansec"
+      class="md-header__button md-logo"
+      aria-label="Atlansec"
+      data-md-component="logo"
+    >
+      
+  <img src="../../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Color palette toggle -->
+      
+
+    <!-- User preference: color palette -->
+    
+
+    <!-- Site language selector -->
+     <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Seleccionar idioma">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../../blog/posts/09-02-2025/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="es" class="md-select__link">
+              Spanish
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>  
+    <style>
+      .md-header__inner,
+      .md-grid {
+        justify-content: space-between;
+      }
+      @media screen and (max-width: 1219px) {
+        .md-search {
+          position: absolute;
+          right: 0;
+        }
+      }
+    </style>
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+    <!-- Repository information -->
+     
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../" class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../services/" class="md-tabs__link">
+        
+  
+    
+  
+  Services
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+    
+  
+  Blog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../" title="Atlansec" class="md-nav__button md-logo" aria-label="Atlansec" data-md-component="logo">
+      
+  <img src="../../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    Atlansec
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../services/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Services
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-technical-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is technical debt?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-technical-debt-inherently-bad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Is technical debt inherently bad?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-4-quadrants-of-technical-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      The 4 Quadrants of Technical Debt
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-technical-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of Technical Debt
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Types of Technical Debt">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-intentional" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Intentional
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-unintentional" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Unintentional
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples-of-technical-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples of Technical Debt
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#impact-of-technical-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Impact of Technical Debt
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Impact of Technical Debt">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-delays" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Delays
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#higher-maintenance-costs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Higher Maintenance Costs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lower-software-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lower Software Quality
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#difficulty-in-attracting-and-retaining-talent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Difficulty in Attracting and Retaining Talent
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-manage-and-reduce-technical-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Manage and Reduce Technical Debt
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How to Manage and Reduce Technical Debt">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-continuous-refactoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Continuous Refactoring
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-code-reviews" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Code Reviews
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-automating-testing-and-cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Automating Testing and CI/CD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-documentation-and-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Documentation and Best Practices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-planning-technically-from-the-beginning" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Planning Technically from the Beginning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Related Links
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Technical Debt: A Necessary Evil in Software Development</h1>
+
+<p>At Atlansec, while we are primarily a cybersecurity company, we also address technical debt from the perspective of secure software development and infrastructure security. Building secure code and robust infrastructures is key to reducing vulnerabilities and ensuring long-term maintainability.</p>
+<p>Technical debt is an inevitable enemy that accompanies all software projects to a greater or lesser extent. However, it is not always harmful and, in some cases, can be a necessary strategy to achieve critical objectives within a given timeframe.</p>
+<!-- more -->
+
+<h3 id="what-is-technical-debt"><strong>What is technical debt?</strong></h3>
+<p>Technical debt represents the cost of fixing suboptimal or poorly implemented code that results from accelerating development to meet deadlines. It is the price paid when speed is prioritized over software quality.</p>
+<p>Its origin lies in the need to quickly release new functionalities, often sacrificing fundamental aspects such as maintainability and code clarity. But is it always negative?</p>
+<h3 id="is-technical-debt-inherently-bad"><strong>Is technical debt inherently bad?</strong></h3>
+<p>It depends on the context. Accelerating development in a controlled manner to meet a critical deadline is not the same as writing messy code due to ignorance or lack of good practices.</p>
+<p><a href="https://asana.com">Asana</a> summarizes this concept well into four quadrants of technical debt:</p>
+<figure>
+    <img alt="Asana tech debt quadrant" src="../../../../assets/posts/2025/02/09/tech_debt_asana.png" />
+  <figcaption>Asana tech debt quadrant</figcaption>
+</figure>
+<h3 id="the-4-quadrants-of-technical-debt"><strong>The 4 Quadrants of Technical Debt</strong></h3>
+<ol>
+<li><strong>Prudent and Deliberate</strong>: The conscious decision to implement a quick solution and deal with the consequences later. This type of debt is acceptable when the risk is low, and the advantages of rapid delivery outweigh the disadvantages.</li>
+<li><strong>Reckless and Deliberate</strong>: Having the knowledge and capability to write good code but choosing to prioritize speed without a strategy to mitigate the resulting debt. This approach often leads to long-term problems.</li>
+<li><strong>Prudent and Inadvertent</strong>: Trying to produce the best possible code but later discovering a better solution. In this case, the debt is not due to bad practices but rather the natural learning and evolution of the software.</li>
+<li><strong>Reckless and Inadvertent</strong>: Debt is generated without awareness, either due to ignorance or lack of experience in good development practices. This type of debt is particularly risky as it can accumulate without the team realizing it.</li>
+</ol>
+<h3 id="types-of-technical-debt"><strong>Types of Technical Debt</strong></h3>
+<h5 id="1-intentional">1. Intentional</h5>
+<p>This type of debt is generated when deliberate decisions are made to prioritize functionality delivery, knowing that the code will require improvements in the future. It is common in projects with tight deadlines or when an idea needs to be validated before optimizing the code.</p>
+<h5 id="2-unintentional">2. Unintentional</h5>
+<p>It occurs due to errors, lack of knowledge, or poorly written code without the team being aware of the consequences. This debt is often the most dangerous as it can accumulate to an unmanageable level.</p>
+<h3 id="examples-of-technical-debt"><strong>Examples of Technical Debt</strong></h3>
+<p>Technical debt appears in many forms and can arise from various causes. Below are some common examples found in software development projects:</p>
+<ul>
+<li><strong>Architectural Technical Debt:</strong> A deficient architectural design can lead to significant long-term problems. For example:</li>
+<li><strong>Difficult-to-scale monoliths:</strong> A single code block can make scalability and flexibility challenging.</li>
+<li><strong>Poor separation of concerns:</strong> A poorly designed architecture can hinder modularity and code reuse.</li>
+<li><strong>Excessive dependencies:</strong> High coupling between components makes modifications costly and risky.</li>
+<li><strong>Lack of architectural documentation:</strong> Without clear guidance, the team can make decisions that exacerbate technical debt.</li>
+<li><strong>Insufficient documentation:</strong> Projects with poor or nonexistent documentation can lead developers to misinterpret code purposes, features, or architecture. This creates a knowledge gap, which can accumulate technical debt when incorrect assumptions are made or when new developers struggle to understand the system.</li>
+<li><strong>Duplicated code:</strong> Redundant code or copying and pasting code in different parts of the system suggests that the team has not adequately considered code reuse opportunities.</li>
+<li><strong>Outdated libraries or APIs:</strong> If a project relies on outdated libraries or APIs, it will become increasingly difficult to secure, maintain, and expand as those dependencies become unsupported.</li>
+</ul>
+<h3 id="impact-of-technical-debt"><strong>Impact of Technical Debt</strong></h3>
+<p>Technical debt can have a significant impact on software development and business operations. Some negative consequences include:</p>
+<h4 id="development-delays">Development Delays</h4>
+<p>As technical debt accumulates, the time required to implement new features or fix issues increases. The shortcuts taken initially result in greater effort and more time spent later.</p>
+<h4 id="higher-maintenance-costs">Higher Maintenance Costs</h4>
+<p>Maintaining software with technical debt requires more time and resources. Underlying issues must be addressed before additional changes or improvements can be made, increasing long-term operational costs.</p>
+<h4 id="lower-software-quality">Lower Software Quality</h4>
+<p>Technical debt often translates into low-quality code, which can lead to frequent errors and failures. This affects customer satisfaction and the company's reputation.</p>
+<h4 id="difficulty-in-attracting-and-retaining-talent">Difficulty in Attracting and Retaining Talent</h4>
+<p>Skilled developers prefer to work on well-maintained and technically solid projects. Accumulating technical debt can make it harder to hire and retain qualified personnel.</p>
+<h3 id="how-to-manage-and-reduce-technical-debt"><strong>How to Manage and Reduce Technical Debt</strong></h3>
+<p>At Atlansec, we understand that managing technical debt is crucial to the success of any software project. Therefore, we adopt a proactive approach based on the following strategies:</p>
+<h4 id="1-continuous-refactoring">1. Continuous Refactoring</h4>
+<p>Adopting a culture of continuous refactoring helps improve code quality without affecting the delivery of new features. Frequent small adjustments can prevent technical debt accumulation.</p>
+<h4 id="2-code-reviews">2. Code Reviews</h4>
+<p>Code reviews allow problems to be identified before they become debt. Encouraging collaboration among developers ensures better practices and higher code quality.</p>
+<h4 id="3-automating-testing-and-cicd">3. Automating Testing and CI/CD</h4>
+<p>Using automated testing and continuous integration/deployment (CI/CD) pipelines enables rapid issue detection and prevents the accumulation of unintentional technical debt.</p>
+<h4 id="4-documentation-and-best-practices">4. Documentation and Best Practices</h4>
+<p>Writing clear documentation and following established design patterns facilitates code maintainability and reduces the risk of generating debt due to misunderstandings.</p>
+<h4 id="5-planning-technically-from-the-beginning">5. Planning Technically from the Beginning</h4>
+<p>Focusing on proper architectural design before development begins can prevent long-term problems. Investing time in planning avoids many rushed decisions that generate debt.</p>
+<h3 id="related-links"><strong>Related Links</strong></h3>
+<ul>
+<li><a href="https://asana.com/es/resources/technical-debt">Asana - Technical Debt</a></li>
+<li><a href="https://www.atlassian.com/agile/software-development/technical-debt">Atlassian - Technical Debt in Agile</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <style>
+    .footer-bottom {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        text-align: center;
+        font-size: 0.875rem;
+        @media screen and (max-width: 991px) {
+        font-size: 2vw;
+            
+        }
+    }
+</style>
+
+
+<footer class="md-footer">
+    <div class="footer-bottom">
+        <p>&copy; 2025 Atlansec. All rights reserved.</p>
+    </div>
+    </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["hide_title", "navigation.indexes", "navigation.tabs", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f13b1293.min.js"></script>
+      
+    
+  </body>
+</html>

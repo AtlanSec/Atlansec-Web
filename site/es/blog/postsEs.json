@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "date": "26 Enero, 2025",
+      "title": "Configurando un DNS local",
+      "description": "En este artículo, vamos a explorar qué es un DNS y cómo funciona esta jerarquía para que puedas comprender mejor su papel crucial en la navegación por internet. Desde los servidores raíz que actúan como el punto de partida, pasando por servidores TLD y autoritativos, llegamos al DNS local, la pieza clave que conecta todo este sistema global con tu red doméstica o empresarial. ¡Prepárate para entender cómo puedes configurar tu propio DNS local y optimizar la navegación de tu entorno!",
+      "link": "26-01-2025"
+    },
+    {
+      "date": "17 Noviembre, 2024",
+      "title": "Abusando de ssh-keygen",
+      "description": "SSH-Keygen es una herramienta que permite crear y gestionar claves SSH, esta herramienta esta presente en la mayoría de los sistemas UNIX hoy en día como herramienta para facilitar la gestión de las claves SSH. En este articulo exploraremos un par de métodos para abusar de esta herramienta con ciertas configuraciones como método de persistencia o de escalada de privilegios en el sistema.",
+      "link": "17-11-2024"
+    },
+    {
+      "date": "27 Julio, 2024",
+      "title": "Introducción a FTP",
+      "description": "El protocolo FTP (File Transfer Protocol) es un protocolo usado para la transferencia de archivos entre ordenadores en red, este protocolo presenta arquitectura cliente-servidor usándose un servidor para servir archivos que pueden ser accesados por N clientes. Por defecto, la información se transmite en texto plano, aunque existe una versión cifrada del mismo llamada SFTP (Secure File Transfer Protocol).",
+      "link": "24-07-2024"
+    }
+  ]
+}

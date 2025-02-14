@@ -1,7 +1,7 @@
 site_name: Atlansec
 site_url: https://atlansec.es
 theme:
-  favicon: assets/favicon.png
+  favicon: ../assets/images/favicon.png
   name: material
   features:
     - hide_title
@@ -11,23 +11,22 @@ theme:
   palette:
     primary: white
   icon:
-  logo: assets/logo.png
+  logo: ../assets/images/logo.png
   custom_dir: "docs/overrides"
+  direction: ltr
+  language: en
 
 extra_css:
   - stylesheets/extra.css
 
 nav:
-  - Home:
-      - index.md
-  - Services:
-      - services/index.md
-  - Blog:
-      - blog/index.md
-      
+  - Home: index.md
+  - Services: services/index.md
+  - Blog: en/blog/index.md
+
 plugins:
-  - search
   - social
+  - search
   - blog:
       categories: false
       categories_name: Categories
@@ -42,7 +41,10 @@ plugins:
         - locale: es
           name: Spanish
           build: true
-      reconfigure_material: true
+          nav_translations:
+            Home: Inicio
+            Services: Servicios
+
 
 extra:
   alternate:

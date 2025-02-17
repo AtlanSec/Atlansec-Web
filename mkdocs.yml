@@ -13,7 +13,6 @@ theme:
   icon:
   logo: ../assets/images/logo.png
   custom_dir: "docs/overrides"
-  direction: ltr
   language: en
 
 extra_css:
@@ -30,6 +29,7 @@ plugins:
   - blog:
       categories: false
       categories_name: Categories
+      enabled: true
 
   - i18n:
       docs_structure: folder

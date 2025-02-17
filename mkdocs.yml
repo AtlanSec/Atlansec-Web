@@ -11,6 +11,7 @@ theme:
     - navigation.indexes
     - navigation.tabs
     - content.code.copy
+    - i18n
   palette:
     primary: white
 
@@ -20,7 +21,7 @@ extra_css:
 nav:
   - Home: index.md
   - Services: services/index.md
-  - Blog: en/blog/index.md
+  - Blog: blog/index.md
 
 plugins:
   - social
@@ -32,7 +33,7 @@ plugins:
 
   - i18n:
       docs_structure: folder
-      reconfigure_material: false
+      reconfigure_material: true
       languages:
         - locale: en
           default: true
@@ -44,7 +45,6 @@ plugins:
           nav_translations:
             Home: Inicio
             Services: Servicios
-
 
 extra:
   alternate:

@@ -2,6 +2,9 @@ site_name: Atlansec
 site_url: https://atlansec.es
 theme:
   favicon: ../assets/images/favicon.png
+  logo: ../assets/images/logo.png
+  custom_dir: "docs/overrides"
+  language: en
   name: material
   features:
     - hide_title
@@ -10,10 +13,6 @@ theme:
     - content.code.copy
   palette:
     primary: white
-  icon:
-  logo: ../assets/images/logo.png
-  custom_dir: "docs/overrides"
-  language: en
 
 extra_css:
   - stylesheets/extra.css
@@ -33,6 +32,7 @@ plugins:
 
   - i18n:
       docs_structure: folder
+      reconfigure_material: false
       languages:
         - locale: en
           default: true

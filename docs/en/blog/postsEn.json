@@ -3,67 +3,73 @@
     {
       "date": "February 9, 2025",
       "title": "Technical Debt: A Necessary Evil in Software Development",
-      "description": "At Atlansec, while we are primarily a cybersecurity company, we also address technical debt from the perspective of secure software development and infrastructure security...",
+      "description": "At Atlansec, while we are primarily a cybersecurity company, we also address technical debt from the perspective of secure software development and infrastructure security. Building secure code and robust infrastructures is key to reducing vulnerabilities and ensuring long-term maintainability.<br><br>Technical debt is an inevitable enemy that accompanies all software projects to a greater or lesser extent. However, it is not always harmful and, in some cases, can be a necessary strategy to achieve critical objectives within a given timeframe.",
       "link": "09-02-2025"
     },
     {
       "date": "February 2, 2025",
       "title": "The Costly Lesson of CEO Fraud: Why Employee Cybersecurity Training is Crucial",
-      "description": "January 16, 2016 – Ried im Innkreis, Austria. At the offices of FACC Operations GmbH, an employee from the finance department received an urgent email that appeared to come directly from the company’s CEO...",
+      "description": "<strong>January 16, 2016 – Ried im Innkreis, Austria</strong>. At the offices of <strong>FACC Operations GmbH</strong> (an Austrian manufacturer of aerospace components), an <strong>employee from the finance department</strong> received an urgent email that appeared to come <strong>directly from the company’s CEO</strong>.<br><br>The request was clear: a <strong>million-euro transfer</strong> was needed to finalize a <strong>\"strategic project\".</strong>",
       "link": "02-02-2025"
     },
     {
       "date": "January 26, 2025",
       "title": "Comprehensive Guide to DNS: Overview, Setup & Security",
-      "description": "Understanding the Domain Name System (DNS) is essential for anyone interested in how the internet works. DNS plays a crucial role in translating human-friendly domain names into machine-readable IP addresses...",
+      "description": "Understanding the <strong>Domain Name System (DNS)</strong> is essential for anyone interested in how the internet works. DNS plays a crucial role in translating human-friendly domain names into machine-readable IP addresses, ensuring seamless web navigation.<br><br>This guide walks you through:<ul><li>The <strong>hierarchical structure of DNS</strong> and its key components.</li><li><strong>Types of DNS queries</strong> and how they function.</li><li><strong>DNS security</strong> concerns and protective measures like <strong>DNSSEC</strong>.</li><li><strong>Setting up a local DNS server</strong> using BIND9 for improved <strong>performance, privacy, and content filtering</strong>.</li></ul><br>So, if you want to take your knowledge to the next level and discover how this hierarchical system ensures that every page you visit is just a click away, read on.",
       "link": "26-01-2025"
+    },
+    {
+      "date": "January 26, 2025",
+      "title": "Setting up a local DNS",
+      "description": "In this article, we are going to explore what a DNS is and how this hierarchy works so that you can better understand its crucial role in Internet navigation. From the root servers that act as the starting point, through TLD and authoritative servers, we come to the local DNS, the key piece that connects this entire global system to your home or business network and optimize your environment's navigation!<br><br>Moreover, if you want to take your knowledge to the next level and discover how this hierarchy system ensures that every page that you visit is just a click away, read on.",
+      "link": "26-01-2025(1)"
     },
     {
       "date": "January 19, 2025",
       "title": "The day that Dependabot met SheetJS",
-      "description": "It all started with a notification from Dependabot a few days ago. While reviewing an internal project repository, I encountered the following message...",
+      "description": "It all started with a notification from Dependabot a few days ago. While reviewing an internal project repository, I encountered the following message:<div style=\"text-align: center;\"><img src=\"../../../assets/posts/2025/01/19/Dependabot_alert.png\" alt=\"Dependabot_alert\"><figcaption>Dependabot alert</figcaption></div><br>I proceeded with the <strong>standard Dependabot workflow to address the issues</strong>, as I had assumed it was a routine update. However, I was surprised when the fixes for both vulnerabilities failed because the <strong>required patched version could not be found.</strong>",
       "link": "19-01-2025"
     },
     {
       "date": "December 22, 2024",
       "title": "New EU Cyber Resilience Act",
-      "description": "On October 23, 2024, the European Cyber Resilience Regulation came into force, marking a regulatory shift aimed at strengthening digital security across the European Union...",
+      "description": "On October 23, 2024, the <strong>European Cyber Resilience Regulation</strong> came into force, marking a regulatory shift aimed at strengthening digital security across the European Union. At <strong>Atlansec</strong>, this milestone reinforces our core mission: <strong>to create solutions and digital products that are secure throughout their lifecycle and ensure the protection of the environments in which they operate.</strong>",
       "link": "22-12-2024"
     },
     {
       "date": "December 15, 2024",
       "title": "Installation and Configuration of Analysis Tools on Android",
-      "description": "This article outlines the necessary steps to create a dynamic testing environment on Linux/Debian, detailing how to integrate tools such as Burp Suite, Frida, and Objection...",
+      "description": "This article outlines the necessary steps to create a dynamic testing environment on Linux/Debian, detailing how to integrate tools such as <strong>Burp Suite</strong>, <strong>Frida</strong>, and <strong>Objection</strong>, and their specific purposes. It also covers procedures for managing certificates on an Android emulator and configuring a dynamic testing environment. Follow the detailed instructions to achieve a functional and analysis-ready setup.",
       "link": "15-12-2024"
     },
     {
       "date": "December 8, 2024",
       "title": "Challenge, Train, Flag: Blueprint Heist",
-      "description": "At Atlansec, we are committed to CTFs as a key learning tool under the learning by doing methodology. We believe that facing practical challenges is the best way to develop technical skills...",
+      "description": "At Atlansec, we are committed to <strong>CTFs as a key learning tool</strong> under the <em>learning by doing</em> methodology. We believe that <strong>facing practical challenges is the best way to develop technical skills</strong> and foster creativity. With this section we want to spread the value of CTFs, share <em>writeups</em> of challenges of a certain technical complexity and bring the community closer to a practical and technical approach to learning.",
       "link": "08-12-2024"
     },
     {
       "date": "November 30, 2024",
       "title": "XVIII Jornadas STIC CCN-CERT | VI Jornadas de Ciberdefensa ESPDEF-CERT",
-      "description": "Last Tuesday, we had the honor of attending the XVIII Jornadas STIC CCN-CERT | VI Jornadas de Ciberdefensa ESPDEF-CERT, held at the Kinépolis cinemas in Ciudad de la Imagen, Madrid...",
+      "description": "Last Tuesday, we had the honor of attending the <strong><a href=\"https://jornadas.ccn-cert.cni.es/es/xviiijornadas\"target=\"XVIII Jornadas STIC CCN-CERT | VI Jornadas de Ciberdefensa ESPDEF-CERT\">XVIII Jornadas STIC CCN-CERT | VI Jornadas de Ciberdefensa ESPDEF-CERT</a></strong>, held at the Kinépolis cinemas in Ciudad de la Imagen, Madrid. The main purpose of this trip was to receive an award granted to our cybersecurity team, who emerged as winners of a national competition organized by the Universidad de Granada in collaboration with the <strong><a href=\"https://youtu.be/w7iuEEjaLYU\"target=\"El Mando Conjunto del Ciberespacio (MCCE)\">El Mando Conjunto del Ciberespacio (MCCE)</a></strong> and the <strong><a href=\"https://www.incibe.es/\" target=\"Instituto Nacional de Ciberseguridad (INCIBE)\">Instituto Nacional de Ciberseguridad (INCIBE)</a></strong>. This recognition not only fills us with pride but also reinforces our commitment to new generations and our confidence in the immense talent of these young professionals.",
       "link": "30-11-2024"
     },
     {
       "date": "November 24, 2024",
       "title": "SMB 101",
-      "description": "SMB (Server Message Block) is a protocol used to share resources such as files, printers, and directories over a network. It uses a client-server architecture, where the server makes resources available...",
+      "description": "SMB (Server Message Block) is a protocol used to share resources such as files, printers, and directories over a network. It uses a client-server architecture, where the server makes resources available, and multiple clients can access them. Although SMB3 introduces encryption to protect data, earlier versions like SMB1 transmit information in plain text, making it vulnerable to certain attacks.<br><br>In this article, we will focus on basic concepts, key commands, and common attacks related to SMB, highlighting the use of tools like <strong>enum4linux</strong> for enumeration.",
       "link": "24-11-2024"
     },
     {
       "date": "November 14, 2024",
       "title": "Intro to FTP",
-      "description": "FTP (File Transfer Protocol) is one of the oldest and most widely used protocols for transferring files between computers. While it provides a simple way to move data, its default configuration lacks security...",
+      "description": "FTP (File Transfer Protocol) is one of the <strong>oldest and most widely</strong> used protocols for <strong>transferring files</strong> between computers. While it provides a simple way to move data, its default configuration lacks security, making it a common target for attackers. In this article, we’ll cover the basics of FTP, its <strong>communication modes</strong>, <strong>essential commands</strong>, and <strong>common misconfigurations</strong> that could be exploited. Whether you're a cybersecurity enthusiast or a penetration tester, understanding FTP is crucial for securing or assessing network environments.",
       "link": "14-11-2024"
     },
     {
       "date": "October 17, 2024",
       "title": "Abusing ssh-keygen",
-      "description": "SSH-Keygen is a tool that allows you to create and manage SSH keys, this tool is present in most UNIX systems today as a tool to facilitate the management of SSH keys...",
+      "description": "SSH-Keygen is a tool that allows you to create and manage SSH keys, this tool is present in most UNIX systems today as a tool to facilitate the management of SSH keys.<br><br>In this article we will explore some methods to abuse this tool with certain configurations as a method of persistence or privilege escalation on the system.",
       "link": "17-10-2024"
     }
   ]

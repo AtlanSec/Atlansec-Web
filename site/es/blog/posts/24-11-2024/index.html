@@ -59,7 +59,7 @@
       
         <meta  property="og:description"  content="None" >
       
-        <meta  property="og:image"  content="https://atlansec.es/assets/images/social/en/blog/posts/24-11-2024.png" >
+        <meta  property="og:image"  content="https://atlansec.es/assets/images/social/es/blog/posts/24-11-2024.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -75,7 +75,7 @@
       
         <meta  name="twitter:description"  content="None" >
       
-        <meta  name="twitter:image"  content="https://atlansec.es/assets/images/social/en/blog/posts/24-11-2024.png" >
+        <meta  name="twitter:image"  content="https://atlansec.es/assets/images/social/es/blog/posts/24-11-2024.png" >
       
     
     
@@ -96,7 +96,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#theory" class="md-skip">
+        <a href="#teoria" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -432,28 +432,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#theory" class="md-nav__link">
+  <a href="#teoria" class="md-nav__link">
     <span class="md-ellipsis">
-      Theory
+      Teoría
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Theory">
+    <nav class="md-nav" aria-label="Teoría">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ports-used-by-smb" class="md-nav__link">
+  <a href="#puertos-usados-por-smb" class="md-nav__link">
     <span class="md-ellipsis">
-      Ports Used by SMB
+      Puertos usados por SMB
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#authentication-in-smb" class="md-nav__link">
+  <a href="#autenticacion-en-smb" class="md-nav__link">
     <span class="md-ellipsis">
-      Authentication in SMB
+      Autenticación en SMB
     </span>
   </a>
   
@@ -465,13 +465,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#enumeration-with-smb" class="md-nav__link">
+  <a href="#enumeracion-con-smb" class="md-nav__link">
     <span class="md-ellipsis">
-      Enumeration with SMB
+      Enumeración con SMB
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Enumeration with SMB">
+    <nav class="md-nav" aria-label="Enumeración con SMB">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -498,28 +498,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-smb-attacks" class="md-nav__link">
+  <a href="#ataques-comunes-a-smb" class="md-nav__link">
     <span class="md-ellipsis">
-      Common SMB Attacks
+      Ataques Comunes a SMB
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Common SMB Attacks">
+    <nav class="md-nav" aria-label="Ataques Comunes a SMB">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#null-sessions" class="md-nav__link">
+  <a href="#sesiones-nulas-null-sessions" class="md-nav__link">
     <span class="md-ellipsis">
-      Null Sessions
+      Sesiones Nulas (Null Sessions)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#brute-force-and-password-spraying" class="md-nav__link">
+  <a href="#fuerza-bruta-y-password-spraying" class="md-nav__link">
     <span class="md-ellipsis">
-      Brute Force and Password Spraying
+      Fuerza Bruta y Password Spraying
     </span>
   </a>
   
@@ -544,9 +544,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#file-upload-for-rce" class="md-nav__link">
+  <a href="#carga-de-archivos-para-rce" class="md-nav__link">
     <span class="md-ellipsis">
-      File Upload for RCE
+      Carga de archivos para RCE
     </span>
   </a>
   
@@ -558,9 +558,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#defenses-against-smb-exploits" class="md-nav__link">
+  <a href="#defensas-en-contra-de-los-exploits-smb" class="md-nav__link">
     <span class="md-ellipsis">
-      Defenses Against SMB Exploits
+      Defensas en contra de los exploits SMB
     </span>
   </a>
   
@@ -583,81 +583,81 @@
 
   <h1>SMB 101</h1>
 
-<p>SMB (Server Message Block) is a protocol used to share resources such as files, printers, and directories over a network. It uses a client-server architecture, where the server makes resources available, and multiple clients can access them. Although SMB3 introduces encryption to protect data, earlier versions like SMB1 transmit information in plain text, making it vulnerable to certain attacks.</p>
-<p>In this article, we will focus on basic concepts, key commands, and common attacks related to SMB, highlighting the use of tools like <strong>enum4linux</strong> for enumeration.</p>
+<p>SMB (Server Message Block) es un protocolo utilizado para compartir recursos como archivos, impresoras y directorios en una red. Utiliza una arquitectura cliente-servidor, donde el servidor pone los recursos a disposición y múltiples clientes pueden acceder a ellos. Aunque SMB3 introduce cifrado para proteger los datos, versiones anteriores como SMB1 transmiten información en texto plano, lo que las hace vulnerables a ciertos ataques.</p>
+<p>En este artículo, nos centraremos en conceptos básicos, comandos clave y ataques comunes relacionados con SMB, destacando el uso de herramientas como <strong>enum4linux</strong> para la enumeración.</p>
 <!-- more -->
 
-<h2 id="theory">Theory</h2>
-<hr />
-<h4 id="ports-used-by-smb">Ports Used by SMB</h4>
-<p>SMB primarily operates on the following ports:</p>
+<h2 id="teoria">Teoría</h2>
+<h4 id="puertos-usados-por-smb">Puertos usados por SMB</h4>
+<p>SMB opera principalmente en los siguientes puertos:</p>
 <ul>
-<li><strong>445/TCP:</strong> Used by modern SMB for direct connections without NetBIOS.</li>
-<li><strong>139/TCP:</strong> Used by older versions relying on NetBIOS.</li>
+<li><strong>445/TCP:</strong> Utilizado por SMB modernos para conexiones directas sin NetBIOS.</li>
+<li><strong>139/TCP:</strong> Utilizado por versiones antiguas dependientes de NetBIOS.</li>
 </ul>
-<h4 id="authentication-in-smb">Authentication in SMB</h4>
-<p>SMB employs several authentication mechanisms:</p>
+<h4 id="autenticacion-en-smb">Autenticación en SMB</h4>
+<p>SMB emplea varios mecanismos de sincronización:</p>
 <ul>
-<li><strong>NTLM (LAN Manager):</strong> Vulnerable to relay and brute-force attacks.</li>
-<li><strong>Kerberos:</strong> More secure, used in environments with Active Directory.</li>
+<li><strong>NTLM (LAN Manager):</strong> Vulnerable a ataques de transmisión y de fuerza bruta.</li>
+<li><strong>Kerberos:</strong> Más seguro, usando en entornos con Active Directory.</li>
 </ul>
-<h2 id="enumeration-with-smb">Enumeration with SMB</h2>
-<hr />
-<p>Enumeration is the initial step to gather information about shared resources, users, and the SMB server configuration. Here are some common tools for this purpose:</p>
+<h2 id="enumeracion-con-smb">Enumeración con SMB</h2>
+<p>La enumeración es el paso inicial para recoger información sobre los recursos compartidos, los usuarios, y otras configuraciones del servidor SMB.
+Aquí hay algunas herramientas comunes para este propósito:</p>
 <h3 id="enum4linux">Enum4linux</h3>
-<p>Enum4linux is an enumeration tool specifically designed for SMB. It allows identifying shared resources, password policies, and users on Windows systems.</p>
-<p><strong>Common Commands:</strong></p>
+<p>Enum4linux es una herramienta de enumeración diseñada específicamente para SMB. Nos permite identificar los recursos compartidos, políticas de contraseñas, y los usuarios en sistemas Windows.</p>
+<p><strong>Comandos comunes:</strong></p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>enum4linux<span class="w"> </span>&lt;IP&gt;
 </span></code></pre></div>
-<p><strong>Specific Modes:</strong></p>
+<p><strong>Modos específicos:</strong></p>
 <ul>
-<li>Enumerate users:</li>
-</ul>
+<li>
+<p>Enumeración de usuarios:
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>enum4linux<span class="w"> </span>-U<span class="w"> </span>&lt;IP&gt;
-</span></code></pre></div>
-<ul>
-<li>Enumerate shared resources:</li>
-</ul>
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Enumeración de recursos compartidos:
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>enum4linux<span class="w"> </span>-S<span class="w"> </span>&lt;IP&gt;
-</span></code></pre></div>
-<ul>
-<li>Enumerate domain information:</li>
-</ul>
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Enumeración de la información del dominio:
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>enum4linux<span class="w"> </span>-n<span class="w"> </span>&lt;IP&gt;
-</span></code></pre></div>
-<p><strong>Typical Outputs:</strong></p>
+</span></code></pre></div></p>
+</li>
+</ul>
+<p><strong>Salidas típicas:</strong></p>
 <ul>
-<li>Available shared resources.</li>
-<li>System users.</li>
-<li>Password policies, such as expiration and minimum length.</li>
+<li>Recursos compartidos disponibles.</li>
+<li>Usuarios del sistema.</li>
+<li>Políticas de contraseñas, como la caducidad o la longitud mínima.</li>
 </ul>
 <h3 id="smbclient">SMBClient</h3>
-<p>SMBClient is a tool integrated into Linux systems for interacting directly with SMB resources.</p>
-<p><strong>Example Usage:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>smbclient<span class="w"> </span>//&lt;IP&gt;/&lt;share_name&gt;<span class="w"> </span>-U<span class="w"> </span>&lt;username&gt;
+<p>SMBClient es una herramienta integrada en sistemas Linux para interactuar directamente con recursos SMB.</p>
+<p><strong>Ejemplo de uso:</strong></p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>smbclient<span class="w"> </span>//&lt;IP&gt;/&lt;nombre_recurso&gt;<span class="w"> </span>-U<span class="w"> </span>&lt;usuario&gt;
 </span></code></pre></div>
-<p>After connecting, you can list, download, and upload files with FTP-like commands:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ls<span class="w">      </span><span class="c1"># List current directory (file management and navigation commands similar to Linux)</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>get<span class="w">     </span><span class="c1"># Download a file</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>put<span class="w">     </span><span class="c1"># Upload a file</span>
+Después de conectarnos, podemos listar, descargar, y subir archivos con comandos similares a los de FTP.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ls<span class="w"> </span><span class="c1"># Lista el directorio actual (gestión de archivos y navegación similar a Linux)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>get<span class="w"> </span><span class="c1"># Descarga archivos</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>put<span class="w"> </span><span class="c1"># Sube archivos</span>
 </span></code></pre></div>
-<p><strong>Enumerating shared resources:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>smbclient<span class="w"> </span>-L<span class="w"> </span>//&lt;IP&gt;<span class="w"> </span>-U<span class="w"> </span>&lt;username&gt;
+<p><strong>Enumerar recursos compartidos:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>smbclient<span class="w"> </span>-L<span class="w"> </span>//&lt;IP&gt;<span class="w"> </span>-U<span class="w"> </span>&lt;usuario&gt;
 </span></code></pre></div>
-<h2 id="common-smb-attacks">Common SMB Attacks</h2>
-<hr />
-<h3 id="null-sessions">Null Sessions</h3>
-<p>Null sessions occur when an SMB server allows connections without authentication, exposing information such as shared resources and users.</p>
-<p><strong>Enumerating Null Sessions with smbclient:</strong></p>
+<h2 id="ataques-comunes-a-smb">Ataques Comunes a SMB</h2>
+<h3 id="sesiones-nulas-null-sessions">Sesiones Nulas (Null Sessions)</h3>
+<p>Las sesiones nulas ocurren cuando el servidor SMB permite conexiones sin autenticación, exponiendo información como los recursos compartidos y usuarios.</p>
+<p><strong>Enumeración de sesiones nulas con smbclient:</strong></p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>smbclient<span class="w"> </span>-L<span class="w"> </span>//&lt;IP&gt;<span class="w"> </span>-N
 </span></code></pre></div>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
-<p>Attackers can use this information to plan more advanced attacks, such as brute-force password attacks.</p>
+<p>Los atacantes pueden utilizar esta información para planear ataques más avanzados, como ataques de fuerza bruta a contraseñas.</p>
 </div>
-<h3 id="brute-force-and-password-spraying">Brute Force and Password Spraying</h3>
-<p>SMB can be vulnerable to brute-force attacks if proper security measures are not implemented. Tools like Hydra and Medusa are common for this purpose.</p>
-<p><strong>Hydra for SMB:</strong></p>
+<h3 id="fuerza-bruta-y-password-spraying">Fuerza Bruta y Password Spraying</h3>
+<p>SMB puede ser vulnerable a ataques de fuerza bruta si no se implementan las medidas de seguridad adecuadas. Herramientas como Hydra y Medusa son comunes para este propósito.</p>
+<p><strong>Hydra para SMB:</strong></p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>hydra<span class="w"> </span>-L<span class="w"> </span>users.txt<span class="w"> </span>-P<span class="w"> </span>passwords.txt<span class="w"> </span>smb://&lt;IP&gt;
 </span></code></pre></div>
 <p><strong>NetExec:</strong></p>
@@ -665,53 +665,47 @@
 </span></code></pre></div>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
-<p>The attacker may gain unauthorized access to shared resources if valid credentials are cracked.</p>
+<p>Los atacantes pueden ganar acceso no autorizado para compartir recursos si se descifran credenciales válidas.</p>
 </div>
 <h3 id="ntlm-relay">NTLM Relay</h3>
-<p>This attack intercepts and forwards NTLM authentications to impersonate the legitimate user. SMB servers with <strong>signing disabled</strong> are especially vulnerable.</p>
-<p><strong>Using Responder:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>responder<span class="w"> </span>-I<span class="w"> </span>&lt;network_interface&gt;
+<p>Este ataque intercepta y reenvía autenticaciones NTLM para hacerse pasar por el usuario legítimo. Los servidores SMB con la <strong>forma desactivada</strong> son especialmente vulnerables.</p>
+<p><strong>Utilizando Responder:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>responder<span class="w"> </span>-I<span class="w"> </span>&lt;interfaz_red&gt;
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>In order to mitigate, enable SMB signing and use Kerberos authentication instead of NTLM.</p>
+<p>Con el fin de mitigarlo, habilite la firma SMB y utilice la autenticación de Kerberos en lugar de NTLM.</p>
 </div>
 <h3 id="credential-sniffing">Credential Sniffing</h3>
-<p>Older versions like SMB1 transmit credentials in plain text, allowing an attacker to capture credentials with tools like Wireshark.</p>
-<p><strong>Wireshark Filter:</strong></p>
+<p>Versiones antiguas como SMB1 transmiten credenciales en texto plano, permitiendo que los atacantes capturen las credenciales con herramientas como Wireshark.</p>
+<p><strong>Filtros Wireshark:</strong></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>tcp.port == 445
 </span></code></pre></div>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
-<p>An attacker may use captured credentials to access the SMB server.</p>
+<p>Un atacante puede utilizar las credenciales interceptadas para acceder al servidor SMB.</p>
 </div>
-<h3 id="file-upload-for-rce">File Upload for RCE</h3>
-<p>If an SMB resource allows writing, an attacker may upload malicious files, such as web shells, to execute remote commands.</p>
-<p><strong>Uploading with SMBClient:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>smbclient<span class="w"> </span>//&lt;IP&gt;/&lt;share_name&gt;<span class="w"> </span>-U<span class="w"> </span>&lt;username&gt;
+<h3 id="carga-de-archivos-para-rce">Carga de archivos para RCE</h3>
+<p>Si un recurso SMB permite la escritura, un atacante puede subir un archivo malicioso, como una web shell, para ejecutar código remotamente.</p>
+<p><strong>Subiendo un archivo con SMBClient:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>smbclient<span class="w"> </span>//&lt;IP&gt;/&lt;nombre_recurso&gt;<span class="w"> </span>-U<span class="w"> </span>&lt;usuario&gt;
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>put<span class="w"> </span>webshell.aspx
 </span></code></pre></div>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
-<p>This can compromise the server, allowing command execution or malware installation.</p>
+<p>Esto puede comprometer al servidor, permitiendo la ejecución de comandos o la instalación de malware.</p>
 </div>
-<h2 id="defenses-against-smb-exploits">Defenses Against SMB Exploits</h2>
-<hr />
+<h2 id="defensas-en-contra-de-los-exploits-smb">Defensas en contra de los exploits SMB</h2>
 <ol>
-<li>
-<p><strong>Disable SMB1:</strong> It is outdated and vulnerable. Replace it with SMB2 or SMB3:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Set-SmbServerConfiguration<span class="w"> </span>-EnableSMB1Protocol<span class="w"> </span><span class="nv">$false</span>
-</span></code></pre></div>
-</li>
-<li>
-<p><strong>Enable SMB Signing:</strong> To prevent NTLM relay attacks.</p>
-</li>
-<li><strong>Restrict Permissions:</strong> Ensure shared resources are protected with strict permissions.</li>
-<li><strong>SMB3 Encryption:</strong> SMB3 allows encrypting traffic, protecting against sniffing.</li>
-<li><strong>Regular Monitoring:</strong> Use tools like Splunk or Wireshark to detect anomalous activity.</li>
+<li><strong>Deshabilita SMB1:</strong> Está obsoleto y es vulnerable. Sustitúyelo ya sea por SMB2 o SMB3:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Set-SmbServerConfiguration<span class="w"> </span>-EnableSMB1Protocol<span class="w"> </span><span class="nv">$false</span>
+</span></code></pre></div></li>
+<li><strong>Habilita SMB Singing:</strong> Para prevenir ataques de retransmisión NTLM.</li>
+<li><strong>Restringe los permisos:</strong> Asegura que los recursos compartidos están protegidos con permisos estrictos.</li>
+<li><strong>Cifrado SMB3:</strong> SMB3 permite cifrar el tráfico, protegiendo así contra ataques de sniffing.</li>
+<li><strong>Monitorización periódica:</strong> Utiliza herramientas como Splunk o Wireshark para detectar actividad anómala.</li>
 </ol>
-<hr />
-<p>In the next article of this series on SMB we will discuss common implementation errors and some known vulnerabilities of some implementations of the protocol.</p>
+<p>En el siguiente artículo de esta serie sobre SMB hablaremos de errores comunes de implementación y de algunas vulnerabilidades conocidas de algunas implementaciones del protocolo.</p>
 <hr />
 
 

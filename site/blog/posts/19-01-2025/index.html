@@ -434,9 +434,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prototype-pollution-in-sheetjs-ak-cve-2023-30533" class="md-nav__link">
+  <a href="#prototype-pollution-in-sheetjs-aka-cve-2023-30533" class="md-nav__link">
     <span class="md-ellipsis">
-      Prototype Pollution in sheetJS ak. CVE-2023-30533
+      Prototype Pollution in SheetJS aka CVE-2023-30533
     </span>
   </a>
   
@@ -494,7 +494,7 @@
 </figure>
 <p>After some investigation, I discovered an ongoing conflict between npm and the developers of xlsx, due to an issue with the Multi-Factor Authentication (MFA) token from a few years ago. As a result, <strong>xlsx has dropped out of the npm ecosystem</strong> and is now publishing its packages through other Content Delivery Networks (CDNs) for the distribution of its packages. This has introduced a new level of <strong>complexity</strong>, making it more challenging for users of npm to update packages and <strong>address vulnerabilities</strong> effectively.</p>
 <p>Since our application was affected by these vulnerabilities, I decided to dig deeper into them to <strong>assess the risk</strong> of delaying the patch and to explore possible workarounds if necessary, and it was also a good excuse to write an article for the blog, an article that can surely help more than one developer to decide how to deal with the same situation in SheetJS or xlsx. With that in mind, let us analyse the two vulnerabilities reported by the dependanbot in more detail:</p>
-<h2 id="prototype-pollution-in-sheetjs-ak-cve-2023-30533">Prototype Pollution in sheetJS ak. CVE-2023-30533</h2>
+<h2 id="prototype-pollution-in-sheetjs-aka-cve-2023-30533">Prototype Pollution in SheetJS aka CVE-2023-30533</h2>
 <p>This vulnerability in SheetJS allows an attacker to upload a specially crafted file that would <strong>corrupt existing object prototypes</strong> in the application. Prototype pollution could potentially lead to serious problems such as <strong>Remote Code Execution</strong> (RCE), <strong>Cross-Site Scripting</strong> (XSS) or <strong>Denial of Service</strong> (DoS). Depending on the context, this is a significant threat.</p>
 <p>Digging around, I found an article written by a researcher at Solid Labs who discovered the vulnerability. Although the article is in Russian and partially behind a paywall, it gives some insight into the context and impact of the vulnerability. On the one hand the risk seems to be limited, on the other hand it confirms that <strong>XSS can be achieved</strong> with this vulnerability, although the proof of concept for the XSS is behind the paywall.</p>
 <p>Using the freely available part of the article, I was able to create a basic PoC for prototype pollution with limited impact. This allowed us to test if our application was vulnerable and implement a targeted patch to <strong>sanitise the attack vector</strong> while preparing for a full version update. Also using the PoC and reviewing the commit that patched the vulnerability, I found that the vulnerability occurred when importing a sheet with comments. The root cause seems to be that the <strong>developers didn't anticipate that cell references could be manipulated</strong> by an attacker. Their final solution was to validate that the cell references were legitimate.</p>
@@ -527,6 +527,7 @@
 <h2 id="conclusion">Conclusion</h2>
 <p>Dependabot's alert on the SheetJS vulnerabilities served as a reminder of the <strong>complexity of dependency management</strong>. Addressing these issues required more than a simple one-click update. To make a good decision, we took a deep dive into the nature of the vulnerabilities, <strong>analysing their impact</strong> on our application and the practicality of the solutions available.</p>
 <p>By closely examining the vulnerabilities, Atlansec have developed <strong>on-premises mitigation strategies</strong> that meet the needs of our application. As with most projects, it's not just about fixing alerts, it's about understanding their implications and making decisions that <strong>balance both security and operational needs</strong>. For us, it was a reminder of how vigilance and adaptability can turn dependency challenges into opportunities to <strong>strengthen our application's security posture</strong>. And how important it is to build a security posture into both the development and maintenance of the application, not just from the perspective of an occasional vulnerability test.</p>
+<hr />
 
 
 

@@ -8,7 +8,7 @@ hide: navigation
       <div id="posts"></div>
       <script>
   // Cargar el archivo JSON y mostrar los posts
-  fetch('./postsEn.json')
+  fetch('./posts.json')
     .then(response => response.json())
     .then(data => {
       const postsContainer = document.getElementById('posts');

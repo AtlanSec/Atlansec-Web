@@ -18,7 +18,7 @@
     
     
       
-        <title>The day that Dependabot met SheetJS - Atlansec</title>
+        <title>El día que Dependabot conoció a SheetJS - Atlansec</title>
       
     
     
@@ -55,11 +55,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="The day that Dependabot met SheetJS - Atlansec" >
+        <meta  property="og:title"  content="El día que Dependabot conoció a SheetJS - Atlansec" >
       
         <meta  property="og:description"  content="None" >
       
-        <meta  property="og:image"  content="https://atlansec.es/assets/images/social/en/blog/posts/19-01-2025.png" >
+        <meta  property="og:image"  content="https://atlansec.es/assets/images/social/es/blog/posts/19-01-2025.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -71,11 +71,11 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="The day that Dependabot met SheetJS - Atlansec" >
+        <meta  name="twitter:title"  content="El día que Dependabot conoció a SheetJS - Atlansec" >
       
         <meta  name="twitter:description"  content="None" >
       
-        <meta  name="twitter:image"  content="https://atlansec.es/assets/images/social/en/blog/posts/19-01-2025.png" >
+        <meta  name="twitter:image"  content="https://atlansec.es/assets/images/social/es/blog/posts/19-01-2025.png" >
       
     
     
@@ -96,7 +96,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-day-that-dependabot-met-sheetjs" class="md-skip">
+        <a href="#el-dia-que-dependabot-conocio-a-sheetjs" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -434,18 +434,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prototype-pollution-in-sheetjs-ak-cve-2023-30533" class="md-nav__link">
+  <a href="#prototype-pollution-en-sheetjs-aka-cve-2023-30533" class="md-nav__link">
     <span class="md-ellipsis">
-      Prototype Pollution in sheetJS ak. CVE-2023-30533
+      Prototype Pollution en SheetJS aka CVE-2023-30533
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#sheetjs-regular-expression-denial-of-service-redos-cve-2024-22363" class="md-nav__link">
+  <a href="#sheetjs-denegacion-de-servicio-por-expresiones-regulares-redos-cve-2024-22363" class="md-nav__link">
     <span class="md-ellipsis">
-      SheetJS Regular Expression Denial of Service (ReDoS) (CVE-2024-22363)
+      SheetJS Denegación de Servicio por Expresiones Regulares (ReDoS) (CVE-2024-22363)
     </span>
   </a>
   
@@ -454,7 +454,7 @@
         <li class="md-nav__item">
   <a href="#conclusion" class="md-nav__link">
     <span class="md-ellipsis">
-      Conclusion
+      Conclusión
     </span>
   </a>
   
@@ -475,58 +475,59 @@
                   
 
 
-<h1 id="the-day-that-dependabot-met-sheetjs">The day that Dependabot met SheetJS</h1>
-<p>It all started with a notification from Dependabot a few days ago. While reviewing an internal project repository, I encountered the following message:</p>
+<h1 id="el-dia-que-dependabot-conocio-a-sheetjs">El día que Dependabot conoció a SheetJS</h1>
+<p>Todo comenzó con una notificación de Dependabot hace unos días. Mientras revisaba un repositorio de un proyecto interno, me encontré con el siguiente mensaje:</p>
 <figure>
-    <img alt="Dependabot Alert Message" src="../../../../assets/posts/2025/01/19/Dependabot_alert.png" />
-  <figcaption>Dependabot alert</figcaption>
+  <img alt="Mensaje de alerta de Dependabot" src="../../../../assets/posts/2025/01/19/Dependabot_alert.png" />
+  <figcaption>Alerta de Dependabot</figcaption>
 </figure>
-<p>I proceeded with the <strong>standard Dependabot workflow to address the issues</strong>, as I had assumed it was a routine update. However, I was surprised when the fixes for both vulnerabilities failed because the <strong>required patched version could not be found.</strong></p>
+<p>Procedí con el <strong>flujo de trabajo estándar de Dependabot para abordar los problemas</strong>, ya que asumí que era una actualización de rutina. Sin embargo, me sorprendió cuando las correcciones para ambas vulnerabilidades fallaron porque <strong>no se pudo encontrar la versión parcheada requerida.</strong></p>
 <!-- more -->
 
 <figure>
-    <img alt="Dependabot Alert Message" src="../../../../assets/posts/2025/01/19/Dependabot_alert_DoS.png" />
-  <figcaption>Dependabot alert for DoS in SheetJS</figcaption>
+  <img alt="Dependabot Alert Message" src="../../../../assets/posts/2025/01/19/Dependabot_alert_DoS.png" />
+  <figcaption>Alerta de Dependabot por DoS en SheetJS</figcaption>
 </figure>
 <figure>
-    <img alt="Dependabot Alert Message" src="../../../../assets/posts/2025/01/19/Dependabot_alert_PrototypePollution.png" />
-  <figcaption>Dependabot alert for Prototype Pollution on SheetJS</figcaption>
+  <img alt="Dependabot Alert Message" src="../../../../assets/posts/2025/01/19/Dependabot_alert_PrototypePollution.png" />
+  <figcaption>Alerta de Dependabot por Prototype Pollution en SheetJS</figcaption>
 </figure>
-<p>After some investigation, I discovered an ongoing conflict between npm and the developers of xlsx, due to an issue with the Multi-Factor Authentication (MFA) token from a few years ago. As a result, <strong>xlsx has dropped out of the npm ecosystem</strong> and is now publishing its packages through other Content Delivery Networks (CDNs) for the distribution of its packages. This has introduced a new level of <strong>complexity</strong>, making it more challenging for users of npm to update packages and <strong>address vulnerabilities</strong> effectively.</p>
-<p>Since our application was affected by these vulnerabilities, I decided to dig deeper into them to <strong>assess the risk</strong> of delaying the patch and to explore possible workarounds if necessary, and it was also a good excuse to write an article for the blog, an article that can surely help more than one developer to decide how to deal with the same situation in SheetJS or xlsx. With that in mind, let us analyse the two vulnerabilities reported by the dependanbot in more detail:</p>
-<h2 id="prototype-pollution-in-sheetjs-ak-cve-2023-30533">Prototype Pollution in sheetJS ak. CVE-2023-30533</h2>
-<p>This vulnerability in SheetJS allows an attacker to upload a specially crafted file that would <strong>corrupt existing object prototypes</strong> in the application. Prototype pollution could potentially lead to serious problems such as <strong>Remote Code Execution</strong> (RCE), <strong>Cross-Site Scripting</strong> (XSS) or <strong>Denial of Service</strong> (DoS). Depending on the context, this is a significant threat.</p>
-<p>Digging around, I found an article written by a researcher at Solid Labs who discovered the vulnerability. Although the article is in Russian and partially behind a paywall, it gives some insight into the context and impact of the vulnerability. On the one hand the risk seems to be limited, on the other hand it confirms that <strong>XSS can be achieved</strong> with this vulnerability, although the proof of concept for the XSS is behind the paywall.</p>
-<p>Using the freely available part of the article, I was able to create a basic PoC for prototype pollution with limited impact. This allowed us to test if our application was vulnerable and implement a targeted patch to <strong>sanitise the attack vector</strong> while preparing for a full version update. Also using the PoC and reviewing the commit that patched the vulnerability, I found that the vulnerability occurred when importing a sheet with comments. The root cause seems to be that the <strong>developers didn't anticipate that cell references could be manipulated</strong> by an attacker. Their final solution was to validate that the cell references were legitimate.</p>
-<p>Knowing this, we can create a local patch for our library version, but having worked as a pentester for several years, I was curious about how to scale this prototype pollution to XSS. <strong>Reviewing the patch</strong> was the key to finding the XSS vector:</p>
+<p>Después de algunas investigaciones, descubrí un conflicto en curso entre npm y los desarrolladores de xlsx, debido a un problema con el token de la Autenticación Multi Factor (MFA) de hace unos años. Como resultado, <strong>xlsx ha abandonado el ecosistema npm</strong> y ahora publica sus paquetes a través de otra Redes de Distribución de Contenidos (CDN) para la distribución de sus paquetes. Esto ha introducido un nuevo nivel de <strong>complejidad</strong>, haciendo más difícil para los usuarios de npm actualizar los paquetes y <strong>resolver vulnerabilidades</strong> de forma efectiva.</p>
+<p>Dado que nuestra aplicación se vio afectada por estas vulnerabilidades, decidí profundizar en ellas para <strong>evaluar el riesgo</strong> de retrasar el parche y explorar posibles soluciones si fuera necesario, y también fue una buena excusa para escribir un artículo para el blog, un artículo que seguro puede ayudar a más de un desarrollador a decidir cómo afrontar la misma situación en SheetJS o xlsx. Con esto en mente, analicemos las dos vulnerabilidades reportadas por el dependantbot con más detalle:</p>
+<h2 id="prototype-pollution-en-sheetjs-aka-cve-2023-30533">Prototype Pollution en SheetJS aka CVE-2023-30533</h2>
+<p>Esta vulnerabilidad en SheetJs permite a un atacante subir creado especialmente para <strong>corromper los prototipos existentes de los objetos</strong> en la aplicación. Prototype Pollution podría conducir potencialmente a problemas serios como <strong>Ejecución Remota de Comandos</strong> (RCE), <strong>Cross-Site Scripting</strong> (XSS) o <strong>Denegaciones de Servicios</strong> (DoS). Dependiendo del contexto, se trata de una amenaza importante.</p>
+<p>Indagando, encontré un artículo escrito por un investigador de Solid Labs que descubrió la vulnerabilidad. Aunque este artículo está en ruso y parcialmente detrás de un paywall, da alguna idea del contexto y el impacto de la vulnerabilidad. Por un lado el riesgo parece ser limitado, por el otro confirma que <strong>XSS se puede lograr</strong> con esta vulnerabilidad, aunque la prueba de concepto para el XSS está detrás del paywall.</p>
+<p>Utilizando la parte gratuita disponible del artículo, pude crear un PoC básico para prototype pollution con un impacto limitado. Esto nos permite probar si nuestra aplicación era vulnerable e implementar un parche específico para <strong>sanear el vector de ataque</strong> mientras que preparamos una actualización completa. También utilizamos el PoC y revisando el commit que parcheaba esta vulnerabilidad, encontré que la vulnerabilidad ocurría al importar una hoja con comentarios. La causa parece ser que <strong>los desarrolladores no previeron que las referencias a celdas podían ser manipuladas</strong> por un atacante. Su solución final fue validar que la referencia a las celdas fuera legítimas.</p>
+<p>Sabiendo esto, podemos crear un parche local para la versión de nuestra biblioteca, pero habiendo trabajado como pentester varios años, tenía curiosidad de cómo escalaba de prototype pollution a XSS. <strong>Revisar el parche</strong> fue clave para encontrar el vector XXS:</p>
 <figure>
-    <img alt="Dependabot Alert Message" src="../../../../assets/posts/2025/01/19/XSS_fix.png" />
-  <figcaption>Commit that fix the XSS</figcaption>
+  <img alt="Dependabot Alert Message" src="../../../../assets/posts/2025/01/19/XSS_fix.png" />
+  <figcaption>Commit que soluciona el XSS</figcaption>
 </figure>
-<p>We can see that the developers added <strong>escapehtml</strong> to a line in the same commit that fixes the vulnerability. Tracing the code backwards, we can see that the corrected line was only executed when the library was used to parse the XLS to HTML using the make_html_row function. In our case, as we don't use HTML parsing in our application, this vulnerability is not critical as we don't use the vulnerable function. However, we have applied the two patches locally to <strong>improve security</strong> while we prepare for the full update.</p>
-<p>Knowing this, developing an exploit to generate a malicious XLSX with an XSS <strong>payload is fairly straightforward</strong>. However, in order not to make it easier to exploit by publishing a proof of concept for a difficult to mitigate vulnerability, I will not publish a working proof of concept for exploiting this XSS in a package that gets about 2.5 million downloads per week.</p>
-<h2 id="sheetjs-regular-expression-denial-of-service-redos-cve-2024-22363">SheetJS Regular Expression Denial of Service (ReDoS) (CVE-2024-22363)</h2>
-<p>This vulnerability allows an attacker to upload a file that causes a <strong>significant delay</strong> in the application by exploiting <strong>regex flaws</strong> in SheetJS. Although not critical to our application, I was interested in replicating the problem and creating a temporary virtual patch until the update was ready.</p>
-<p>The first step was to examine the commit in the SheetJS repository. The code revealed several <strong>greedy regex patterns</strong>, in particular the reported one is in the parsing of comments &lt;!--). The researcher provided a PoC demonstrating how to exploit this vulnerability.</p>
-<p>We can verify the vulnerability in the following way:</p>
+<p>Podemos ver que los desarrolladores añadieron <strong>escapehtml</strong> a una línea en el mismo commit que corrige la vulnerabilidad. Rastreando el código hacia atrás, podemos ver que la línea corregida sólo se ejecutaba cuando la biblioteca se usaba para parsear el XLS a HTML utilizando la función make_html_row. En nuestro caso, como no utilizamos parsing HTML en nuestra aplicación, esta vulnerabilidad no es crítica, ya que no utilizamos la función vulnerable. Sin embargo, hemos aplicado los dos parches localmente para <strong>mejorar la seguridad</strong> mientras que preparamos el actualización completa.</p>
+<p>Sabiendo esto, desarrolla un exploit para generar XLSX malicioso con un <strong>payload XSS es bastante sencillo</strong>. Sin embargo, para no facilitar la explotación publicando un PoC para una vulnerabilidad difícil de mitigar, no publicaré un PoC funcional para explotar este XSS en un paquete que recibe 2,5 millones de descargas semanalmente.</p>
+<h2 id="sheetjs-denegacion-de-servicio-por-expresiones-regulares-redos-cve-2024-22363">SheetJS Denegación de Servicio por Expresiones Regulares (ReDoS) (CVE-2024-22363)</h2>
+<p>Esta vulnerabilidad permite a un atacante subir una archivo que cause un <strong>retraso significativo</strong> en una aplicación explotando <strong>defectos en expresiones regulares</strong> en SheetJS. Aunque no es crítica para nuestra aplicación, me interesa replicar el problema y crear un parche virtual temporal hasta que la actualización esté lista.</p>
+<p>El primer paso fue examinar el commit en el repositorio SheetJS. El código mostraba varios <strong>patrones codiciosos regex</strong>, en particular el reportado se encuentra en el comentario &lt;!--). The researcher provided a PoC demonstrating how to exploit this vulnerability.</p>
+<p>Podemos verificar la vulnerabilidad de la siguiente manera:</p>
 <p><figure markdown="span">
     <img alt="Dependabot Alert Message" src="../../../../assets/posts/2025/01/19/PoC_ReDoS.png" />
 <br />
-<figcaption>Proof of Concept for ReDoS</figcaption></p>
+<figcaption>Prueba de Concepto para ReDoS</figcaption></p>
 </figure>
-<p>While the PoC shows a delay of 42 seconds, the <strong>workload grows exponentially</strong> with larger files. A file ten times its original size would take 4,980 seconds to process - 100 times the delay for only a tenfold increase in content.</p>
-<p>In our case, testing the PoC on our development environment showed no noticeable delay, as our application <strong>validates that the file is a real XLS file</strong> before parsing. This validation mitigates the exploitability of the vulnerability in our setup. However, it's still necessary to address the issue as there are more greedy regex in the library.</p>
-<p>Two potential solutions were identified:</p>
+<p>Mientras que el PoC muestra un retardo de 42 segundos, la <strong>carga de trabajo crece exponencialmente</strong> con archivos más grandes. Un archivo con un tamaño diez veces más grandes que el original tardaría 4.980 segundos en procesarse, es decir, 100 veces más de retardo para un contenido diez veces mayor.</p>
+<p>En nuestro caso, las pruebas del PoC en nuestro entorno de desarrollo no mostraron ningún retardo perceptible, ya que nuestra aplicación <strong>valida que el archivo sea una archivo XLS real</strong> antes de parsearlo. Esta validación mitiga la explotabilidad de la vulnerabilidad en nuestra configuración. Sin embargo, sigue siendo necesario abordar el problema, ya que hay más expresiones regulares codiciosas en la biblioteca.</p>
+<p>Se identificaron dos posibles soluciones:</p>
 <ul>
-<li>Detect exploitation signs before parsing the XLS.</li>
-<li>Update the SheetJS version.</li>
+<li>Detectar señales de explotación antes de parsear el XLS.</li>
+<li>Actualizar la versión de SheetJS.</li>
 </ul>
-<p>The first option has drawbacks. Checking for exploit patterns via regex may inadvertently introduce a new ReDoS vulnerability, and addressing all problematic regex patterns in the application adds unnecessary complexity.</p>
-<p>The second option, while straightforward, is complicated by the fact that the package is no longer part of the npm ecosystem and must be imported manually.</p>
-<p>Given these considerations, our team at Atlansec chose the second option and <strong>updated SheetJS</strong> for this application.</p>
-<h2 id="conclusion">Conclusion</h2>
-<p>Dependabot's alert on the SheetJS vulnerabilities served as a reminder of the <strong>complexity of dependency management</strong>. Addressing these issues required more than a simple one-click update. To make a good decision, we took a deep dive into the nature of the vulnerabilities, <strong>analysing their impact</strong> on our application and the practicality of the solutions available.</p>
-<p>By closely examining the vulnerabilities, Atlansec have developed <strong>on-premises mitigation strategies</strong> that meet the needs of our application. As with most projects, it's not just about fixing alerts, it's about understanding their implications and making decisions that <strong>balance both security and operational needs</strong>. For us, it was a reminder of how vigilance and adaptability can turn dependency challenges into opportunities to <strong>strengthen our application's security posture</strong>. And how important it is to build a security posture into both the development and maintenance of the application, not just from the perspective of an occasional vulnerability test.</p>
+<p>La primera opción tiene inconvenientes. La comprobación de patrones de explotación mediante regex puede introducir inadvertidamente nuevas vulnerabilidades ReDos, y abordar todos los patrones regex problemáticos añade una complejidad innecesaria.</p>
+<p>La segunda opción, aunque sencilla, se complica por el hecho de que el paquete ya no pertenece al ecosistema npm y debe de ser importado manualmente.</p>
+<p>Dadas estas consideraciones, nuestro equipo en Atlansec eligió la segunda opción y <strong>actualizó SheetJS</strong> para esta aplicación.</p>
+<h2 id="conclusion">Conclusión</h2>
+<p>La alerta de Dependabot sobre vulnerabilidades en SheetJS sirvió como recordatorio de la <strong>complejidad de la gestión de dependencias</strong>. Abordar estos problemas requiere más que una simple actualización con un clic. Para tomar una buena decisión, nos sumergimos a fondo en las vulnerabilidades, <strong>analizando su impacto</strong> en nuestra aplicación y la viabilidad de las soluciones disponibles.</p>
+<p>Examinando de cerca las vulnerabilidades, Atlansec ha desarrollado <strong>estrategias de mitigación in situ</strong> que satisfacen las necesidades de nuestra aplicación. Como en la mayoría de proyectos, no se trata sólo de corregir las alertas, sino de comprender sus implicaciones y tomar decisiones que <strong>equilibren las necesidades de seguridad y operativas</strong>. Para nosotros, fue un recordatorio de cómo la vigilancia y la adaptabilidad pueden convertir los retos de dependencia en oportunidades para <strong>reforzar la postura de seguridad de nuestras aplicaciones</strong>. Y lo importante que es crear una postura de seguridad tanto en el desarrollo como en el mantenimiento de la aplicación, no solo desde la perspectiva de una prueba de vulnerabilidad ocasional.</p>
+<hr />
 
 
 

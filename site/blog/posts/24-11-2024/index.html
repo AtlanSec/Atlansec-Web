@@ -588,7 +588,6 @@
 <!-- more -->
 
 <h2 id="theory">Theory</h2>
-<hr />
 <h4 id="ports-used-by-smb">Ports Used by SMB</h4>
 <p>SMB primarily operates on the following ports:</p>
 <ul>
@@ -602,7 +601,6 @@
 <li><strong>Kerberos:</strong> More secure, used in environments with Active Directory.</li>
 </ul>
 <h2 id="enumeration-with-smb">Enumeration with SMB</h2>
-<hr />
 <p>Enumeration is the initial step to gather information about shared resources, users, and the SMB server configuration. Here are some common tools for this purpose:</p>
 <h3 id="enum4linux">Enum4linux</h3>
 <p>Enum4linux is an enumeration tool specifically designed for SMB. It allows identifying shared resources, password policies, and users on Windows systems.</p>
@@ -611,20 +609,22 @@
 </span></code></pre></div>
 <p><strong>Specific Modes:</strong></p>
 <ul>
-<li>Enumerate users:</li>
+<li>
+<p>Enumerate users:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>enum4linux<span class="w"> </span>-U<span class="w"> </span>&lt;IP&gt;
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Enumerate shared resources:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>enum4linux<span class="w"> </span>-S<span class="w"> </span>&lt;IP&gt;
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Enumerate domain information:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>enum4linux<span class="w"> </span>-n<span class="w"> </span>&lt;IP&gt;
+</span></code></pre></div></p>
+</li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>enum4linux<span class="w"> </span>-U<span class="w"> </span>&lt;IP&gt;
-</span></code></pre></div>
-<ul>
-<li>Enumerate shared resources:</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>enum4linux<span class="w"> </span>-S<span class="w"> </span>&lt;IP&gt;
-</span></code></pre></div>
-<ul>
-<li>Enumerate domain information:</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>enum4linux<span class="w"> </span>-n<span class="w"> </span>&lt;IP&gt;
-</span></code></pre></div>
 <p><strong>Typical Outputs:</strong></p>
 <ul>
 <li>Available shared resources.</li>
@@ -645,7 +645,6 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>smbclient<span class="w"> </span>-L<span class="w"> </span>//&lt;IP&gt;<span class="w"> </span>-U<span class="w"> </span>&lt;username&gt;
 </span></code></pre></div>
 <h2 id="common-smb-attacks">Common SMB Attacks</h2>
-<hr />
 <h3 id="null-sessions">Null Sessions</h3>
 <p>Null sessions occur when an SMB server allows connections without authentication, exposing information such as shared resources and users.</p>
 <p><strong>Enumerating Null Sessions with smbclient:</strong></p>
@@ -696,7 +695,6 @@
 <p>This can compromise the server, allowing command execution or malware installation.</p>
 </div>
 <h2 id="defenses-against-smb-exploits">Defenses Against SMB Exploits</h2>
-<hr />
 <ol>
 <li>
 <p><strong>Disable SMB1:</strong> It is outdated and vulnerable. Replace it with SMB2 or SMB3:</p>
@@ -710,7 +708,6 @@
 <li><strong>SMB3 Encryption:</strong> SMB3 allows encrypting traffic, protecting against sniffing.</li>
 <li><strong>Regular Monitoring:</strong> Use tools like Splunk or Wireshark to detect anomalous activity.</li>
 </ol>
-<hr />
 <p>In the next article of this series on SMB we will discuss common implementation errors and some known vulnerabilities of some implementations of the protocol.</p>
 <hr />
 

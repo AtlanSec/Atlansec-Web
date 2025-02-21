@@ -18,7 +18,7 @@
     
     
       
-        <title>Configurando un DNS local - Atlansec</title>
+        <title>Guía completa sobre DNS: Visión general, Configuración y Seguridad - Atlansec</title>
       
     
     
@@ -55,7 +55,7 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Configurando un DNS local - Atlansec" >
+        <meta  property="og:title"  content="Guía completa sobre DNS: Visión general, Configuración y Seguridad - Atlansec" >
       
         <meta  property="og:description"  content="None" >
       
@@ -71,7 +71,7 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Configurando un DNS local - Atlansec" >
+        <meta  name="twitter:title"  content="Guía completa sobre DNS: Visión general, Configuración y Seguridad - Atlansec" >
       
         <meta  name="twitter:description"  content="None" >
       
@@ -94,6 +94,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#lo-basico-que-hace-un-dns" class="md-skip">
+          Saltar a contenido
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -420,6 +425,203 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lo-basico-que-hace-un-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lo básico: ¿Qué Hace Un DNS?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#la-jerarquia-de-los-servidores-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      La Jerarquía de los Servidores DNS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="La Jerarquía de los Servidores DNS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resolucion-recursiva-la-consulta-dns-comienza-aqui" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resolución Recursiva (La Consulta DNS Comienza Aquí)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#servidores-dns-raiz-el-punto-de-partida" class="md-nav__link">
+    <span class="md-ellipsis">
+      Servidores DNS Raíz (El Punto de Partida)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#top-level-domain-tld-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Top-Level Domain (TLD) Servers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#servidores-de-nombres-autoritativo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Servidores de Nombres Autoritativo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devolucion-de-la-respuesta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Devolución de la Respuesta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-consultas-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tipos de Consultas DNS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registros-dns-componentes-basicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registros DNS: Componentes Básicos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cache-dns-acelerando-las-cosas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caché DNS: Acelerando las cosas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seguridad-del-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Seguridad del DNS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configurar-un-servidor-dns-local-por-motivos-de-privacidad-y-rendimiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurar un servidor DNS local por motivos de Privacidad y Rendimiento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configurar un servidor DNS local por motivos de Privacidad y Rendimiento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bind9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bind9
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bloqueo-de-dominios-especificos-usando-bind9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bloqueo de dominios específicos usando BIND9
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bloqueo de dominios específicos usando BIND9">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crear-un-archivo-de-zona-para-bloquear-dominios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear un archivo de Zona para bloquear dominios
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defina-los-dominios-bloqueados-en-namedconflocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defina los Dominios Bloqueados en named.conf.local
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recargar-la-configuracion-de-bind9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recargar la Configuración de BIND9
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prueba-la-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prueba la Configuración
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -433,13 +635,322 @@
                   
 
 
-  <h1>Configurando un DNS local</h1>
+  <h1>Guía completa sobre DNS: Visión general, Configuración y Seguridad</h1>
 
-<p>En este artículo, vamos a explorar qué es un DNS y cómo funciona esta jerarquía para que puedas comprender mejor su papel crucial en la navegación por internet. Desde los servidores raíz que actúan como el punto de partida, pasando por servidores TLD y autoritativos, llegamos al DNS local, la pieza clave que conecta todo este sistema global con tu red doméstica o empresarial. ¡Prepárate para entender cómo puedes configurar tu propio DNS local y optimizar la navegación de tu entorno! </p>
-<p>Así que, si quieres llevar tu conocimiento al siguiente nivel y descubrir cómo este sistema jerárquico garantiza que cada página que visitas esté a un clic de distancia, sigue leyendo.</p>
+<p>Comprender el <strong>DNS (Domain Name System )</strong> es esencial para cualquier persona interesada en el funcionamiento de Internet. El DNS juega un papel crucial en la traducción de nombres de dominio legibles por el ser humano a direcciones IP, lo que garantiza una fluidez en la navegación web.</p>
+<p>Esta guía le guiará a través de:</p>
+<ul>
+<li>Las <strong>estructuras jerárquicas del DNS</strong> y sus componentes claves.</li>
+<li>Los <strong>tipos de consultas DNS</strong> y como funcionan.</li>
+<li>Las <strong>preocupaciones sobre la seguridad del DNS</strong> y medidas de protección como <strong>DNSSEC</strong>.</li>
+<li>La <strong>Configuración de un servidor DNS local</strong> mediante BIND9 para la mejora del <strong>rendimiento</strong>, <strong>privacidad</strong> y el <strong>filtrado de contenido</strong>.</li>
+</ul>
+<p>Asi que, si quiere llevar sus conocimientos al siguiente nivel y descubrir como este sistema jerárquico garantiza que cada página web que visites esté a un solo clic de distancia, sigue leyendo.</p>
 <!-- more -->
 
-<p>Si alguna vez te has preguntado cómo funciona internet detrás de escena, seguramente has escuchado hablar del <strong>DNS</strong> (Domain Name System). Este sistema es como la guía telefónica de la web: convierte nombres de dominio fáciles de recordar, como <em>www.ejemplo.com</em>, en direcciones IP que las computadoras utilizan para conectarse entre sí. Aunque este proceso parece mágico, es el resultado de un sistema jerárquico cuidadosamente organizado que va desde servidores raíz hasta el nivel más cercano a ti: el <strong>DNS local</strong>. </p>
+<h2 id="lo-basico-que-hace-un-dns"><strong>Lo básico: ¿Qué Hace Un DNS?</strong></h2>
+<p>Cuando introduces un nombre de dominio en tu navegador, el ordenador no entiende ese nombre directamente. En su lugar, tu dispositivo inicia un proceso llamado <strong>resolución de nombre</strong> (<strong>domain resolution</strong>) para encontrar la dirección IP correspondiente. Los servidores DNS se encargan de esta resolución mediante un sistema estructurado y jerárquico.</p>
+<h2 id="la-jerarquia-de-los-servidores-dns"><strong>La Jerarquía de los Servidores DNS</strong></h2>
+<figure>
+    <img alt="Jerarquía de Servidores DNS" src="../../../../assets/posts/2025/01/26/Hierarchical-DNS-system.png" width="550" />
+    <figcaption>Jerarquía de Servidores DNS para Google</figcaption>
+</figure>
+<p>El DNS opera como un <strong>sistema jerárquico distribuido</strong>. Cada nivel en esta jerarquía juega un papel específico en la traducción de nombres de dominio en direcciones IP. Así es como funciona:</p>
+<h4 id="resolucion-recursiva-la-consulta-dns-comienza-aqui"><strong>Resolución Recursiva (La Consulta DNS Comienza Aquí)</strong></h4>
+<ul>
+<li>Cuando escribes una URL en tu navegador, tu dispositivo manda una petición a un <strong>servidor DNS recursivo</strong> (<strong>recursive resolver</strong>). Este suele estar proporcionado por su proveedor de servicios de Internet (ISP) or un servicio de terceros como Google Public DNS o Cloudflare.</li>
+<li>El trabajo del servidor DNS recursivo consiste en gestionar su consulta y obtener la dirección IP correcta poniéndose en contacto con otros servidores DNS en su nombre.</li>
+</ul>
+<h4 id="servidores-dns-raiz-el-punto-de-partida"><strong>Servidores DNS Raíz (El Punto de Partida)</strong></h4>
+<ul>
+<li>Si el servidor DNS recursivo no tiene todavía la dirección IP en caché, contacta con uno de los <strong>13 servidores DNS raíz</strong> que están distribuidos globalmente.</li>
+<li>Estos servidores no almacenan mapeos específicos de dominio a IP, sino que apuntan al siguiente nivel en la jerarquía: <strong>Servidores de Dominio de Nivel Superior (TLD)</strong>.</li>
+</ul>
+<h4 id="top-level-domain-tld-servers"><strong>Top-Level Domain (TLD) Servers</strong></h4>
+<ul>
+<li>Los servidores TLD gestionan los dominios en función de su sufijo, como <code>.com</code>, <code>.org</code>, o <code>.net</code>. Por ejemplo, si estás visitando <code>google.com</code>, el servidor raíz dirigirá su consulta al servidor TLD <code>.com</code>.</li>
+<li>El servidor TLD proporciona entonces la dirección del <strong>servidor de nombres autoritativo</strong> para el dominio solicitado.</li>
+</ul>
+<h4 id="servidores-de-nombres-autoritativo"><strong>Servidores de Nombres Autoritativo</strong></h4>
+<ul>
+<li>El servidor de nombres autoritativo es el último paso de la cadena. <strong>Contiene los registros DNS reales</strong> para el dominio, incluyendo la dirección IP del servidor web.</li>
+<li>En el caso de Google, si buscas <code>google.com</code>, el servidor autorizado devolverá la dirección IP correspondiente (por ejemplo, <code>8.8.8.8</code>).</li>
+</ul>
+<h4 id="devolucion-de-la-respuesta"><strong>Devolución de la Respuesta</strong></h4>
+<ul>
+<li>Una vez que el servidor DNS recursivo consigue la dirección IP del servidor autoritativo, la devuelve a tu navegador. Entonces, tu navegador puede utilizar la dirección IP para conectarse al servidor web y cargar la página.</li>
+</ul>
+<h4 id="tipos-de-consultas-dns"><strong>Tipos de Consultas DNS</strong></h4>
+<p>Durante este proceso, hay tres tipos principales de consultas DNS:</p>
+<ol>
+<li><strong>Consultas Recursivas:</strong> El servidor DNS recursivo asume toda la responsabilidad de encontrar la dirección IP y devolvérsela al cliente.</li>
+<li><strong>Consultas Iterativas:</strong> El servidor DNS recursivo consulta cada servidor DNS en secuencia, recibiendo referencias al siguiente servidor hasta que encuentra la dirección IP.</li>
+<li><strong>Consultas No Recursivas:</strong> Si el servidor DNS recursivo ya tiene la información en caché, devuelve inmediatamente el resultado.</li>
+</ol>
+<h2 id="registros-dns-componentes-basicos"><strong>Registros DNS: Componentes Básicos</strong></h2>
+<p>El servidor de nombres autoritativo almacena los diferentes tipos de <strong>registros DNS</strong> que contienen información específica acerca del dominio.
+Algunos de los registros más comunes son:
+- <strong>Registro A:</strong> Asigna un dominio a una dirección IPv4.
+- <strong>Registro AAAA:</strong> Asigna un dominio a una dirección IPv6.
+- <strong>Registro CNAME:</strong> Apunta un dominio a otro (utilizado para alias).
+- <strong>Registro MX:</strong> Especifica los servidores de correo para la entrega de correo electrónico.
+- <strong>Registro TXT:</strong> Proporciona información adicional sobre un dominio, a menudo utilizado para verificación.</p>
+<h2 id="cache-dns-acelerando-las-cosas"><strong>Caché DNS: Acelerando las cosas</strong></h2>
+<p>Para mejorar el rendimiento y reducir la carga de los servidores DNS, se utiliza el almacenamiento en caché a varios niveles:</p>
+<ul>
+<li><strong>Caché del navegador:</strong> Tu navegador almacena temporalmente las respuestas DNS de los dominios que visitas con frecuencia.</li>
+<li><strong>Caché del Sistema Operativo:</strong> El sistema operativo de tu dispositivo también almacena en caché las respuestas DNS para evitar consultas redundantes.</li>
+<li><strong>Caché del servidor DNS recursivo:</strong> El servidor DNS recursivo mantiene una caché de los dominios consultados recientemente para acelerar futuras búsquedas.</li>
+</ul>
+<p>El almacenamiento en caché garantiza que la mayoría de las consultas DNS no tengan que atravesar toda la jerarquía, haciendo que la búsqueda en Internet sea más rápida y eficiente.</p>
+<p>Para observar cómo el almacenamiento en caché de DNS reduce el tiempo de respuesta, vamos a utilizar el comando <strong>dig</strong> prestando atención al <strong><em>Query Time</em></strong> para el dominio <strong>google</strong>:</p>
+<p>En la primera prueba obtuvimos:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">;</span><span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>DiG<span class="w"> </span><span class="m">9</span>.18.28-1~deb12u2-Debian<span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>google.com
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">;;</span><span class="w"> </span>global<span class="w"> </span>options:<span class="w"> </span>+cmd
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">;;</span><span class="w"> </span>Got<span class="w"> </span>answer:
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">;;</span><span class="w"> </span>-&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de:<span class="w"> </span>QUERY,<span class="w"> </span>status:<span class="w"> </span>NOERROR,<span class="w"> </span>id:<span class="w"> </span><span class="m">25335</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">;;</span><span class="w"> </span>flags:<span class="w"> </span>qr<span class="w"> </span>rd<span class="w"> </span>ra<span class="p">;</span><span class="w"> </span>QUERY:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>ANSWER:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>AUTHORITY:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>ADDITIONAL:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">;;</span><span class="w"> </span>OPT<span class="w"> </span>PSEUDOSECTION:
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">;</span><span class="w"> </span>EDNS:<span class="w"> </span>version:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>flags:<span class="p">;</span><span class="w"> </span>udp:<span class="w"> </span><span class="m">1232</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">;;</span><span class="w"> </span>QUESTION<span class="w"> </span>SECTION:
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">;</span>google.com.<span class="w">                    </span>IN<span class="w">      </span>A
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">;;</span><span class="w"> </span>ANSWER<span class="w"> </span>SECTION:
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>google.com.<span class="w">             </span><span class="m">215</span><span class="w">     </span>IN<span class="w">      </span>A<span class="w">       </span><span class="m">142</span>.250.200.142
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="p">;;</span><span class="w"> </span>Query<span class="w"> </span>time:<span class="w"> </span><span class="m">68</span><span class="w"> </span>msec
+</span></code></pre></div>
+<p>Y en la segunda prueba:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">;</span><span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>DiG<span class="w"> </span><span class="m">9</span>.18.28-1~deb12u2-Debian<span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>google.com
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">;;</span><span class="w"> </span>global<span class="w"> </span>options:<span class="w"> </span>+cmd
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">;;</span><span class="w"> </span>Got<span class="w"> </span>answer:
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">;;</span><span class="w"> </span>-&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de:<span class="w"> </span>QUERY,<span class="w"> </span>status:<span class="w"> </span>NOERROR,<span class="w"> </span>id:<span class="w"> </span><span class="m">44597</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">;;</span><span class="w"> </span>flags:<span class="w"> </span>qr<span class="w"> </span>rd<span class="w"> </span>ra<span class="p">;</span><span class="w"> </span>QUERY:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>ANSWER:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>AUTHORITY:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>ADDITIONAL:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">;;</span><span class="w"> </span>OPT<span class="w"> </span>PSEUDOSECTION:
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">;</span><span class="w"> </span>EDNS:<span class="w"> </span>version:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>flags:<span class="p">;</span><span class="w"> </span>udp:<span class="w"> </span><span class="m">1232</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">;;</span><span class="w"> </span>QUESTION<span class="w"> </span>SECTION:
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">;</span>google.com.<span class="w">                    </span>IN<span class="w">      </span>A
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">;;</span><span class="w"> </span>ANSWER<span class="w"> </span>SECTION:
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>google.com.<span class="w">             </span><span class="m">287</span><span class="w">     </span>IN<span class="w">      </span>A<span class="w">       </span><span class="m">142</span>.250.200.78
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="p">;;</span><span class="w"> </span>Query<span class="w"> </span>time:<span class="w"> </span><span class="m">36</span><span class="w"> </span>msec
+</span></code></pre></div>
+<p>Como podemos ver, el tiempo ha decrementado.</p>
+<h2 id="seguridad-del-dns"><strong>Seguridad del DNS</strong></h2>
+<p>A pesar de su importancia, el sistema DNS tiene vulnerabilidades que pueden ser explotadas por los atacantes. Algunos problemas comunes incluyen:</p>
+<ul>
+<li><strong>DNS Spoofing/Poisoning:</strong> Los actores maliciosos inyectan registros DNS falsos en la caché, redirigiendo a los usuarios a páginas web fraudulentas.</li>
+<li><strong>Ataques DDoS:</strong> Este es uno de los ataques más conocidos que consiste en inundar el servidor DNS con tráfico para interrumpir el servicio.</li>
+<li><strong>Ataques Man-in-the-Middle:</strong> Consiste en interceptar consultas DNS para modificar sus respuestas.</li>
+</ul>
+<p>Para combatir estas amenazas, tecnologías como <strong>DNSSEC (Domain Name System Security Extensions)</strong> añade firmas criptográficas a los registros DNS, garantizando su autenticidad. Imagina que quieres visitar google.com:</p>
+<ol>
+<li>Tu navegador solicita la dirección IP para google.com desde el servidor DNS recursivo.</li>
+<li>El servidor DNS recursivo comprueba las firmas DNSSEC en cada nivel (root, .com, and google.com).</li>
+<li>Si todas las firmas son válidas, el servidor DNS recursivo devuelve la dirección IP.</li>
+<li>Si alguna de las firmas falla, el servidor DNS recursivo sabe que los datos han sido manipulados y los descarta.</li>
+</ol>
+<h2 id="configurar-un-servidor-dns-local-por-motivos-de-privacidad-y-rendimiento"><strong>Configurar un servidor DNS local por motivos de Privacidad y Rendimiento</strong></h2>
+<p>Si has llegado hasta aquí, ¡enhorabuena! Ya conoces los principios básicos y claves de los servidores DNS. Con este conocimiento, estás preparado para ponerte manos a la obra y configurar tu propio servidor DNS local. Hacerlo te abre un mundo de posibilidades: puedes filtrar contenido no deseado en tu red, mejorar el rendimiento de la navegación e incluso navegar por internet de manera segura, minimizando el riesgo de virus y otras amenazas online.</p>
+<h3 id="bind9">Bind9</h3>
+<p>En este articulo, utilizaremos el <strong>servidor DNS BIND9</strong> para configurar un servidor DNS directamente en nuestro ordenador. Este enfoque práctico nos permitirá experimentar cómo es tener un servidor DNS completamente funcional ejecutándose en nuestra propia red, ¡desde la comodidad de nuestra propia máquina!</p>
+<p>Primero, vamos a instalar <strong>bind9</strong>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>bind9<span class="w"> </span>dnsutils
+</span></code></pre></div>
+<p>Configuramos nuestro sistema para que primero pregunte al servidor DNS local que nos hemos instalado:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/resolv.conf
+</span></code></pre></div>
+<p>Añadimos el servidor local como primera línea:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>nameserver<span class="w"> </span><span class="m">127</span>.0.0.1
+</span></code></pre></div>
+<p>Después, editaremos el archivo de configuración:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/bind/named.conf.options
+</span></code></pre></div>
+<p>Elimina todo lo que contiene dicho archivo y añade lo siguiente:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>acl<span class="w"> </span><span class="s2">&quot;trusted&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="m">192</span>.168.0.0/16<span class="p">;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span>localhost<span class="p">;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="o">}</span><span class="p">;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>options<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span>directory<span class="w"> </span><span class="s2">&quot;/var/cache/bind&quot;</span><span class="p">;</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span>recursion<span class="w"> </span>yes<span class="p">;</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span>allow-query<span class="w"> </span><span class="o">{</span><span class="w"> </span>trusted<span class="p">;</span><span class="w"> </span><span class="o">}</span><span class="p">;</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span>forwarders<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">        </span><span class="m">1</span>.1.1.3<span class="p">;</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">        </span><span class="m">1</span>.1.1.2<span class="p">;</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">    </span><span class="o">}</span><span class="p">;</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">    </span>dnssec-validation<span class="w"> </span>auto<span class="p">;</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">    </span>listen-on<span class="w"> </span><span class="o">{</span><span class="w"> </span>any<span class="p">;</span><span class="w"> </span><span class="o">}</span><span class="p">;</span>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">    </span>listen-on-v6<span class="w"> </span><span class="o">{</span><span class="w"> </span>any<span class="p">;</span><span class="w"> </span><span class="o">}</span><span class="p">;</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="o">}</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Esta <strong>ACL especifica qué clientes son considerados "de confianza"</strong> y pueden interactuar con el servidor DNS.</p>
+<p>El bloque de opciones contiene ajustes globales para el servidor BIND9. Vamos a repasar cada línea:</p>
+<ul>
+<li>
+<p><code>directory "/var/cache/bind";</code> Especifica el directorio donde BIND almacenará su caché y archivos relacionados.</p>
+</li>
+<li>
+<p><code>recursion yes;</code> Habilita las consultas recursivas, lo que significa que el servidor resolverá las consultas DNS en nombre de los clientes consultado otros servidores DNS si no tiene la respuesta en caché o localmente configurada.</p>
+</li>
+<li>
+<p><code>allow-query { trusted; };</code> Restringe qué clientes pueden enviar consultas al servidor. Solo los clientes definidos en la ACL de confianza (red local y localhost) pueden realizar consultas al servidor DNS.</p>
+</li>
+<li>
+<p><code>forwarders { 1.1.1.3; 1.1.1.2; };</code> Define los servidores DNS externos (en este caso, los servidores DNS filtrados de Cloudflare) a los que el servidor reenviará las consultas que no puede resolver localmente. El servidor actúa como un intermediario, reenviando consultas no resueltas a estos servidores upstream.</p>
+<ul>
+<li>1.1.1.3: Bloquea el contenido malicioso.</li>
+<li>1.1.1.2: Bloquea contenido relacionado con malware.</li>
+</ul>
+</li>
+<li>
+<p><code>dnssec-validation auto;</code> Habilita la validación DNSSEC automáticamente, garantizando la autenticidad y la integridad de las respuestas del DNS usando firmas criptográficas.</p>
+</li>
+</ul>
+<p>Con esta configuración, hemos implementado medidas básicas de seguridad confiando en los servidores DNS de Cloudflare para gestionar las consultas reenviadas, garantizando que las respuestas están filtradas para <strong>evitar dominios maliciosos</strong>.</p>
+<p>Podemos comprobar nuestra mejora de rendimiento haciendo lo mismo que antes, utilizando el comando <strong>dig</strong> para buscar el <strong><em>Query Time</em></strong> del dominio <strong>google.com</strong>.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">;</span><span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>DiG<span class="w"> </span><span class="m">9</span>.18.28-1~deb12u2-Debian<span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>google.com
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="p">;;</span><span class="w"> </span>global<span class="w"> </span>options:<span class="w"> </span>+cmd
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">;;</span><span class="w"> </span>Got<span class="w"> </span>answer:
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">;;</span><span class="w"> </span>-&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de:<span class="w"> </span>QUERY,<span class="w"> </span>status:<span class="w"> </span>NOERROR,<span class="w"> </span>id:<span class="w"> </span><span class="m">56385</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">;;</span><span class="w"> </span>flags:<span class="w"> </span>qr<span class="w"> </span>rd<span class="w"> </span>ra<span class="p">;</span><span class="w"> </span>QUERY:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>ANSWER:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>AUTHORITY:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>ADDITIONAL:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="p">;;</span><span class="w"> </span>OPT<span class="w"> </span>PSEUDOSECTION:
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="p">;</span><span class="w"> </span>EDNS:<span class="w"> </span>version:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>flags:<span class="p">;</span><span class="w"> </span>udp:<span class="w"> </span><span class="m">1232</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="p">;</span><span class="w"> </span>COOKIE:<span class="w"> </span>2b2a789af74949000100000067966b06329ed55c149fd975<span class="w"> </span><span class="o">(</span>good<span class="o">)</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="p">;;</span><span class="w"> </span>QUESTION<span class="w"> </span>SECTION:
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="p">;</span>google.com.<span class="w">                    </span>IN<span class="w">      </span>A
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="p">;;</span><span class="w"> </span>ANSWER<span class="w"> </span>SECTION:
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>google.com.<span class="w">             </span><span class="m">300</span><span class="w">     </span>IN<span class="w">      </span>A<span class="w">       </span><span class="m">142</span>.250.200.142
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="p">;;</span><span class="w"> </span>Query<span class="w"> </span>time:<span class="w"> </span><span class="m">67</span><span class="w"> </span>msec
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="p">;;</span><span class="w"> </span>SERVER:<span class="w"> </span><span class="m">127</span>.0.0.1#53<span class="o">(</span><span class="m">127</span>.0.0.1<span class="o">)</span><span class="w"> </span><span class="o">(</span>UDP<span class="o">)</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="p">;;</span><span class="w"> </span>MSG<span class="w"> </span>SIZE<span class="w">  </span>rcvd:<span class="w"> </span><span class="m">83</span>
+</span></code></pre></div>
+<p>Después de la segunda consulta, conseguimos un tiempo de respuesta de <strong>0ms</strong>, ya que nuestro servidor DNS local recupera eficazmente el resultado de su caché.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">;</span><span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>DiG<span class="w"> </span><span class="m">9</span>.18.28-1~deb12u2-Debian<span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>google.com
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="p">;;</span><span class="w"> </span>global<span class="w"> </span>options:<span class="w"> </span>+cmd
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">;;</span><span class="w"> </span>Got<span class="w"> </span>answer:
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">;;</span><span class="w"> </span>-&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de:<span class="w"> </span>QUERY,<span class="w"> </span>status:<span class="w"> </span>NOERROR,<span class="w"> </span>id:<span class="w"> </span><span class="m">51691</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="p">;;</span><span class="w"> </span>flags:<span class="w"> </span>qr<span class="w"> </span>rd<span class="w"> </span>ra<span class="p">;</span><span class="w"> </span>QUERY:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>ANSWER:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>AUTHORITY:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>ADDITIONAL:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">;;</span><span class="w"> </span>OPT<span class="w"> </span>PSEUDOSECTION:
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="p">;</span><span class="w"> </span>EDNS:<span class="w"> </span>version:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>flags:<span class="p">;</span><span class="w"> </span>udp:<span class="w"> </span><span class="m">1232</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="p">;</span><span class="w"> </span>COOKIE:<span class="w"> </span>a2419e6c5e03859d0100000067966b096b0ad0c0a30e2273<span class="w"> </span><span class="o">(</span>good<span class="o">)</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="p">;;</span><span class="w"> </span>QUESTION<span class="w"> </span>SECTION:
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="p">;</span>google.com.<span class="w">                    </span>IN<span class="w">      </span>A
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="p">;;</span><span class="w"> </span>ANSWER<span class="w"> </span>SECTION:
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>google.com.<span class="w">             </span><span class="m">297</span><span class="w">     </span>IN<span class="w">      </span>A<span class="w">       </span><span class="m">142</span>.250.200.142
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="p">;;</span><span class="w"> </span>Query<span class="w"> </span>time:<span class="w"> </span><span class="m">0</span><span class="w"> </span>msec
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="p">;;</span><span class="w"> </span>SERVER:<span class="w"> </span><span class="m">127</span>.0.0.1#53<span class="o">(</span><span class="m">127</span>.0.0.1<span class="o">)</span><span class="w"> </span><span class="o">(</span>UDP<span class="o">)</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="p">;;</span><span class="w"> </span>MSG<span class="w"> </span>SIZE<span class="w">  </span>rcvd:<span class="w"> </span><span class="m">83</span>
+</span></code></pre></div>
+<p>Podemos ver que el SERVER al que estamos preguntando es <code>127.0.0.1</code>ya que es nuestro servidor DNS <strong>bind9</strong>.</p>
+<p>Sin embargo, ¿y si queremos ir un paso más allá y aplicar nuestras propias restricciones? Ya sea para mejorar la seguridad, bloquear sitios webs específicos o crear un entorno de Internet más seguro para los niños, podemos configurar BIND9 para restringir el acceso a una lista personalizada de dominios. Esto nos da un control total sobre qué contenido está o no permitido en nuestra red, adaptando el servidor DNS para satisfacer nuestras necesidades específicas.</p>
+<h3 id="bloqueo-de-dominios-especificos-usando-bind9">Bloqueo de dominios específicos usando BIND9</h3>
+<p>Para bloquear dominios específicos utilizando BIND9, podemos crear un <strong>archivo de zona personalizado</strong> que redirigirá las consultas de aquellos dominios a una dirección no válida o inexistente, bloqueando así el acceso. </p>
+<p>Aquí tienes una guía paso a paso:</p>
+<h4 id="crear-un-archivo-de-zona-para-bloquear-dominios">Crear un archivo de Zona para bloquear dominios</h4>
+<p>Un archivo de zona define los registros DNS para los dominios que quieras bloquear. Estos registros pueden redirigir los dominios bloqueados a un &lt;&lt;agujero negro&gt;&gt; (por ejemplo, <code>127.0.0.1</code> o <code>0.0.0.0</code>).</p>
+<ol>
+<li>
+<p>Cree un archivo de zona para los dominios bloqueados, por ejemplo, <code>block_instagram.zone</code>:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/bind/block_instagram.zone
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Añade lo siguiente al contenido del archivo de zona:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nv">$TTL</span><span class="w">    </span><span class="m">3600</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>@<span class="w">       </span>IN<span class="w">      </span>SOA<span class="w">     </span>localhost.<span class="w"> </span>root.localhost.<span class="w"> </span><span class="o">(</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">                </span><span class="m">2025012601</span><span class="w"> </span><span class="p">;</span><span class="w"> </span>Serial
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">                </span><span class="m">3600</span><span class="w">       </span><span class="p">;</span><span class="w"> </span>Refresh
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">                </span><span class="m">1800</span><span class="w">       </span><span class="p">;</span><span class="w"> </span>Retry
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">                </span><span class="m">604800</span><span class="w">     </span><span class="p">;</span><span class="w"> </span>Expire
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">                </span><span class="m">86400</span><span class="w"> </span><span class="o">)</span><span class="w">    </span><span class="p">;</span><span class="w"> </span>Minimum<span class="w"> </span>TTL
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">        </span>IN<span class="w">      </span>NS<span class="w">      </span>localhost.
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>@<span class="w">       </span>IN<span class="w">      </span>A<span class="w">       </span><span class="m">127</span>.0.0.1
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>*<span class="w">       </span>IN<span class="w">      </span>A<span class="w">       </span><span class="m">127</span>.0.0.1
+</span></code></pre></div></p>
+<ul>
+<li><strong><code>127.0.0.1</code></strong>: Redirige las consultas de los dominios bloqueados a la máquina local, impidiendo efectivamente el acceso.</li>
+<li><strong>Registro Comodín (<code>* IN A</code>)</strong>: Garantiza que cualquier subdominio de los dominios bloqueados también sean redirigidos.</li>
+</ul>
+</li>
+</ol>
+<h4 id="defina-los-dominios-bloqueados-en-namedconflocal">Defina los Dominios Bloqueados en <code>named.conf.local</code></h4>
+<p>Vamos a bloquear <strong>Instagram</strong>. Es necesario asociar el dominio bloqueado con el archivo de zona personalizado.</p>
+<ol>
+<li>Abre el archivo de configuración de BIND9
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/bind/named.conf.local
+</span></code></pre></div></li>
+<li>Añade una entrada <code>zone</code> a cada dominio que quieras bloquear. En este caso bloquearemos <strong><em>instagram.com</em></strong> y <strong><em>cdninstagram.com</em></strong>, el dominio de la red de la distribución de contenidos (CDN) de Instagram que se utiliza para servir imágenes y videos:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>zone<span class="w"> </span><span class="s2">&quot;instagram.com&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="nb">type</span><span class="w"> </span>master<span class="p">;</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span>file<span class="w"> </span><span class="s2">&quot;/etc/bind/block_instagram.zone&quot;</span><span class="p">;</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="o">}</span><span class="p">;</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>zone<span class="w"> </span><span class="s2">&quot;cdninstagram.com&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">    </span><span class="nb">type</span><span class="w"> </span>master<span class="p">;</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">    </span>file<span class="w"> </span><span class="s2">&quot;/etc/bind/block_instagram.zone&quot;</span><span class="p">;</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="o">}</span><span class="p">;</span>
+</span></code></pre></div></li>
+</ol>
+<h4 id="recargar-la-configuracion-de-bind9">Recargar la Configuración de BIND9</h4>
+<p>Una vez que hayas creado el archivo de zona y actualizado la configuración, recarga el servicio BIND9 para aplicar los cambios.</p>
+<ol>
+<li>
+<p>Comprueba si hay errores en la configuración:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>named-checkconf
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Recarga el servicio BIND9:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>bind9
+</span></code></pre></div></p>
+</li>
+</ol>
+<h3 id="prueba-la-configuracion"><strong>Prueba la Configuración</strong></h3>
+<p>Para verificar que los dominios bloqueados funcionan como se espera:</p>
+<ol>
+<li>
+<p>Utiliza el comando <code>dig</code> para consultar el dominio bloqueado:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>dig<span class="w"> </span>instagram.com.
+</span></code></pre></div></p>
+<ul>
+<li>La respuesta debería de devolver <code>127.0.0.1</code>.</li>
+</ul>
+</li>
+<li>
+<p>Intente acceder al dominio bloqueado desde el navegador. No debería de cargarse.</p>
+</li>
+</ol>
+<figure>
+    <img alt="Blocked Instagram" src="../../../../assets/posts/2025/01/26/noInstagram.png" width="600" />
+  <figcaption>Instagram no está Disponible</figcaption>
+</figure>
+<p>Al crear un archivo de zona personalizado y asociarlo a los dominios que deseas bloquear, obtenemos un control total sobre las restricción de acceso a ciertos sitios web. Esta configuración nos permite:</p>
+<ul>
+<li>Mejorar la seguridad bloqueando dominios maliciosos conocidos.</li>
+<li>Personalizar el servidor DNS para satisfacer los requisitos específicos de la red.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Ahora, ya sabes como bloquear cualquier dominio al que no quieras que accedan tus familiares o los usuarios de la red. Ya sea para limitar el acceso a las redes sociales para ayudar a tus hijos a concentrarse, para mejorar la seguridad bloqueando sitios web maliciosos o simplemente para tener control de tu propia red, ahora tienes las herramientas para conseguirlo.</p>
+<p>Este ejemplo se realizó en un portátil local, pero no tiene porque detenerse ahí. Puedes implementar la misma configuración a <strong>nivel de router</strong> o usar una <strong>Raspberry Pi</strong> como tu servidor DNS primario. De esta manera, puedes aplicar estas reglas a toda tu red, garantizando que todos los dispositivos conectados siguen tus restricciones personalizadas.</p>
+<p>Con este enfoque, no solo estás gestionando un servidor DNS, estás creando un <strong>entorno digital más seguro y productivo</strong> para todos los miembros de tu red.</p>
+<hr />
 
 
 

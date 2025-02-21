@@ -9,7 +9,7 @@ hide:
     <div id="posts"></div>
     <script>
     // Cargar el archivo JSON y mostrar los posts
-    fetch('./postsEs.json')
+    fetch('./posts.json')
       .then(response => response.json())
       .then(data => {
         const postsContainer = document.getElementById('posts');

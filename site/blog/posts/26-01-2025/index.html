@@ -575,15 +575,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#create-a-zone-file-for-blocked-domains_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create a Zone File for Blocked Domains
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#define-the-blocked-domains-in-namedconflocal" class="md-nav__link">
     <span class="md-ellipsis">
       Define the Blocked Domains in named.conf.local
@@ -607,9 +598,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-test-the-configuration" class="md-nav__link">
+  <a href="#test-the-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Test the Configuration
+      Test the Configuration
     </span>
   </a>
   
@@ -646,13 +637,13 @@
 
   <h1>Comprehensive Guide to DNS: Overview, Setup & Security</h1>
 
-<p>Understanding the <strong>Domain Name System (DNS)</strong> is essential for anyone interested in how the internet works. DNS plays a crucial role in translating human-friendly domain names into machine-readable IP addresses, ensuring seamless web navigation.</p>
+<p>Understanding the <strong>DNS (Domain Name System)</strong> is essential for anyone interested in how the internet works. DNS plays a crucial role in translating human-friendly domain names into machine-readable IP addresses, ensuring seamless web navigation.</p>
 <p>This guide walks you through:</p>
 <ul>
 <li>The <strong>hierarchical structure of DNS</strong> and its key components.</li>
 <li><strong>Types of DNS queries</strong> and how they function.</li>
-<li><strong>DNS security</strong> concerns and protective measures like <strong>DNSSEC</strong>.</li>
-<li><strong>Setting up a local DNS server</strong> using BIND9 for improved <strong>performance, privacy, and content filtering</strong>.</li>
+<li><strong>DNS security</strong> concerns and protective measures such as <strong>DNSSEC</strong>.</li>
+<li><strong>Setting up a local DNS server</strong> using BIND9 for improved <strong>performance</strong>, <strong>privacy</strong>, and <strong>content filtering</strong>.</li>
 </ul>
 <p>So, if you want to take your knowledge to the next level and discover how this hierarchical system ensures that every page you visit is just a click away, read on.</p>
 <!-- more -->
@@ -667,7 +658,7 @@
 <p>The DNS operates as a <strong>distributed, hierarchical system</strong>. Each level in this hierarchy plays a specific role in translating domain names into IP addresses. Here’s how it works:</p>
 <h4 id="recursive-resolver-your-dns-query-starts-here"><strong>Recursive Resolver (Your DNS Query Starts Here)</strong></h4>
 <ul>
-<li>When you type a URL in your browser, your device sends a request to a <strong>recursive resolver</strong>. This is usually provided by your Internet Service Provider (ISP) or a third-party service like Google Public DNS or Cloudflare.</li>
+<li>When you type a URL in your browser, your device sends a request to a <strong>recursive resolver</strong>. This is usually provided by your Internet Service Provider (ISP) or a third-party service such as Google Public DNS or Cloudflare.</li>
 <li>The recursive resolver's job is to handle your query and fetch the correct IP address by contacting other DNS servers on your behalf.</li>
 </ul>
 <h4 id="root-dns-servers-the-starting-point"><strong>Root DNS Servers (The Starting Point)</strong></h4>
@@ -683,7 +674,7 @@
 <h4 id="authoritative-name-server"><strong>Authoritative Name Server</strong></h4>
 <ul>
 <li>The authoritative name server is the final step in the chain. It <strong>holds the actual DNS records</strong> for the domain, including the IP address of the web server.</li>
-<li>For google, if you’re looking for <code>google.com</code>, the authoritative server will return its corresponding IP address (e.g., <code>8.8.8.8</code>).</li>
+<li>For Google, if you’re looking for <code>google.com</code>, the authoritative server will return its corresponding IP address (e.g., <code>8.8.8.8</code>).</li>
 </ul>
 <h4 id="returning-the-answer"><strong>Returning the Answer</strong></h4>
 <ul>
@@ -766,7 +757,7 @@
 <h2 id="setup-a-local-dns-for-privacy-and-performance-purposes"><strong>Setup a Local DNS for Privacy and Performance purposes</strong></h2>
 <p>If you've made it this far, congratulations! You now understand the basics and key principles of DNS servers. With this knowledge, you're ready to roll up your sleeves and set up your own local DNS server. Doing so opens up a world of possibilities: you can filter unwanted content across your network, enhance browsing performance, and even navigate the internet more securely, minimizing the risk of viruses and other online threats.</p>
 <h3 id="bind9">Bind9</h3>
-<p>In this blog, we'll use the <strong>BIND9 DNS server</strong> to set up a DNS server directly on our computer. This hands-on approach will let us experience what it’s like to have a fully functional DNS server running within our own network—right from the comfort of our own machine!</p>
+<p>In this article, we'll use the <strong>BIND9 DNS server</strong> to set up a DNS server directly on our computer. This hands-on approach will let us experience what it’s like to have a fully functional DNS server running within our own network—right from the comfort of our own machine!</p>
 <p>Let's first install <strong>bind9</strong>:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>bind9<span class="w"> </span>dnsutils
@@ -867,19 +858,17 @@
 </span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="p">;;</span><span class="w"> </span>SERVER:<span class="w"> </span><span class="m">127</span>.0.0.1#53<span class="o">(</span><span class="m">127</span>.0.0.1<span class="o">)</span><span class="w"> </span><span class="o">(</span>UDP<span class="o">)</span>
 </span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="p">;;</span><span class="w"> </span>MSG<span class="w"> </span>SIZE<span class="w">  </span>rcvd:<span class="w"> </span><span class="m">83</span>
 </span></code></pre></div>
-<p>We can see that the SERVER we are asking is <code>127.0.0.1</code> as it is our <strong>bind9</strong> DNS server</p>
+<p>We can see that the SERVER we are asking is <code>127.0.0.1</code> as it is our <strong>bind9</strong> DNS server.</p>
 <p>However, what if we want to take things a step further and enforce our own restrictions? Whether it’s for enhanced security, blocking specific websites, or creating a safer internet environment for children, we can configure BIND9 to restrict access to a custom list of domains. This gives us full control over what content is allowed or denied on our network, tailoring the DNS server to meet our specific needs.</p>
 <h3 id="blocking-specific-domains-using-bind9">Blocking specific domains using BIND9</h3>
+<p>To block specific domains using BIND9, you can create a <strong>custom zone file</strong> that redirects queries for those domains to an invalid or non-existent address, effectively blocking access.</p>
+<p>Here's a step-by-step guide:</p>
 <h4 id="create-a-zone-file-for-blocked-domains">Create a Zone File for Blocked Domains</h4>
-<p>To block specific domains using BIND9, you can create a <strong>custom zone file</strong> that redirects queries for those domains to an invalid or non-existent address, effectively blocking access. Here's a step-by-step guide:</p>
-<h4 id="create-a-zone-file-for-blocked-domains_1">Create a Zone File for Blocked Domains</h4>
-<p>A zone file defines the DNS records for the domains you want to block. These records can redirect the blocked domains to a "blackhole" (e.g., <code>127.0.0.1</code> or <code>0.0.0.0</code>).</p>
+<p>A zone file defines the DNS records for the domains you want to block. These records can redirect the blocked domains to a &lt;&lt;blackhole&gt;&gt; (e.g., <code>127.0.0.1</code> or <code>0.0.0.0</code>).</p>
 <ol>
-<li>Create a new zone file for blocking domains, for example, <code>block_instagram.zone</code>:</li>
-</ol>
+<li>Create a new zone file for blocking domains, for example, <code>block_instagram.zone</code>:
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/bind/block_instagram.zone
-</span></code></pre></div>
-<ol>
+</span></code></pre></div></li>
 <li>Add the following content to the zone file:</li>
 </ol>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nv">$TTL</span><span class="w">    </span><span class="m">3600</span>
@@ -896,22 +885,22 @@
 </span></code></pre></div>
 <ul>
 <li>
-<p><strong><code>127.0.0.1</code></strong>: Redirects queries for the blocked domains to the local machine, effectively preventing access.</p>
+<p><strong><em>127.0.0.1</em></strong>: Redirects queries for the blocked domains to the local machine, effectively preventing access.</p>
 </li>
 <li>
-<p><strong>Wildcard Record (<code>* IN A</code>)</strong>: Ensures any subdomain of the blocked domain is also redirected.</p>
+<p><strong>Wildcard Record (</strong> IN A<em>)</em>*: Ensures any subdomain of the blocked domain is also redirected.</p>
 </li>
 </ul>
 <h4 id="define-the-blocked-domains-in-namedconflocal">Define the Blocked Domains in <code>named.conf.local</code></h4>
 <p>We are going to block <strong>Instagram</strong>. You need to associate the blocked domains with the custom zone file.</p>
 <ol>
-<li>Open the BIND9 configuration file:</li>
-</ol>
+<li>
+<p>Open the BIND9 configuration file:
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/bind/named.conf.local
-</span></code></pre></div>
-<ol>
-<li>Add a <code>zone</code> entry for each domain you want to block. In this case we will block <strong><em>instagram.com</em></strong> and <strong><em>cdninstagram.com</em></strong>, Instagram's content delivery network (CDN) domain used for serving images and videos:</li>
-</ol>
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Add a <em>zone</em> entry for each domain you want to block. In this case we will block <strong><em>instagram.com</em></strong> and <strong><em>cdninstagram.com</em></strong>, Instagram's content delivery network (CDN) domain used for serving images and videos:
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>zone<span class="w"> </span><span class="s2">&quot;instagram.com&quot;</span><span class="w"> </span><span class="o">{</span>
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="nb">type</span><span class="w"> </span>master<span class="p">;</span>
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span>file<span class="w"> </span><span class="s2">&quot;/etc/bind/block_instagram.zone&quot;</span><span class="p">;</span>
@@ -921,7 +910,9 @@
 </span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">    </span><span class="nb">type</span><span class="w"> </span>master<span class="p">;</span>
 </span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">    </span>file<span class="w"> </span><span class="s2">&quot;/etc/bind/block_instagram.zone&quot;</span><span class="p">;</span>
 </span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="o">}</span><span class="p">;</span>
-</span></code></pre></div>
+</span></code></pre></div></p>
+</li>
+</ol>
 <h4 id="reload-bind9-configuration">Reload BIND9 Configuration</h4>
 <p>Once you’ve created the zone file and updated the configuration, reload the BIND9 service to apply the changes.</p>
 <ol>
@@ -936,21 +927,21 @@
 </span></code></pre></div></p>
 </li>
 </ol>
-<h3 id="4-test-the-configuration"><strong>4. Test the Configuration</strong></h3>
+<h3 id="test-the-configuration"><strong>Test the Configuration</strong></h3>
 <p>To verify that the blocked domains are working as expected:</p>
 <ol>
-<li>Use the <code>dig</code> command to query the blocked domain:</li>
-</ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>dig<span class="w"> </span>instagram.com.
-</span></code></pre></div>
-<ul>
 <li>
-<p>The response should return <code>127.0.0.1</code>.</p>
+<p>Use the <em>dig</em> command to query the blocked domain:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>dig<span class="w"> </span>instagram.com.
+</span></code></pre></div></p>
+<ul>
+<li>The response should return <em>127.0.0.1</em>.</li>
+</ul>
 </li>
 <li>
 <p>Try accessing the blocked domain in a browser. It should fail to load.</p>
 </li>
-</ul>
+</ol>
 <figure>
     <img alt="Blocked Instagram" src="../../../assets/posts/2025/01/26/noInstagram.png" width="600" />
   <figcaption>Instagram not Available</figcaption>
@@ -958,13 +949,13 @@
 <p>By creating a custom zone file and associating it with the domains you want to block, you gain full control over restricting access to specific websites. This setup allows you to:</p>
 <ul>
 <li>Enhance security by blocking known malicious domains.</li>
-<li>Customize the DNS server to meet your network’s specific requirements. </li>
+<li>Customize the DNS server to meet your network’s specific requirements.</li>
 </ul>
 <h2 id="conclusion">Conclusion</h2>
 <p>Now you’ve learned how to block any domain you don’t want your family or network users accessing. Whether it’s limiting social media to help your kids focus, enhancing security by blocking malicious sites, or simply taking control of your network, you now have the tools to make it happen.</p>
 <p>This example was done on a local laptop, but it doesn’t have to stop there. You can implement the same setup at the <strong>router level</strong> or use a <strong>Raspberry Pi</strong> as your primary DNS server. By doing this, you can apply these rules to your entire network, ensuring that all connected devices follow your custom restrictions.</p>
 <p>With this approach, you’re not just managing a DNS server—you’re creating a <strong>safer, more productive digital environment</strong> for everyone on your network.</p>
-<p><br></p>
+<hr />
 
 
 

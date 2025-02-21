@@ -738,7 +738,6 @@
 <!-- more -->
 
 <h2 id="installing-android-studio">Installing Android Studio</h2>
-<hr />
 <p>Android Studio serves as the primary IDE for Android application development and testing, providing an environment for app creation, emulation, and debugging, we are going to use this for easy download and installation of avds.</p>
 <h3 id="step-1-download-android-studio">Step 1: Download Android Studio</h3>
 <ol>
@@ -773,7 +772,6 @@
 </ol>
 <p>Connect your device to the computer via USB. You can now use <code>adb</code> commands to install apps, debug, and perform the same tests as with the emulator.</p>
 <h2 id="installing-burp-certificates-on-an-android-emulator">Installing Burp Certificates on an Android Emulator</h2>
-<hr />
 <p><strong>Burp Suite</strong> is used to intercept and analyze traffic between the Android application and backend servers. Installing its certificate allows HTTPS traffic to be decrypted for analysis.</p>
 <h3 id="step-1-start-the-emulator-with-a-writable-system">Step 1: Start the Emulator with a Writable System</h3>
 <ol>
@@ -822,9 +820,8 @@
 </li>
 </ol>
 <h3 id="step-4-verification">Step 4: Verification</h3>
-<p>Restart the emulator and verify the installation by checking <strong>Settings</strong> -&gt; <strong>Security</strong> -&gt; <strong>Trusted Credentials</strong> for the "PortSwigger CA" certificate.</p>
+<p>Restart the emulator and verify the installation by checking <strong>Settings</strong> &gt; <strong>Security</strong> &gt; <strong>Trusted Credentials</strong> for the "PortSwigger CA" certificate.</p>
 <h2 id="installing-frida-and-objection-in-a-python-virtual-environment">Installing Frida and Objection in a Python Virtual Environment</h2>
-<hr />
 <p><strong>Frida</strong> is a dynamic instrumentation toolkit for debugging, testing, and reverse engineering Android applications. <strong>Objection</strong> is a wrapper for Frida that simplifies security assessments by automating common testing tasks.</p>
 <h3 id="step-1-create-a-virtual-environment">Step 1: Create a Virtual Environment</h3>
 <ol>
@@ -846,7 +843,6 @@
 </span></code></pre></div></li>
 </ol>
 <h2 id="configuring-frida-server-on-the-emulator">Configuring Frida-Server on the Emulator</h2>
-<hr />
 <p>The <strong>Frida server</strong> facilitates communication between the Frida client on your host machine and the Android emulator for live application instrumentation.</p>
 <h3 id="step-1-download-the-frida-server-file">Step 1: Download the Frida-Server File</h3>
 <ol>
@@ -876,7 +872,6 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>frida-ps<span class="w"> </span>-U
 </span></code></pre></div>
 <h2 id="method-inspection-revisiting-crackme-1">Method Inspection: Revisiting Crackme 1</h2>
-<hr />
 <p>To demonstrate the power of dynamic analysis, we will use the "Uncrackable1" APK to explore how these techniques can be applied in practice.</p>
 <h3 id="exploring-the-application-with-apklab">Exploring the Application with APKLab</h3>
 <p>To understand the application better, decompile the APK to reveal its Java source code using the <strong>APKLab</strong> extension for Visual Studio Code. This extension integrates with tools like JADX to simplify the process.</p>
@@ -941,8 +936,8 @@
 </span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="p">});</span>
 </span></code></pre></div>
 <p>Convert the output byte array to a string using Python to reveal the secret phrase.</p>
-<hr />
 <p>With this setup, Android Studio enables app emulation and debugging, Burp Suite facilitates traffic interception and analysis, Frida allows dynamic application instrumentation, and Objection automates common security testing tasks. The added dynamic analysis section demonstrates the practical application of these tools in extracting secrets and bypassing protections, making this guide a comprehensive resource for mobile app security testing.</p>
+<hr />
 
 
 

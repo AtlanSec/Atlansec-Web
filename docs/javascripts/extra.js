@@ -14,9 +14,12 @@ document.addEventListener("DOMContentLoaded", function() {
             }
           } else if (currentLanguage === "es") {
             // Para español, oculta los resultados en inglés
-            if (!item.querySelector('a').href.includes('/' + "es" + '/')) {
-              item.style.display = 'none'
+            if (!link.includes('/es/')) {
+              item.style.display = 'none';
             }
+          }
+          else if (currentLanguage != "es" || currentLanguage != "en") {
+            return ;
           }
         });
       }

@@ -1,10 +1,10 @@
 site_name: Atlansec
 site_url: https://atlansec.es
 theme:
+  search_index_only: false  
   favicon: ../assets/images/favicon.png
   logo: ../assets/images/logo.png
   custom_dir: "docs/overrides"
-  language: en
   name: material
   features:
     - hide_title
@@ -12,11 +12,15 @@ theme:
     - navigation.tabs
     - content.code.copy
     - i18n
+    - search.share
   palette:
     primary: white
 
 extra_css:
   - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
 
 nav:
   - Home: index.md
@@ -24,13 +28,8 @@ nav:
   - Blog: blog/index.md
 
 plugins:
-  - social
   - search
-  - blog:
-      categories: false
-      categories_name: Categories
-      enabled: true
-
+  - social
   - i18n:
       docs_structure: folder
       reconfigure_material: true
@@ -45,15 +44,10 @@ plugins:
           nav_translations:
             Home: Inicio
             Services: Servicios
-
-extra:
-  alternate:
-    - name: English
-      link: /
-      lang: en
-    - name: Spanish
-      link: /es/
-      lang: es
+     
+languages:
+  - en
+  - es
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -68,3 +62,4 @@ markdown_extensions:
   - pymdownx.blocks.caption
   - admonition
   - pymdownx.details
+  - meta

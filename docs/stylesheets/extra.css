@@ -61,3 +61,13 @@ html {
     display: block;
   }
 }
+
+.md-header__button.md-icon {
+  position: relative;       
+  margin-left: auto;
+}                  
+
+
+.md-search {
+  margin-left: auto;
+}

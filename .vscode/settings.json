@@ -18,6 +18,34 @@
       "tag:yaml.org,2002:python/name:material.extensions.emoji.twemoji",
       "tag:yaml.org,2002:python/name:pymdownx.superfences.fence_code_format"
     ],
-    "semgrep.scan.onlyGitDirty": false
+    "semgrep.scan.onlyGitDirty": false,
+    "cSpell.words": [
+      "Atlansec",
+      "Burpsuite",
+      "cibercriminales",
+      "Ciberdefensa",
+      "ciberseguridad",
+      "Ciberseguridad",
+      "contenedorización",
+      "contenerizada",
+      "decrementado",
+      "escalabilidad",
+      "Escribible",
+      "ESPDEF",
+      "hackear",
+      "ineficiencias",
+      "interceptación",
+      "Kinépolis",
+      "mantenibilidad",
+      "mapeos",
+      "modularidad",
+      "Pentesting",
+      "prerequisitos",
+      "proactivamente",
+      "refactorización",
+      "Refactorización",
+      "regulatorio",
+      "subóptimo"
+    ]
   }
   

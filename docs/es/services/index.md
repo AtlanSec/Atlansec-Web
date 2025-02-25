@@ -1,6 +1,6 @@
 ---
-title: Services
-template: services.html
+title: Servicios
+template: servicios.html
 hide:
   - navigation
   - toc

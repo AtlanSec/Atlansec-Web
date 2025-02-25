@@ -44,10 +44,6 @@ plugins:
           nav_translations:
             Home: Inicio
             Services: Servicios
-     
-languages:
-  - en
-  - es
 
 markdown_extensions:
   - pymdownx.highlight:

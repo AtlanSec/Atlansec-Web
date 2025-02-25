@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-  var currentLanguage = document.documentElement.lang;
+  var currentLanguage = document.documentElement.lang; //idioma actual 
   
   var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {

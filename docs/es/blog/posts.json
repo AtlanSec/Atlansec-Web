@@ -1,6 +1,13 @@
 {
   "posts": [
     {
+      "date": "3 Marzo, 2025",
+      "title": "Cross-Site Scripting: La Amenaza Invisible en tu Web",
+      "description": "Las <strong>vulnerabilidades de Cross-Site Scripting (XSS)</strong> son un riesgo común y peligroso en la seguridad de aplicaciones web. Permiten a atacantes inyectar código JavaScript malicioso en sitios web legítimos para robar información, manipular el comportamiento de la página o suplantar la identidad de usuarios.Esta guía ofrece una visión detallada de los tres tipos principales de XSS: <strong>Stored XSS</strong>, <strong>Reflected XSS</strong> y <strong>DOM-Based XSS</strong>, explicando cómo ocurren, cómo se explotan y cómo prevenirlas.",
+      "link": "03-03-2025",
+      "lang": "es"
+    },
+    {
       "date": "16 Febrero, 2025",
       "title": "Introducción a las Plantillas de Nuclei",
       "description": "En este articulo, Exploraremos como funcionan las plantillas de <strong><a href=\"https://docs.projectdiscovery.io/templates/introduction\" target=\"Nuclei\">Nuclei</a></strong> , detallando el <strong>proceso de creación y configuración de vulnerabilidades personalizadas</strong>. Aprenderás los fundamentos, desde la configuración de la información básica y la elaboración de peticiones HTTP precisas hasta el uso de <strong>variables</strong>, <strong>payloads</strong>, <strong>matchers</strong> y <strong>extractors</strong> para pruebas dinámicas. Además, un ejemplo práctico demuestra cómo simular un servidor vulnerable y detectar una vulnerabilidad utilizando una plantilla personalizada <strong>Nuclei</strong>.",

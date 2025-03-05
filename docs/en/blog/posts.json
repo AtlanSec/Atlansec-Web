@@ -29,13 +29,6 @@
       "lang": "en"
     },
     {
-      "date": "January 26, 2025",
-      "title": "Setting up a local DNS",
-      "description": "In this article, we are going to explore what a DNS is and how this hierarchy works so that you can better understand its crucial role in Internet navigation. From the root servers that act as the starting point, through TLD and authoritative servers, we come to the local DNS, the key piece that connects this entire global system to your home or business network and optimize your environment's navigation!<br><br>Moreover, if you want to take your knowledge to the next level and discover how this hierarchy system ensures that every page that you visit is just a click away, read on.",
-      "link": "26-01-2025(1)",
-      "lang": "en"
-    },
-    {
       "date": "January 19, 2025",
       "title": "The day that Dependabot met SheetJS",
       "description": "It all started with a notification from Dependabot a few days ago. While reviewing an internal project repository, I encountered the following message:<div style=\"text-align: center;\"><img src=\"../../../assets/posts/2025/01/19/Dependabot_alert.png\" alt=\"Dependabot_alert\"><figcaption>Dependabot alert</figcaption></div><br>I proceeded with the <strong>standard Dependabot workflow to address the issues</strong>, as I had assumed it was a routine update. However, I was surprised when the fixes for both vulnerabilities failed because the <strong>required patched version could not be found.</strong>",

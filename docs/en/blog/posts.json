@@ -1,6 +1,13 @@
 {
   "posts": [
     {
+      "date": "March 09, 2025",
+      "title": "LAN Wars: The Phantom Menace",
+      "description": "",
+      "link": "09-03-2025",
+      "lang": "en"
+    },
+    {
       "date": "February 16, 2025",
       "title": "Introduction to Nuclei Templates",
       "description": "In this article, we explore how <strong><a href=\"https://docs.projectdiscovery.io/templates/introduction\" target=\"Nuclei\">Nuclei</a></strong> templates work, detailing the <strong>process of creating and configuring custom vulnerability tests</strong>. You'll learn the fundamentals, from setting up the basic information and crafting precise HTTP requests to using <strong>variables</strong>, <strong>payloads</strong>, <strong>matchers</strong>, and <strong>extractors</strong> for dynamic testing. Additionally, a practical example demonstrates how to simulate a vulnerable server and detect a vulnerability using a custom  <strong>Nuclei</strong> template.",

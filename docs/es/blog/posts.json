@@ -29,13 +29,6 @@
       "lang": "es"
     },
     {
-      "date": "26 Enero, 2025",
-      "title": "Configurando un DNS local",
-      "description": "En este artículo, vamos a explorar qué es un DNS y cómo funciona esta jerarquía para que puedas comprender mejor su papel crucial en la navegación por internet. Desde los servidores raíz que actúan como el punto de partida, pasando por servidores TLD y autoritativos, llegamos al DNS local, la pieza clave que conecta todo este sistema global con tu red doméstica o empresarial. ¡Prepárate para entender cómo puedes configurar tu propio DNS local y optimizar la navegación de tu entorno!<br><br>Así que, si quieres llevar tu conocimiento al siguiente nivel y descubrir cómo este sistema jerárquico garantiza que cada página que visitas esté a un clic de distancia.",
-      "link": "26-01-2025(1)",
-      "lang": "es"
-    },
-    {
       "date": "19 Enero, 2025",
       "title": "El día que Dependabot conoció a SheetJS",
       "description": "Todo comenzó con una notificación de Dependabot hace unos días. Mientras revisaba un repositorio de un proyecto interno, me encontré con el siguiente mensaje:<div style=\"text-align: center;\"><img src=\"../../../assets/posts/2025/01/19/Dependabot_alert.png\" alt=\"Dependabot_alert\"><figcaption>Alerta de Dependabot</figcaption></div><br>Procedí con el <strong>flujo de trabajo estándar de Dependabot para abordar los problemas</strong>, ya que asumí que era una actualización de rutina. Sin embargo, me sorprendió cuando las correcciones para ambas vulnerabilidades fallaron porque <strong>no se pudo encontrar la versión parcheada requerida.</strong>",

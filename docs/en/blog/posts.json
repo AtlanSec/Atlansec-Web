@@ -1,95 +1,107 @@
 {
   "posts": [
     {
-      "date": "February 23, 2025",
-      "title": "Cross-Site Scripting: The Invisible Threat on Your Web",
-      "description": "<strong>Cross-Site Scripting (XSS) vulnerabilities</strong> are a common and dangerous risk in web application security. They allow attackers to inject malicious JavaScript code into legitimate websites to steal information, manipulate page behavior, or impersonate users. This guide provides a detailed overview of the three main types of XSS: <strong>Stored XSS</strong>, <strong>Reflected XSS</strong>, and <strong>DOM-Based XSS</strong>, explaining how they occur, how they are exploited, and how to prevent them.",
-      "link": "23-02-2025",
-      "lang": "en"
-    },
-    {
-      "date": "February 16, 2025",
-      "title": "Introduction to Nuclei Templates",
-      "description": "In this article, we explore how <strong><a href=\"https://docs.projectdiscovery.io/templates/introduction\" target=\"Nuclei\">Nuclei</a></strong> templates work, detailing the <strong>process of creating and configuring custom vulnerability tests</strong>. You'll learn the fundamentals, from setting up the basic information and crafting precise HTTP requests to using <strong>variables</strong>, <strong>payloads</strong>, <strong>matchers</strong>, and <strong>extractors</strong> for dynamic testing. Additionally, a practical example demonstrates how to simulate a vulnerable server and detect a vulnerability using a custom  <strong>Nuclei</strong> template.",
-      "link": "16-02-2025",
-      "lang": "en"
-    },
-    {
-      "date": "February 9, 2025",
-      "title": "Technical Debt: A Necessary Evil in Software Development",
-      "description": "At Atlansec, while we are primarily a cybersecurity company, we also address technical debt from the perspective of secure software development and infrastructure security. Building secure code and robust infrastructures is key to reducing vulnerabilities and ensuring long-term maintainability.<br><br>Technical debt is an inevitable enemy that accompanies all software projects to a greater or lesser extent. However, it is not always harmful and, in some cases, can be a necessary strategy to achieve critical objectives within a given timeframe.",
-      "link": "09-02-2025",
-      "lang": "en"
-    },
-    {
-      "date": "February 2, 2025",
-      "title": "The Costly Lesson of CEO Fraud: Why Employee Cybersecurity Training is Crucial",
-      "description": "<strong>January 16, 2016 – Ried im Innkreis, Austria</strong>. At the offices of <strong>FACC Operations GmbH</strong> (an Austrian manufacturer of aerospace components), an <strong>employee from the finance department</strong> received an urgent email that appeared to come <strong>directly from the company’s CEO</strong>.<br><br>The request was clear: a <strong>million-euro transfer</strong> was needed to finalize a <strong>\"strategic project\".</strong>",
-      "link": "02-02-2025",
-      "lang": "en"
-    },
-    {
-      "date": "January 26, 2025",
-      "title": "Comprehensive Guide to DNS: Overview, Setup & Security",
-      "description": "Understanding the <strong>Domain Name System (DNS)</strong> is essential for anyone interested in how the internet works. DNS plays a crucial role in translating human-friendly domain names into machine-readable IP addresses, ensuring seamless web navigation.<br><br>This guide walks you through:<ul><li>The <strong>hierarchical structure of DNS</strong> and its key components.</li><li><strong>Types of DNS queries</strong> and how they function.</li><li><strong>DNS security</strong> concerns and protective measures like <strong>DNSSEC</strong>.</li><li><strong>Setting up a local DNS server</strong> using BIND9 for improved <strong>performance, privacy, and content filtering</strong>.</li></ul><br>So, if you want to take your knowledge to the next level and discover how this hierarchical system ensures that every page you visit is just a click away, read on.",
-      "link": "26-01-2025",
-      "lang": "en"
-    },
-    {
-      "date": "January 19, 2025",
-      "title": "The day that Dependabot met SheetJS",
-      "description": "It all started with a notification from Dependabot a few days ago. While reviewing an internal project repository, I encountered the following message:<div style=\"text-align: center;\"><img src=\"../../../assets/posts/2025/01/19/Dependabot_alert.png\" alt=\"Dependabot_alert\"><figcaption>Dependabot alert</figcaption></div><br>I proceeded with the <strong>standard Dependabot workflow to address the issues</strong>, as I had assumed it was a routine update. However, I was surprised when the fixes for both vulnerabilities failed because the <strong>required patched version could not be found.</strong>",
-      "link": "19-01-2025",
-      "lang": "en"
-    },
-    {
-      "date": "December 22, 2024",
-      "title": "New EU Cyber Resilience Act",
-      "description": "On October 23, 2024, the <strong>European Cyber Resilience Regulation</strong> came into force, marking a regulatory shift aimed at strengthening digital security across the European Union. At <strong>Atlansec</strong>, this milestone reinforces our core mission: <strong>to create solutions and digital products that are secure throughout their lifecycle and ensure the protection of the environments in which they operate.</strong>",
-      "link": "22-12-2024",
-      "lang": "en"
-    },
-    {
-      "date": "December 15, 2024",
-      "title": "Installation and Configuration of Analysis Tools on Android",
-      "description": "This article outlines the necessary steps to create a dynamic testing environment on Linux/Debian, detailing how to integrate tools such as <strong>Burp Suite</strong>, <strong>Frida</strong>, and <strong>Objection</strong>, and their specific purposes. It also covers procedures for managing certificates on an Android emulator and configuring a dynamic testing environment. Follow the detailed instructions to achieve a functional and analysis-ready setup.",
-      "link": "15-12-2024",
-      "lang": "en"
-    },
-    {
-      "date": "December 8, 2024",
-      "title": "Challenge, Train, Flag: Blueprint Heist",
-      "description": "At Atlansec, we are committed to <strong>CTFs as a key learning tool</strong> under the <em>learning by doing</em> methodology. We believe that <strong>facing practical challenges is the best way to develop technical skills</strong> and foster creativity. With this section we want to spread the value of CTFs, share <em>writeups</em> of challenges of a certain technical complexity and bring the community closer to a practical and technical approach to learning.",
-      "link": "08-12-2024",
-      "lang": "en"
-    },
-    {
-      "date": "November 30, 2024",
       "title": "XVIII Jornadas STIC CCN-CERT | VI Jornadas de Ciberdefensa ESPDEF-CERT",
-      "description": "Last Tuesday, we had the honor of attending the <strong><a href=\"https://jornadas.ccn-cert.cni.es/es/xviiijornadas\"target=\"XVIII Jornadas STIC CCN-CERT | VI Jornadas de Ciberdefensa ESPDEF-CERT\">XVIII Jornadas STIC CCN-CERT | VI Jornadas de Ciberdefensa ESPDEF-CERT</a></strong>, held at the Kinépolis cinemas in Ciudad de la Imagen, Madrid. The main purpose of this trip was to receive an award granted to our cybersecurity team, who emerged as winners of a national competition organized by the Universidad de Granada in collaboration with the <strong><a href=\"https://youtu.be/w7iuEEjaLYU\"target=\"El Mando Conjunto del Ciberespacio (MCCE)\">El Mando Conjunto del Ciberespacio (MCCE)</a></strong> and the <strong><a href=\"https://www.incibe.es/\" target=\"Instituto Nacional de Ciberseguridad (INCIBE)\">Instituto Nacional de Ciberseguridad (INCIBE)</a></strong>. This recognition not only fills us with pride but also reinforces our commitment to new generations and our confidence in the immense talent of these young professionals.",
-      "link": "30-11-2024",
-      "lang": "en"
+      "summary": "Last Tuesday, we had the honor of attending the [**XVIII Jornadas STIC CCN-CERT | VI Jornadas de Ciberdefensa ESPDEF-CERT**](https://jornadas.ccn-cert.cni.es/es/xviiijornadas){:target=\"_blank\"} , held at the Kinépolis cinemas in Ciudad de la Imagen, Madrid. The main purpose of this trip was to receive an award granted to our cybersecurity team, who emerged as winners of a national competition organized by the Universidad de Granada in collaboration with the [**El Mando Conjunto del Ciberespacio (MCCE)**](https://youtu.be/w7iuEEjaLYU){:target=\"_blank\"}  and the [**Instituto Nacional de Ciberseguridad (INCIBE)**](https://www.incibe.es/){:target=\"_blank\"} . This recognition not only fills us with pride but also reinforces our commitment to new generations and our confidence in the immense talent of these young professionals.",
+      "date": "November 30, 2024",
+      "tag": "",
+      "lang": "en",
+      "link": "30-11-2024"
     },
     {
-      "date": "November 24, 2024",
+      "title": "Cross-Site Scripting: The Invisible Threat on Your Web",
+      "summary": "**Cross-Site Scripting (XSS) vulnerabilities** are a common and dangerous risk in web application security. They allow attackers to inject malicious JavaScript code into legitimate websites to steal information, manipulate page behavior, or impersonate users. This guide provides a detailed overview of the three main types of XSS: **Stored XSS**, **Reflected XSS**, and **DOM-Based XSS**, explaining how they occur, how they are exploited, and how to prevent them.<br>In the context of web applications, XSS enables the injection of JavaScript code into legitimate sites. This can be leveraged to exfiltrate information from other users, manipulate page behavior, or perform actions within the application under the guise of a user's session. In desktop applications, such vulnerabilities can lead directly to arbitrary code execution on the victim's machine.<br>This article delivers an in-depth examination of the three primary types of XSS attacks: **Stored XSS**, **Reflected XSS**, and **DOM-Based XSS**, detailing how they manifest, how they are exploited, and the measures that can be implemented to thwart them.",
+      "date": "2025-02-23",
+      "tags": "",
+      "lang": "en",
+      "link": "23-02-2025"
+    },
+    {
+      "title": "Introduction to Nuclei Templates",
+      "summary": "In this article, we explore how [**Nuclei**](https://docs.projectdiscovery.io/templates/introduction){:target=\"_blank\"} templates work, detailing the **process of creating and configuring custom vulnerability tests**. You'll learn the fundamentals, from setting up the basic information and crafting precise HTTP requests to using **variables**, **payloads**, **matchers**, and **extractors** for dynamic testing. Additionally, a practical example demonstrates how to simulate a vulnerable server and detect a vulnerability using a custom **Nuclei** template.",
+      "date": "2025-02-16",
+      "tag": "",
+      "link": "16-02-2025"
+    },
+    {
+      "title": "Technical Debt: A Necessary Evil in Software Development",
+      "summary": "At Atlansec, while we are primarily a cybersecurity company, we also address technical debt from the perspective of secure software development and infrastructure security. Building secure code and robust infrastructures is key to reducing vulnerabilities and ensuring long-term maintainability.<br>Technical debt is an inevitable enemy that accompanies all software projects to a greater or lesser extent. However, it is not always harmful and, in some cases, can be a necessary strategy to achieve critical objectives within a given timeframe.",
+      "date": "2025-02-09",
+      "tag": "",
+      "lang": "en",
+      "link": "09-02-2025"
+    },
+    {
+      "title": "The Costly Lesson of CEO Fraud: Why Employee Cybersecurity Training is Crucial",
+      "summary": "**January 16, 2016 – Ried im Innkreis, Austria**. At the offices of **FACC Operations GmbH** (an Austrian manufacturer of aerospace components), an **employee from the finance department** received an urgent email that appeared to come **directly from the company’s CEO**.The request was clear: a **million-euro transfer** was needed to finalize a **strategic project.**",
+      "date": "2025-02-02",
+      "tag": "",
+      "lang": "en",
+      "link": "02-02-2025"
+    },
+    {
+      "title": "Comprehensive Guide to DNS: Overview, Setup & Security",
+      "summary": "Understanding the **DNS (Domain Name System)** is essential for anyone interested in how the internet works. DNS plays a crucial role in translating human-friendly domain names into machine-readable IP addresses, ensuring seamless web navigation.\\n\\nThis guide walks you through: - The **hierarchical structure of DNS** and its key components. - **Types of DNS queries** and how they function.- **DNS security** concerns and protective measures such as **DNSSEC**.- **Setting up a local DNS server** using BIND9 for improved **performance**, **privacy**, and **content filtering**.\\n\\nSo, if you want to take your knowledge to the next level and discover how this hierarchical system ensures that every page you visit is just a click away, read on.",
+      "date": "2025-01-26",
+      "tag": "",
+      "lang": "en",
+      "link": "26-01-2025"
+    },
+    {
+      "title": "The day that Dependabot met SheetJS",
+      "summary": "It all started with a notification from Dependabot a few days ago. While reviewing an internal project repository, I encountered the following message:<br><figure markdown=\\\"span\\\">![Dependabot Alert Message](../../assets/posts/2025/01/19/Dependabot_alert.png)<figcaption>Dependabot alert</figcaption></figure>I proceeded with the **standard Dependabot workflow to address the issues**, as I had assumed it was a routine update. However, I was surprised when the fixes for both vulnerabilities failed because the **required patched version could not be found.**",
+      "date": "2025-01-19",
+      "tag": "",
+      "lang": "en",
+      "link": "19-01-2025"
+    },
+    {
+      "title": "New EU Cyber Resilience Act",
+      "summary": "On October 23, 2024, the **European Cyber Resilience Regulation** came into force, marking a regulatory shift aimed at strengthening digital security across the European Union. At **Atlansec**, this milestone reinforces our core mission: **to create solutions and digital products that are secure throughout their lifecycle and ensure the protection of the environments in which they operate.**",
+      "date": "2024-12-22",
+      "tag": "",
+      "lang": "en",
+      "link": "22-12-2024"
+    },
+    {
+      "title": "Installation and Configuration of Analysis Tools on Android",
+      "summary": "This article outlines the necessary steps to create a dynamic testing environment on Linux/Debian, detailing how to integrate tools such as **Burp Suite**, **Frida**, and **Objection**, and their specific purposes. It also covers procedures for managing certificates on an Android emulator and configuring a dynamic testing environment. Follow the detailed instructions to achieve a functional and analysis-ready setup.",
+      "date": "2024-12-15",
+      "tag": "",
+      "lang": "en",
+      "link": "15-12-2024"
+    },
+    {
+      "title": "Challenge, Train, Flag: Blueprint Heist",
+      "summary": "At Atlansec, we are committed to **CTFs as a key learning tool** under the *learning by doing* methodology. We believe that **facing practical challenges is the best way to develop technical skills** and foster creativity. With this section we want to spread the value of CTFs, share *writeups* of challenges of a certain technical complexity and bring the community closer to a practical and technical approach to learning.",
+      "date": "2024-12-08",
+      "tag": "",
+      "lang": "en",
+      "link": "08-12-2024"
+    },
+    {
       "title": "SMB 101",
-      "description": "SMB (Server Message Block) is a protocol used to share resources such as files, printers, and directories over a network. It uses a client-server architecture, where the server makes resources available, and multiple clients can access them. Although SMB3 introduces encryption to protect data, earlier versions like SMB1 transmit information in plain text, making it vulnerable to certain attacks.<br><br>In this article, we will focus on basic concepts, key commands, and common attacks related to SMB, highlighting the use of tools like <strong>enum4linux</strong> for enumeration.",
-      "link": "24-11-2024",
-      "lang": "en"
+      "summary": "SMB (Server Message Block) is a protocol used to share resources such as files, printers, and directories over a network. It uses a client-server architecture, where the server makes resources available, and multiple clients can access them. Although SMB3 introduces encryption to protect data, earlier versions like SMB1 transmit information in plain text, making it vulnerable to certain attacks.<br>In this article, we will focus on basic concepts, key commands, and common attacks related to SMB, highlighting the use of tools like **enum4linux** for enumeration.",
+      "date": "2024-11-24",
+      "tag": "",
+      "lang": "en",
+      "link": "24-11-2024"
     },
     {
-      "date": "November 14, 2024",
-      "title": "Intro to FTP",
-      "description": "FTP (File Transfer Protocol) is one of the <strong>oldest and most widely</strong> used protocols for <strong>transferring files</strong> between computers. While it provides a simple way to move data, its default configuration lacks security, making it a common target for attackers. In this article, we’ll cover the basics of FTP, its <strong>communication modes</strong>, <strong>essential commands</strong>, and <strong>common misconfigurations</strong> that could be exploited. Whether you're a cybersecurity enthusiast or a penetration tester, understanding FTP is crucial for securing or assessing network environments.",
-      "link": "14-11-2024",
-      "lang": "en"
-    },
-    {
-      "date": "October 17, 2024",
       "title": "Abusing ssh-keygen",
-      "description": "SSH-Keygen is a tool that allows you to create and manage SSH keys, this tool is present in most UNIX systems today as a tool to facilitate the management of SSH keys.<br><br>In this article we will explore some methods to abuse this tool with certain configurations as a method of persistence or privilege escalation on the system.",
-      "link": "17-10-2024",
-      "lang": "en"
+      "summary": "SSH-Keygen is a tool that allows you to create and manage SSH keys, this tool is present in most UNIX systems today as a tool to facilitate the management of SSH keys.<br>In this article we will explore some methods to abuse this tool with certain configurations as a method of persistence or privilege escalation on the system.",
+      "date": "2024-11-17",
+      "tag": "",
+      "lang": "en",
+      "link": "17-10-2024"
+    },
+    {
+      "lang": "en",
+      "title": "Intro to FTP",
+      "summary": "FTP (File Transfer Protocol) is one of the **oldest and most widely** used protocols for **transferring files** between computers. While it provides a simple way to move data, its default configuration lacks security, making it a common target for attackers. In this article, we’ll cover the basics of FTP, its **communication modes**, **essential commands**, and **common misconfigurations** that could be exploited. Whether you're a cybersecurity enthusiast or a penetration tester, understanding FTP is crucial for securing or assessing network environments.",
+      "date": "2024-11-14",
+      "tag": "",
+      "link": "14-11-2024"
     }
   ]
 }

@@ -1,16 +1,8 @@
 {
   "posts": [
     {
-      "title": "XVIII Jornadas STIC CCN-CERT | VI Jornadas de Ciberdefensa ESPDEF-CERT",
-      "summary": "Last Tuesday, we had the honor of attending the [**XVIII Jornadas STIC CCN-CERT | VI Jornadas de Ciberdefensa ESPDEF-CERT**](https://jornadas.ccn-cert.cni.es/es/xviiijornadas){:target=\"_blank\"} , held at the Kinépolis cinemas in Ciudad de la Imagen, Madrid. The main purpose of this trip was to receive an award granted to our cybersecurity team, who emerged as winners of a national competition organized by the Universidad de Granada in collaboration with the [**El Mando Conjunto del Ciberespacio (MCCE)**](https://youtu.be/w7iuEEjaLYU){:target=\"_blank\"}  and the [**Instituto Nacional de Ciberseguridad (INCIBE)**](https://www.incibe.es/){:target=\"_blank\"} . This recognition not only fills us with pride but also reinforces our commitment to new generations and our confidence in the immense talent of these young professionals.",
-      "date": "November 30, 2024",
-      "tag": "",
-      "lang": "en",
-      "link": "30-11-2024"
-    },
-    {
       "title": "Cross-Site Scripting: The Invisible Threat on Your Web",
-      "summary": "**Cross-Site Scripting (XSS) vulnerabilities** are a common and dangerous risk in web application security. They allow attackers to inject malicious JavaScript code into legitimate websites to steal information, manipulate page behavior, or impersonate users. This guide provides a detailed overview of the three main types of XSS: **Stored XSS**, **Reflected XSS**, and **DOM-Based XSS**, explaining how they occur, how they are exploited, and how to prevent them.<br>In the context of web applications, XSS enables the injection of JavaScript code into legitimate sites. This can be leveraged to exfiltrate information from other users, manipulate page behavior, or perform actions within the application under the guise of a user's session. In desktop applications, such vulnerabilities can lead directly to arbitrary code execution on the victim's machine.<br>This article delivers an in-depth examination of the three primary types of XSS attacks: **Stored XSS**, **Reflected XSS**, and **DOM-Based XSS**, detailing how they manifest, how they are exploited, and the measures that can be implemented to thwart them.",
+      "summary": "**Cross-Site Scripting (XSS) vulnerabilities** are a common and dangerous risk in web application security. They allow attackers to inject malicious JavaScript code into legitimate websites to steal information, manipulate page behavior, or impersonate users. This guide provides a detailed overview of the three main types of XSS: **Stored XSS**, **Reflected XSS**, and **DOM-Based XSS**, explaining how they occur, how they are exploited, and how to prevent them.\\n\\nIn the context of web applications, XSS enables the injection of JavaScript code into legitimate sites. This can be leveraged to exfiltrate information from other users, manipulate page behavior, or perform actions within the application under the guise of a user's session. In desktop applications, such vulnerabilities can lead directly to arbitrary code execution on the victim's machine.\\n\\nThis article delivers an in-depth examination of the three primary types of XSS attacks: **Stored XSS**, **Reflected XSS**, and **DOM-Based XSS**, detailing how they manifest, how they are exploited, and the measures that can be implemented to thwart them.",
       "date": "2025-02-23",
       "tags": "",
       "lang": "en",
@@ -25,7 +17,7 @@
     },
     {
       "title": "Technical Debt: A Necessary Evil in Software Development",
-      "summary": "At Atlansec, while we are primarily a cybersecurity company, we also address technical debt from the perspective of secure software development and infrastructure security. Building secure code and robust infrastructures is key to reducing vulnerabilities and ensuring long-term maintainability.<br>Technical debt is an inevitable enemy that accompanies all software projects to a greater or lesser extent. However, it is not always harmful and, in some cases, can be a necessary strategy to achieve critical objectives within a given timeframe.",
+      "summary": "At Atlansec, while we are primarily a cybersecurity company, we also address technical debt from the perspective of secure software development and infrastructure security. Building secure code and robust infrastructures is key to reducing vulnerabilities and ensuring long-term maintainability.\\n\\nTechnical debt is an inevitable enemy that accompanies all software projects to a greater or lesser extent. However, it is not always harmful and, in some cases, can be a necessary strategy to achieve critical objectives within a given timeframe.",
       "date": "2025-02-09",
       "tag": "",
       "lang": "en",
@@ -41,7 +33,7 @@
     },
     {
       "title": "Comprehensive Guide to DNS: Overview, Setup & Security",
-      "summary": "Understanding the **DNS (Domain Name System)** is essential for anyone interested in how the internet works. DNS plays a crucial role in translating human-friendly domain names into machine-readable IP addresses, ensuring seamless web navigation.\\n\\nThis guide walks you through: - The **hierarchical structure of DNS** and its key components. - **Types of DNS queries** and how they function.- **DNS security** concerns and protective measures such as **DNSSEC**.- **Setting up a local DNS server** using BIND9 for improved **performance**, **privacy**, and **content filtering**.\\n\\nSo, if you want to take your knowledge to the next level and discover how this hierarchical system ensures that every page you visit is just a click away, read on.",
+      "summary": "Understanding the **DNS (Domain Name System)** is essential for anyone interested in how the internet works. DNS plays a crucial role in translating human-friendly domain names into machine-readable IP addresses, ensuring seamless web navigation.\\n\\nThis guide walks you through: - The **hierarchical structure of DNS** and its key components. - **Types of DNS queries** and how they function.- **DNS security** concerns and protective measures such as **DNSSEC**.- **Setting up a local DNS server** using BIND9 for improved **performance**, **privacy**, and **content filtering**.\\nSo, if you want to take your knowledge to the next level and discover how this hierarchical system ensures that every page you visit is just a click away, read on.",
       "date": "2025-01-26",
       "tag": "",
       "lang": "en",
@@ -80,8 +72,16 @@
       "link": "08-12-2024"
     },
     {
+      "title": "XVIII Jornadas STIC CCN-CERT | VI Jornadas de Ciberdefensa ESPDEF-CERT",
+      "summary": "Last Tuesday, we had the honor of attending the [**XVIII Jornadas STIC CCN-CERT | VI Jornadas de Ciberdefensa ESPDEF-CERT**](https://jornadas.ccn-cert.cni.es/es/xviiijornadas){:target=\"_blank\"}, held at the Kinépolis cinemas in Ciudad de la Imagen, Madrid. The main purpose of this trip was to receive an award granted to our cybersecurity team, who emerged as winners of a national competition organized by the Universidad de Granada in collaboration with the [**El Mando Conjunto del Ciberespacio (MCCE)**](https://youtu.be/w7iuEEjaLYU){:target=\"_blank\"}  and the [**Instituto Nacional de Ciberseguridad (INCIBE)**](https://www.incibe.es/){:target=\"_blank\"}. This recognition not only fills us with pride but also reinforces our commitment to new generations and our confidence in the immense talent of these young professionals.",
+      "date": "2024-11-30",
+      "tag": "",
+      "lang": "en",
+      "link": "30-11-2024"
+    },
+    {
       "title": "SMB 101",
-      "summary": "SMB (Server Message Block) is a protocol used to share resources such as files, printers, and directories over a network. It uses a client-server architecture, where the server makes resources available, and multiple clients can access them. Although SMB3 introduces encryption to protect data, earlier versions like SMB1 transmit information in plain text, making it vulnerable to certain attacks.<br>In this article, we will focus on basic concepts, key commands, and common attacks related to SMB, highlighting the use of tools like **enum4linux** for enumeration.",
+      "summary": "SMB (Server Message Block) is a protocol used to share resources such as files, printers, and directories over a network. It uses a client-server architecture, where the server makes resources available, and multiple clients can access them. Although SMB3 introduces encryption to protect data, earlier versions like SMB1 transmit information in plain text, making it vulnerable to certain attacks.\\n\\nIn this article, we will focus on basic concepts, key commands, and common attacks related to SMB, highlighting the use of tools like **enum4linux** for enumeration.",
       "date": "2024-11-24",
       "tag": "",
       "lang": "en",
@@ -89,7 +89,7 @@
     },
     {
       "title": "Abusing ssh-keygen",
-      "summary": "SSH-Keygen is a tool that allows you to create and manage SSH keys, this tool is present in most UNIX systems today as a tool to facilitate the management of SSH keys.<br>In this article we will explore some methods to abuse this tool with certain configurations as a method of persistence or privilege escalation on the system.",
+      "summary": "SSH-Keygen is a tool that allows you to create and manage SSH keys, this tool is present in most UNIX systems today as a tool to facilitate the management of SSH keys.\\n\\nIn this article we will explore some methods to abuse this tool with certain configurations as a method of persistence or privilege escalation on the system.",
       "date": "2024-11-17",
       "tag": "",
       "lang": "en",

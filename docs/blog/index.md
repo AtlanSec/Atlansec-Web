@@ -2,7 +2,6 @@
 hide: navigation
 ---
 # Welcome to our Blog
----
 <div class="md-content" data-md-component="content">
   <div class="md-content__inner">
     <link rel="stylesheet" href="../stylesheets/extra.css">
@@ -16,7 +15,6 @@ hide: navigation
       text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
       // Convertir cursiva
       text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
-      text = text.replace(/\_(.*?)\_/g, '<em>$1</em>');
       // Convertir \n en salto de linea
       text = text.replace(/\\n/g, '<br>');
       // Interpretar imágenes
@@ -27,6 +25,13 @@ hide: navigation
       });
       return text;
     }
+    //Función que nos permite obtener la fecha en un formato más legible
+    function formatDate(dateString) {
+      const months = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+        const [year, month, day] = dateString.split('-');
+        return `${months[parseInt(month) - 1]} ${parseInt(day)}, ${year}`;
+    }
     // Cargar el archivo JSON y mostrar los posts
     fetch('./posts.json')
       .then(response => response.json())
@@ -36,7 +41,7 @@ hide: navigation
           data.posts.forEach(post => {
             const postElement = document.createElement('div');
             postElement.innerHTML = `
-              <em style="display: block; margin-bottom: 0;">${post.date}</em>
+              <em style="display: block; margin-bottom: 0;">${formatDate(post.date)}</em>
               <h2 style="margin-top: 0;"><a href="/blog/posts/${post.link}/">${post.title}</a></h2>
               <p>${markdownToHtml(post.summary)}</p>
               <p><a href="/blog/posts/${post.link}/">Continue reading</a></p>

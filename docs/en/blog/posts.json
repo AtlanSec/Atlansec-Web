@@ -1,6 +1,13 @@
 {
   "posts": [
     {
+      "date": "February 23, 2025",
+      "title": "Cross-Site Scripting: The Invisible Threat on Your Web",
+      "description": "<strong>Cross-Site Scripting (XSS) vulnerabilities</strong> are a common and dangerous risk in web application security. They allow attackers to inject malicious JavaScript code into legitimate websites to steal information, manipulate page behavior, or impersonate users. This guide provides a detailed overview of the three main types of XSS: <strong>Stored XSS</strong>, <strong>Reflected XSS</strong>, and <strong>DOM-Based XSS</strong>, explaining how they occur, how they are exploited, and how to prevent them.",
+      "link": "23-02-2025",
+      "lang": "en"
+    },
+    {
       "date": "February 16, 2025",
       "title": "Introduction to Nuclei Templates",
       "description": "In this article, we explore how <strong><a href=\"https://docs.projectdiscovery.io/templates/introduction\" target=\"Nuclei\">Nuclei</a></strong> templates work, detailing the <strong>process of creating and configuring custom vulnerability tests</strong>. You'll learn the fundamentals, from setting up the basic information and crafting precise HTTP requests to using <strong>variables</strong>, <strong>payloads</strong>, <strong>matchers</strong>, and <strong>extractors</strong> for dynamic testing. Additionally, a practical example demonstrates how to simulate a vulnerable server and detect a vulnerability using a custom  <strong>Nuclei</strong> template.",
@@ -26,13 +33,6 @@
       "title": "Comprehensive Guide to DNS: Overview, Setup & Security",
       "description": "Understanding the <strong>Domain Name System (DNS)</strong> is essential for anyone interested in how the internet works. DNS plays a crucial role in translating human-friendly domain names into machine-readable IP addresses, ensuring seamless web navigation.<br><br>This guide walks you through:<ul><li>The <strong>hierarchical structure of DNS</strong> and its key components.</li><li><strong>Types of DNS queries</strong> and how they function.</li><li><strong>DNS security</strong> concerns and protective measures like <strong>DNSSEC</strong>.</li><li><strong>Setting up a local DNS server</strong> using BIND9 for improved <strong>performance, privacy, and content filtering</strong>.</li></ul><br>So, if you want to take your knowledge to the next level and discover how this hierarchical system ensures that every page you visit is just a click away, read on.",
       "link": "26-01-2025",
-      "lang": "en"
-    },
-    {
-      "date": "January 26, 2025",
-      "title": "Setting up a local DNS",
-      "description": "In this article, we are going to explore what a DNS is and how this hierarchy works so that you can better understand its crucial role in Internet navigation. From the root servers that act as the starting point, through TLD and authoritative servers, we come to the local DNS, the key piece that connects this entire global system to your home or business network and optimize your environment's navigation!<br><br>Moreover, if you want to take your knowledge to the next level and discover how this hierarchy system ensures that every page that you visit is just a click away, read on.",
-      "link": "26-01-2025(1)",
       "lang": "en"
     },
     {

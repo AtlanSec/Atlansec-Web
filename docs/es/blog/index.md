@@ -5,7 +5,7 @@ hide:
 # Bienvenido a nuestro Blog
 <div class="md-content" data-md-component="content">
   <div class="md-content__inner">
-    <link rel="stylesheet" href="../stylesheets/extra.css">
+    <link rel="stylesheet" href="stylesheets/extra.css">
     <div id="posts"></div>
     <script>
     // Función para convertir Markdown a HTML
@@ -44,7 +44,7 @@ hide:
             postElement.innerHTML = `
               <em style="display: block; margin-bottom: 0;">${formatDate(post.date)}</em>
               <h2 style="margin-top: 0;"><a href="/es/blog/posts/${post.link}/">${post.title}</a></h2>
-              <p>${markdownToHtml(post.summary)}</p>
+              ${markdownToHtml(post.summary)}
               <p><a href="/es/blog/posts/${post.link}/">Continue leyendo</a></p>
               <br>
             `;

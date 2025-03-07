@@ -7,32 +7,32 @@ hide: navigation
     <link rel="stylesheet" href="../stylesheets/extra.css">
     <div id="posts"></div>
     <script>
-    // Función para convertir Markdown a HTML
+    // Function to convert Markdown to HTML
     function markdownToHtml(text) {
-      // Convierte listas no ordenadas
-      text = text.replace(/\- (.*?)\./gm, '<li>$1.</li>');
-      // Convertir negrita
+      // Convert bold text
       text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-      // Convertir cursiva
+      // Convert italic text
       text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
-      // Convertir \n en salto de linea
+      // Convert unordered lists
+      text = text.replace(/\- (.*?)\./gm, '<li>$1.</li>');
+      // Convert \n to line break
       text = text.replace(/\\n/g, '<br>');
-      // Interpretar imágenes
+      // Interpret images
       text = text.replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1">');
-      // Convertir enlaces
+      // Convert links
       text = text.replace(/\[(.*?)\]\((.*?)\)(\{:target="_blank"\})?/g, function(match, p1, p2, p3) {
         return `<a href="${p2}"${p3 ? ' target="_blank"' : ''}>${p1}</a>`;
       });
       return text;
     }
-    //Función que nos permite obtener la fecha en un formato más legible
+    // Function to format the date in a more readable format
     function formatDate(dateString) {
       const months = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"];
         const [year, month, day] = dateString.split('-');
         return `${months[parseInt(month) - 1]} ${parseInt(day)}, ${year}`;
     }
-    // Cargar el archivo JSON y mostrar los posts
+    // Load the JSON file and display the posts
     fetch('./posts.json')
       .then(response => response.json())
       .then(data => {
@@ -43,7 +43,7 @@ hide: navigation
             postElement.innerHTML = `
               <em style="display: block; margin-bottom: 0;">${formatDate(post.date)}</em>
               <h2 style="margin-top: 0;"><a href="/blog/posts/${post.link}/">${post.title}</a></h2>
-              <p>${markdownToHtml(post.summary)}</p>
+              ${markdownToHtml(post.summary)}
               <p><a href="/blog/posts/${post.link}/">Continue reading</a></p>
               <br>
             `;
@@ -53,7 +53,7 @@ hide: navigation
           console.error('No posts available.');
         }
       })
-      .catch(error => console.error('Error al cargar el JSON:', error));
+      .catch(error => console.error('Error loading JSON:', error));
     </script>
   </div>
 </div>

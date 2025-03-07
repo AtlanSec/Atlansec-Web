@@ -2,57 +2,57 @@ import json
 import os
 import re
 
-def extraer_metadatos(directorio_md):
-    metadatos_lista = []
-    for nombre_archivo in os.listdir(directorio_md):
-        if nombre_archivo.endswith(".md"):
-            ruta_archivo = os.path.join(directorio_md, nombre_archivo)
+def extract_metadata(md_directory):
+    metadata_list = []
+    for filename in os.listdir(md_directory):
+        if filename.endswith(".md"):
+            file_path = os.path.join(md_directory, filename)
             try:
-                with open(ruta_archivo, 'r', encoding='utf-8') as archivo_md:
-                    contenido = archivo_md.read()
+                with open(file_path, 'r', encoding='utf-8') as md_file:
+                    content = md_file.read()
 
-                # Buscar el bloque YAML al principio del archivo
-                match = re.match(r"^---\n(.*?)\n---\n", contenido, re.DOTALL)
+                # Search for the YAML block at the beginning of the file
+                match = re.match(r"^---\n(.*?)\n---\n", content, re.DOTALL)
 
                 if match:
-                    yaml_bloque = match.group(1)
-                    metadatos = {}
-                    for linea in yaml_bloque.splitlines():
-                        if ":" in linea:
-                            clave, valor = linea.split(":", 1)
-                            clave = clave.strip()
-                            valor = valor.strip().strip('"')  # Eliminar comillas alrededor del valor
-                            metadatos[clave] = valor
-                    metadatos['link'] = nombre_archivo[:-3] # Remove '.md' extension
-                    metadatos_lista.append(metadatos)
+                    yaml_block = match.group(1)
+                    metadata = {}
+                    for line in yaml_block.splitlines():
+                        if ":" in line:
+                            key, value = line.split(":", 1)
+                            key = key.strip()
+                            value = value.strip().strip('"')  # Remove quotes around the value
+                            metadata[key] = value
+                    metadata['link'] = filename[:-3]  # Remove '.md' extension
+                    metadata_list.append(metadata)
 
             except Exception as e:
-                print(f"Error al procesar {nombre_archivo}: {e}")
+                print(f"Error processing {filename}: {e}")
 
-    return metadatos_lista
+    return metadata_list
 
-def ordenar_por_fecha(metadatos_lista):
-  """Ordena la lista de metadatos por fecha (de más reciente a menos reciente)."""
-  return sorted(metadatos_lista, key=lambda x: x.get('date', ''), reverse=True)
+def sort_by_date(metadata_list):
+    """Sort the metadata list by date (most recent to least recent)."""
+    return sorted(metadata_list, key=lambda x: x.get('date', ''), reverse=True)
 
-def guardar_en_json(metadatos_lista, archivo_json):
-    datos = {"posts": metadatos_lista}
+def save_to_json(metadata_list, json_file):
+    data = {"posts": metadata_list}
     try:
-        with open(archivo_json, 'w', encoding='utf-8') as f:
-            json.dump(datos, f, indent=2, ensure_ascii=False)
-        print(f"Metadatos guardados en {archivo_json}")
+        with open(json_file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+        print(f"Metadata saved to {json_file}")
     except Exception as e:
-        print(f"Error al guardar en {archivo_json}: {e}")
+        print(f"Error saving to {json_file}: {e}")
 
 if __name__ == "__main__":
-    # Directorios de los archivos
-    directorio_md = './docs/blog/posts'
-    archivo_json = './docs/en/blog/posts.json' 
-    directorio_md_es = './docs/es/blog/posts'
-    archivo_json_es = './docs/es/blog/posts.json' 
-    metadatos = extraer_metadatos(directorio_md)
-    metadatos_es = extraer_metadatos(directorio_md_es)
-    metadatos_ordenados = ordenar_por_fecha(metadatos) 
-    metadatos_ordenados_es = ordenar_por_fecha(metadatos_es) 
-    guardar_en_json(metadatos_ordenados, archivo_json)
-    guardar_en_json(metadatos_ordenados_es, archivo_json_es)
+    # Directories of the files
+    md_directory = './docs/blog/posts'
+    json_file = './docs/en/blog/posts.json' 
+    md_directory_es = './docs/es/blog/posts'
+    json_file_es = './docs/es/blog/posts.json' 
+    metadata = extract_metadata(md_directory)
+    metadata_es = extract_metadata(md_directory_es)
+    sorted_metadata = sort_by_date(metadata) 
+    sorted_metadata_es = sort_by_date(metadata_es) 
+    save_to_json(sorted_metadata, json_file)
+    save_to_json(sorted_metadata_es, json_file_es)

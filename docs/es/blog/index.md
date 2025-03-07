@@ -16,17 +16,23 @@ hide:
       text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
       // Convertir cursiva
       text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
-      text = text.replace(/\_(.*?)\_/g, '<em>$1</em>');
       // Convertir \n en salto de linea
       text = text.replace(/\\n/g, '<br>');
       // Interpretar imágenes
       text = text.replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1">');
       // Convertir enlaces
       text = text.replace(/\[(.*?)\]\((.*?)\)(\{:target="_blank"\})?/g, function(match, p1, p2, p3) {
-        return `<a href="${p2}"${p3 ? ' target="_blank"' : ''}>${p1}</a>`;
+        return `<a href="${p2}" ${p3 ? 'target="_blank"' : ''}>${p1}</a>`;
       });
       return text;
       }
+    //Función que nos permite obtener la fecha en un formato más legible
+    function formatDate(dateString) {
+      const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+      "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+      const [year, month, day] = dateString.split('-');
+      return `${parseInt(day)} de ${months[parseInt(month) - 1]}, ${year}`;
+    }
     // Cargar el archivo JSON y mostrar los posts
     fetch('./posts.json')
       .then(response => response.json())
@@ -36,7 +42,7 @@ hide:
           data.posts.forEach(post => {
             const postElement = document.createElement('div');
             postElement.innerHTML = `
-              <em style="display: block; margin-bottom: 0;">${post.date}</em>
+              <em style="display: block; margin-bottom: 0;">${formatDate(post.date)}</em>
               <h2 style="margin-top: 0;"><a href="/es/blog/posts/${post.link}/">${post.title}</a></h2>
               <p>${markdownToHtml(post.summary)}</p>
               <p><a href="/es/blog/posts/${post.link}/">Continue leyendo</a></p>

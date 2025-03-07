@@ -9,13 +9,6 @@
       "link": "23-02-2025"
     },
     {
-      "title": "Introducción a las Plantillas de Nuclei",
-      "summary": "En este articulo, Exploraremos como funcionan las plantillas de [**Nuclei**](https://docs.projectdiscovery.io/templates/introduction) , detallando el **proceso de creación y configuración de vulnerabilidades personalizadas**. Aprenderás los fundamentos, desde la configuración de la información básica y la elaboración de peticiones HTTP precisas hasta el uso de **variables**, **payloads**, **matchers** y **extractors** para pruebas dinámicas. Además, un ejemplo práctico demuestra cómo simular un servidor vulnerable y detectar una vulnerabilidad utilizando una plantilla personalizada **Nuclei**.",
-      "date": "2025-02-16",
-      "tag": "",
-      "link": "16-02-2025"
-    },
-    {
       "title": "Deuda técnica: un mal necesario en el desarrollo de software",
       "summary": "En Atlansec, aunque somos principalmente una empresa de ciberseguridad, también abordamos la deuda técnica desde la perspectiva del desarrollo de software seguro y la seguridad de las infraestructuras. Construir código seguro e infraestructuras robustas es clave para reducir las vulnerabilidades y garantizar la mantenibilidad a largo plazo.\\nLa deuda técnica es un enemigo inevitable que acompaña a todos los proyectos de software en mayor o menor medida. Sin embargo, no siempre es perjudicial y, en algunos casos, puede ser una estrategia necesaria para alcanzar objetivos críticos en un plazo determinado.",
       "date": "2025-02-09",
@@ -40,28 +33,12 @@
       "link": "26-01-2025"
     },
     {
-      "title": "El día que Dependabot conoció a SheetJS",
-      "summary": "Todo comenzó hace unos días con una notificación de Dependabot. Mientras revisaba un repositorio de un proyecto interno, me encontré con el siguiente mensaje: <figure markdown=\\\"span\\\">![Mensaje de alerta de Dependabot](../../../assets/posts/2025/01/19/Dependabot_alert.png)  <figcaption>Alerta de Dependabot</figcaption></figure>Procedí con el **workflow estándar de Dependabot para abordar los problemas**, asumiendo que se trataba de una actualización rutinaria. Sin embargo, me sorprendió cuando las correcciones para ambas vulnerabilidades fallaron porque **no se pudo encontrar la versión parcheada requerida.**",
-      "date": "2025-01-19",
-      "tag": "",
-      "lang": "es",
-      "link": "19-01-2025"
-    },
-    {
       "title": "Nueva Ley de Resiliencia Cibernética de la UE",
       "summary": "La nueva Ley de Resiliencia Cibernética de la UE impone estándares unificados de ciberseguridad para garantizar que los productos digitales sean seguros durante todo su ciclo de vida, beneficiando a consumidores y empresas.",
       "date": "2024-12-22",
       "tag": "",
       "lang": "es",
       "link": "22-12-2024"
-    },
-    {
-      "title": "Instalación y Configuración de Herramientas de Análisis en Android",
-      "summary": "Este artículo describe los pasos necesarios para crear un entorno de pruebas dinámico en Linux/Debian, detallando cómo integrar herramientas como **Burp Suite**, **Frida** y **Objection**, y sus propósitos específicos. También cubre procedimientos para gestionar certificados en un emulador de Android y configurar un entorno de pruebas dinámico. Sigue las instrucciones detalladas para lograr una configuración funcional y lista para el análisis.",
-      "date": "2024-12-15",
-      "tag": "",
-      "lang": "es",
-      "link": "15-12-2024"
     },
     {
       "title": "Challenge, Train, Flag: Blueprint Heist",
@@ -88,20 +65,43 @@
       "link": "24-11-2024"
     },
     {
-      "title": "Abusando de ssh-keygen",
-      "summary": "SSH-Keygen es una herramienta que permite crear y gestionar claves SSH, esta herramienta esta presente en la mayoría de los sistemas UNIX hoy en día como herramienta para facilitar la gestión de las claves SSH.\\n\\nEn este articulo exploraremos un par de métodos para abusar de esta herramienta con ciertas configuraciones como método de persistencia o de escalada de privilegios en el sistema.\\n\\nEn concreto abusaremos de una funcionalidad concreta de este binario que permite la carga de claves publicas desde una librería de lectura de tarjetas, esta opción es el parámetro -D, su uso es el siguiente.",
-      "date": "2024-10-17",
-      "tag": "",
-      "lang": "es",
-      "link": "17-10-2024"
-    },
-    {
       "lang": "es",
       "title": "Introducción a FTP",
       "summary": "El protocolo FTP (File Transfer Protocol) es un protocolo usado para la transferencia de archivos entre ordenadores en red, este protocolo presenta arquitectura cliente-servidor usándose un servidor para servir archivos que pueden ser accedidos por N clientes. Por defecto, la información se transmite en texto plano, aunque existe una versión cifrada del mismo llamada SFTP (Secure File Transfer Protocol).",
       "date": "2024-07-24",
       "tag": "",
       "link": "14-11-2024"
+    },
+    {
+      "title": "El día que Dependabot conoció a SheetJS",
+      "summary": "Todo comenzó hace unos días con una notificación de Dependabot. Mientras revisaba un repositorio de un proyecto interno, me encontré con el siguiente mensaje: <figure markdown=\\\"span\\\">![Mensaje de alerta de Dependabot](../../../assets/posts/2025/01/19/Dependabot_alert.png)  <figcaption>Alerta de Dependabot</figcaption></figure>Procedí con el **workflow estándar de Dependabot para abordar los problemas**, asumiendo que se trataba de una actualización rutinaria. Sin embargo, me sorprendió cuando las correcciones para ambas vulnerabilidades fallaron porque **no se pudo encontrar la versión parcheada requerida.**",
+      "date": "19 de Enero, 2025",
+      "tag": "",
+      "lang": "es",
+      "link": "19-01-2025"
+    },
+    {
+      "title": "Abusando de ssh-keygen",
+      "summary": "SSH-Keygen es una herramienta que permite crear y gestionar claves SSH, esta herramienta esta presente en la mayoría de los sistemas UNIX hoy en día como herramienta para facilitar la gestión de las claves SSH.\\n\\nEn este articulo exploraremos un par de métodos para abusar de esta herramienta con ciertas configuraciones como método de persistencia o de escalada de privilegios en el sistema.\\n\\nEn concreto abusaremos de una funcionalidad concreta de este binario que permite la carga de claves publicas desde una librería de lectura de tarjetas, esta opción es el parámetro -D, su uso es el siguiente.",
+      "date": "17 de Octubre, 2024",
+      "tag": "",
+      "lang": "es",
+      "link": "17-10-2024"
+    },
+    {
+      "title": "Introducción a las Plantillas de Nuclei",
+      "summary": "En este articulo, Exploraremos como funcionan las plantillas de [**Nuclei**](https://docs.projectdiscovery.io/templates/introduction) , detallando el **proceso de creación y configuración de vulnerabilidades personalizadas**. Aprenderás los fundamentos, desde la configuración de la información básica y la elaboración de peticiones HTTP precisas hasta el uso de **variables**, **payloads**, **matchers** y **extractors** para pruebas dinámicas. Además, un ejemplo práctico demuestra cómo simular un servidor vulnerable y detectar una vulnerabilidad utilizando una plantilla personalizada **Nuclei**.",
+      "date": "16 de Febrero, 2025",
+      "tag": "",
+      "link": "16-02-2025"
+    },
+    {
+      "title": "Instalación y Configuración de Herramientas de Análisis en Android",
+      "summary": "Este artículo describe los pasos necesarios para crear un entorno de pruebas dinámico en Linux/Debian, detallando cómo integrar herramientas como **Burp Suite**, **Frida** y **Objection**, y sus propósitos específicos. También cubre procedimientos para gestionar certificados en un emulador de Android y configurar un entorno de pruebas dinámico. Sigue las instrucciones detalladas para lograr una configuración funcional y lista para el análisis.",
+      "date": "15 de Diciembre, 2024",
+      "tag": "",
+      "lang": "es",
+      "link": "15-12-2024"
     }
   ]
 }

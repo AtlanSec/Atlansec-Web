@@ -24,6 +24,8 @@ hide:
       text = text.replace(/\[(.*?)\]\((.*?)\)(\{:target="_blank"\})?/g, function(match, p1, p2, p3) {
         return `<a href="${p2}" ${p3 ? 'target="_blank"' : ''}>${p1}</a>`;
       });
+      // Interpreta las quotes
+      text = text.replace(/\> (.*?)\$/gm, '<blockquote>$1</blockquote>');
       return text;
       }
     //Función que nos permite obtener la fecha en un formato más legible

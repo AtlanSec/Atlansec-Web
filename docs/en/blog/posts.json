@@ -1,6 +1,13 @@
 {
   "posts": [
     {
+      "title": "LAN Wars: The Phantom Menace",
+      "summary": "> A long, long time ago, in an office cubicle nearby....\\n\\nThe corporate network is plunged into chaos. The **implementation of security policies** on the company's systems is under dispute.\\n\\nHoping to circumvent protocol with a handful of **unapproved tools**, the rebellious, grasping IT faction has ceased all collaboration with the IT team and established **their own software ecosystem**.\\n\\nWhile the IT team endlessly debates other matters, the CISO has secretly dispatched two cybersecurity experts, guardians of compliance and zero trust, to restore order and **maintain network security**.$Does this plot sound familiar? It's better to learn about it now before it turns into a real-life horror movie. In this post, we'll delve into the issue of **Shadow IT** and how to tackle it effectively.",
+      "date": "2025-03-16",
+      "tag": "",
+      "link": "16-03-2025"
+    },
+    {
       "title": "Cross-Site Scripting: The Invisible Threat on Your Web",
       "summary": "**Cross-Site Scripting (XSS) vulnerabilities** are a common and dangerous risk in web application security. They allow attackers to inject malicious JavaScript code into legitimate websites to steal information, manipulate page behavior, or impersonate users. This guide provides a detailed overview of the three main types of XSS: **Stored XSS**, **Reflected XSS**, and **DOM-Based XSS**, explaining how they occur, how they are exploited, and how to prevent them.\\n\\nThis article delivers an in-depth examination of the three primary types of XSS attacks: **Stored XSS**, **Reflected XSS**, and **DOM-Based XSS**, detailing how they manifest, how they are exploited, and the measures that can be implemented to thwart them.",
       "date": "2025-02-23",

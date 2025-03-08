@@ -1,6 +1,13 @@
 {
   "posts": [
     {
+      "title": "LAN Wars: La amenaza fantasma",
+      "summary": "> Hace mucho mucho tiempo, en un escritorio cercano....\\n\\nLa red corporativa está sumida en el caos. La **implementación de políticas de seguridad** en los sistemas de la empresa se encuentra en disputa.\\n\\nEsperando resolver sus asuntos con un puñado de **herramientas no aprobadas**, los codiciosos rebeldes TI han detenido toda colaboración con el equipo de TI e instaurado **su propio software**.\\n\\nMientras el equipo de TI debate interminablemente sobre otros asuntos, el CISO ha enviado en secreto a dos expertos en ciberseguridad, guardianes del cumplimiento y el zero trust, para restaurar el orden y **mantener la seguridad en la red**.$¿Te suena esta película? Mejor aprender sobre ella ahora que cuando se convierta en una película de terror. En este post hablaremos sobre el problema del **Shadow IT** y cómo afrontarlo.",
+      "date": "2025-03-16",
+      "tag": "",
+      "link": "16-03-2025"
+    },
+    {
       "title": "Cross-Site Scripting: La Amenaza Invisible en tu Web",
       "summary": "Las **vulnerabilidades de Cross-Site Scripting (XSS)** son un riesgo común y peligroso en la seguridad de aplicaciones web y con impactos nefastos en aplicaciones móviles y de escritorio. Permiten a atacantes inyectar código JavaScript malicioso en contextos de confianza.\\n\\nEste artículo ofrece una visión detallada de los tres tipos principales de XSS: **Stored XSS**, **Reflected XSS** y **DOM-Based XSS**, explicando cómo ocurren, cómo se explotan y cómo prevenirlas.",
       "date": "2025-02-23",
@@ -10,7 +17,7 @@
     },
     {
       "title": "Introducción a las Plantillas de Nuclei",
-      "summary": "En este articulo, Exploraremos como funcionan las plantillas de [**Nuclei**](https://docs.projectdiscovery.io/templates/introduction){:target=\"_blank\"} , detallando el **proceso de creación y configuración de vulnerabilidades personalizadas**. Aprenderás los fundamentos, desde la configuración de la información básica y la elaboración de peticiones HTTP precisas hasta el uso de **variables**, **payloads**, **matchers** y **extractors** para pruebas dinámicas. Además, un ejemplo práctico demuestra cómo simular un servidor vulnerable y detectar una vulnerabilidad utilizando una plantilla personalizada **Nuclei**.",
+      "summary": "En este articulo, Exploraremos como funcionan las plantillas de [**Nuclei**](https://docs.projectdiscovery.io/templates/introduction){:target=\"_blank\"}, detallando el **proceso de creación y configuración de vulnerabilidades personalizadas**. Aprenderás los fundamentos, desde la configuración de la información básica y la elaboración de peticiones HTTP precisas hasta el uso de **variables**, **payloads**, **matchers** y **extractors** para pruebas dinámicas. Además, un ejemplo práctico demuestra cómo simular un servidor vulnerable y detectar una vulnerabilidad utilizando una plantilla personalizada **Nuclei**.",
       "date": "2025-02-16",
       "tag": "",
       "link": "16-02-2025"

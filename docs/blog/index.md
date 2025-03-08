@@ -15,6 +15,8 @@ hide: navigation
       text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
       // Convert unordered lists
       text = text.replace(/\- (.*?)\./gm, '<li>$1.</li>');
+      // Interpret blockquotes
+      text = text.replace(/\> (.*?)\$/gm, '<blockquote>$1</blockquote>');
       // Convert \n to line break
       text = text.replace(/\\n/g, '<br>');
       // Interpret images
@@ -23,7 +25,7 @@ hide: navigation
       text = text.replace(/\[(.*?)\]\((.*?)\)(\{:target="_blank"\})?/g, function(match, p1, p2, p3) {
         return `<a href="${p2}"${p3 ? ' target="_blank"' : ''}>${p1}</a>`;
       });
-      return text;
+    return text;
     }
     // Function to format the date in a more readable format
     function formatDate(dateString) {

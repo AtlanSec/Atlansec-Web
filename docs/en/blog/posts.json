@@ -1,11 +1,20 @@
 {
   "posts": [
     {
-      "title": "LAN Wars: The Phantom Menace",
-      "summary": "> A long, long time ago, in an office cubicle nearby....\\n\\nThe corporate network is plunged into chaos. The **implementation of security policies** on the company's systems is under dispute.\\n\\nHoping to circumvent protocol with a handful of **unapproved tools**, the rebellious, grasping IT faction has ceased all collaboration with the IT team and established **their own software ecosystem**.\\n\\nWhile the IT team endlessly debates other matters, the CISO has secretly dispatched two cybersecurity experts, guardians of compliance and zero trust, to restore order and **maintain network security**.$Does this plot sound familiar? It's better to learn about it now before it turns into a real-life horror movie. In this post, we'll delve into the issue of **Shadow IT** and how to tackle it effectively.",
+      "title": "Threat Modeling: Implementing STRIDE and PASTA in the Real World",
+      "summary": "In the world of cybersecurity, **protecting applications and systems from their design phase** is crucial. With the increasing sophistication of attacks, the **Security by Design approach has become a necessity** for organizations. Within this strategy, threat modeling is a fundamental technique that allows identifying vulnerabilities before they can be exploited.\\n\\nIn this article, we will explore two of the most effective models for analyzing and mitigating threats in real projects: STRIDE and PASTA. We will delve into their characteristics, operation and how they can contribute to information security from a **risk prevention and mitigation** perspective.",
       "date": "2025-03-16",
       "tag": "",
+      "lang": "en",
       "link": "16-03-2025"
+    },
+    {
+      "title": "LAN Wars: The Phantom Menace",
+      "summary": "> A long, long time ago, in an office cubicle nearby....\\n\\nThe corporate network is plunged into chaos. The **implementation of security policies** on the company's systems is under dispute.\\n\\nHoping to circumvent protocol with a handful of **unapproved tools**, the rebellious, grasping IT faction has ceased all collaboration with the IT team and established **their own software ecosystem**.\\n\\nWhile the IT team endlessly debates other matters, the CISO has secretly dispatched two cybersecurity experts, guardians of compliance and zero trust, to restore order and **maintain network security**.$Does this plot sound familiar? It's better to learn about it now before it turns into a real-life horror movie. In this post, we'll delve into the issue of **Shadow IT** and how to tackle it effectively.",
+      "date": "2025-03-09",
+      "tag": "",
+      "lang": "en",
+      "link": "09-03-2025"
     },
     {
       "title": "Cross-Site Scripting: The Invisible Threat on Your Web",

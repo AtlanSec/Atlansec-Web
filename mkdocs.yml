@@ -44,8 +44,6 @@ plugins:
           nav_translations:
             Home: Inicio
             Services: Servicios
-  - blog:
-      authors_profiles: true
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true

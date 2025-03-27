@@ -45,9 +45,9 @@ hide:
             const postElement = document.createElement('div');
             postElement.innerHTML = `
               <em style="display: block; margin-bottom: 0;">${formatDate(post.date)}</em>
-              <h2 style="margin-top: 0;"><a href="/es/blog/posts/${post.link}/">${post.title}</a></h2>
+              <h2 style="margin-top: 0;"><a href="./posts/${post.link}/">${post.title}</a></h2>
               ${markdownToHtml(post.summary)}
-              <p><a href="/es/blog/posts/${post.link}/">Continue leyendo</a></p>
+              <p><a href="./posts/${post.link}/">Continue leyendo</a></p>
               <br>
             `;
             postsContainer.appendChild(postElement);

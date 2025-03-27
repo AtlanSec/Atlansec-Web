@@ -1,6 +1,14 @@
 {
   "posts": [
     {
+      "title": "Server-Side Request Forgery: La Puerta Trasera que Puede Derribar tu Infraestructura",
+      "summary": "En el ámbito de la seguridad web, las vulnerabilidades **Server-Side Request Forgery (SSRF)** destacan como una de las amenazas más críticas y subestimadas. Permiten a los atacantes manipular servidores para realizar peticiones HTTP no autorizadas a sistemas internos, comprometiendo desde APIs y servicios en la nube hasta infraestructuras protegidas por firewalls.\\n\\nEsta técnica de ataque, a menudo subestimada, puede transformar un servidor aparentemente seguro en una puerta de entrada para los ciberdelincuentes, permitiéndoles acceder a recursos internos, robar datos sensibles e incluso lanzar ataques contra terceros.\\n\\n¿El resultado? Robo de datos, acceso a servicios internos, ejecución remota de código y, en última instancia, daño a la reputación, multas por incumplimiento de normativas como GDPR, y pérdidas financieras significativas. Un ataque SSRF exitoso puede paralizar operaciones críticas y comprometer la confianza de los clientes.",
+      "date": "2025-03-23",
+      "tags": "",
+      "lang": "es",
+      "link": "23-03-2025"
+    },
+    {
       "title": "Modelado de Amenazas: Implementando STRIDE y PASTA en el mundo real",
       "summary": "En el mundo de la ciberseguridad, **proteger aplicaciones y sistemas desde su fase de diseño** es crucial. Con la creciente sofisticación de los ataques, el enfoque de **Security by Design se ha convertido en una necesidad** para las organizaciones. Dentro de esta estrategia, el modelado de amenazas es una técnica fundamental que permite identificar vulnerabilidades antes de que puedan ser explotadas.\\n\\nEn este artículo, exploraremos dos de los modelos más efectivos para analizar y mitigar amenazas en proyectos reales: STRIDE y PASTA. Profundizaremos en sus características, funcionamiento y cómo pueden contribuir a la seguridad informática desde una perspectiva de **prevención y mitigación de riesgos**.",
       "date": "2025-03-16",

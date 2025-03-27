@@ -1,8 +1,16 @@
 {
   "posts": [
     {
+      "title": "El asesino en serie de PHP: La deserialización insegura",
+      "summary": "Algunas vulnerabilidades pasan desapercibidas hasta que es demasiado tarde y definitivamente las PHP Object Injection son una de ellas. Esta vulnerabilidad a menudo desconocida permite a un atacante inyectar objetos PHP manipulados en una aplicación, desencadenando una serie de consecuencias devastadoras como: ejecución remota de código, acceso no autorizado a archivos o elecación de privilegios.\\n\\nEste tipo de ataque es especialmente peligroso porque no siempre es evidente a primera vista. Puede estar latente en el código durante años hasta que un atacante descubre cómo explotarlo. Lo que parece una simple funcionalidad de almacenamiento o transmisión de datos puede convertirse en una puerta trasera que acabe comprometiendo la integridad del sistema.",
+      "date": "2025-03-30",
+      "tags": "",
+      "lang": "es",
+      "link": "30-03-2025"
+    },
+    {
       "title": "Server-Side Request Forgery: La Puerta Trasera que Puede Derribar tu Infraestructura",
-      "summary": "En el ámbito de la seguridad web, las vulnerabilidades **Server-Side Request Forgery (SSRF)** destacan como una de las amenazas más críticas y subestimadas. Permiten a los atacantes manipular servidores para realizar peticiones HTTP no autorizadas a sistemas internos, comprometiendo desde APIs y servicios en la nube hasta infraestructuras protegidas por firewalls.\\n\\nEsta técnica de ataque, a menudo subestimada, puede transformar un servidor aparentemente seguro en una puerta de entrada para los ciberdelincuentes, permitiéndoles acceder a recursos internos, robar datos sensibles e incluso lanzar ataques contra terceros.\\n\\n¿El resultado? Robo de datos, acceso a servicios internos, ejecución remota de código y, en última instancia, daño a la reputación, multas por incumplimiento de normativas como GDPR, y pérdidas financieras significativas. Un ataque SSRF exitoso puede paralizar operaciones críticas y comprometer la confianza de los clientes.",
+      "summary": "En el ámbito de la seguridad web, las vulnerabilidades **Server-Side Request Forgery (SSRF)** destacan como una de las amenazas más críticas y subestimadas. Permiten a los atacantes manipular servidores para realizar peticiones no autorizadas a sistemas internos, comprometiendo desde APIs y servicios en la nube hasta infraestructuras protegidas por firewalls.\\n\\nEsta técnica de ataque, a menudo subestimada, puede transformar un servidor aparentemente seguro en una puerta de entrada para los ciberdelincuentes, permitiéndoles acceder a recursos internos, robar datos sensibles e incluso lanzar ataques contra terceros.\\n\\n¿El resultado? Robo de datos, acceso a servicios internos, ejecución remota de código y, en última instancia, daño a la reputación, multas por incumplimiento de normativas como GDPR, y pérdidas financieras significativas. Un ataque SSRF exitoso puede paralizar operaciones críticas y comprometer la confianza de los clientes.",
       "date": "2025-03-23",
       "tags": "",
       "lang": "es",

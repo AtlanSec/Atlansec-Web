@@ -1,10 +1,18 @@
 {
   "posts": [
     {
-      "title": "Server-Side Request Forgery: The Backdoor That Can Bring Down Your Infrastructure",
-      "summary": "In the realm of web security, **Server-Side Request Forgery (SSRF)** vulnerabilities stand out as one of the most critical and underestimated threats. They allow attackers to manipulate servers to make unauthorized HTTP requests to internal systems, compromising everything from APIs and cloud services to infrastructures protected by firewalls.\\n\\nThis attack technique, often overlooked, can turn a seemingly secure server into an entry point for cybercriminals, enabling them to access internal resources, steal sensitive data, and even launch attacks against third parties.\\n\\nThe result? Data theft, access to internal services, remote code execution, and ultimately, reputational damage, regulatory fines for non-compliance with laws like GDPR, and significant financial losses. A successful SSRF attack can cripple critical operations and erode customer trust.",
+      "title": "The PHP Serial Killer: Unsafe Deserialization",
+      "summary": "Some vulnerabilities go unnoticed until it's too late, and PHP Object Injection is definitely one of them. This often-overlooked vulnerability allows an attacker to inject manipulated PHP objects into an application, triggering a series of devastating consequences such as remote code execution, unauthorized file access, or privilege escalation.\\n\\nThis type of attack is particularly dangerous because it's not always evident at first glance. It can lie dormant in the code for years until an attacker discovers how to exploit it. What appears to be a simple functionality for storing or transmitting data can turn into a backdoor that ends up compromising the integrity of the system.",
+      "date": "2025-03-30",
+      "tags": "",
+      "lang": "en",
+      "link": "30-03-2025"
+    },
+    {
+      "title": "Server-Side Request Forgery: The Backdoor That Can Take Down Your Infrastructure",
+      "summary": "In the realm of web security, **Server-Side Request Forgery (SSRF)** vulnerabilities stand out as one of the most critical and underestimated threats. They allow attackers to manipulate servers to make unauthorized requests to internal systems, compromising everything from APIs and cloud services to infrastructures protected by firewalls.\\n\\nThis attack technique, often overlooked, can turn a seemingly secure server into an entry point for cybercriminals, enabling them to access internal resources, steal sensitive data, and even launch attacks against third parties.\\n\\nThe result? Data theft, access to internal services, remote code execution, and ultimately, reputational damage, regulatory fines for non-compliance with laws like GDPR, and significant financial losses. A successful SSRF attack can cripple critical operations and erode customer trust.",
       "date": "2025-03-23",
-      "tag": "",
+      "tags": "",
       "lang": "en",
       "link": "23-03-2025"
     },

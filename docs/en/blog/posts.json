@@ -1,6 +1,14 @@
 {
   "posts": [
     {
+      "title": "LFI Uncovered: From Local File Inclusion to Remote Code Execution (RCE)",
+      "summary": "The Local File Inclusion (LFI) vulnerability is not limited to merely including local files. In the hands of a skilled attacker, this flaw can become a critical attack vector, capable of escalating to Remote Code Execution (RCE). This article explores how attackers exploit this vulnerability to compromise servers and what measures you can implement to protect your application and infrastructure.",
+      "date": "2025-04-06",
+      "tags": "",
+      "lang": "en",
+      "link": "06-04-2025"
+    },
+    {
       "title": "The PHP Serial Killer: Unsafe Deserialization",
       "summary": "Some vulnerabilities go unnoticed until it's too late, and PHP Object Injection is definitely one of them. This often-overlooked vulnerability allows an attacker to inject manipulated PHP objects into an application, triggering a series of devastating consequences such as remote code execution, unauthorized file access, or privilege escalation.\\n\\nThis type of attack is particularly dangerous because it's not always evident at first glance. It can lie dormant in the code for years until an attacker discovers how to exploit it. What appears to be a simple functionality for storing or transmitting data can turn into a backdoor that ends up compromising the integrity of the system.",
       "date": "2025-03-30",

@@ -2,7 +2,7 @@
   "posts": [
     {
       "title": "LFI al Descubierto: De la Inclusión Local a la Ejecución Remota de Comandos (RCE)",
-      "summary": "La vulnerabilidad de Local File Inclusion (LFI) no se limita únicamente a la inclusión de archivos locales. En manos de un atacante experimentado, esta falla puede convertirse en un vector de ataque crítico, capaz de escalar hasta la ejecución remota de comandos (RCE). Este artículo explora cómo los atacantes aprovechan esta vulnerabilidad para comprometer servidores y qué medidas puedes implementar para proteger tu aplicación y tu infraestructura. ¡Acompáñanos en este recorrido técnico y aprende a blindar tu sistema contra este tipo de amenazas!",
+      "summary": "La vulnerabilidad de Local File Inclusion (LFI) no se limita únicamente a la inclusión de archivos locales. En manos de un atacante experimentado, esta falla puede convertirse en un vector de ataque crítico, capaz de escalar hasta la ejecución remota de comandos (RCE). Este artículo explora cómo los atacantes aprovechan esta vulnerabilidad para comprometer servidores y qué medidas puedes implementar para proteger tu aplicación y tu infraestructura.",
       "date": "2025-04-06",
       "tags": "",
       "lang": "es",

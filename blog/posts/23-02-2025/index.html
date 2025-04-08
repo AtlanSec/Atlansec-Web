@@ -1,0 +1,1131 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://atlansec.es/blog/posts/23-02-2025/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>Cross-Site Scripting: The Invisible Threat on Your Web - Atlansec</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Cross-Site Scripting: The Invisible Threat on Your Web - Atlansec" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="https://atlansec.es/assets/images/social/blog/posts/23-02-2025.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://atlansec.es/blog/posts/23-02-2025/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Cross-Site Scripting: The Invisible Threat on Your Web - Atlansec" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="https://atlansec.es/assets/images/social/blog/posts/23-02-2025.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cross-site-scripting-the-invisible-threat-on-your-web" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine classes -->
+ 
+
+<style>
+  .md-header {
+    box-shadow: none;
+  }
+
+  .md-post__back {
+    border-bottom: none !important;
+  }
+</style>
+
+<!-- Header -->
+<header class="md-header" data-md-component="header" style="width: 100%">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Link to home -->
+    <a
+      href="../../.."
+      title="Atlansec"
+      class="md-header__button md-logo"
+      aria-label="Atlansec"
+      data-md-component="logo"
+    >
+      
+  <img src="../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Color palette toggle -->
+      
+
+    <!-- User preference: color palette -->
+    
+
+    <!-- Site language selector -->
+     <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../../es/blog/posts/23-02-2025/" hreflang="es" class="md-select__link">
+              Spanish
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>  
+    <style>
+      .md-header__inner,
+      .md-grid {
+        justify-content: space-between;
+      }
+      @media screen and (max-width: 1219px) {
+        .md-search {
+          position: absolute;
+          right: 0;
+        }
+      }
+    </style>
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+    <!-- Repository information -->
+     
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../services/" class="md-tabs__link">
+        
+  
+    
+  
+  Services
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+    
+  
+  Blog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Atlansec" class="md-nav__button md-logo" aria-label="Atlansec" data-md-component="logo">
+      
+  <img src="../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    Atlansec
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../services/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Services
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-it-used-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is it Used For?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-are-they-exploited" class="md-nav__link">
+    <span class="md-ellipsis">
+      How are They Exploited?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-does-it-occur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Does it Occur?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stored-xss-the-time-bomb-in-your-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stored XSS: The Time Bomb in Your Database
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stored XSS: The Time Bomb in Your Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vulnerable-php-code-and-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vulnerable PHP Code and Solution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vulnerable-javascript-code-and-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vulnerable JavaScript Code and Solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reflected-xss-the-opportunistic-attack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflected XSS: The Opportunistic Attack
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reflected XSS: The Opportunistic Attack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vulnerable-php-code-and-solution_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vulnerable PHP Code and Solution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vulnerable-javascript-code-and-solution_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vulnerable JavaScript Code and Solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dom-based-xss-the-invisible-danger-on-the-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      DOM-Based XSS: The Invisible Danger on the Client
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DOM-Based XSS: The Invisible Danger on the Client">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-the-dom" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is the DOM?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methodology-of-dom-based-xss-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methodology of DOM-Based XSS Attacks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-sources-of-dom-xss" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Sources of DOM XSS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-sinks-of-dom-xss" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Sinks of DOM XSS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methodology-of-dom-based-xss-attacks_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methodology of DOM-Based XSS Attacks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-sources-of-dom-xss_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Sources of DOM XSS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sinks-comunes-de-dom-xss" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sinks Comunes de DOM XSS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vulnerable-code-and-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vulnerable Code and Solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conclusion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Resources
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">Code Injection</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">Cybersecurity</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">JavaScript</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">Pentesting</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">Secure Development</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">Vulnerabilities</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">Web Security</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">XSS</span>
+      
+    
+  </nav>
+
+
+
+<h1 id="cross-site-scripting-the-invisible-threat-on-your-web">Cross-Site Scripting: The Invisible Threat on Your Web</h1>
+<p><strong>Cross-Site Scripting (XSS) vulnerabilities</strong> are a common and dangerous risk in web application security. They allow attackers to inject malicious JavaScript code into legitimate websites to steal information, manipulate page behavior, or impersonate users. This guide provides a detailed overview of the three main types of XSS: <strong>Stored XSS</strong>, <strong>Reflected XSS</strong>, and <strong>DOM-Based XSS</strong>, explaining how they occur, how they are exploited, and how to prevent them.</p>
+<p>In the context of web applications, XSS enables the injection of JavaScript code into legitimate sites. This can be leveraged to exfiltrate information from other users, manipulate page behavior, or perform actions within the application under the guise of a user's session. In desktop applications, such vulnerabilities can lead directly to arbitrary code execution on the victim's machine.</p>
+<p>This article delivers an in-depth examination of the three primary types of XSS attacks: <strong>Stored XSS</strong>, <strong>Reflected XSS</strong>, and <strong>DOM-Based XSS</strong>, detailing how they manifest, how they are exploited, and the measures that can be implemented to thwart them.</p>
+<h2 id="what-is-it-used-for">What is it Used For?</h2>
+<p>Cross-Site Scripting (XSS) attacks can be primarily utilized for:</p>
+<ul>
+<li><strong>Session Cookie Theft:</strong> Allowing attackers to impersonate legitimate users and gain unauthorized access to their accounts.</li>
+<li><strong>Identity Spoofing:</strong> Enabling attackers to perform unauthorized actions on behalf of the victim, such as altering passwords or executing fraudulent transactions.</li>
+<li><strong>Phishing:</strong> Crafting deceptive pages or forms to dupe users into divulging their credentials.</li>
+<li><strong>Defacement:</strong> Altering the appearance of websites to display malicious content or damage the organization's reputation.</li>
+<li><strong>Keylogging:</strong> Recording keystrokes to steal passwords and other sensitive information.</li>
+<li><strong>Browser Exploits:</strong> Taking advantage of vulnerabilities in the victim's browser to execute malicious code.</li>
+<li><strong>Circumventing Access Controls:</strong> Bypassing security restrictions such as CSRF (Cross-Site Request Forgery) token validation.</li>
+</ul>
+<h2 id="how-are-they-exploited">How are They Exploited?</h2>
+<p>Attackers typically adhere to the following steps to exploit XSS vulnerabilities:</p>
+<ol>
+<li><strong>Vulnerability Identification:</strong> Scouring for entry points where JavaScript code can be injected, such as URL parameters or form fields.</li>
+<li><strong>Payload Creation:</strong> Developing a malicious script designed to execute the desired action.</li>
+<li><strong>Payload Injection:</strong> Inserting the malicious code into the web application, exploiting the absence of proper sanitization.</li>
+<li><strong>Attack Delivery:</strong><ul>
+<li>For Reflected XSS: Deceiving the victim into accessing a malicious link or submitting a manipulated form.</li>
+<li>For Stored XSS: The attack is triggered automatically when users access the compromised page.</li>
+</ul>
+</li>
+</ol>
+<h2 id="why-does-it-occur">Why Does it Occur?</h2>
+<p>XSS vulnerabilities commonly arise due to:</p>
+<ul>
+<li><strong>Inadequate Code Sanitization:</strong> Failing to properly validate user-supplied data or escape special HTML characters.</li>
+<li><strong>Lack of Encoding:</strong> Not performing correct encoding when inserting data into different contexts (HTML, JavaScript, URL).</li>
+</ul>
+<p>This type of vulnerability isn't intrinsically linked to any specific programming language; however, for the sake of clarity in the examples, we will focus on PHP and JavaScript.</p>
+<h2 id="stored-xss-the-time-bomb-in-your-database">Stored XSS: The Time Bomb in Your Database</h2>
+<p><em>Stored XSS</em>, also known as <strong>Persistent XSS</strong>, occurs when a web application stores attacker-supplied data (containing malicious code) in its database. This code is then inserted into web pages served to other users, affecting anyone who visits the compromised page. Forums, product reviews, and comment sections are the most frequent targets.</p>
+<h3 id="vulnerable-php-code-and-solution">Vulnerable PHP Code and Solution</h3>
+<p>In this instance, we observe that when a <strong>POST</strong> request (data submission) is made, the data input is not sanitized:</p>
+<p><div class="language-php highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">&lt;?php</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">// Store user comments</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">$comment</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;comment&#39;</span><span class="p">];</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nx">mysqli_query</span><span class="p">(</span><span class="nv">$conn</span><span class="p">,</span> <span class="s2">&quot;INSERT INTO comments (comment) VALUES (&#39;</span><span class="si">$comment</span><span class="s2">&#39;)&quot;</span><span class="p">);</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1">// Display comments</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nv">$result</span> <span class="o">=</span> <span class="nx">mysqli_query</span><span class="p">(</span><span class="nv">$conn</span><span class="p">,</span> <span class="s2">&quot;SELECT comment FROM comments&quot;</span><span class="p">);</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">while</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nx">mysqli_fetch_assoc</span><span class="p">(</span><span class="nv">$result</span><span class="p">))</span> <span class="p">{</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;comment&#39;</span><span class="p">];</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">}</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="cp">?&gt;</span>
+</span></code></pre></div>
+The <code>$comment</code> variable stores the user input without prior sanitization, thereby presenting an opportunity for the attacker to introduce any payload.</p>
+<p>When the comments are displayed, the payload will be interpreted within the browser context of any victim who visits the website.</p>
+<p>A potential mitigation is as follows:</p>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">&lt;?php</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1">// Database connection (adjust credentials)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nv">$conn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;database&quot;</span><span class="p">);</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1">// Check the connection</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">if</span> <span class="p">(</span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  <span class="k">die</span><span class="p">(</span><span class="s2">&quot;Connection error: &quot;</span> <span class="o">.</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">);</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">}</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1">// Check if a comment has been submitted</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">===</span> <span class="s2">&quot;POST&quot;</span> <span class="o">&amp;&amp;</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;comment&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>  <span class="c1">// Trim whitespace from the beginning and end</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>  <span class="nv">$comment</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;comment&#39;</span><span class="p">]);</span> 
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>  <span class="c1">// Prevent SQL Injection with prepared statements</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>  <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">&quot;INSERT INTO comments (comment) VALUES (?)&quot;</span><span class="p">);</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>  <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="nv">$comment</span><span class="p">);</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>  <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>  <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="p">}</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="c1">// Display comments securely</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;SELECT comment FROM comments&quot;</span><span class="p">);</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="k">while</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">fetch_assoc</span><span class="p">())</span> <span class="p">{</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>  <span class="k">echo</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;comment&#39;</span><span class="p">],</span> <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="p">}</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="c1">// Close the connection</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="cp">?&gt;</span>
+</span></code></pre></div>
+<p>Data insertion has been protected through the use of <strong>Prepared Statements</strong> in <em>PHP</em>, and comment output via <code>htmlspecialchars</code>.</p>
+<ul>
+<li><strong>Prepared Statements:</strong> Prevent <strong>SQL Injection</strong> by separating data from the SQL query, ensuring that user input is treated as a value and not as part of the SQL code.</li>
+<li><code>htmlspecialchars</code>: Ensures that all special characters are converted to their corresponding HTML entities, preventing <strong>XSS</strong> attacks.</li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>We do not utilize <code>mysqli_real_escape_string</code> because it does <strong>NOT</strong> protect against SQL Injection on its own, as it depends on the <code>set_charset()</code> configuration. Consulting the <a href="https://www.php.net/manual/es/mysqli.real-escape-string.php" target="_blank">official documentation</a> reveals a warning that if the encoding is not set correctly, escaping special characters may not function as expected, potentially allowing injection attacks in some configurations.</p>
+</div>
+<h3 id="vulnerable-javascript-code-and-solution">Vulnerable JavaScript Code and Solution</h3>
+<p>Numerous frameworks exist for implementing a backend with JavaScript, but the syntax remains similar across them.</p>
+<p>The following example in <strong>Node.js</strong> illustrates a <strong>Cross-Site Scripting (XSS)</strong> vulnerability in the generation of dynamic content:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/comments&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">html</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;ul&gt;&#39;</span><span class="p">;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">comment</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">comments</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nx">html</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="sb">`&lt;li&gt;</span><span class="si">${</span><span class="nx">comment</span><span class="si">}</span><span class="sb">&lt;/li&gt;`</span><span class="p">;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nx">html</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s1">&#39;&lt;/ul&gt;&#39;</span><span class="p">;</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">html</span><span class="p">);</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">});</span>
+</span></code></pre></div>
+<p>This code lists comments in the "<em>comments</em>" section of the application but does not escape special characters in the <code>${comment}</code> variable, thereby enabling the injection of HTML and the execution of arbitrary JavaScript code.</p>
+<p>To prevent <strong>XSS attacks</strong>, special characters must be sanitized before rendering the content on the frontend. Consequently, this code can be improved by sanitizing special characters using functions like <code>sanitizeHtml()</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">sanitizeHtml</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;sanitize-html&#39;</span><span class="p">);</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/comments&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">html</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;ul&gt;&#39;</span><span class="p">;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">comment</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">comments</span><span class="p">){</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">sanitizedComment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">sanitizeHtml</span><span class="p">(</span><span class="nx">comment</span><span class="p">);</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nx">html</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="sb">`&lt;li&gt;</span><span class="si">${</span><span class="nx">sanitizedComment</span><span class="si">}</span><span class="sb">&lt;/li&gt;`</span><span class="p">;</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="nx">html</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s1">&#39;&lt;/ul&gt;&#39;</span><span class="p">;</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">html</span><span class="p">);</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="p">});</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Various libraries such as <code>DOMPurify</code>, <code>sanitize-html</code>, or <code>isomorphic-dompurify</code> can be employed to patch <strong>XSS</strong> vulnerabilities, contingent on whether you are working on the frontend or backend.</p>
+</div>
+<ul>
+<li><code>DOMPurify</code>: Purifies <strong>HTML in frontend applications</strong>, eliminating malicious code.</li>
+<li><code>sanitize-html</code>: Ideal for the backend, sanitizes <strong>HTML by removing dangerous tags</strong> and <strong>attributes</strong>.</li>
+<li><code>isomorphic-dompurify</code>: A version of <strong>DOMPurify</strong> that functions both on the <strong>frontend</strong> and in the <strong>backend</strong>.</li>
+</ul>
+<p>In the preceding example, we utilized <code>sanitize-html</code> because we are operating in a <strong>Node.js</strong> environment.</p>
+<h2 id="reflected-xss-the-opportunistic-attack">Reflected XSS: The Opportunistic Attack</h2>
+<p>Having examined <em>Stored XSS</em>, <strong>Reflected XSS</strong> attacks occur solely on the client-side. These vulnerabilities often arise from the <strong>manipulation of URLs</strong> or <strong>forms</strong>. In these instances, the attacker must resort to social engineering techniques or vulnerability chaining to inject the payload into the victim's context.</p>
+<h3 id="vulnerable-php-code-and-solution_1">Vulnerable PHP Code and Solution</h3>
+<p>In this case, the vulnerability exists due to the failure to sanitize the query parameter before incorporating it into the HTML to be rendered:</p>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">&lt;?php</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nv">$search_query</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;query&#39;</span><span class="p">];</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;You searched for: </span><span class="si">$search_query</span><span class="s2">&lt;/p&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="cp">?&gt;</span>
+</span></code></pre></div>
+<p>If we have the following URL <code>http://url/search?query=search_result</code>, and we replace <code>search_result</code> with <code>&lt;script&gt;alert("Hello");&lt;/script&gt;</code>, the injected script will be reflected in the page since HTML entities are not being sanitized. The solution could again involve the use of <code>htmlspecialchars</code>.</p>
+<h3 id="vulnerable-javascript-code-and-solution_1">Vulnerable JavaScript Code and Solution</h3>
+<p>As with <em>Stored XSS</em>, we will use an example of a web application implemented with the <strong>Node.js</strong> framework.</p>
+<p>This application contains the following code snippet:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">();</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/search&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">){</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">searchTerm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">query</span><span class="p">;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;You searched for: &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">searchTerm</span><span class="p">);</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">});</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mf">80</span><span class="p">);</span>
+</span></code></pre></div>
+<p>We observe that the content of the <code>query</code> variable, which appears in the URL <code>http://url/search?query=search_result</code>, is obtained. This data input lacks any sanitization, leading to a <em>Reflected XSS</em> vulnerability. As with the case of Stored XSS, this can be resolved with libraries such as <code>sanitize-html</code> or <code>DomPurify</code>.</p>
+<h2 id="dom-based-xss-the-invisible-danger-on-the-client">DOM-Based XSS: The Invisible Danger on the Client</h2>
+<p><strong>DOM-Based XSS</strong> is a web security vulnerability that occurs on the client-side, <em>without requiring the server to reflect the attack payload directly in the response</em>. It is exploited by manipulating the Document Object Model (DOM) in the user's browser.</p>
+<h3 id="what-is-the-dom">What is the DOM?</h3>
+<p>The <strong>DOM (Document Object Model)</strong> is a programming interface that represents a web document as a tree structure. It allows scripts, such as JavaScript, to dynamically access and modify the content, structure, and style of a web document.</p>
+<p>The structure of the <strong>DOM</strong> is composed of:</p>
+<ul>
+<li>HTML elements (nodes)</li>
+<li>Attributes of elements</li>
+<li>Text within elements</li>
+<li>Comments</li>
+</ul>
+<figure style="width:30%;">
+  <img alt="DOM Structure" src="../../../assets/posts/2025/02/23/DOM.png" />
+  <figcaption>DOM Structure</figcaption>
+</figure>
+<h3 id="methodology-of-dom-based-xss-attacks">Methodology of DOM-Based XSS Attacks</h3>
+<p>The attacker injects a malicious script that executes in the client's browser by manipulating the DOM. The general process is:</p>
+<ol>
+<li><strong>Vulnerability Identification:</strong> The attacker finds a point in the client-side JavaScript code where data controlled by the attacker (e.g., URL parameters) are used to modify the DOM in an insecure manner. This involves identifying both the <strong>source</strong> of the data (where attacker-controlled data enters) and the <strong>sink</strong> (where the data is used dangerously to manipulate the DOM).</li>
+<li><strong>Creation of the Malicious URL:</strong> A URL is created containing malicious JavaScript code, typically as part of a parameter or URL fragment. <em>The payload is placed in a data source controllable by the attacker</em>.</li>
+<li><strong>Victim Deception:</strong> The victim is tricked into accessing the malicious URL through phishing, shortened links, etc.</li>
+<li><strong>Execution in the Browser:</strong> The victim's browser loads the page and executes the legitimate JavaScript code of the application.</li>
+<li><strong>DOM Manipulation:</strong> The legitimate code, using data from the malicious URL, modifies the DOM, inserting the malicious script. <em>The key is that the sink receives contaminated data from the source and uses it to modify the DOM insecurely</em>.</li>
+<li><strong>Execution of the Malicious Script:</strong> The injected script executes in the context of the web page, allowing the attacker to perform actions such as stealing cookies, manipulating the page, redirects, or even exfiltrating sensitive data.</li>
+</ol>
+<h3 id="common-sources-of-dom-xss">Common Sources of DOM XSS</h3>
+<p>The most common data sources include:</p>
+<ol>
+<li>
+<p><strong><code>window.location</code></strong>: This object contains information about the current URL of the document. It is very useful for obtaining different parts of the URL.</p>
+<ul>
+<li><strong><code>window.location.hash</code></strong>: Returns the fragment of the URL (the part after the <code>#</code>), which is often used for single-page navigation.</li>
+<li><strong><code>window.location.search</code></strong>: Returns the query string of the URL (the part after the <code>?</code>), which contains parameters that can be used by the server or the client.</li>
+<li><strong><code>window.location.pathname</code></strong>: Returns the path of the URL (the part after the domain), which indicates the location of the resource on the server.</li>
+<li><strong><code>document.referrer</code></strong>: This attribute returns the URL of the page from which the user arrived at the current page. It is useful for tracking where visitors come from.</li>
+<li><strong><code>document.URL</code></strong>: Returns the complete URL of the current page. It is similar to <code>window.location.href</code> and can be used to obtain the complete URL in a single call.</li>
+<li><strong>Cookies</strong>: Cookies are small pieces of data stored in the user's browser. They are used to remember information between sessions, such as authentication data, user preferences, and more. In JavaScript, they can be accessed and manipulated using <code>document.cookie</code>.</li>
+</ul>
+</li>
+</ol>
+<p>These data sources are common in web development and are used to obtain information about user navigation and application state.</p>
+<div class="admonition reminder">
+<p class="admonition-title">Reminder</p>
+<p>These sources are controllable by the attacker in some way.</p>
+</div>
+<h3 id="common-sinks-of-dom-xss">Common Sinks of DOM XSS</h3>
+<p><strong>Sinks</strong> are potentially dangerous <em>functions</em> or <em>DOM objects</em> in JavaScript that can cause unwanted effects if passed data controlled by an attacker.</p>
+<p>According to <a href="https://portswigger.net/web-security/cross-site-scripting/dom-based" target="_blank">PortSwigger</a>, some of the most common sinks that lead to DOM XSS include:</p>
+<ul>
+<li><code>document.write()</code>: Writes HTML text directly into the document. Primarily used during page loading.</li>
+<li><code>document.writeln()</code>: Similar to <code>document.write()</code>, but appends a newline after the text.</li>
+<li><code>document.domain</code>: A property that returns or sets the domain.</li>
+</ul>
+<h3 id="methodology-of-dom-based-xss-attacks_1">Methodology of DOM-Based XSS Attacks</h3>
+<p>The attacker injects a malicious script that executes in the client's browser by manipulating the DOM. The general process is:</p>
+<ol>
+<li><strong>Vulnerability Identification:</strong> The attacker finds a point in the client-side JavaScript code where data controlled by the attacker (e.g., URL parameters) are used to modify the DOM in an insecure manner. This involves identifying both the <strong>source</strong> of the data (where attacker-controlled data enters) and the <strong>sink</strong> (where the data is used dangerously to manipulate the DOM).</li>
+<li><strong>Creation of the Malicious URL:</strong> A URL is created containing malicious JavaScript code, typically as part of a parameter or URL fragment. <em>The payload is placed in a data source controllable by the attacker</em>.</li>
+<li><strong>Victim Deception:</strong> The victim is tricked into accessing the malicious URL through phishing, shortened links, etc.</li>
+<li><strong>Execution in the Browser:</strong> The victim's browser loads the page and executes the legitimate JavaScript code of the application.</li>
+<li><strong>DOM Manipulation:</strong> The legitimate code, using data from the malicious URL, modifies the DOM, inserting the malicious script. <em>The key is that the sink receives contaminated data from the source and uses it to modify the DOM insecurely</em>.</li>
+<li><strong>Execution of the Malicious Script:</strong> The injected script executes in the context of the web page, allowing the attacker to perform actions such as stealing cookies, manipulating the page, redirects, or even exfiltrating sensitive data.</li>
+</ol>
+<h3 id="common-sources-of-dom-xss_1">Common Sources of DOM XSS</h3>
+<p>The most common data sources include:</p>
+<ol>
+<li>
+<p><strong><code>window.location</code></strong>: This object contains information about the current URL of the document. It is very useful for obtaining different parts of the URL.</p>
+<ul>
+<li><strong><code>window.location.hash</code></strong>: Returns the fragment of the URL (the part after the <code>#</code>), which is often used for single-page navigation.</li>
+<li><strong><code>window.location.search</code></strong>: Returns the query string of the URL (the part after the <code>?</code>), which contains parameters that can be used by the server or the client.</li>
+<li><strong><code>window.location.pathname</code></strong>: Returns the path of the URL (the part after the domain), which indicates the location of the resource on the server.</li>
+<li><strong><code>document.referrer</code></strong>: This attribute returns the URL of the page from which the user arrived at the current page. It is useful for tracking where visitors come from.</li>
+<li><strong><code>document.URL</code></strong>: Returns the complete URL of the current page. It is similar to <code>window.location.href</code> and can be used to obtain the complete URL in a single call.</li>
+<li><strong>Cookies</strong>: Cookies are small pieces of data stored in the user's browser. They are used to remember information between sessions, such as authentication data, user preferences, and more. In JavaScript, they can be accessed and manipulated using <code>document.cookie</code>.</li>
+</ul>
+</li>
+</ol>
+<p>These data sources are common in web development and are used to obtain information about user navigation and application state.</p>
+<div class="admonition reminder">
+<p class="admonition-title">Reminder</p>
+<p>These sources are controllable by the attacker in some way.</p>
+</div>
+<h3 id="sinks-comunes-de-dom-xss">Sinks Comunes de DOM XSS</h3>
+<p><strong>Sinks</strong> are potentially dangerous <em>functions</em> or <em>DOM objects</em> in JavaScript that can cause unwanted effects if passed data controlled by an attacker.
+According to <a href="https://portswigger.net/web-security/cross-site-scripting/dom-based" target="_blank">PortSwigger</a>, some of the most common sinks that lead to DOM XSS include:</p>
+<ul>
+<li><code>document.write()</code>: Writes HTML text directly into the document. Primarily used during page loading.</li>
+<li><code>document.writeln()</code>: Similar to <code>document.write()</code>, but appends a newline after the text.</li>
+<li><code>document.domain</code>: A property that returns or sets the domain of the current page.</li>
+<li><code>element.innerHTML</code>: Property that sets or returns the HTML content of an element.</li>
+<li><code>element.outerHTML</code>: Property that sets or returns the complete HTML of the element, including the element itself.</li>
+<li><code>element.insertAdjacentHTML()</code>: Method that inserts a text HTML at a specific position relative to the element.</li>
+<li><code>element.onevent</code>: (e.g., <code>onclick</code>, <code>onload</code>): Properties that assign functions to specific events of the element.</li>
+<li><code>eval()</code>: Function that evaluates JavaScript code represented as a text string.</li>
+</ul>
+<p>Also, certain <em>jQuery</em> functions can be problematic:</p>
+<ul>
+<li><code>add()</code>, <code>after()</code>, <code>append()</code>, <code>animate()</code>, <code>before()</code>, <code>html()</code>, <code>prepend()</code>, <code>replaceAll()</code>, <code>replaceWith()</code>, <code>wrap()</code>, <code>wrapInner()</code>, <code>wrapAll()</code>.</li>
+<li><code>attr()</code> (if used with unsanitized data)</li>
+<li><code>$()</code> (selector, especially with location.hash)</li>
+</ul>
+<div class="admonition reminder">
+<p class="admonition-title">Reminder</p>
+<p>It is crucial to bear in mind that it is not sufficient for a <strong>source</strong> and a <strong>sink</strong> to be present in the code. There must be an executable data flow from the source to the sink for the vulnerability to be exploitable.</p>
+</div>
+<h3 id="vulnerable-code-and-solution">Vulnerable Code and Solution</h3>
+<p>We have the following web page:</p>
+<figure>
+<img alt="Initial Website" src="../../../assets/posts/2025/02/23/DOM2.png" />
+<figcaption>Initial Website</figcaption>
+</figure>
+<p>At first glance, we don't see anything relevant, but if we inspect the source code of it, we see the following:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>     <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Web Vulnerable<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>     <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span> 
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;saludo&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    ```javascript
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="w"> </span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">      </span><span class="c1">// Get the &#39;nombre&#39; parameter from the URL</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">URLSearchParams</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;nombre&#39;</span><span class="p">);</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="nx">nombre</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">){</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">&quot;Hola, ¿Cómo te llamas?&quot;</span><span class="p">);</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">      </span><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">        </span><span class="c1">// Display the results in an unsanitized manner</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">&quot;Hola &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;, ¿Qué tal?&quot;</span><span class="p">);</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>Here, <code>window.location.search</code> is the source, and <code>document.write()</code> is the sink.</p>
+<p>As we can see, the web page is making use of the function <code>document.write()</code>, which inserts a parameter <code>nombre</code> without previous validation or sanitization. Thus, since by default that parameter is null, we see that the web shows us what is contained in the <code>if</code> statement; however, if we pass a name as a parameter in the URL, we have:</p>
+<figure>
+  <img alt="URL" src="../../../assets/posts/2025/02/23/DOM4.png" />
+    <figcaption>Web URL modificada</figcaption>
+</figure>
+<p>As a result, we have that the name introduced as a parameter to the URL is reflected on the web page. Since the input of the username is not sanitized, we can try to inject <em>JavaScript</em> code to check if the web is susceptible to XSS; <em>Spoiler: It is</em>.</p>
+<figure>
+  <img alt="DOM-Based XSS" src="../../../assets/posts/2025/02/23/DOM5.png" />
+    <figcaption>Website vulnerable to DOM-Based XSS</figcaption>
+</figure>
+<p>As we see, the script was executed and showed the alert, since it is susceptible to XSS; therefore, a way to be able to remedy this vulnerability would be:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Web Vulnerable<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span> 
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;saludo&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>      <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="w"> </span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">     </span><span class="c1">// Get the &#39;nombre&#39; parameter from the URL</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">     </span><span class="kd">const</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">URLSearchParams</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;nombre&#39;</span><span class="p">));</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">     </span><span class="k">if</span><span class="p">(</span><span class="nx">nombre</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">){</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">       </span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">&quot;Hello, what&#39;s your name?&quot;</span><span class="p">);</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">     </span><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">       </span><span class="c1">// Display the results in a sanitized manner</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">       </span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">&quot;Hello &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;, how are you?&quot;</span><span class="p">);</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">     </span><span class="p">}</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">      </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>If now we inject malicious <em>JavaScript</em> code again, we will have the following result:</p>
+<figure>
+  <img alt="DOM-Based XSS solved" src="../../../assets/posts/2025/02/23/DOM6.png" />
+    <figcaption>DOM-Based XSS vulnerability solved</figcaption>
+</figure>
+<p>As we see, if we make use of the method <code>encodeURIComponent</code>, which performs a sanitization of the special characters that the query parameter may have, and we also insert this content via <code>textContent</code>.</p>
+<p>It should also be noted that we can make use of <strong>DOMPurify</strong> to sanitize dynamic content in web applications. <strong>DOMPurify</strong> is a <em>JavaScript</em> library that purifies HTML and removes any malicious code, providing an additional layer of security against XSS attacks. It is especially useful in frontend applications where the DOM is manipulated directly.</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">DOMPurify</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;dompurify&#39;</span><span class="p">);</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/comments&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">html</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;ul&gt;&#39;</span><span class="p">;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">comment</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">comments</span><span class="p">){</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">sanitizedComment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">DOMPurify</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">comment</span><span class="p">);</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="nx">html</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="sb">`&lt;li&gt;</span><span class="si">${</span><span class="nx">sanitizedComment</span><span class="si">}</span><span class="sb">&lt;/li&gt;`</span><span class="p">;</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">  </span><span class="nx">html</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s1">&#39;&lt;/ul&gt;&#39;</span><span class="p">;</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">  </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">html</span><span class="p">);</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="p">});</span>
+</span></code></pre></div>
+<p>In this example, we use <strong>DOMPurify</strong> to clean the comments before inserting them into the DOM, ensuring that any potentially dangerous content is neutralized.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>XSS vulnerabilities are a serious risk for the security of web applications. However, by implementing the prevention measures described in this article, it is possible to protect web applications against XSS attacks.
+In a future post, we will delve into the particularities and consequences of XSS vulnerabilities in mobile and desktop applications, where the impact of a successful exploitation can be even greater.</p>
+<p>In summary, the keys to prevent XSS are:</p>
+<ul>
+<li>Validate and sanitize user input data.</li>
+<li>Escape output data in the appropriate context.</li>
+<li>Perform periodic security audits.</li>
+<li>Train developers in web security best practices.</li>
+</ul>
+<p>In a future post, we will delve into the particularities and consequences of XSS vulnerabilities in mobile and desktop applications, where the impact of a successful exploitation can be even greater.</p>
+<h3 id="additional-resources">Additional Resources</h3>
+<ul>
+<li><a href="https://owasp.org/www-community/attacks/xss/" target="_blank">OWASP Cross-Site Scripting (XSS)</a></li>
+<li><a href="https://portswigger.net/web-security/cross-site-scripting" target="_blank">PortSwigger Web Security Academy</a></li>
+</ul>
+<p>Stay safe. Stay smart. Stay secure.</p>
+<hr />
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <style>
+    .footer-bottom {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        text-align: center;
+        font-size: 0.875rem;
+        @media screen and (max-width: 991px) {
+        font-size: 2vw;
+            
+        }
+    }
+</style>
+
+
+<footer class="md-footer">
+    <div class="footer-bottom">
+        <p>&copy; 2025 Atlansec. All rights reserved.</p>
+    </div>
+    </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["hide_title", "navigation.indexes", "navigation.tabs", "content.code.copy", "i18n", "search.share"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+        <script src="../../../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>

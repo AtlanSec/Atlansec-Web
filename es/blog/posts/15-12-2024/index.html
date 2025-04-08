@@ -1,0 +1,1038 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://atlansec.es/es/blog/posts/15-12-2024/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>Instalación y Configuración de Herramientas de Análisis en Android - Atlansec</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Instalación y Configuración de Herramientas de Análisis en Android - Atlansec" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="https://atlansec.es/assets/images/social/es/blog/posts/15-12-2024.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://atlansec.es/es/blog/posts/15-12-2024/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Instalación y Configuración de Herramientas de Análisis en Android - Atlansec" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="https://atlansec.es/assets/images/social/es/blog/posts/15-12-2024.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#instalacion-y-configuracion-de-herramientas-de-analisis-en-android" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine classes -->
+ 
+
+<style>
+  .md-header {
+    box-shadow: none;
+  }
+
+  .md-post__back {
+    border-bottom: none !important;
+  }
+</style>
+
+<!-- Header -->
+<header class="md-header" data-md-component="header" style="width: 100%">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Link to home -->
+    <a
+      href="../../../"
+      title="Atlansec"
+      class="md-header__button md-logo"
+      aria-label="Atlansec"
+      data-md-component="logo"
+    >
+      
+  <img src="../../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Color palette toggle -->
+      
+
+    <!-- User preference: color palette -->
+    
+
+    <!-- Site language selector -->
+     <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Seleccionar idioma">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../../blog/posts/15-12-2024/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="es" class="md-select__link">
+              Spanish
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>  
+    <style>
+      .md-header__inner,
+      .md-grid {
+        justify-content: space-between;
+      }
+      @media screen and (max-width: 1219px) {
+        .md-search {
+          position: absolute;
+          right: 0;
+        }
+      }
+    </style>
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartir" aria-label="Compartir" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+    <!-- Repository information -->
+     
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../" class="md-tabs__link">
+        
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../services/" class="md-tabs__link">
+        
+  
+    
+  
+  Servicios
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+    
+  
+  Blog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../" title="Atlansec" class="md-nav__button md-logo" aria-label="Atlansec" data-md-component="logo">
+      
+  <img src="../../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    Atlansec
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../services/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Servicios
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#instalar-de-android-studio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalar de Android Studio
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instalar de Android Studio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-descargar-android-studio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 1: Descargar Android Studio
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-extraccion-y-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 2: Extracción y Configuración
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-crear-enlaces-simbolicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 3: Crear Enlaces Simbólicos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4-usar-un-dispositivo-fisico-opcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4: Usar un dispositivo físico (Opcional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalar-certificados-burp-en-un-emulador-android" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalar Certificados Burp en un Emulador Android
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instalar Certificados Burp en un Emulador Android">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-inicia-el-emulador-con-un-sistema-escribible" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 1: Inicia el Emulador con un Sistema Escribible
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-exporta-el-certificado-desde-burp-suite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 2: Exporta el Certificado desde Burp Suite
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-convierte-y-copia-el-certificado-en-el-emulador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 3: Convierte y Copia el Certificado en el Emulador
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4-verificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4: Verificación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalar-frida-y-objection-en-un-entorno-virtual-en-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalar Frida y Objection en un Entorno Virtual en Python
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instalar Frida y Objection en un Entorno Virtual en Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-creamos-un-entorno-virtual" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 1: Creamos un Entorno Virtual
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-instalamos-frida-y-objection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 2: Instalamos Frida y Objection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configurando-frida-server-en-el-emulador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurando Frida-Server en el Emulador
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configurando Frida-Server en el Emulador">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-descargamos-el-archivo-frida-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 1: Descargamos el archivo Frida-Server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-sube-y-configura-frida-server-en-el-emulador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 2: Sube y Configura Frida-Server en el Emulador
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-verificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 3: Verificación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspeccion-de-metodos-revisiting-crackme-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inspección de Métodos: Revisiting Crackme 1
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inspección de Métodos: Revisiting Crackme 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explorando-la-aplicacion-con-apklab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explorando la Aplicación con APKLab
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Explorando la Aplicación con APKLab">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-configurar-apklab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 1: Configurar APKLab
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-localizar-el-codigo-de-deteccion-desde-la-raiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 2: Localizar el código de detección desde la raíz
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eludir-la-deteccion-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      Eludir la Detección Root
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usando-frida-para-la-instrumentacion-de-la-aplicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usando Frida para la Instrumentación de la Aplicación
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usando Frida para la Instrumentación de la Aplicación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-buscamos-el-id-del-proceso-de-frida" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 1: Buscamos el ID del proceso de Frida
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-adjuntamos-el-proceso-y-enumeramos-los-metodos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 2: Adjuntamos el Proceso y Enumeramos los métodos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-modificacion-de-la-implementacion-del-metodo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 3: Modificación de la Implementación del método
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extraccion-de-la-passphrase-secreta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extracción de la passphrase secreta
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">Android</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">Burpsuite</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">Cybersecurity</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">Pentesting</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">VM</span>
+      
+    
+  </nav>
+
+
+
+<h1 id="instalacion-y-configuracion-de-herramientas-de-analisis-en-android">Instalación y Configuración de Herramientas de Análisis en Android</h1>
+<p>Este artículo describe los pasos necesarios para crear un entorno de pruebas dinámico en Linux/Debian, detallando cómo integrar herramientas como <strong>Burp Suite</strong>, <strong>Frida</strong> y <strong>Objection</strong>, y sus propósitos específicos. También cubre procedimientos para gestionar certificados en un emulador de Android y configurar un entorno de pruebas dinámico. Sigue las instrucciones detalladas para lograr una configuración funcional y lista para el análisis.</p>
+<!-- more -->
+
+<h2 id="instalar-de-android-studio">Instalar de Android Studio</h2>
+<p>Android Studio sirve como el IDE principal para el desarrollo y pruebas de aplicaciones Android, ofrece un entorno para la creación, emulación y depuración de aplicaciones, vamos a utilizar esto para una fácil descarga e instalación de avds.</p>
+<h3 id="paso-1-descargar-android-studio">Paso 1: Descargar Android Studio</h3>
+<ol>
+<li>Descarga el archivo ZIP de Android Studio desde la <a href="https://developer.android.com/studio" target="_blank">web oficial Android Studio</a>.</li>
+</ol>
+<h3 id="paso-2-extraccion-y-configuracion">Paso 2: Extracción y Configuración</h3>
+<p>Extrae el archivo descargado:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>unzip<span class="w"> </span>android-studio-*.zip<span class="w"> </span>-d<span class="w"> </span>~/android-studio
+</span></code></pre></div>
+<h3 id="paso-3-crear-enlaces-simbolicos">Paso 3: Crear Enlaces Simbólicos</h3>
+<p>Para agilizar el uso de Android Studio y del emulador, creamos los enlaces simbólicos:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>~/android-studio/bin/studio.sh<span class="w"> </span>/usr/local/bin/androidStudio
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>~/android-studio/emulator/emulator<span class="w"> </span>/usr/local/bin/androidEmulator
+</span></code></pre></div>
+<p>Ahora, puedes ejecutar Android Studio con:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>androidStudio
+</span></code></pre></div>
+<p>Y el emulador con:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>androidEmulator
+</span></code></pre></div>
+<h3 id="paso-4-usar-un-dispositivo-fisico-opcional">Paso 4: Usar un dispositivo físico (Opcional)</h3>
+<p>Aunque esta guía una principalmente un emulador de Android, puedes optar por utilizar un <strong>dispositivo físico</strong> para una experiencia más realista. Esto requiere habilitar las opciones de desarrollador y usar la depuración USB en tu dispositivo:</p>
+<ol>
+<li><strong>Habilita Opciones de Desarrollador:</strong></li>
+<li>
+<p>Ve a <strong>Ajustes</strong> &gt; <strong>Acerca del teléfono</strong> y pincha el <strong>Número de compilación</strong> varias veces hasta que se activen las opciones de desarrollador.</p>
+</li>
+<li>
+<p><strong>Habilita la Depuración USB:</strong></p>
+</li>
+<li>En <strong>Ajustes</strong> &gt; <strong>Opciones Desarrollador</strong>, habilita <strong>Depuración USB</strong>.</li>
+</ol>
+<p>Conecta tu dispositivo al ordenador a través del puerto USB. Ahora puedes utilizar los comandos <code>abd</code> para instalar, depurar aplicaciones y realizar las mismas pruebas en que con el emulador.</p>
+<h2 id="instalar-certificados-burp-en-un-emulador-android">Instalar  Certificados Burp en un Emulador Android</h2>
+<p><strong>Burp Suite</strong> es utilizado para interceptar y analizar el tráfico entre aplicaciones Android y los servidores backend. Instalar estos certificados nos permitirá descifrar el tráfico HTTPS para analizarlo.</p>
+<h3 id="paso-1-inicia-el-emulador-con-un-sistema-escribible">Paso 1: Inicia el Emulador con un Sistema Escribible</h3>
+<ol>
+<li>Lista los AVDs (Android Virtual Devices) con la opción <code>-list-avds</code>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>androidEmulator<span class="w"> </span>-list-avds
+</span></code></pre></div></li>
+<li>Inicia el emulador con la opción <code>-writable-system</code>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>androidEmulator<span class="w"> </span>-avd<span class="w"> </span>&lt;avd_name&gt;<span class="w"> </span>-writable-system
+</span></code></pre></div></li>
+</ol>
+<h3 id="paso-2-exporta-el-certificado-desde-burp-suite">Paso 2: Exporta el Certificado desde Burp Suite</h3>
+<ol>
+<li>Desde Burp Suite, exporta el certificado en formado DER:</li>
+<li>Ve a <strong>Proxy</strong> &gt; <strong>Opciones</strong> &gt; <strong>Import/Export CA certificate</strong>.</li>
+<li>Exporta el archivo como <code>burp-cert.der</code>.</li>
+</ol>
+<h3 id="paso-3-convierte-y-copia-el-certificado-en-el-emulador">Paso 3: Convierte y Copia el Certificado en el Emulador</h3>
+<ol>
+<li>
+<p>Convierte el certificado DER al formato PEM:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>openssl<span class="w"> </span>x509<span class="w"> </span>-inform<span class="w"> </span>DER<span class="w"> </span>-in<span class="w"> </span>burp-cert.der<span class="w"> </span>-out<span class="w"> </span>burp-cert.pem
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Obtén el hash del certificado:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>openssl<span class="w"> </span>x509<span class="w"> </span>-inform<span class="w"> </span>PEM<span class="w"> </span>-subject_hash_old<span class="w"> </span>-in<span class="w"> </span>burp-cert.pem<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Renombra el certificado usando su hash:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>mv<span class="w"> </span>burp-cert.pem<span class="w"> </span>9a5ba575.0
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Envía el certificado al emulador:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>adb<span class="w"> </span>root
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>adb<span class="w"> </span>remount
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>adb<span class="w"> </span>push<span class="w"> </span>9a5ba575.0<span class="w"> </span>/sdcard/
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>adb<span class="w"> </span>shell<span class="w"> </span>mv<span class="w"> </span>/sdcard/9a5ba575.0<span class="w"> </span>/system/etc/security/cacerts/
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>adb<span class="w"> </span>shell<span class="w"> </span>chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>/system/etc/security/cacerts/9a5ba575.0
+</span></code></pre></div></p>
+</li>
+</ol>
+<h3 id="paso-4-verificacion">Paso 4: Verificación</h3>
+<p>Reinicia el emulador y verifica la instalación comprobando <strong>Ajustes</strong> &gt; <strong>Seguridad</strong> &gt; <strong>Credenciales de confianza</strong> para el certificado "PortSwigger CA".</p>
+<h2 id="instalar-frida-y-objection-en-un-entorno-virtual-en-python">Instalar Frida y Objection en un Entorno Virtual en Python</h2>
+<p><strong>Frida</strong> es un conjunto de herramientas de instrumentación dinámica para la depuración, pruebas e ingeniería inversa para aplicaciones Android. <strong>Objection</strong> es una envoltura para Frida que simplifica la evaluación de seguridad automatizando tareas de pruebas comunes.</p>
+<h3 id="paso-1-creamos-un-entorno-virtual">Paso 1: Creamos un Entorno Virtual</h3>
+<ol>
+<li>
+<p>Creamos un Entorno Virtual en Python para aislar las dependencias de la herramienta:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>frida-env
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Activamos el entorno virtual:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">source</span><span class="w"> </span>frida-env/bin/activate
+</span></code></pre></div></p>
+</li>
+</ol>
+<h3 id="paso-2-instalamos-frida-y-objection">Paso 2: Instalamos Frida y Objection</h3>
+<ol>
+<li>Instalamos ambas aplicaciones con <code>pip</code>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>pip<span class="w"> </span>install<span class="w"> </span>frida-tools<span class="w"> </span>objection
+</span></code></pre></div></li>
+</ol>
+<h2 id="configurando-frida-server-en-el-emulador">Configurando Frida-Server en el Emulador</h2>
+<p>El <strong>Servidor Frida</strong> facilita la comunicación entre el cliente Frida de su máquina host y el emulador Android para la instrumentación de aplicaciones.</p>
+<h3 id="paso-1-descargamos-el-archivo-frida-server">Paso 1: Descargamos el archivo Frida-Server</h3>
+<ol>
+<li>
+<p>Descarga el binario <code>frida-server</code> desde la <a href="https://github.com/frida/frida/releases" target="_blank">web oficial de Frida</a></p>
+</li>
+<li>
+<p>Extrae el archivo descargado.</p>
+</li>
+</ol>
+<h3 id="paso-2-sube-y-configura-frida-server-en-el-emulador">Paso 2: Sube y Configura Frida-Server en el Emulador</h3>
+<ol>
+<li>Sube el binario <code>frida-server</code> al emulador:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>adb<span class="w"> </span>push<span class="w"> </span>frida-server<span class="w"> </span>/data/local/tmp/
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>adb<span class="w"> </span>shell<span class="w"> </span>chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>/data/local/tmp/frida-server
+</span></code></pre></div></li>
+<li>Inicia el servidor Frida:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>adb<span class="w"> </span>shell<span class="w"> </span>/data/local/tmp/frida-server<span class="w"> </span><span class="p">&amp;</span>
+</span></code></pre></div></li>
+</ol>
+<h3 id="paso-3-verificacion">Paso 3: Verificación</h3>
+<p>Garantiza que Frida está funcionando listando los procesos del emulador:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>frida-ps<span class="w"> </span>-U
+</span></code></pre></div>
+<h2 id="inspeccion-de-metodos-revisiting-crackme-1">Inspección de Métodos: Revisiting Crackme 1</h2>
+<p>Para demostrar el poder del análisis dinámico, utilizaremos la APK "Uncrackable1" para explorar cómo estas técnicas pueden ser aplicadas en esta práctica.</p>
+<h3 id="explorando-la-aplicacion-con-apklab">Explorando la Aplicación con APKLab</h3>
+<p>Para entender mejor la aplicación, decompile el APK para mostrar su código fuente Java utilizando la extensión <strong>APKLab</strong> de Visual Studio Code. Esta extensión integra herramientas como JADX para simplificar el proceso.</p>
+<h4 id="paso-1-configurar-apklab">Paso 1: Configurar APKLab</h4>
+<ol>
+<li>Instala APKLab desde el mercado de extensiones de Visual Studio Code.</li>
+<li>Abre el archivo APK en APKLab para descompilar automáticamente la aplicación y mostrar el código.</li>
+</ol>
+<figure>
+  <img alt="APK Lab Visual Studio Extension" src="../../../../assets/posts/2024/12/15/APKLab.png" />
+  <figcaption>Extensión APK Lab para Visual Studio Code</figcaption>
+</figure>
+<h4 id="paso-2-localizar-el-codigo-de-deteccion-desde-la-raiz">Paso 2: Localizar el código de detección desde la raíz</h4>
+<ol>
+<li>
+<p>Usa la funcionalidad de buscar en APKLab para localizar el código responsable de la detección de la raíz mediante la búsqueda de frases como "Root detected".</p>
+</li>
+<li>
+<p>Navega por la implementación pulsando en los resultados buscados.</p>
+</li>
+</ol>
+<h3 id="eludir-la-deteccion-root">Eludir la Detección Root</h3>
+<p>Podemos eludir la detección root modificando lo que devuelve los métodos como <code>c.a()</code>, <code>c.b()</code>, y <code>c.c()</code>. Alternativamente, podemos cambiar la implementación del método <code>onClick()</code> en <code>MainActivity</code>, que cierra la aplicación cuando pulsamos "OK" en una alerta.</p>
+<h3 id="usando-frida-para-la-instrumentacion-de-la-aplicacion">Usando Frida para la Instrumentación de la Aplicación</h3>
+<h4 id="paso-1-buscamos-el-id-del-proceso-de-frida">Paso 1: Buscamos el ID del proceso de Frida</h4>
+<p>Listamos los procesos para localizar la aplicación:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>frida-ps<span class="w"> </span>-Ua
+</span></code></pre></div>
+<h4 id="paso-2-adjuntamos-el-proceso-y-enumeramos-los-metodos">Paso 2: Adjuntamos el Proceso y Enumeramos los métodos</h4>
+<p>Creamos un script para listar los métodos de la aplicación:
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1">// listmethods.js</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="nx">Java</span><span class="p">.</span><span class="nx">perform</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">groups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Java</span><span class="p">.</span><span class="nx">enumerateMethods</span><span class="p">(</span><span class="s2">&quot;*MainActivity*!onCl*&quot;</span><span class="p">);</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">groups</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">));</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="p">});</span>
+</span></code></pre></div>
+Adjuntamos el proceso y ejecutamos el script:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>frida<span class="w"> </span>-U<span class="w"> </span>&lt;PID&gt;<span class="w"> </span>-l<span class="w"> </span>listmethods.js
+</span></code></pre></div>
+<h4 id="paso-3-modificacion-de-la-implementacion-del-metodo">Paso 3: Modificación de la Implementación del método</h4>
+<p>Usa Frida para modificar el método <code>onClick()</code>:
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1">// override.js</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nx">Java</span><span class="p">.</span><span class="nx">perform</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Java</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;sg.vantagepoint.uncrackable1.MainActivity$1&#39;</span><span class="p">);</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">  </span><span class="nx">main</span><span class="p">.</span><span class="nx">onClick</span><span class="p">.</span><span class="nx">implementation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Pwned!&#39;</span><span class="p">);</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">  </span><span class="p">};</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="p">});</span>
+</span></code></pre></div></p>
+<p>Ejecuta el script y verifica que presionando "OK" la aplicación no se cierra.</p>
+<h3 id="extraccion-de-la-passphrase-secreta">Extracción de la passphrase secreta</h3>
+<p>Inspecciona el código más a fondo para buscar la función responsable de descifrar la frase de contraseña (passphrase) secreta. Registra la salida del descifrado utilizando Frida:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1">// logDecryptor.js</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="nx">Java</span><span class="p">.</span><span class="nx">perform</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">AESDecryptor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Java</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s2">&quot;sg.vantagepoint.a.a&quot;</span><span class="p">);</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">  </span><span class="nx">AESDecryptor</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">].</span><span class="nx">implementation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">bArr</span><span class="p">,</span><span class="w"> </span><span class="nx">bArr2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`AESDecryptor.decrypt is called: bArr=</span><span class="si">${</span><span class="nx">bArr</span><span class="si">}</span><span class="sb">, bArr2=</span><span class="si">${</span><span class="nx">bArr2</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">](</span><span class="nx">bArr</span><span class="p">,</span><span class="w"> </span><span class="nx">bArr2</span><span class="p">);</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`AESDecryptor.decrypt result=</span><span class="si">${</span><span class="nx">result</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">  </span><span class="p">};</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="p">});</span>
+</span></code></pre></div>
+<p>Convierte la matriz de bytes de salida en una string utilizando Python para revelar la frase secreta.</p>
+<p>Con esta configuración, Android Studio permite la emulación y depuración de aplicaciones, Burp Suite facilita la interceptación y el análisis del tráfico, Frida permite la instrumentación dinámica de la aplicación, y Objection automatiza tareas comunes de pruebas de seguridad. La sección añadida de análisis dinámico demuestra la aplicación práctica de estas herramientas para extraer secretos y eludir protecciones, lo que convierte esta guía en un recurso completo para las pruebas de seguridad de aplicaciones móviles.</p>
+<p>Stay safe. Stay smart. Stay secure.</p>
+<hr />
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <style>
+    .footer-bottom {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        text-align: center;
+        font-size: 0.875rem;
+        @media screen and (max-width: 991px) {
+        font-size: 2vw;
+            
+        }
+    }
+</style>
+
+
+<footer class="md-footer">
+    <div class="footer-bottom">
+        <p>&copy; 2025 Atlansec. All rights reserved.</p>
+    </div>
+    </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["hide_title", "navigation.indexes", "navigation.tabs", "content.code.copy", "i18n", "search.share"], "search": "../../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+        <script src="../../../../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>

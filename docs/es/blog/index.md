@@ -47,8 +47,9 @@ hide:
               <em style="display: block; margin-bottom: 0;">${formatDate(post.date)}</em>
               <h2 style="margin-top: 0;"><a href="./posts/${post.link}/">${post.title}</a></h2>
               ${markdownToHtml(post.summary)}
-              <p><a href="./posts/${post.link}/">Continue leyendo</a></p>
-              <br>
+              <br><br>
+              <a href="./posts/${post.link}/">Continue leyendo</a>
+              <br><br>
             `;
             postsContainer.appendChild(postElement);
           });

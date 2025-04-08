@@ -29,6 +29,7 @@ nav:
 
 plugins:
   - search
+  - tags
   - social
   - i18n:
       docs_structure: folder

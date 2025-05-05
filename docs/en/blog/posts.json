@@ -1,6 +1,14 @@
 {
   "posts": [
     {
+      "title": "Design Systems: Creating Visual Consistency Across Products",
+      "summary": "In this article, we explore the concept of **Design Systems as essential tools for maintaining visual coherence** across multiple digital products. Following the *atomic design methodology*, we demonstrate how breaking interfaces into fundamental components creates a scalable, consistent design language. We believe that **structured design approaches are the best way to solve cohesion challenges** while improving team collaboration and efficiency.",
+      "date": "2025-04-27",
+      "tags": "",
+      "lang": "en",
+      "link": "27-04-2025"
+    },
+    {
       "title": "LFI Uncovered: From Local File Inclusion to Remote Code Execution (RCE)",
       "summary": "The Local File Inclusion (LFI) vulnerability is not limited to merely including local files. In the hands of a skilled attacker, this flaw can become a critical attack vector, capable of escalating to Remote Code Execution (RCE). This article explores how attackers exploit this vulnerability to compromise servers and what measures you can implement to protect your application and infrastructure.",
       "date": "2025-04-06",

@@ -1,6 +1,14 @@
 {
   "posts": [
     {
+      "title": "Design Systems: Creando Consistencia Visual a Través de Productos",
+      "summary": "En este artículo, exploramos el concepto de **Sistemas de Diseño como herramientas esenciales para mantener la coherencia visual** a través de múltiples productos digitales. Siguiendo la *metodología de diseño atómico*, demostramos cómo descomponer interfaces en componentes fundamentales crea un lenguaje de diseño escalable y consistente. Creemos que **los enfoques de diseño estructurados son la mejor manera de resolver los desafíos de cohesión** mientras mejoramos la colaboración y eficiencia del equipo.",
+      "date": "2025-04-27",
+      "tags": "",
+      "lang": "es",
+      "link": "27-04-2025"
+    },
+    {
       "title": "LFI al Descubierto: De la Inclusión Local a la Ejecución Remota de Comandos (RCE)",
       "summary": "La vulnerabilidad de Local File Inclusion (LFI) no se limita únicamente a la inclusión de archivos locales. En manos de un atacante experimentado, esta falla puede convertirse en un vector de ataque crítico, capaz de escalar hasta la ejecución remota de comandos (RCE). Este artículo explora cómo los atacantes aprovechan esta vulnerabilidad para comprometer servidores y qué medidas puedes implementar para proteger tu aplicación y tu infraestructura.",
       "date": "2025-04-06",

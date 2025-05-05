@@ -1,0 +1,156 @@
+{
+  "posts": [
+    {
+      "title": "Design Systems: Creando Consistencia Visual a Través de Productos",
+      "summary": "En este artículo, exploramos el concepto de **Sistemas de Diseño como herramientas esenciales para mantener la coherencia visual** a través de múltiples productos digitales. Siguiendo la *metodología de diseño atómico*, demostramos cómo descomponer interfaces en componentes fundamentales crea un lenguaje de diseño escalable y consistente. Creemos que **los enfoques de diseño estructurados son la mejor manera de resolver los desafíos de cohesión** mientras mejoramos la colaboración y eficiencia del equipo.",
+      "date": "2025-04-27",
+      "tag": "",
+      "lang": "es",
+      "link": "27-04-2025"
+    },
+    {
+      "title": "LFI al Descubierto: De la Inclusión Local a la Ejecución Remota de Comandos (RCE)",
+      "summary": "La vulnerabilidad de Local File Inclusion (LFI) no se limita únicamente a la inclusión de archivos locales. En manos de un atacante experimentado, esta falla puede convertirse en un vector de ataque crítico, capaz de escalar hasta la ejecución remota de comandos (RCE). Este artículo explora cómo los atacantes aprovechan esta vulnerabilidad para comprometer servidores y qué medidas puedes implementar para proteger tu aplicación y tu infraestructura.",
+      "date": "2025-04-06",
+      "tags": "",
+      "lang": "es",
+      "link": "06-04-2025"
+    },
+    {
+      "title": "El asesino en serie de PHP: La deserialización insegura",
+      "summary": "Algunas vulnerabilidades pasan desapercibidas hasta que es demasiado tarde y definitivamente las PHP Object Injection son una de ellas. Esta vulnerabilidad a menudo desconocida permite a un atacante inyectar objetos PHP manipulados en una aplicación, desencadenando una serie de consecuencias devastadoras como: ejecución remota de código, acceso no autorizado a archivos o escalada de privilegios.\\n\\nEste tipo de ataque es especialmente peligroso porque no siempre es evidente a primera vista. Puede estar latente en el código durante años hasta que un atacante descubre cómo explotarlo. Lo que parece una simple funcionalidad de almacenamiento o transmisión de datos puede convertirse en una puerta trasera que acabe comprometiendo la integridad del sistema.",
+      "date": "2025-03-30",
+      "tags": "",
+      "lang": "es",
+      "link": "30-03-2025"
+    },
+    {
+      "title": "Server-Side Request Forgery: La Puerta Trasera que Puede Derribar tu Infraestructura",
+      "summary": "En el ámbito de la seguridad web, las vulnerabilidades **Server-Side Request Forgery (SSRF)** destacan como una de las amenazas más críticas y subestimadas. Permiten a los atacantes manipular servidores para realizar peticiones no autorizadas a sistemas internos, comprometiendo desde APIs y servicios en la nube hasta infraestructuras protegidas por firewalls.\\n\\nEsta técnica de ataque, a menudo subestimada, puede transformar un servidor aparentemente seguro en una puerta de entrada para los ciberdelincuentes, permitiéndoles acceder a recursos internos, robar datos sensibles e incluso lanzar ataques contra terceros.\\n\\n¿El resultado? Robo de datos, acceso a servicios internos, ejecución remota de código y, en última instancia, daño a la reputación, multas por incumplimiento de normativas como GDPR, y pérdidas financieras significativas. Un ataque SSRF exitoso puede paralizar operaciones críticas y comprometer la confianza de los clientes.",
+      "date": "2025-03-23",
+      "tags": "",
+      "lang": "es",
+      "link": "23-03-2025"
+    },
+    {
+      "title": "Modelado de Amenazas: Implementando STRIDE y PASTA en el mundo real",
+      "summary": "En el mundo de la ciberseguridad, **proteger aplicaciones y sistemas desde su fase de diseño** es crucial. Con la creciente sofisticación de los ataques, el enfoque de **Security by Design se ha convertido en una necesidad** para las organizaciones. Dentro de esta estrategia, el modelado de amenazas es una técnica fundamental que permite identificar vulnerabilidades antes de que puedan ser explotadas.\\n\\nEn este artículo, exploraremos dos de los modelos más efectivos para analizar y mitigar amenazas en proyectos reales: STRIDE y PASTA. Profundizaremos en sus características, funcionamiento y cómo pueden contribuir a la seguridad informática desde una perspectiva de **prevención y mitigación de riesgos**.",
+      "date": "2025-03-16",
+      "tags": "",
+      "lang": "es",
+      "link": "16-03-2025"
+    },
+    {
+      "title": "LAN Wars: La amenaza fantasma",
+      "summary": "> Hace mucho mucho tiempo, en un escritorio cercano....\\n\\nLa red corporativa está sumida en el caos. La **implementación de políticas de seguridad** en los sistemas de la empresa se encuentra en disputa.\\n\\nEsperando resolver sus asuntos con un puñado de **herramientas no aprobadas**, los codiciosos rebeldes TI han detenido toda colaboración con el equipo de TI e instaurado **su propio software**.\\n\\nMientras el equipo de TI debate interminablemente sobre otros asuntos, el CISO ha enviado en secreto a dos expertos en ciberseguridad, guardianes del cumplimiento y el zero trust, para restaurar el orden y **mantener la seguridad en la red**.$¿Te suena esta película? Mejor aprender sobre ella ahora que cuando se convierta en una película de terror. En este post hablaremos sobre el problema del **Shadow IT** y cómo afrontarlo.",
+      "date": "2025-03-09",
+      "tags": "",
+      "lang": "es",
+      "link": "09-03-2025"
+    },
+    {
+      "title": "Cross-Site Scripting: La Amenaza Invisible en tu Web",
+      "summary": "Las **vulnerabilidades de Cross-Site Scripting (XSS)** son un riesgo común y peligroso en la seguridad de aplicaciones web y con impactos nefastos en aplicaciones móviles y de escritorio. Permiten a atacantes inyectar código JavaScript malicioso en contextos de confianza.\\n\\nEste artículo ofrece una visión detallada de los tres tipos principales de XSS: **Stored XSS**, **Reflected XSS** y **DOM-Based XSS**, explicando cómo ocurren, cómo se explotan y cómo prevenirlas.",
+      "date": "2025-02-23",
+      "tags": "",
+      "lang": "es",
+      "link": "23-02-2025"
+    },
+    {
+      "title": "Introducción a las Plantillas de Nuclei",
+      "summary": "En este articulo, Exploraremos como funcionan las plantillas de [**Nuclei**](https://docs.projectdiscovery.io/templates/introduction){:target=\"_blank\"}, detallando el **proceso de creación y configuración de vulnerabilidades personalizadas**. Aprenderás los fundamentos, desde la configuración de la información básica y la elaboración de peticiones HTTP precisas hasta el uso de **variables**, **payloads**, **matchers** y **extractors** para pruebas dinámicas. Además, un ejemplo práctico demuestra cómo simular un servidor vulnerable y detectar una vulnerabilidad utilizando una plantilla personalizada **Nuclei**.",
+      "date": "2025-02-16",
+      "tags": "",
+      "lang": "es",
+      "link": "16-02-2025"
+    },
+    {
+      "title": "Deuda técnica: un mal necesario en el desarrollo de software",
+      "summary": "En Atlansec, aunque somos principalmente una empresa de ciberseguridad, también abordamos la deuda técnica desde la perspectiva del desarrollo de software seguro y la seguridad de las infraestructuras. Construir código seguro e infraestructuras robustas es clave para reducir las vulnerabilidades y garantizar la mantenibilidad a largo plazo.\\n\\nLa deuda técnica es un enemigo inevitable que acompaña a todos los proyectos de software en mayor o menor medida. Sin embargo, no siempre es perjudicial y, en algunos casos, puede ser una estrategia necesaria para alcanzar objetivos críticos en un plazo determinado.",
+      "date": "2025-02-09",
+      "tags": "",
+      "lang": "es",
+      "link": "09-02-2025"
+    },
+    {
+      "title": "La Costosa Lección del Fraude del CEO: Por Qué es Crucial la Capacitación en Ciberseguridad para Empleados",
+      "summary": "**16 de Enero de 2016 – Ried im Innkreis, Austria**. En las oficinas de **FACC Operations GmbH** (un fabricante austriaco de componentes aeroespaciales), un **empleado del departamento de finanzas** recibió un correo electrónico urgente que parecía provenir **directamente del CEO de la empresa**.\\n\\nLa solicitud era clara: se necesitaba una **transferencia de un millón de euros** para finalizar un **proyecto estratégico**.",
+      "date": "2025-02-02",
+      "tags": "",
+      "lang": "es",
+      "link": "02-02-2025"
+    },
+    {
+      "title": "Guía completa sobre DNS: Visión general, Configuración y Seguridad",
+      "summary": "Comprender el **DNS (Domain Name System )** es esencial para cualquier persona interesada en el funcionamiento de Internet. El DNS juega un papel crucial en la traducción de nombres de dominio legibles por el ser humano a direcciones IP, lo que garantiza una fluidez en la navegación web.\\n\\nEsta guía le guiará a través de:- Las **estructuras jerárquicas del DNS** y sus componentes claves.- Los **tipos de consultas DNS** y como funcionan.- Las **preocupaciones sobre la seguridad del DNS** y medidas de protección como **DNSSEC**.- La **Configuración de un servidor DNS local** mediante BIND9 para la mejora del **rendimiento**, **privacidad** y el **filtrado de contenido**.\\nAsi que, si quiere llevar sus conocimientos al siguiente nivel y descubrir como este sistema jerárquico garantiza que cada página web que visites esté a un solo clic de distancia, sigue leyendo.",
+      "date": "2025-01-26",
+      "tags": "",
+      "lang": "es",
+      "link": "26-01-2025"
+    },
+    {
+      "title": "El día que Dependabot conoció a SheetJS",
+      "summary": "Todo comenzó hace unos días con una notificación de Dependabot. Mientras revisaba un repositorio de un proyecto interno, me encontré con el siguiente mensaje:<figure markdown=\\\"span\\\">![Mensaje de alerta de Dependabot](../../assets/posts/2025/01/19/Dependabot_alert.png)<figcaption>Alerta de Dependabot</figcaption></figure>Procedí con el **workflow estándar de Dependabot para abordar los problemas**, asumiendo que se trataba de una actualización rutinaria. Sin embargo, me sorprendió cuando las correcciones para ambas vulnerabilidades fallaron porque **no se pudo encontrar la versión parcheada requerida**.\\n\\n",
+      "date": "2025-01-19",
+      "tags": "",
+      "lang": "es",
+      "link": "19-01-2025"
+    },
+    {
+      "title": "Nueva Ley de Resiliencia Cibernética de la UE",
+      "summary": "El 23 de octubre de 2024, entró en vigor la **Regulación Europea de Resiliencia Cibernética**, marcando un cambio regulatorio destinado a fortalecer la seguridad digital en toda la Unión Europea. En **Atlansec**, este hito refuerza nuestra misión principal: **crear soluciones y productos digitales que sean seguros durante todo su ciclo de vida y garantizar la protección de los entornos en los que operan.**",
+      "date": "2024-12-22",
+      "tags": "",
+      "lang": "es",
+      "link": "22-12-2024"
+    },
+    {
+      "title": "Instalación y Configuración de Herramientas de Análisis en Android",
+      "summary": "Este artículo describe los pasos necesarios para crear un entorno de pruebas dinámico en Linux/Debian, detallando cómo integrar herramientas como **Burp Suite**, **Frida** y **Objection**, y sus propósitos específicos. También cubre procedimientos para gestionar certificados en un emulador de Android y configurar un entorno de pruebas dinámico. Sigue las instrucciones detalladas para lograr una configuración funcional y lista para el análisis.",
+      "date": "2024-12-15",
+      "tags": "",
+      "lang": "es",
+      "link": "15-12-2024"
+    },
+    {
+      "title": "Challenge, Train, Flag: Blueprint Heist",
+      "summary": "En Atlansec, estamos comprometidos con **los CTFs como una herramienta clave de aprendizaje** bajo la metodología de *aprender haciendo*. Creemos que **enfrentar retos prácticos es la mejor manera de desarrollar habilidades técnicas** y fomentar la creatividad. Con esta sección queremos difundir el valor de los CTFs, compartir *writeups* de Retos de cierta complejidad técnica y acercar a la comunidad a un enfoque práctico y técnico del aprendizaje.",
+      "date": "2024-12-08",
+      "tags": "",
+      "lang": "es",
+      "link": "08-12-2024"
+    },
+    {
+      "title": "XVIII Jornadas STIC CCN-CERT | VI Jornadas de Ciberdefensa ESPDEF-CERT",
+      "summary": "El pasado Martes, tuvimos el honor de asistir a la [**XVIII Jornadas STIC CCN-CERT | VI Jornadas de Ciberdefensa ESPDEF-CERT**](https://jornadas.ccn-cert.cni.es/es/xviiijornadas){:target=\"_blank\"}, celebradas en los cines Kinépolis de la Ciudad de la Imagen en Madrid. El propósito principal de este viaje fue recibir un premio concedido a nuestro equipo de ciberseguridad, que resultó ganador de una competición nacional organizada por la Universidad de Granada en colaboración con [**El Mando Conjunto del Ciberespacio (MCCE)**](https://youtu.be/w7iuEEjaLYU){:target=\"_blank\"} y el [**Instituto Nacional de Ciberseguridad (INCIBE)**](https://www.incibe.es/){:target=\"_blank\"}. Este reconocimiento no solo nos llena de orgullo, si no que también refuerza nuestro compromiso con las nuevas generaciones y nuestra confianza en el inmenso talento de estos jóvenes profesionales.",
+      "date": "2024-11-30",
+      "tags": "",
+      "lang": "es",
+      "link": "30-11-2024"
+    },
+    {
+      "title": "SMB 101",
+      "summary": "SMB (Server Message Block) es un protocolo utilizado para compartir recursos como archivos, impresoras y directorios en una red. Utiliza una arquitectura cliente-servidor, donde el servidor pone los recursos a disposición y múltiples clientes pueden acceder a ellos. Aunque SMB3 introduce cifrado para proteger los datos, versiones anteriores como SMB1 transmiten información en texto plano, lo que las hace vulnerables a ciertos ataques.\\n\\nEn este artículo, nos centraremos en conceptos básicos, comandos clave y ataques comunes relacionados con SMB, destacando el uso de herramientas como **enum4linux** para la enumeración.",
+      "date": "2024-11-24",
+      "tags": "",
+      "lang": "es",
+      "link": "24-11-2024"
+    },
+    {
+      "lang": "es",
+      "title": "Introducción a FTP",
+      "summary": "El protocolo FTP (File Transfer Protocol) es un protocolo usado para la transferencia de archivos entre ordenadores en red, este protocolo presenta arquitectura cliente-servidor usándose un servidor para servir archivos que pueden ser accedidos por N clientes. Por defecto, la información se transmite en texto plano, aunque existe una versión cifrada del mismo llamada SFTP (Secure File Transfer Protocol).",
+      "date": "2024-11-14",
+      "tags": "",
+      "link": "14-11-2024"
+    },
+    {
+      "title": "Abusando de ssh-keygen",
+      "summary": "SSH-Keygen es una herramienta que permite crear y gestionar claves SSH, esta herramienta esta presente en la mayoría de los sistemas UNIX hoy en día como herramienta para facilitar la gestión de las claves SSH.\\n\\nEn este articulo exploraremos un par de métodos para abusar de esta herramienta con ciertas configuraciones como método de persistencia o de escalada de privilegios en el sistema.",
+      "date": "2024-10-17",
+      "tags": "",
+      "lang": "es",
+      "link": "17-10-2024"
+    }
+  ]
+}

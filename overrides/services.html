@@ -1,0 +1,776 @@
+{% extends "main.html" %}
+
+<!-- Content -->
+{% block content %}
+
+<style>
+  .gradient__cards {
+    display: grid;
+    padding-top: 10px;
+    padding-bottom: 20px;
+
+    @media screen and (max-width: 991px) {
+      grid-template-columns: repeat(auto-fit, minmax(50vw, 1fr));
+    }
+  }
+
+  .gradient__cards-compact {
+    display: grid;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(15vw, 1fr));
+    gap: 2vh;
+    column-gap: 3%;
+    width: 60vw;
+    margin-inline: auto;
+    background-color: #45527020;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    background: transparent !important;
+
+    @media screen and (max-width: 991px) {
+      grid-template-columns: 1fr;
+      padding-left: 5vw;
+      padding-right: 5vw;
+      width: 80vw;
+    }
+  }
+
+  .container__title {
+    position: relative;
+    text-align: start;
+    padding: 0 !important;
+    margin-bottom: 24px;
+    font-size: 32px;
+    color: var(--Primary-Blue);
+    font-weight: 400;
+    align-items: center;
+    margin-top: 0px;
+  }
+
+  .contact-title {
+    text-align: center;
+    padding: 0 !important;
+    margin-bottom: 40px;
+    font-size: 40px;
+    color: #1a1a36;
+    font-weight: 600;
+    line-height: 60px;
+  }
+
+  .card {
+    border: 0;
+    height: 100%;
+    width: 60vw;
+    margin-inline: auto;
+    background-color: #ffffff;
+
+    @media screen and (max-width: 991px) {
+      width: 80vw;
+    }
+  }
+
+  .container__card {
+    position: relative;
+    border: 2px solid var(--Primary-Blue);
+    background-clip: padding-box;
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 35px;
+    transition: all 0.3s ease;
+    min-height: 450px;
+    max-height: 28vh;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .container__card-compact {
+    position: relative;
+    border: 2px solid var(--Primary-Blue);
+    background-clip: padding-box;
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 35px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    overflow: hidden;
+    @media screen and (max-width: 991px) {
+      background-color: rgba(255, 255, 255);
+    }
+  }
+
+  @media (hover: hover) {
+    .container__card:hover {
+      transition: all 0.3s ease;
+      background-color: rgba(255, 255, 255, 0.219);
+      box-shadow: 10px 10px 0px -2px var(--Primary-Blue);
+      transform: scale(1.01);
+      clip-path: none;
+      z-index: 1;
+    }
+    .container__card-compact:hover {
+      transition: all 0.3s ease;
+      background-color: rgba(255, 255, 255);
+      box-shadow: 10px 10px 0px -2px var(--Primary-Blue);
+      transform: scale(1.01);
+      clip-path: none;
+      z-index: 1;
+    }
+  }
+
+  .md-typeset h2 {
+    font-size: 1.5625em;
+    line-height: 1.4;
+    margin-top: unset;
+  }
+  .card-title {
+    font-weight: 700;
+    line-height: 24px;
+    color: var(--Primary-Blue);
+    font-style: normal;
+    font-size: 16px;
+    text-align: start !important;
+    margin-top: 0;
+    margin-bottom: 12px;
+
+    @media screen and (max-width: 991px) {
+      font-size: 80%;
+      line-height: 5vw;
+    }
+  }
+
+  .card-description {
+    font-weight: 300;
+    line-height: 24px;
+    color: var(--Primary-Blue);
+    font-size: 14px;
+    margin-top: 0;
+    opacity: 0.7;
+
+    @media screen and (max-width: 991px) {
+      font-size: 80%;
+      line-height: 5vw;
+    }
+  }
+
+  .screen {
+    position: relative;
+    background: transparent;
+    border-radius: 15px;
+  }
+
+  .screen:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 20px;
+    right: 20px;
+    bottom: 0;
+    border-radius: 15px;
+    z-index: -1;
+  }
+
+  body {
+    user-select: none;
+    /* Evita la selección de texto en toda la página */
+  }
+
+  .screen-body {
+    display: flex;
+  }
+
+  .screen-body-item {
+    flex: 1;
+    padding: 50px;
+  }
+
+  .screen-body-item.left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .app-title {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    color: #1a1a36;
+    font-size: 26px;
+  }
+
+  .app-title:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 25px;
+    height: 4px;
+    background: #1a1a36;
+    width: 35%;
+  }
+
+  .app-contact {
+    margin-top: auto;
+    font-size: 8px;
+    color: #1a1a36;
+  }
+
+  .app-form-group {
+    margin-bottom: 15px;
+  }
+
+  .app-form-group.message {
+    margin-top: 40px;
+  }
+
+  .app-form-group.buttons {
+    margin-bottom: 0;
+    text-align: right;
+  }
+
+  .app-form-control {
+    width: 100%;
+    display: flex;
+    padding: 10px 0;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #666;
+    color: #1a1a36;
+    font-size: 14px;
+    text-transform: uppercase;
+    outline: none;
+    transition: border-color 0.2s;
+    vertical-align: middle;
+    gap: 12px;
+  }
+
+  .app-form-control::placeholder {
+    color: #1a1a36;
+  }
+
+  .app-form-control:focus {
+    border-bottom-color: #ddd;
+  }
+
+  @media screen and (max-width: 991px) {
+    .container__title {
+      font-size: 4.8vw;
+      font-weight: 700;
+    }
+
+    .container__card {
+      position: relative;
+      border: 2px solid var(--Primary-Blue);
+      background-clip: padding-box;
+      padding: 3vw;
+      transition: all 0.3s ease;
+      max-height: 100%;
+    }
+
+    .container__card-compact {
+      padding: 3vw;
+    }
+
+    .screen-body {
+      flex-direction: column;
+    }
+
+    .screen-body-item.left {
+      margin-bottom: 30px;
+    }
+
+    .app-title {
+      margin: auto;
+      width: 100%;
+      justify-content: center;
+      flex-direction: row;
+    }
+
+    .app-form {
+      margin-top: 20px;
+    }
+
+    .app-form-control {
+      margin: auto;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .app-title span {
+      margin-right: 12px;
+    }
+
+    .app-title:after {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 991px) {
+    .screen-body {
+      padding: 10px;
+    }
+
+    .screen-body-item {
+      padding: 0;
+    }
+  }
+
+  #blinkingCursor {
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+
+    50.01%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .card-content-right {
+    flex: 1.2;
+    min-width: 50%;
+  }
+
+  .card-image-right img {
+    flex: 1;
+    object-fit: contain;
+    border-radius: 10px;
+  }
+
+  .card-content-left {
+    flex: 1.2;
+    min-width: 50%;
+  }
+
+  .card-image-left img {
+    flex: 1;
+    object-fit: contain;
+    border-radius: 10px;
+  }
+
+  @media screen and (max-width: 991px) {
+    .container__card {
+      flex-direction: column;
+      align-items: start;
+      min-height: fit-content;
+    }
+
+    .card-image-left {
+      width: 100%;
+      height: auto;
+    }
+
+    .card-image-right {
+      order: -1;
+    }
+
+    .card-title {
+      font-size: 4vw;
+      height: auto;
+      margin-top: 10px;
+    }
+  }
+
+  .group-1 {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .group-1.open {
+    max-height: 100%;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .group-2 {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .group-2.open {
+    max-height: 100%;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .group-3 {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .group-3.open {
+    max-height: 100%;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .group-4 {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .group-4.open {
+    max-height: 100%;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .only_logo {
+    width: 7vh;
+  }
+
+  .fill_Blue {
+    fill: var(--Primary-Blue-2);
+  }
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const acordeon = document.querySelector(".group-1");
+    document
+      .querySelector(".button-group-1")
+      .addEventListener("click", function () {
+        acordeon.classList.toggle("open");
+      });
+  });
+  document.addEventListener("DOMContentLoaded", function () {
+    const acordeon = document.querySelector(".group-2");
+    document
+      .querySelector(".button-group-2")
+      .addEventListener("click", function () {
+        acordeon.classList.toggle("open");
+      });
+  });
+  document.addEventListener("DOMContentLoaded", function () {
+    const acordeon = document.querySelector(".group-3");
+    document
+      .querySelector(".button-group-3")
+      .addEventListener("click", function () {
+        acordeon.classList.toggle("open");
+      });
+  });
+  document.addEventListener("DOMContentLoaded", function () {
+    const acordeon = document.querySelector(".group-4");
+    document
+      .querySelector(".button-group-4")
+      .addEventListener("click", function () {
+        acordeon.classList.toggle("open");
+      });
+  });
+</script>
+
+<div class="container">
+  <p class="container__title">
+    // OUR SERVICES<span id="blinkingCursor">|</span>
+  </p>
+  <div class="gradient__cards">
+    <div class="card button-group-1">
+      <a href="#Software_Infraestructure">
+        <div class="container__card">
+          <div class="card-content-right">
+            <h2 class="card-title">Software & Infrastructure Solutions</h2>
+            <p class="card-description">
+              We help you build and maintain secure, scalable software and
+              infrastructure that grows with your business. From development to
+              ongoing updates and containerization, we ensure your systems are
+              optimized for performance and security.
+            </p>
+          </div>
+          <div class="card-image-right">
+            <img src="/assets/images/software_development.jpg" />
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="gradient__cards-compact group-1">
+      <div class="container__card-compact" id="Software_Infraestructure">
+        <p class="card-title">Software Development</p>
+        <p class="card-description">
+          We turn your ideas into reality, guiding you through the full software
+          lifecycle from requirements definition to post-launch maintenance by
+          keeping the security in mind.
+        </p>
+      </div>
+
+      <div class="container__card-compact">
+        <p class="card-title">Software Maintenance</p>
+        <p class="card-description">
+          We ensure your software remains functional, secure, and optimized by
+          providing updates, bug fixes, and compatibility adjustments.
+        </p>
+      </div>
+
+      <div class="container__card-compact">
+        <p class="card-title">Project Dockerization</p>
+        <p class="card-description">
+          We transform your project into a scalable, containerized application
+          by creating a tailored Dockerfile using best development practices.
+        </p>
+      </div>
+
+      <div class="container__card-compact">
+        <p class="card-title">Infrastructure Solutions</p>
+        <p class="card-description">
+          Expert consulting and infrastructure setup to build scalable, secure,
+          and resilient applications that meet the highest standards of
+          performance and reliability.
+        </p>
+      </div>
+    </div>
+
+    <a href="#Security_Services">
+      <div class="card button-group-2">
+        <div class="container__card">
+          <div>
+            <img
+              class="card-image-left"
+              src="/assets/images/infrastructure_solutions.jpg"
+            />
+          </div>
+          <div class="card-content-left">
+            <h2 class="card-title">Security Services</h2>
+            <p class="card-description">
+              Protect your business from cyber threats. We offer comprehensive
+              security assessments for your web, mobile, network, and corporate
+              systems. Our services help identify vulnerabilities and strengthen
+              your defenses.
+            </p>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <div class="gradient__cards-compact group-2" id="Security_Services">
+      <div class="container__card-compact">
+        <p class="card-title">Web Security Assessment</p>
+        <p class="card-description">
+          We assess and report the security of your web assets by identifying
+          vulnerabilities in design, configuration, and deployment using
+          recognized standards like the OWASP framework.
+        </p>
+      </div>
+
+      <div class="container__card-compact">
+        <p class="card-title">Perimeter Infrastructure Security Assessment</p>
+        <p class="card-description">
+          We analyze your external-facing infrastructure to identify and report
+          vulnerabilities and configuration issues that could expose your
+          systems to risks.
+        </p>
+      </div>
+
+      <div class="container__card-compact">
+        <p class="card-title">Corporate Security Assessment</p>
+        <p class="card-description">
+          We mimic a real attacker to evaluate and report your organization's
+          overall security posture by simulating external and internal threats
+          to identify critical vulnerabilities.
+        </p>
+      </div>
+
+      <div class="container__card-compact">
+        <p class="card-title">Mobile Application Security Assessment</p>
+        <p class="card-description">
+          We evaluate the security of your mobile apps across platforms,
+          identifying and reporting vulnerabilities and bypassing protections to
+          ensure robust security, all acording to OWASP Testing framework.
+        </p>
+      </div>
+
+      <div class="container__card-compact">
+        <p class="card-title">Wi-Fi Security Assessment</p>
+        <p class="card-description">
+          We test the security of your wireless network on-site, simulating
+          potential threats to assess access feasibility and internal resource
+          exposure.
+        </p>
+      </div>
+
+      <div class="container__card-compact">
+        <p class="card-title">Internal Infrastructure Security Assessment</p>
+        <p class="card-description">
+          We review the security of your internal network to identify, mitigate
+          and report vulnerabilities or misconfigurations that could compromise
+          your corporate systems.
+        </p>
+      </div>
+
+      <div class="container__card-compact">
+        <p class="card-title">Hardening</p>
+        <p class="card-description">
+          We help you validate the robustness of your asset configuration
+          according to best practices, providing you technical reports about how
+          to implement tailored mitigations to strengthen your defenses.
+        </p>
+      </div>
+
+      <div class="container__card-compact">
+        <p class="card-title">Assumed Breach Exercise</p>
+        <p class="card-description">
+          We test privilege escalation and lateral movement within your
+          corporate network to uncover, address and report internal security
+          vulnerabilities.
+        </p>
+      </div>
+
+      <div class="container__card-compact">
+        <p class="card-title">Social Engineering Awareness Assessment</p>
+        <p class="card-description">
+          We simulate phishing campaigns to test, improve and report employee
+          awareness of social engineering attacks.
+        </p>
+      </div>
+    </div>
+
+    <a href="#Test_and_QA">
+      <div class="card button-group-3">
+        <div class="container__card">
+          <div class="card-content-right">
+            <h2 class="card-title">Testing & Quality Assurance</h2>
+            <p class="card-description">
+              Ensure your software runs smoothly and securely. We conduct
+              independent tests to identify bugs, improve security, and provide
+              actionable recommendations before your software is live.
+            </p>
+          </div>
+          <div class="card-image-right">
+            <img src="/assets/images/QA.png" />
+          </div>
+        </div>
+      </div>
+    </a>
+    <div class="gradient__cards-compact group-3" id="Test_and_QA">
+      <div class="container__card-compact">
+        <p class="card-title">External QA</p>
+        <p class="card-description">
+          We independently test your software to uncover and resolve functional,
+          performance, usability, and security issues before deployment.
+        </p>
+      </div>
+
+      <div class="container__card-compact">
+        <p class="card-title">Code Review</p>
+        <p class="card-description">
+          We inspect your codebase to ensure adherence to best practices,
+          security standards, and performance optimization providing a detailed
+          report with necessary recommendations.
+        </p>
+      </div>
+    </div>
+
+    <a href="#UI_UX">
+      <div class="card button-group-4">
+        <div class="container__card">
+          <div>
+            <img class="card-image-left" src="/assets/images/UX.webp" />
+          </div>
+          <div class="card-content-left">
+            <h2 class="card-title">UI/UX & Process Optimization</h2>
+            <p class="card-description">
+              Enhance user experience and streamline business processes. We
+              refine your website's interface to engage users and optimize your
+              workflows to increase efficiency and reduce costs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </a>
+    <div class="gradient__cards-compact group-4" id="UI_UX">
+      <div class="container__card-compact">
+        <p class="card-title">UI/UX Enhancements</p>
+        <p class="card-description">
+          Refine your website's interface and user experience to captivate
+          users, increase engagement, and boost client retention with a design
+          that truly resonates.
+        </p>
+      </div>
+
+      <div class="container__card-compact">
+        <p class="card-title">Process Optimization</p>
+        <p class="card-description">
+          We refine your workflows and systems to eliminate inefficiencies,
+          reduce costs, and achieve optimal outcomes.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="screen">
+      <div class="screen-body">
+        <div class="screen-body-item center">
+          <div class="app-title">
+            <span>CONTACT US!</span>
+          </div>
+        </div>
+        <div class="screen-body-item">
+          <div class="app-form">
+            <div class="app-form-group">
+              <p class="app-form-control">
+                <a href="#" style="padding-top: 3px"> Atlansec </a>
+                <a href="https://x.com/AtlanSec">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    x="0px"
+                    y="0px"
+                    width="24"
+                    height="24"
+                    class="fill_Blue"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M10.053,7.988l5.631,8.024h-1.497L8.566,7.988H10.053z M21,6v12	c0,1.657-1.343,3-3,3H6c-1.657,0-3-1.343-3-3V6c0-1.657,1.343-3,3-3h12C19.657,3,21,4.343,21,6z M17.538,17l-4.186-5.99L16.774,7	h-1.311l-2.704,3.16L10.552,7H6.702l3.941,5.633L6.906,17h1.333l3.001-3.516L13.698,17H17.538z"
+                    ></path>
+                  </svg>
+                </a>
+                <a href="https://www.linkedin.com/company/atlansecsl">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    x="0px"
+                    y="0px"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    class="fill_Blue"
+                  >
+                    <path
+                      d="M19,3H5C3.895,3,3,3.895,3,5v14c0,1.105,0.895,2,2,2h14c1.105,0,2-0.895,2-2V5C21,3.895,20.105,3,19,3z M9,17H6.477v-7H9 V17z M7.694,8.717c-0.771,0-1.286-0.514-1.286-1.2s0.514-1.2,1.371-1.2c0.771,0,1.286,0.514,1.286,1.2S8.551,8.717,7.694,8.717z M18,17h-2.442v-3.826c0-1.058-0.651-1.302-0.895-1.302s-1.058,0.163-1.058,1.302c0,0.163,0,3.826,0,3.826h-2.523v-7h2.523v0.977 C13.93,10.407,14.581,10,15.802,10C17.023,10,18,10.977,18,13.174V17z"
+                    ></path>
+                  </svg>
+                </a>
+              </p>
+            </div>
+            <div class="app-form-group">
+              <p class="app-form-control">
+                <a href="mailto:contacto@atlansec.es">contacto@atlansec.es</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

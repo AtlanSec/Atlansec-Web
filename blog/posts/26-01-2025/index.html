@@ -1,0 +1,1070 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://atlansec.es/blog/posts/26-01-2025/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>Comprehensive Guide to DNS: Overview, Setup & Security - Atlansec</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Comprehensive Guide to DNS: Overview, Setup & Security - Atlansec" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="https://atlansec.es/assets/images/social/blog/posts/26-01-2025.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://atlansec.es/blog/posts/26-01-2025/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Comprehensive Guide to DNS: Overview, Setup & Security - Atlansec" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="https://atlansec.es/assets/images/social/blog/posts/26-01-2025.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-basics-what-does-a-dns-do" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine classes -->
+ 
+
+<style>
+  .md-header {
+    box-shadow: none;
+  }
+
+  .md-post__back {
+    border-bottom: none !important;
+  }
+</style>
+
+<!-- Header -->
+<header class="md-header" data-md-component="header" style="width: 100%">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Link to home -->
+    <a
+      href="../../.."
+      title="Atlansec"
+      class="md-header__button md-logo"
+      aria-label="Atlansec"
+      data-md-component="logo"
+    >
+      
+  <img src="../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Color palette toggle -->
+      
+
+    <!-- User preference: color palette -->
+    
+
+    <!-- Site language selector -->
+     <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../../es/blog/posts/26-01-2025/" hreflang="es" class="md-select__link">
+              Spanish
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>  
+    <style>
+      .md-header__inner,
+      .md-grid {
+        justify-content: space-between;
+      }
+      @media screen and (max-width: 1219px) {
+        .md-search {
+          position: absolute;
+          right: 0;
+        }
+      }
+    </style>
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+    <!-- Repository information -->
+     
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../services/" class="md-tabs__link">
+        
+  
+    
+  
+  Services
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+    
+  
+  Blog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Atlansec" class="md-nav__button md-logo" aria-label="Atlansec" data-md-component="logo">
+      
+  <img src="../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    Atlansec
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../services/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Services
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-basics-what-does-a-dns-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Basics: What Does a DNS Do?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-hierarchy-of-dns-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Hierarchy of DNS Servers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Hierarchy of DNS Servers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recursive-resolver-your-dns-query-starts-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recursive Resolver (Your DNS Query Starts Here)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root-dns-servers-the-starting-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      Root DNS Servers (The Starting Point)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#top-level-domain-tld-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Top-Level Domain (TLD) Servers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authoritative-name-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authoritative Name Server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returning-the-answer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returning the Answer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-dns-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of DNS Queries
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dns-records-the-building-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      DNS Records: The Building Blocks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dns-caching-speeding-things-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      DNS Caching: Speeding Things Up
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dns-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      DNS Security
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-a-local-dns-for-privacy-and-performance-purposes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup a Local DNS for Privacy and Performance purposes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup a Local DNS for Privacy and Performance purposes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bind9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bind9
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blocking-specific-domains-using-bind9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blocking specific domains using BIND9
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Blocking specific domains using BIND9">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-zone-file-for-blocked-domains" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a Zone File for Blocked Domains
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-the-blocked-domains-in-namedconflocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Define the Blocked Domains in named.conf.local
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reload-bind9-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reload BIND9 Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-the-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test the Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">DNS</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">Home Lab</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">Networking</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">Performance</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">Security</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">Server Administration</span>
+      
+    
+  </nav>
+
+
+
+  <h1>Comprehensive Guide to DNS: Overview, Setup & Security</h1>
+
+<p>Understanding the <strong>DNS (Domain Name System)</strong> is essential for anyone interested in how the internet works. DNS plays a crucial role in translating human-friendly domain names into machine-readable IP addresses, ensuring seamless web navigation.</p>
+<p>This guide walks you through:</p>
+<ul>
+<li>The <strong>hierarchical structure of DNS</strong> and its key components.</li>
+<li><strong>Types of DNS queries</strong> and how they function.</li>
+<li><strong>DNS security</strong> concerns and protective measures such as <strong>DNSSEC</strong>.</li>
+<li><strong>Setting up a local DNS server</strong> using BIND9 for improved <strong>performance</strong>, <strong>privacy</strong>, and <strong>content filtering</strong>.</li>
+</ul>
+<p>So, if you want to take your knowledge to the next level and discover how this hierarchical system ensures that every page you visit is just a click away, read on.</p>
+<!-- more -->
+
+<h2 id="the-basics-what-does-a-dns-do"><strong>The Basics: What Does a DNS Do?</strong></h2>
+<p>When you enter a domain name into your browser, your computer doesn’t understand that name directly. Instead, your device initiates a process called <strong>name resolution</strong> to find the corresponding IP address. DNS servers handle this resolution through a structured, hierarchical system.</p>
+<h2 id="the-hierarchy-of-dns-servers"><strong>The Hierarchy of DNS Servers</strong></h2>
+<figure>
+    <img alt="Hierarchy of DNS Servers" src="../../../assets/posts/2025/01/26/Hierarchical-DNS-system.png" width="550" />
+  <figcaption>Hierarchy of DNS Servers for Google</figcaption>
+</figure>
+<p>The DNS operates as a <strong>distributed, hierarchical system</strong>. Each level in this hierarchy plays a specific role in translating domain names into IP addresses. Here’s how it works:</p>
+<h4 id="recursive-resolver-your-dns-query-starts-here"><strong>Recursive Resolver (Your DNS Query Starts Here)</strong></h4>
+<ul>
+<li>When you type a URL in your browser, your device sends a request to a <strong>recursive resolver</strong>. This is usually provided by your Internet Service Provider (ISP) or a third-party service such as Google Public DNS or Cloudflare.</li>
+<li>The recursive resolver's job is to handle your query and fetch the correct IP address by contacting other DNS servers on your behalf.</li>
+</ul>
+<h4 id="root-dns-servers-the-starting-point"><strong>Root DNS Servers (The Starting Point)</strong></h4>
+<ul>
+<li>If the recursive resolver doesn’t already have the IP address cached, it contacts one of the <strong>13 root DNS servers</strong> distributed globally.</li>
+<li>These servers don’t store specific domain-to-IP mappings but point to the next level in the hierarchy: <strong>Top-Level Domain (TLD) servers</strong>.</li>
+</ul>
+<h4 id="top-level-domain-tld-servers"><strong>Top-Level Domain (TLD) Servers</strong></h4>
+<ul>
+<li>TLD servers manage domains based on their suffix, such as <code>.com</code>, <code>.org</code>, or <code>.net</code>. For instance, if you’re visiting <code>google.com</code>, the root server will direct your query to the <code>.com</code> TLD server.</li>
+<li>The TLD server then provides the address of the <strong>authoritative name server</strong> for the requested domain.</li>
+</ul>
+<h4 id="authoritative-name-server"><strong>Authoritative Name Server</strong></h4>
+<ul>
+<li>The authoritative name server is the final step in the chain. It <strong>holds the actual DNS records</strong> for the domain, including the IP address of the web server.</li>
+<li>For Google, if you’re looking for <code>google.com</code>, the authoritative server will return its corresponding IP address (e.g., <code>8.8.8.8</code>).</li>
+</ul>
+<h4 id="returning-the-answer"><strong>Returning the Answer</strong></h4>
+<ul>
+<li>Once the recursive resolver gets the IP address from the authoritative server, it sends it back to your browser. Your browser can then use the IP address to connect to the website’s server and load the page.</li>
+</ul>
+<h2 id="types-of-dns-queries"><strong>Types of DNS Queries</strong></h2>
+<p>During this process, there are three main types of DNS queries:</p>
+<ol>
+<li><strong>Recursive Query:</strong> The resolver takes full responsibility for finding the IP address and returns it to the client.</li>
+<li><strong>Iterative Query:</strong> The resolver queries each DNS server in sequence, receiving referrals to the next server until it finds the IP address.</li>
+<li><strong>Non-Recursive Query:</strong> If the resolver already has the requested information cached, it immediately returns the result.</li>
+</ol>
+<h2 id="dns-records-the-building-blocks"><strong>DNS Records: The Building Blocks</strong></h2>
+<p>The authoritative name server stores different types of <strong>DNS records</strong> that contain specific information about a domain. Some of the most common records include:</p>
+<ul>
+<li><strong>A Record:</strong> Maps a domain to an IPv4 address.</li>
+<li><strong>AAAA Record:</strong> Maps a domain to an IPv6 address.</li>
+<li><strong>CNAME Record:</strong> Points a domain to another domain (used for aliases).</li>
+<li><strong>MX Record:</strong> Specifies mail servers for email delivery.</li>
+<li><strong>TXT Record:</strong> Provides additional information about a domain, often used for verification.</li>
+</ul>
+<h2 id="dns-caching-speeding-things-up"><strong>DNS Caching: Speeding Things Up</strong></h2>
+<p>To improve performance and reduce the load on DNS servers, caching is used at various levels:</p>
+<ul>
+<li><strong>Browser Cache:</strong> Your browser temporarily stores DNS responses for domains you visit frequently.</li>
+<li><strong>Operating System Cache:</strong> Your device’s operating system also caches DNS responses to avoid redundant queries.</li>
+<li><strong>Resolver Cache:</strong> The recursive resolver keeps a cache of recently queried domains to speed up future lookups.</li>
+</ul>
+<p>Caching ensures that most DNS queries don’t need to traverse the entire hierarchy, making internet browsing faster and more efficient.</p>
+<p>To observe how DNS caching reduces response times, let's use the <strong>dig</strong> command paying attention to the <strong><em>Query Time</em></strong> for <strong>google</strong> domain:</p>
+<p>In the first trial we got:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">;</span><span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>DiG<span class="w"> </span><span class="m">9</span>.18.28-1~deb12u2-Debian<span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>google.com
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">;;</span><span class="w"> </span>global<span class="w"> </span>options:<span class="w"> </span>+cmd
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">;;</span><span class="w"> </span>Got<span class="w"> </span>answer:
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">;;</span><span class="w"> </span>-&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de:<span class="w"> </span>QUERY,<span class="w"> </span>status:<span class="w"> </span>NOERROR,<span class="w"> </span>id:<span class="w"> </span><span class="m">25335</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">;;</span><span class="w"> </span>flags:<span class="w"> </span>qr<span class="w"> </span>rd<span class="w"> </span>ra<span class="p">;</span><span class="w"> </span>QUERY:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>ANSWER:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>AUTHORITY:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>ADDITIONAL:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">;;</span><span class="w"> </span>OPT<span class="w"> </span>PSEUDOSECTION:
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">;</span><span class="w"> </span>EDNS:<span class="w"> </span>version:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>flags:<span class="p">;</span><span class="w"> </span>udp:<span class="w"> </span><span class="m">1232</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">;;</span><span class="w"> </span>QUESTION<span class="w"> </span>SECTION:
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">;</span>google.com.<span class="w">                    </span>IN<span class="w">      </span>A
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">;;</span><span class="w"> </span>ANSWER<span class="w"> </span>SECTION:
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>google.com.<span class="w">             </span><span class="m">215</span><span class="w">     </span>IN<span class="w">      </span>A<span class="w">       </span><span class="m">142</span>.250.200.142
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="p">;;</span><span class="w"> </span>Query<span class="w"> </span>time:<span class="w"> </span><span class="m">68</span><span class="w"> </span>msec
+</span></code></pre></div>
+<p>And in the second time, we got:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">;</span><span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>DiG<span class="w"> </span><span class="m">9</span>.18.28-1~deb12u2-Debian<span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>google.com
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">;;</span><span class="w"> </span>global<span class="w"> </span>options:<span class="w"> </span>+cmd
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">;;</span><span class="w"> </span>Got<span class="w"> </span>answer:
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">;;</span><span class="w"> </span>-&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de:<span class="w"> </span>QUERY,<span class="w"> </span>status:<span class="w"> </span>NOERROR,<span class="w"> </span>id:<span class="w"> </span><span class="m">44597</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">;;</span><span class="w"> </span>flags:<span class="w"> </span>qr<span class="w"> </span>rd<span class="w"> </span>ra<span class="p">;</span><span class="w"> </span>QUERY:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>ANSWER:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>AUTHORITY:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>ADDITIONAL:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">;;</span><span class="w"> </span>OPT<span class="w"> </span>PSEUDOSECTION:
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">;</span><span class="w"> </span>EDNS:<span class="w"> </span>version:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>flags:<span class="p">;</span><span class="w"> </span>udp:<span class="w"> </span><span class="m">1232</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">;;</span><span class="w"> </span>QUESTION<span class="w"> </span>SECTION:
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">;</span>google.com.<span class="w">                    </span>IN<span class="w">      </span>A
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">;;</span><span class="w"> </span>ANSWER<span class="w"> </span>SECTION:
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>google.com.<span class="w">             </span><span class="m">287</span><span class="w">     </span>IN<span class="w">      </span>A<span class="w">       </span><span class="m">142</span>.250.200.78
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="p">;;</span><span class="w"> </span>Query<span class="w"> </span>time:<span class="w"> </span><span class="m">36</span><span class="w"> </span>msec
+</span></code></pre></div>
+<p>As we can see, the time has decreased.</p>
+<h2 id="dns-security"><strong>DNS Security</strong></h2>
+<p>Despite its importance, the DNS system has vulnerabilities that can be exploited by attackers. Some common issues include:</p>
+<ul>
+<li><strong>DNS Spoofing/Poisoning:</strong> Malicious actors inject false DNS records into a cache, redirecting users to fraudulent websites.</li>
+<li><strong>DDoS Attacks:</strong> This is one of the most well-known attacks consisting on flooding DNS servers with traffic to disrupt service.</li>
+<li><strong>Man-in-the-Middle Attacks:</strong> Intercepting DNS queries to modify responses.</li>
+</ul>
+<p>To combat these threats, technologies like <strong>DNSSEC (Domain Name System Security Extensions)</strong> add cryptographic signatures to DNS records, ensuring their authenticity. Imagine you want to visit google.com:</p>
+<ol>
+<li>Your browser requests the IP address for google.com from a recursive resolver.</li>
+<li>The resolver checks the DNSSEC signatures at each level (root, .com, and google.com).</li>
+<li>If all signatures are valid, the resolver returns the IP address.</li>
+<li>If any signature fails, the resolver knows the data has been tampered with and discards it.</li>
+</ol>
+<h2 id="setup-a-local-dns-for-privacy-and-performance-purposes"><strong>Setup a Local DNS for Privacy and Performance purposes</strong></h2>
+<p>If you've made it this far, congratulations! You now understand the basics and key principles of DNS servers. With this knowledge, you're ready to roll up your sleeves and set up your own local DNS server. Doing so opens up a world of possibilities: you can filter unwanted content across your network, enhance browsing performance, and even navigate the internet more securely, minimizing the risk of viruses and other online threats.</p>
+<h3 id="bind9">Bind9</h3>
+<p>In this article, we'll use the <strong>BIND9 DNS server</strong> to set up a DNS server directly on our computer. This hands-on approach will let us experience what it’s like to have a fully functional DNS server running within our own network—right from the comfort of our own machine!</p>
+<p>Let's first install <strong>bind9</strong>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>bind9<span class="w"> </span>dnsutils
+</span></code></pre></div>
+<p>Configure your system to first ask the local DNS server that we have installed:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/resolv.conf
+</span></code></pre></div>
+<p>Add the local server as the first line.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>nameserver<span class="w"> </span><span class="m">127</span>.0.0.1
+</span></code></pre></div>
+<p>After that, we will edit the configuration file:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/bind/named.conf.options
+</span></code></pre></div>
+<p>Remove everything in that file and add the following:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>acl<span class="w"> </span><span class="s2">&quot;trusted&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="m">192</span>.168.0.0/16<span class="p">;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span>localhost<span class="p">;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="o">}</span><span class="p">;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>options<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span>directory<span class="w"> </span><span class="s2">&quot;/var/cache/bind&quot;</span><span class="p">;</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span>recursion<span class="w"> </span>yes<span class="p">;</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span>allow-query<span class="w"> </span><span class="o">{</span><span class="w"> </span>trusted<span class="p">;</span><span class="w"> </span><span class="o">}</span><span class="p">;</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span>forwarders<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">        </span><span class="m">1</span>.1.1.3<span class="p">;</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">        </span><span class="m">1</span>.1.1.2<span class="p">;</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">    </span><span class="o">}</span><span class="p">;</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">    </span>dnssec-validation<span class="w"> </span>auto<span class="p">;</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">    </span>listen-on<span class="w"> </span><span class="o">{</span><span class="w"> </span>any<span class="p">;</span><span class="w"> </span><span class="o">}</span><span class="p">;</span>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">    </span>listen-on-v6<span class="w"> </span><span class="o">{</span><span class="w"> </span>any<span class="p">;</span><span class="w"> </span><span class="o">}</span><span class="p">;</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="o">}</span><span class="p">;</span>
+</span></code></pre></div>
+<p>This <strong>ACL specifies which clients are considered "trusted"</strong> and can interact with the DNS server.</p>
+<p>The options block contains global settings for the BIND9 server. Let’s go through each line:</p>
+<ul>
+<li>
+<p><code>directory "/var/cache/bind";</code> This specifies the directory where BIND will store its cache and related files.</p>
+</li>
+<li>
+<p><code>recursion yes;</code> Enables recursive queries, meaning the server will resolve DNS queries on behalf of clients by querying other DNS servers if it doesn’t have the answer cached or locally configured.</p>
+</li>
+<li>
+<p><code>allow-query { trusted; };</code> Restricts which clients can send queries to the server. Only clients defined in the trusted ACL (local network and localhost) are allowed to query this DNS server.</p>
+</li>
+<li>
+<p><code>forwarders { 1.1.1.3; 1.1.1.2; };</code> Defines external DNS servers (in this case, Cloudflare's filtered DNS servers) to which the server will forward queries it cannot resolve locally. The server acts as an intermediary, forwarding unresolved queries to these upstream servers.</p>
+<ul>
+<li>1.1.1.3: Blocks malicious content.</li>
+<li>1.1.1.2: Blocks malware-related content.</li>
+</ul>
+</li>
+<li>
+<p><code>dnssec-validation auto;</code> Enables DNSSEC validation automatically, ensuring the authenticity and integrity of DNS responses using cryptographic signatures.</p>
+</li>
+</ul>
+<p>With this configuration, we’ve implemented basic security measures by trusting Cloudflare's DNS servers to handle forwarded queries, ensuring that responses are filtered to <strong>avoid malicious domains</strong>.</p>
+<p>We can check our performance improvement by doing the same as before, using the <strong>dig</strong> command to look for the <strong><em>Query Time</em></strong> of <strong>google.com</strong> domain.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">;</span><span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>DiG<span class="w"> </span><span class="m">9</span>.18.28-1~deb12u2-Debian<span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>google.com
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="p">;;</span><span class="w"> </span>global<span class="w"> </span>options:<span class="w"> </span>+cmd
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">;;</span><span class="w"> </span>Got<span class="w"> </span>answer:
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">;;</span><span class="w"> </span>-&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de:<span class="w"> </span>QUERY,<span class="w"> </span>status:<span class="w"> </span>NOERROR,<span class="w"> </span>id:<span class="w"> </span><span class="m">56385</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">;;</span><span class="w"> </span>flags:<span class="w"> </span>qr<span class="w"> </span>rd<span class="w"> </span>ra<span class="p">;</span><span class="w"> </span>QUERY:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>ANSWER:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>AUTHORITY:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>ADDITIONAL:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="p">;;</span><span class="w"> </span>OPT<span class="w"> </span>PSEUDOSECTION:
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="p">;</span><span class="w"> </span>EDNS:<span class="w"> </span>version:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>flags:<span class="p">;</span><span class="w"> </span>udp:<span class="w"> </span><span class="m">1232</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="p">;</span><span class="w"> </span>COOKIE:<span class="w"> </span>2b2a789af74949000100000067966b06329ed55c149fd975<span class="w"> </span><span class="o">(</span>good<span class="o">)</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="p">;;</span><span class="w"> </span>QUESTION<span class="w"> </span>SECTION:
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="p">;</span>google.com.<span class="w">                    </span>IN<span class="w">      </span>A
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="p">;;</span><span class="w"> </span>ANSWER<span class="w"> </span>SECTION:
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>google.com.<span class="w">             </span><span class="m">300</span><span class="w">     </span>IN<span class="w">      </span>A<span class="w">       </span><span class="m">142</span>.250.200.142
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="p">;;</span><span class="w"> </span>Query<span class="w"> </span>time:<span class="w"> </span><span class="m">67</span><span class="w"> </span>msec
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="p">;;</span><span class="w"> </span>SERVER:<span class="w"> </span><span class="m">127</span>.0.0.1#53<span class="o">(</span><span class="m">127</span>.0.0.1<span class="o">)</span><span class="w"> </span><span class="o">(</span>UDP<span class="o">)</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="p">;;</span><span class="w"> </span>MSG<span class="w"> </span>SIZE<span class="w">  </span>rcvd:<span class="w"> </span><span class="m">83</span>
+</span></code></pre></div>
+<p>After the second query, we achieve a <strong>0ms</strong> response time, as our local DNS server efficiently retrieves the result from its cache.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">;</span><span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>DiG<span class="w"> </span><span class="m">9</span>.18.28-1~deb12u2-Debian<span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>google.com
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="p">;;</span><span class="w"> </span>global<span class="w"> </span>options:<span class="w"> </span>+cmd
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">;;</span><span class="w"> </span>Got<span class="w"> </span>answer:
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">;;</span><span class="w"> </span>-&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de:<span class="w"> </span>QUERY,<span class="w"> </span>status:<span class="w"> </span>NOERROR,<span class="w"> </span>id:<span class="w"> </span><span class="m">51691</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="p">;;</span><span class="w"> </span>flags:<span class="w"> </span>qr<span class="w"> </span>rd<span class="w"> </span>ra<span class="p">;</span><span class="w"> </span>QUERY:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>ANSWER:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>AUTHORITY:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>ADDITIONAL:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">;;</span><span class="w"> </span>OPT<span class="w"> </span>PSEUDOSECTION:
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="p">;</span><span class="w"> </span>EDNS:<span class="w"> </span>version:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>flags:<span class="p">;</span><span class="w"> </span>udp:<span class="w"> </span><span class="m">1232</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="p">;</span><span class="w"> </span>COOKIE:<span class="w"> </span>a2419e6c5e03859d0100000067966b096b0ad0c0a30e2273<span class="w"> </span><span class="o">(</span>good<span class="o">)</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="p">;;</span><span class="w"> </span>QUESTION<span class="w"> </span>SECTION:
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="p">;</span>google.com.<span class="w">                    </span>IN<span class="w">      </span>A
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="p">;;</span><span class="w"> </span>ANSWER<span class="w"> </span>SECTION:
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>google.com.<span class="w">             </span><span class="m">297</span><span class="w">     </span>IN<span class="w">      </span>A<span class="w">       </span><span class="m">142</span>.250.200.142
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="p">;;</span><span class="w"> </span>Query<span class="w"> </span>time:<span class="w"> </span><span class="m">0</span><span class="w"> </span>msec
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="p">;;</span><span class="w"> </span>SERVER:<span class="w"> </span><span class="m">127</span>.0.0.1#53<span class="o">(</span><span class="m">127</span>.0.0.1<span class="o">)</span><span class="w"> </span><span class="o">(</span>UDP<span class="o">)</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="p">;;</span><span class="w"> </span>MSG<span class="w"> </span>SIZE<span class="w">  </span>rcvd:<span class="w"> </span><span class="m">83</span>
+</span></code></pre></div>
+<p>We can see that the SERVER we are asking is <code>127.0.0.1</code> as it is our <strong>bind9</strong> DNS server.</p>
+<p>However, what if we want to take things a step further and enforce our own restrictions? Whether it’s for enhanced security, blocking specific websites, or creating a safer internet environment for children, we can configure BIND9 to restrict access to a custom list of domains. This gives us full control over what content is allowed or denied on our network, tailoring the DNS server to meet our specific needs.</p>
+<h3 id="blocking-specific-domains-using-bind9">Blocking specific domains using BIND9</h3>
+<p>To block specific domains using BIND9, you can create a <strong>custom zone file</strong> that redirects queries for those domains to an invalid or non-existent address, effectively blocking access.</p>
+<p>Here's a step-by-step guide:</p>
+<h4 id="create-a-zone-file-for-blocked-domains">Create a Zone File for Blocked Domains</h4>
+<p>A zone file defines the DNS records for the domains you want to block. These records can redirect the blocked domains to a &lt;&lt;blackhole&gt;&gt; (e.g., <code>127.0.0.1</code> or <code>0.0.0.0</code>).</p>
+<ol>
+<li>Create a new zone file for blocking domains, for example, <code>block_instagram.zone</code>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/bind/block_instagram.zone
+</span></code></pre></div></li>
+<li>Add the following content to the zone file:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nv">$TTL</span><span class="w">    </span><span class="m">3600</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>@<span class="w">       </span>IN<span class="w">      </span>SOA<span class="w">     </span>localhost.<span class="w"> </span>root.localhost.<span class="w"> </span><span class="o">(</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">                </span><span class="m">2025012601</span><span class="w"> </span><span class="p">;</span><span class="w"> </span>Serial
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">                </span><span class="m">3600</span><span class="w">       </span><span class="p">;</span><span class="w"> </span>Refresh
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">                </span><span class="m">1800</span><span class="w">       </span><span class="p">;</span><span class="w"> </span>Retry
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">                </span><span class="m">604800</span><span class="w">     </span><span class="p">;</span><span class="w"> </span>Expire
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">                </span><span class="m">86400</span><span class="w"> </span><span class="o">)</span><span class="w">    </span><span class="p">;</span><span class="w"> </span>Minimum<span class="w"> </span>TTL
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">        </span>IN<span class="w">      </span>NS<span class="w">      </span>localhost.
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>@<span class="w">       </span>IN<span class="w">      </span>A<span class="w">       </span><span class="m">127</span>.0.0.1
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>*<span class="w">       </span>IN<span class="w">      </span>A<span class="w">       </span><span class="m">127</span>.0.0.1
+</span></code></pre></div>
+<ul>
+<li>
+<p><strong><em>127.0.0.1</em></strong>: Redirects queries for the blocked domains to the local machine, effectively preventing access.</p>
+</li>
+<li>
+<p><strong>Wildcard Record (</strong> IN A<em>)</em>*: Ensures any subdomain of the blocked domain is also redirected.</p>
+</li>
+</ul>
+<h4 id="define-the-blocked-domains-in-namedconflocal">Define the Blocked Domains in <code>named.conf.local</code></h4>
+<p>We are going to block <strong>Instagram</strong>. You need to associate the blocked domains with the custom zone file.</p>
+<ol>
+<li>
+<p>Open the BIND9 configuration file:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/bind/named.conf.local
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Add a <em>zone</em> entry for each domain you want to block. In this case we will block <strong><em>instagram.com</em></strong> and <strong><em>cdninstagram.com</em></strong>, Instagram's content delivery network (CDN) domain used for serving images and videos:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>zone<span class="w"> </span><span class="s2">&quot;instagram.com&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="nb">type</span><span class="w"> </span>master<span class="p">;</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span>file<span class="w"> </span><span class="s2">&quot;/etc/bind/block_instagram.zone&quot;</span><span class="p">;</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="o">}</span><span class="p">;</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>zone<span class="w"> </span><span class="s2">&quot;cdninstagram.com&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">    </span><span class="nb">type</span><span class="w"> </span>master<span class="p">;</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">    </span>file<span class="w"> </span><span class="s2">&quot;/etc/bind/block_instagram.zone&quot;</span><span class="p">;</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="o">}</span><span class="p">;</span>
+</span></code></pre></div></p>
+</li>
+</ol>
+<h4 id="reload-bind9-configuration">Reload BIND9 Configuration</h4>
+<p>Once you’ve created the zone file and updated the configuration, reload the BIND9 service to apply the changes.</p>
+<ol>
+<li>
+<p>Check the configuration for errors:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>named-checkconf
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Reload the BIND9 service:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>bind9
+</span></code></pre></div></p>
+</li>
+</ol>
+<h3 id="test-the-configuration"><strong>Test the Configuration</strong></h3>
+<p>To verify that the blocked domains are working as expected:</p>
+<ol>
+<li>
+<p>Use the <em>dig</em> command to query the blocked domain:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>dig<span class="w"> </span>instagram.com.
+</span></code></pre></div></p>
+<ul>
+<li>The response should return <em>127.0.0.1</em>.</li>
+</ul>
+</li>
+<li>
+<p>Try accessing the blocked domain in a browser. It should fail to load.</p>
+</li>
+</ol>
+<figure>
+    <img alt="Blocked Instagram" src="../../../assets/posts/2025/01/26/noInstagram.png" width="600" />
+  <figcaption>Instagram not Available</figcaption>
+</figure>
+<p>By creating a custom zone file and associating it with the domains you want to block, you gain full control over restricting access to specific websites. This setup allows you to:</p>
+<ul>
+<li>Enhance security by blocking known malicious domains.</li>
+<li>Customize the DNS server to meet your network’s specific requirements.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Now you’ve learned how to block any domain you don’t want your family or network users accessing. Whether it’s limiting social media to help your kids focus, enhancing security by blocking malicious sites, or simply taking control of your network, you now have the tools to make it happen.</p>
+<p>This example was done on a local laptop, but it doesn’t have to stop there. You can implement the same setup at the <strong>router level</strong> or use a <strong>Raspberry Pi</strong> as your primary DNS server. By doing this, you can apply these rules to your entire network, ensuring that all connected devices follow your custom restrictions.</p>
+<p>With this approach, you’re not just managing a DNS server—you’re creating a <strong>safer, more productive digital environment</strong> for everyone on your network.</p>
+<p>Stay safe. Stay smart. Stay secure.</p>
+<hr />
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <style>
+    .footer-bottom {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        text-align: center;
+        font-size: 0.875rem;
+        @media screen and (max-width: 991px) {
+        font-size: 2vw;
+            
+        }
+    }
+</style>
+
+
+<footer class="md-footer">
+    <div class="footer-bottom">
+        <p>&copy; 2025 Atlansec. All rights reserved.</p>
+    </div>
+    </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["hide_title", "navigation.indexes", "navigation.tabs", "content.code.copy", "i18n", "search.share"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+        <script src="../../../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>

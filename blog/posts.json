@@ -1,0 +1,156 @@
+{
+  "posts": [
+    {
+      "title": "Design Systems: Creating Visual Consistency Across Products",
+      "summary": "In this article, we explore the concept of **Design Systems as essential tools for maintaining visual coherence** across multiple digital products. Following the *atomic design methodology*, we demonstrate how breaking interfaces into fundamental components creates a scalable, consistent design language. We believe that **structured design approaches are the best way to solve cohesion challenges** while improving team collaboration and efficiency.",
+      "date": "2025-04-27",
+      "tag": "",
+      "lang": "en",
+      "link": "27-04-2025"
+    },
+    {
+      "title": "LFI Uncovered: From Local File Inclusion to Remote Code Execution (RCE)",
+      "summary": "The Local File Inclusion (LFI) vulnerability is not limited to merely including local files. In the hands of a skilled attacker, this flaw can become a critical attack vector, capable of escalating to Remote Code Execution (RCE). This article explores how attackers exploit this vulnerability to compromise servers and what measures you can implement to protect your application and infrastructure.",
+      "date": "2025-04-06",
+      "tags": "",
+      "lang": "en",
+      "link": "06-04-2025"
+    },
+    {
+      "title": "The PHP Serial Killer: Unsafe Deserialization",
+      "summary": "Some vulnerabilities go unnoticed until it's too late, and PHP Object Injection is definitely one of them. This often-overlooked vulnerability allows an attacker to inject manipulated PHP objects into an application, triggering a series of devastating consequences such as remote code execution, unauthorized file access, or privilege escalation.\\n\\nThis type of attack is particularly dangerous because it's not always evident at first glance. It can lie dormant in the code for years until an attacker discovers how to exploit it. What appears to be a simple functionality for storing or transmitting data can turn into a backdoor that ends up compromising the integrity of the system.",
+      "date": "2025-03-30",
+      "tags": "",
+      "lang": "en",
+      "link": "30-03-2025"
+    },
+    {
+      "title": "Server-Side Request Forgery: The Backdoor That Can Take Down Your Infrastructure",
+      "summary": "In the realm of web security, **Server-Side Request Forgery (SSRF)** vulnerabilities stand out as one of the most critical and underestimated threats. They allow attackers to manipulate servers to make unauthorized requests to internal systems, compromising everything from APIs and cloud services to infrastructures protected by firewalls.\\n\\nThis attack technique, often overlooked, can turn a seemingly secure server into an entry point for cybercriminals, enabling them to access internal resources, steal sensitive data, and even launch attacks against third parties.\\n\\nThe result? Data theft, access to internal services, remote code execution, and ultimately, reputational damage, regulatory fines for non-compliance with laws like GDPR, and significant financial losses. A successful SSRF attack can cripple critical operations and erode customer trust.",
+      "date": "2025-03-23",
+      "tags": "",
+      "lang": "en",
+      "link": "23-03-2025"
+    },
+    {
+      "title": "Threat Modeling: Implementing STRIDE and PASTA in the Real World",
+      "summary": "In the world of cybersecurity, **protecting applications and systems from their design phase** is crucial. With the increasing sophistication of attacks, the **Security by Design approach has become a necessity** for organizations. Within this strategy, threat modeling is a fundamental technique that allows identifying vulnerabilities before they can be exploited.\\n\\nIn this article, we will explore two of the most effective models for analyzing and mitigating threats in real projects: STRIDE and PASTA. We will delve into their characteristics, operation and how they can contribute to information security from a **risk prevention and mitigation** perspective.",
+      "date": "2025-03-16",
+      "tags": "",
+      "lang": "en",
+      "link": "16-03-2025"
+    },
+    {
+      "title": "LAN Wars: The Phantom Menace",
+      "summary": "> A long, long time ago, in an office cubicle nearby....\\n\\nThe corporate network is plunged into chaos. The **implementation of security policies** on the company's systems is under dispute.\\n\\nHoping to circumvent protocol with a handful of **unapproved tools**, the rebellious, grasping IT faction has ceased all collaboration with the IT team and established **their own software ecosystem**.\\n\\nWhile the IT team endlessly debates other matters, the CISO has secretly dispatched two cybersecurity experts, guardians of compliance and zero trust, to restore order and **maintain network security**.$Does this plot sound familiar? It's better to learn about it now before it turns into a real-life horror movie. In this post, we'll delve into the issue of **Shadow IT** and how to tackle it effectively.",
+      "date": "2025-03-09",
+      "tags": "",
+      "lang": "en",
+      "link": "09-03-2025"
+    },
+    {
+      "title": "Cross-Site Scripting: The Invisible Threat on Your Web",
+      "summary": "**Cross-Site Scripting (XSS) vulnerabilities** are a common and dangerous risk in web application security. They allow attackers to inject malicious JavaScript code into legitimate websites to steal information, manipulate page behavior, or impersonate users. This guide provides a detailed overview of the three main types of XSS: **Stored XSS**, **Reflected XSS**, and **DOM-Based XSS**, explaining how they occur, how they are exploited, and how to prevent them.\\n\\nThis article delivers an in-depth examination of the three primary types of XSS attacks: **Stored XSS**, **Reflected XSS**, and **DOM-Based XSS**, detailing how they manifest, how they are exploited, and the measures that can be implemented to thwart them.",
+      "date": "2025-02-23",
+      "tags": "",
+      "lang": "en",
+      "link": "23-02-2025"
+    },
+    {
+      "title": "Introduction to Nuclei Templates",
+      "summary": "In this article, we explore how [**Nuclei**](https://docs.projectdiscovery.io/templates/introduction){:target=\"_blank\"} templates work, detailing the **process of creating and configuring custom vulnerability tests**. You'll learn the fundamentals, from setting up the basic information and crafting precise HTTP requests to using **variables**, **payloads**, **matchers**, and **extractors** for dynamic testing. Additionally, a practical example demonstrates how to simulate a vulnerable server and detect a vulnerability using a custom **Nuclei** template.",
+      "date": "2025-02-16",
+      "tags": "",
+      "authors": "",
+      "link": "16-02-2025"
+    },
+    {
+      "title": "Technical Debt: A Necessary Evil in Software Development",
+      "summary": "At Atlansec, while we are primarily a cybersecurity company, we also address technical debt from the perspective of secure software development and infrastructure security. Building secure code and robust infrastructures is key to reducing vulnerabilities and ensuring long-term maintainability.\\n\\nTechnical debt is an inevitable enemy that accompanies all software projects to a greater or lesser extent. However, it is not always harmful and, in some cases, can be a necessary strategy to achieve critical objectives within a given timeframe.",
+      "date": "2025-02-09",
+      "tags": "",
+      "lang": "en",
+      "link": "09-02-2025"
+    },
+    {
+      "title": "The Costly Lesson of CEO Fraud: Why Employee Cybersecurity Training is Crucial",
+      "summary": "**January 16, 2016 – Ried im Innkreis, Austria**. At the offices of **FACC Operations GmbH** (an Austrian manufacturer of aerospace components), an **employee from the finance department** received an urgent email that appeared to come **directly from the company’s CEO**.\\n\\nThe request was clear: a **million-euro transfer** was needed to finalize a **strategic project.**",
+      "date": "2025-02-02",
+      "tags": "",
+      "lang": "en",
+      "link": "02-02-2025"
+    },
+    {
+      "title": "Comprehensive Guide to DNS: Overview, Setup & Security",
+      "summary": "Understanding the **DNS (Domain Name System)** is essential for anyone interested in how the internet works. DNS plays a crucial role in translating human-friendly domain names into machine-readable IP addresses, ensuring seamless web navigation.\\n\\nThis guide walks you through:- The **hierarchical structure of DNS** and its key components.- **Types of DNS queries** and how they function.- **DNS security** concerns and protective measures such as **DNSSEC**.- **Setting up a local DNS server** using BIND9 for improved **performance**, **privacy**, and **content filtering**.\\nSo, if you want to take your knowledge to the next level and discover how this hierarchical system ensures that every page you visit is just a click away, read on.",
+      "date": "2025-01-26",
+      "tags": "",
+      "lang": "en",
+      "link": "26-01-2025"
+    },
+    {
+      "title": "The day that Dependabot met SheetJS",
+      "summary": "It all started with a notification from Dependabot a few days ago. While reviewing an internal project repository, I encountered the following message\\n<figure markdown=\"span\">![Dependabot Alert Message](../../assets/posts/2025/01/19/Dependabot_alert.png)<figcaption>Dependabot alert</figcaption></figure>I proceeded with the **standard Dependabot workflow to address the issues**, as I had assumed it was a routine update. However, I was surprised when the fixes for both vulnerabilities failed because the **required patched version could not be found.**",
+      "date": "2025-01-19",
+      "tags": "",
+      "lang": "en",
+      "link": "19-01-2025"
+    },
+    {
+      "title": "New EU Cyber Resilience Act",
+      "summary": "On October 23, 2024, the **European Cyber Resilience Regulation** came into force, marking a regulatory shift aimed at strengthening digital security across the European Union. At **Atlansec**, this milestone reinforces our core mission: **to create solutions and digital products that are secure throughout their lifecycle and ensure the protection of the environments in which they operate.**",
+      "date": "2024-12-22",
+      "tags": "",
+      "lang": "en",
+      "link": "22-12-2024"
+    },
+    {
+      "title": "Installation and Configuration of Analysis Tools on Android",
+      "summary": "This article outlines the necessary steps to create a dynamic testing environment on Linux/Debian, detailing how to integrate tools such as **Burp Suite**, **Frida**, and **Objection**, and their specific purposes. It also covers procedures for managing certificates on an Android emulator and configuring a dynamic testing environment. Follow the detailed instructions to achieve a functional and analysis-ready setup.",
+      "date": "2024-12-15",
+      "tags": "",
+      "lang": "en",
+      "link": "15-12-2024"
+    },
+    {
+      "title": "Challenge, Train, Flag: Blueprint Heist",
+      "summary": "At Atlansec, we are committed to **CTFs as a key learning tool** under the *learning by doing* methodology. We believe that **facing practical challenges is the best way to develop technical skills** and foster creativity. With this section we want to spread the value of CTFs, share *writeups* of challenges of a certain technical complexity and bring the community closer to a practical and technical approach to learning.",
+      "date": "2024-12-08",
+      "tags": "",
+      "lang": "en",
+      "link": "08-12-2024"
+    },
+    {
+      "title": "XVIII Jornadas STIC CCN-CERT | VI Jornadas de Ciberdefensa ESPDEF-CERT",
+      "summary": "Last Tuesday, we had the honor of attending the [**XVIII Jornadas STIC CCN-CERT | VI Jornadas de Ciberdefensa ESPDEF-CERT**](https://jornadas.ccn-cert.cni.es/es/xviiijornadas){:target=\"_blank\"}, held at the Kinépolis cinemas in Ciudad de la Imagen, Madrid. The main purpose of this trip was to receive an award granted to our cybersecurity team, who emerged as winners of a national competition organized by the Universidad de Granada in collaboration with the [**El Mando Conjunto del Ciberespacio (MCCE)**](https://youtu.be/w7iuEEjaLYU){:target=\"_blank\"}  and the [**Instituto Nacional de Ciberseguridad (INCIBE)**](https://www.incibe.es/){:target=\"_blank\"}. This recognition not only fills us with pride but also reinforces our commitment to new generations and our confidence in the immense talent of these young professionals.",
+      "date": "2024-11-30",
+      "tags": "",
+      "lang": "en",
+      "link": "30-11-2024"
+    },
+    {
+      "title": "SMB 101",
+      "summary": "SMB (Server Message Block) is a protocol used to share resources such as files, printers, and directories over a network. It uses a client-server architecture, where the server makes resources available, and multiple clients can access them. Although SMB3 introduces encryption to protect data, earlier versions like SMB1 transmit information in plain text, making it vulnerable to certain attacks.\\n\\nIn this article, we will focus on basic concepts, key commands, and common attacks related to SMB, highlighting the use of tools like **enum4linux** for enumeration.",
+      "date": "2024-11-24",
+      "tags": "",
+      "lang": "en",
+      "link": "24-11-2024"
+    },
+    {
+      "title": "Abusing ssh-keygen",
+      "summary": "SSH-Keygen is a tool that allows you to create and manage SSH keys, this tool is present in most UNIX systems today as a tool to facilitate the management of SSH keys.\\n\\nIn this article we will explore some methods to abuse this tool with certain configurations as a method of persistence or privilege escalation on the system.",
+      "date": "2024-11-17",
+      "tags": "",
+      "lang": "en",
+      "link": "17-10-2024"
+    },
+    {
+      "lang": "en",
+      "title": "Intro to FTP",
+      "summary": "FTP (File Transfer Protocol) is one of the **oldest and most widely** used protocols for **transferring files** between computers. While it provides a simple way to move data, its default configuration lacks security, making it a common target for attackers. In this article, we’ll cover the basics of FTP, its **communication modes**, **essential commands**, and **common misconfigurations** that could be exploited. Whether you're a cybersecurity enthusiast or a penetration tester, understanding FTP is crucial for securing or assessing network environments.",
+      "date": "2024-11-14",
+      "tags": "",
+      "link": "14-11-2024"
+    }
+  ]
+}

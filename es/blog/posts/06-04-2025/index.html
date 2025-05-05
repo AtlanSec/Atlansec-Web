@@ -1,0 +1,1044 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://atlansec.es/es/blog/posts/06-04-2025/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>LFI al Descubierto: De la Inclusión Local a la Ejecución Remota de Comandos (RCE) - Atlansec</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="LFI al Descubierto: De la Inclusión Local a la Ejecución Remota de Comandos (RCE) - Atlansec" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="https://atlansec.es/assets/images/social/es/blog/posts/06-04-2025.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://atlansec.es/es/blog/posts/06-04-2025/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="LFI al Descubierto: De la Inclusión Local a la Ejecución Remota de Comandos (RCE) - Atlansec" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="https://atlansec.es/assets/images/social/es/blog/posts/06-04-2025.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lfi-al-descubierto-de-la-inclusion-local-a-la-ejecucion-remota-de-comandos-rce" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine classes -->
+ 
+
+<style>
+  .md-header {
+    box-shadow: none;
+  }
+
+  .md-post__back {
+    border-bottom: none !important;
+  }
+</style>
+
+<!-- Header -->
+<header class="md-header" data-md-component="header" style="width: 100%">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Link to home -->
+    <a
+      href="../../../"
+      title="Atlansec"
+      class="md-header__button md-logo"
+      aria-label="Atlansec"
+      data-md-component="logo"
+    >
+      
+  <img src="../../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Color palette toggle -->
+      
+
+    <!-- User preference: color palette -->
+    
+
+    <!-- Site language selector -->
+     <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Seleccionar idioma">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../../blog/posts/06-04-2025/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="es" class="md-select__link">
+              Spanish
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>  
+    <style>
+      .md-header__inner,
+      .md-grid {
+        justify-content: space-between;
+      }
+      @media screen and (max-width: 1219px) {
+        .md-search {
+          position: absolute;
+          right: 0;
+        }
+      }
+    </style>
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartir" aria-label="Compartir" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+    <!-- Repository information -->
+     
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../" class="md-tabs__link">
+        
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../services/" class="md-tabs__link">
+        
+  
+    
+  
+  Servicios
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+    
+  
+  Blog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../" title="Atlansec" class="md-nav__button md-logo" aria-label="Atlansec" data-md-component="logo">
+      
+  <img src="../../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    Atlansec
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../services/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Servicios
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-local-file-inclusion-lfi" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Qué es Local File Inclusion (LFI)?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#impacto-de-las-lfi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Impacto de las LFI
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Impacto de las LFI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-lfi-basico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo de LFI Básico
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lfi-con-path-traversal" class="md-nav__link">
+    <span class="md-ellipsis">
+      LFI con Path Traversal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#de-lfi-a-rce-remote-code-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      De LFI a RCE (Remote Code Execution)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="De LFI a RCE (Remote Code Execution)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inclusion-de-archivos-de-registro-con-inyeccion-de-codigo-log-poissoning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inclusión de archivos de registro con inyección de código (Log Poissoning)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-ocurre-exactamente" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Qué ocurre exactamente?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inclusion-de-sesiones-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inclusión de Sesiones PHP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inclusión de Sesiones PHP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flujo-de-ataque" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flujo de Ataque
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#por-que-son-sensibles-los-archivos-de-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Por qué son Sensibles los Archivos de Sesión?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mitigaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mitigaciones
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mitigaciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mitigaciones-para-prevenir-lfi-a-rce" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mitigaciones para prevenir LFI a RCE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mitigaciones-para-prevenir-inclusion-de-sesiones-en-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mitigaciones para prevenir inclusion de sesiones en PHP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusión
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">Local File Inclusion</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">LogPoisoning</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">Path Traversal</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">RCE</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">Seguridad Web</span>
+      
+    
+  </nav>
+
+
+
+<h1 id="lfi-al-descubierto-de-la-inclusion-local-a-la-ejecucion-remota-de-comandos-rce">LFI al Descubierto: De la Inclusión Local a la Ejecución Remota de Comandos (RCE)</h1>
+<p>La vulnerabilidad de Local File Inclusion (LFI) no se limita únicamente a la inclusión de archivos locales. En manos de un atacante experimentado puede convertirse en un vector de ataque crítico, escalable a una situación de ejecución remota de comandos (RCE). Este artículo explora cómo los atacantes aprovechan esta vulnerabilidad para comprometer servidores y qué medidas puedes implementar para proteger tu aplicación y tu infraestructura. </p>
+<!-- more -->
+
+<h2 id="que-es-local-file-inclusion-lfi">¿Qué es Local File Inclusion (LFI)?</h2>
+<p>La vulnerabilidad de <strong>Local File Inclusion (LFI)</strong> se produce cuando un servidor web incluye archivos locales basándose en datos proporcionados por el usuario. Este comportamiento puede aprovecharse a fin de leer archivos no accesibles desde el lado cliente y causar comportamientos inesperados en la aplicación.</p>
+<h2 id="impacto-de-las-lfi">Impacto de las LFI</h2>
+<p>Las vulnerabilidades LFI pueden generar serios problemas de seguridad en un servidor web, incluyendo:</p>
+<ul>
+<li><strong>Acceso no autorizado a archivos sensibles y Robo de información</strong>: Un atacante puede leer archivos de configuración y credenciales almacenadas en el sistema.</li>
+<li><strong>Ejecución de código malicioso</strong>: Mediante técnicas avanzadas dependientes de la situación un atacante podría llegar a ejecutar código arbitrario en el contexto del servidor.</li>
+</ul>
+<h3 id="ejemplo-de-lfi-basico">Ejemplo de LFI Básico</h3>
+<p>Imaginemos una aplicación web desarrollada en <em>PHP</em>:</p>
+<figure>
+    <img alt="LFI básico" src="../../../../assets/posts/2025/04/06/LFIWP.png" />
+    <figcaption>Aplicación Web.</figcaption>
+</figure>
+<p>Tenemos una barra de búsqueda donde podemos buscar cualquier archivo. La aplicación web estaría usando un código similar a este:</p>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">&lt;?php</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  <span class="nv">$file</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">];</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$file</span><span class="p">)){</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="k">include</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  <span class="p">}</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="cp">?&gt;</span>
+</span></code></pre></div>
+<p>Este código espera un parámetro <code>file</code> que contendrá el archivo que le pasemos al formulario de búsqueda. Si en el formulario ponemos un archivo como <code>hi.php</code>, la variable contendrá dicha cadena, haciendo referencia al fichero <code>hi.php</code> en el mismo directorio que el archivo de la aplicación web.</p>
+<p>Si realizamos la búsqueda, la URL de nuestra web cambiará a:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>http://dominio.com/pruebas/index.php?archivo=hi.php
+</span></code></pre></div>
+<figure>
+    <img alt="Resultado de aplicar LFI básico" src="../../../../assets/posts/2025/04/06/BasicLFI.png" />
+    <figcaption>Resultado de aplicar LFI básico.</figcaption>
+</figure>
+<p>Como prueba de concepto, intentamos acceder al archivo que contiene la configuración de los usuarios en sistemas Linux, el fichero <code>/etc/passwd</code>. Como la entrada del parámetro <code>file</code> no está sanitizada, un atacante podría escribir lo siguiente en la URL de la aplicación web:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>http://dominio.com/pruebas/index.php?archivo=/etc/passwd
+</span></code></pre></div>
+<figure>
+    <img alt="Accesso al fichero /etc/passwd" src="../../../../assets/posts/2025/04/06/BasicLFI2.png" />
+    <figcaption>Acceso al fichero /etc/passwd.</figcaption>
+</figure>
+<p>Esto supone un grave error de seguridad, no ya por la revelación de nombres de usuarios e información interna del servidor si no por que el atacante podría acceder acceder a otros archivos del sistema como la configuración de servicios, el historial de comandos o claves SSH.</p>
+<p>Para prevenir esto, podríamos realizar una sanitización de la entrada que recibe el parámetro <code>file</code>:</p>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">&lt;?php</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  <span class="nv">$file</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">];</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>  <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$file</span><span class="p">)){</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="k">include</span><span class="p">(</span><span class="s2">&quot;/var/www/html&quot;</span> <span class="o">.</span> <span class="nv">$file</span><span class="p">);</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>  <span class="p">}</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="cp">?&gt;</span>
+</span></code></pre></div>
+<figure>
+    <img alt="Acceso al fichero /etc/passwd restringido" src="../../../../assets/posts/2025/04/06/BasicLFIFix.png" />
+    <figcaption>Acceso al fichero /etc/passwd restringido.</figcaption>
+</figure>
+<p>Con este cambio, el acceso a los ficheros que no están contenidos en la ruta <code>/var/www/html</code> está restringido, aumentando levemente la seguridad en nuestro servidor. Sin embargo, esta mitigación no está completa, ya que existen otras técnicas que permiten eludir este tipo de mitigación, como veremos a continuación.</p>
+<h3 id="lfi-con-path-traversal">LFI con Path Traversal</h3>
+<p>Ahora, consideremos una aplicación web más robusta, donde los payloads básicos para <strong>LFI</strong> no funciona, ya que la web contiene este código:</p>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">&lt;?php</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  <span class="nv">$file</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">];</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>  <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$file</span><span class="p">)){</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="k">include</span><span class="p">(</span><span class="s2">&quot;/var/www/html&quot;</span><span class="o">.</span> <span class="nv">$file</span><span class="p">);</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  <span class="p">}</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="cp">?&gt;</span>
+</span></code></pre></div>
+<p>Esta protección impide acceder a cualquier archivo fuera del directorio especificado. Sin embargo, esta restricción puede ser eludida mediante <strong>Path Traversal</strong>.</p>
+<p>El <strong>Path Traversal</strong>, también conocido como <strong>Directory Traversal</strong>, es una técnica para acceder a archivos y directorios fuera del directorio permitido por la aplicación web. Se logra utilizando secuencias como <code>../</code> para subir niveles en el sistema de archivos.</p>
+<p>Si una aplicación tiene un filtro que solo restringe archivos en su directorio de trabajo, se puede usar Path Traversal junto con LFI para acceder a archivos del sistema. Por ejemplo:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>https://dominio.com/pruebas/index.php?file=../../../../../../../../../../../etc/passwd
+</span></code></pre></div>
+<figure>
+    <img alt="Acceso al fichero /etc/passwd del servidor" src="../../../../assets/posts/2025/04/06/PTLFI.png" />
+    <figcaption>Acceso al archivo /etc/passwd del servidor.</figcaption>
+</figure>
+<p>Este tipo de ataque es muy peligroso cuando se combina con LFI, ya que puede permitir a un atacante acceder a archivos críticos del sistema, incluyendo configuraciones, credenciales y registros de actividad del servidor. Además, es común escalar estos ataques a una ejecución remota de comandos, ya sea realizando un ataque de <code>LogPoisoning</code> o incluyendo una <code>Web Shell</code> en el servidor.</p>
+<h3 id="de-lfi-a-rce-remote-code-execution">De LFI a RCE (Remote Code Execution)</h3>
+<p>La transición de una vulnerabilidad de <strong>Local File Inclusion (LFI)</strong> a <strong>Remote Code Execution (RCE)</strong> es una técnica avanzada que los atacantes pueden emplear para comprometer un sistema por completo. Estos métodos son bastante dependientes del lenguaje en el que se escribe la aplicación y de configuraciones especificas del servidor, los métodos más comunes para lograr pasar de un LFI a RCE son los siguientes:</p>
+<h4 id="inclusion-de-archivos-de-registro-con-inyeccion-de-codigo-log-poissoning">Inclusión de archivos de registro con inyección de código (Log Poissoning)</h4>
+<p>Si el servidor web registra las solicitudes en archivos de log accesibles, un atacante puede inyectar código malicioso en dichos registros y luego incluirlos mediante LFI. Por ejemplo:</p>
+<ol>
+<li>El atacante envía una solicitud maliciosa que inyecta código PHP en los logs del servidor:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>curl<span class="w"> </span>-A<span class="w"> </span><span class="s2">&quot;&lt;?php system(&#39;whoami&#39;); ?&gt;&quot;</span><span class="w"> </span>http://dominio.com
+</span></code></pre></div>
+<p>Aquí, el código PHP se inyecta en el archivo de logs del servidor web (por ejemplo, <code>/var/log/apache2/access.log</code>).</p>
+<ol>
+<li>Luego, utiliza LFI para incluir el archivo de log:</li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>http://dominio.com/pruebas/index.php?file=../../../../../../var/log/apache2/access.log
+</span></code></pre></div>
+<p>Esto ejecutará el código PHP inyectado, permitiendo al atacante ejecutar comandos en el servidor.</p>
+<figure>
+    <img alt="Fichero logs de Apache" src="../../../../assets/posts/2025/04/06/ApacheLog.png" />
+    <figcaption>Acceso a los logs de acceso de Apache via LFI.</figcaption>
+</figure>
+<p>Como se puede observar al final del log, se refleja que hemos accedido al directorio especificado. Esto significa que el contenido de la variable proporcionada en la URL ha sido procesado por el servidor, permitiendo al atacante visualizar información sensible o ejecutar código malicioso si el archivo incluido contiene instrucciones ejecutables.</p>
+<p>De igual manera y dependiendo del log que podamos leer se puede inyectar el código a ejecutar en los logs del servicio web (a través del User-Agent por ejemplo), en los logs del SSH (mediante el nombre de usuario) e incluso en logs custom de la aplicación mediante diversos parámetros.</p>
+<h3 id="que-ocurre-exactamente">¿Qué ocurre exactamente?</h3>
+<ul>
+<li>PHP usa <code>include()</code> para interpretar el archivo especificado.</li>
+<li>Al incluir el log, se encuentra con una línea que contiene <code>&lt;?php system('id'); ?&gt;</code>.</li>
+<li>PHP ejecuta esa línea como si fuera parte del código original.</li>
+<li>El resultado del comando <code>id</code> se muestra en la respuesta HTTP.</li>
+</ul>
+<h2 id="inclusion-de-sesiones-php">Inclusión de Sesiones PHP</h2>
+<p>Cuando PHP almacena datos de sesión en archivos (configuración predeterminada), estos se guardan en un directorio definido por <code>session.save_path</code> en el archivo <code>php.ini</code>. Si un atacante obtiene acceso a estos archivos mediante <strong>Local File Inclusion (LFI)</strong>, puede inyectar y ejecutar código malicioso.</p>
+<h3 id="flujo-de-ataque">Flujo de Ataque</h3>
+<ol>
+<li><strong>Inyección de Código en la Sesión</strong>:<br />
+    El atacante inicia una sesión y modifica su contenido para incluir código PHP:</li>
+</ol>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="cp">&lt;?php</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a> <span class="nb">session_start</span><span class="p">();</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a> <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;malicioso&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&lt;?php system(&#39;id&#39;); ?&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="cp">?&gt;</span>
+</span></code></pre></div>
+<p>Esto guarda el payload en el archivo de sesión (ej: <code>/var/lib/php/sessions/sess_abc123</code>).</p>
+<ol>
+<li><strong>Explotación mediante LFI</strong>:<br />
+    Si el servidor permite incluir archivos fuera del directorio raíz:<br />
+<code>url
+    http://dominio.com/index.php?file=../../../../var/lib/php/sessions/sess_abc123</code>
+   El código PHP inyectado se ejecutará, permitiendo ejecutar comandos como <code>id</code>.</li>
+</ol>
+<h3 id="por-que-son-sensibles-los-archivos-de-sesion">¿Por qué son Sensibles los Archivos de Sesión?</h3>
+<ul>
+<li><strong>Ubicación Accesible</strong>: Por defecto, PHP almacena sesiones en directorios como <code>/var/lib/php/sessions</code> (Linux) o <code>C:\Windows\Temp</code> (Windows). Si estos archivos están dentro del alcance del servidor web (ej: <code>DocumentRoot</code>), podrían ser incluidos mediante LFI.</li>
+<li><strong>Formato de Almacenamiento</strong>: Los archivos de sesión contienen datos en texto plano con el formato. Si el valor incluye código PHP sin sanitizar, se ejecutará al ser incluido.</li>
+</ul>
+<h2 id="mitigaciones">Mitigaciones</h2>
+<p>La prevención de vulnerabilidades como <strong>Local File Inclusion (LFI)</strong> requiere un enfoque integral que combine buenas prácticas de desarrollo, configuraciones seguras del servidor y monitoreo constante. Las mitigaciones no solo deben enfocarse en evitar la explotación inicial, sino también en limitar el impacto de un posible ataque. A continuación, se presentan estrategias clave para proteger tus aplicaciones y sistemas frente a LFI a su posible escalada a <strong>Remote Code Execution (RCE)</strong> y prevenir la <strong>inclusion de sesiones</strong> en PHP.</p>
+<h3 id="mitigaciones-para-prevenir-lfi-a-rce">Mitigaciones para prevenir LFI a RCE</h3>
+<p>Para evitar que una vulnerabilidad de LFI escale a RCE, se deben implementar las siguientes medidas:</p>
+<ol>
+<li>
+<p><strong>Validación estricta de entradas</strong>:</p>
+<p>Utilizar listas blancas para limitar los archivos que pueden ser incluidos, además de rechazar caracteres como <code>../</code>, y otros que permitan Path Traversal.</p>
+<ul>
+<li>
+<p><strong>Listas Blancas (Whitelisting):</strong></p>
+</li>
+<li>
+<p><strong>Concepto:</strong> Permite solo un conjunto específico de archivos o rutas que son consideradas seguras.</p>
+</li>
+<li><strong>Ejemplo:</strong> Si tu aplicación necesita incluir solo archivos <code>.php</code> desde un directorio específico, define una lista blanca que solo permita esos archivos.</li>
+</ul>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="cp">&lt;?php</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nv">$allowed_files</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="s1">&#39;home.php&#39;</span><span class="p">,</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="s1">&#39;about.php&#39;</span><span class="p">,</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="s1">&#39;contact.php&#39;</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="p">];</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="nv">$file</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">];</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="k">if</span> <span class="p">(</span><span class="nb">in_array</span><span class="p">(</span><span class="nv">$file</span><span class="p">,</span> <span class="nv">$allowed_files</span><span class="p">))</span> <span class="p">{</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>    <span class="k">include</span><span class="p">(</span><span class="s1">&#39;/var/www/html/pages/&#39;</span> <span class="o">.</span> <span class="nv">$file</span><span class="p">);</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>    <span class="k">echo</span> <span class="s2">&quot;Archivo no permitido.&quot;</span><span class="p">;</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="p">}</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="cp">?&gt;</span>
+</span></code></pre></div>
+<p>En este ejemplo, solo los archivos <code>home.php</code>, <code>about.php</code> y <code>contact.php</code> pueden ser incluidos. Cualquier otro archivo será rechazado.</p>
+<ul>
+<li>
+<p><strong>Rechazar Caracteres Peligrosos:</strong></p>
+<ul>
+<li><strong>Concepto:</strong> Bloquea caracteres y secuencias que facilitan el Path Traversal y otras manipulaciones.</li>
+<li><strong>Ejemplo:</strong> Eliminar o rechazar secuencias como <code>../</code>, <code>..\\</code>, y otros caracteres especiales.</li>
+</ul>
+</li>
+</ul>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="cp">&lt;?php</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">function</span> <span class="nf">sanitizePath</span><span class="p">(</span><span class="nv">$input</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="c1">// Decodificar URL primero para evitar bypass con caracteres codificados</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="nv">$input</span> <span class="o">=</span> <span class="nb">urldecode</span><span class="p">(</span><span class="nv">$input</span><span class="p">);</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    <span class="c1">// Eliminar secuencias de traversal en todas sus variantes</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>    <span class="nv">$input</span> <span class="o">=</span> <span class="nb">str_replace</span><span class="p">([</span><span class="s1">&#39;../&#39;</span><span class="p">,</span> <span class="s1">&#39;..\\&#39;</span><span class="p">,</span> <span class="s1">&#39;.../&#39;</span><span class="p">,</span> <span class="s1">&#39;....//&#39;</span><span class="p">],</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nv">$input</span><span class="p">);</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    <span class="c1">// Eliminar caracteres no permitidos (solo letras, números, guiones y puntos)</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>    <span class="nv">$input</span> <span class="o">=</span> <span class="nb">preg_replace</span><span class="p">(</span><span class="s1">&#39;/[^a-zA-Z0-9\-\.\/]/&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nv">$input</span><span class="p">);</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>    <span class="k">return</span> <span class="nv">$input</span><span class="p">;</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="p">}</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="nv">$file</span> <span class="o">=</span> <span class="nx">sanitizePath</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">]);</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="nv">$basePath</span> <span class="o">=</span> <span class="s1">&#39;/var/www/html/pages/&#39;</span><span class="p">;</span>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="nv">$fullPath</span> <span class="o">=</span> <span class="nb">realpath</span><span class="p">(</span><span class="nv">$basePath</span> <span class="o">.</span> <span class="nv">$file</span> <span class="o">.</span> <span class="s1">&#39;.php&#39;</span><span class="p">);</span>
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="c1">// Validación final con realpath()</span>
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="k">if</span> <span class="p">(</span><span class="nv">$fullPath</span> <span class="o">&amp;&amp;</span> <span class="nb">strpos</span><span class="p">(</span><span class="nv">$fullPath</span><span class="p">,</span> <span class="nv">$basePath</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>    <span class="k">include</span><span class="p">(</span><span class="nv">$fullPath</span><span class="p">);</span>
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>    <span class="k">echo</span> <span class="s2">&quot;Acceso denegado: Ruta no válida.&quot;</span><span class="p">;</span>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="p">}</span>
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="cp">?&gt;</span>
+</span></code></pre></div>
+<p>Realizar una combinación de sanitización proactiva, validación estricta de caracteres y comprobación con <code>realpath()</code> cierra múltiples vectores de ataque. Sin embargo, las listas blancas siguen siendo la estrategia más robusta contra LFI.</p>
+</li>
+<li>
+<p><strong>Deshabilitar funciones peligrosas</strong>:</p>
+<p>Configurar <code>allow_url_include=Off</code> y <code>allow_url_fopen=Off</code> en <code>php.ini</code> y deshabilitar funciones como <code>system()</code>, <code>exec()</code>, <code>shell_exec()</code>, y similares.</p>
+<ul>
+<li>
+<p><strong><code>allow_url_include</code> y <code>allow_url_fopen</code>:</strong></p>
+</li>
+<li>
+<p><strong>Concepto:</strong> Estas directivas permiten incluir archivos desde URLs remotas. Deshabilitarlas previene la inclusión de código desde fuentes externas, reduciendo el riesgo de RCE.</p>
+</li>
+<li>
+<p><strong>Configuración:</strong> En el archivo <code>php.ini</code>, asegúrate de que estén configuradas como <code>Off</code>:</p>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="x">allow_url_include = Off</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="x">allow_url_fopen = Off</span>
+</span></code></pre></div>
+</li>
+<li>
+<p><strong>Deshabilitar Funciones Críticas:</strong></p>
+<ul>
+<li><strong>Concepto:</strong> Funciones como <code>system()</code>, <code>exec()</code>, <code>shell_exec()</code>, <code>passthru()</code> y <code>popen()</code> permiten la ejecución de comandos del sistema. Deshabilitarlas o restringir su uso impide que los atacantes ejecuten código arbitrario.</li>
+<li><strong>Configuración:</strong> En el archivo <code>php.ini</code>, utiliza la directiva <code>disable_functions</code>:</li>
+</ul>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="x">disable_functions = system,exec,shell_exec,passthru,popen,proc_open,curl_exec,curl_multi_exec,parse_ini_file,show_source</span>
+</span></code></pre></div>
+</li>
+</ul>
+<p>Esto deshabilita las funciones listadas, impidiendo su uso en el código PHP.</p>
+</li>
+<li>
+<p><strong>Aislar archivos sensibles</strong>:</p>
+<p>Almacenar archivos de configuración, logs y sesiones fuera del directorio accesible por la aplicación web.</p>
+<ul>
+<li><strong>Concepto:</strong> Almacena archivos de configuración, logs y sesiones fuera del directorio raíz accesible por la web.</li>
+<li>
+<p><strong>Ejemplo:</strong></p>
+</li>
+<li>
+<p><strong>Logs:</strong> Guarda los archivos de log en un directorio como <code>/var/log/app/</code> que no sea accesible directamente a través de la web.</p>
+</li>
+<li><strong>Configuración:</strong> Almacena los archivos de configuración en un directorio como <code>/etc/app/</code> y asegúrate de que el usuario del servidor web no tenga permisos de lectura.</li>
+<li><strong>Sesiones:</strong> Configura PHP para guardar las sesiones en un directorio seguro fuera del alcance del servidor web, como <code>/var/lib/php/sessions/</code>.</li>
+</ul>
+<p>En el archivo <code>php.ini</code>:</p>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="x">session.save_path = &quot;/var/lib/php/sessions&quot;</span>
+</span></code></pre></div>
+<p>Asegúrate de que solo el usuario del sistema tenga acceso a este directorio.</p>
+</li>
+<li>
+<p><strong>Configurar permisos adecuados</strong>:</p>
+<p>Restringir los permisos de lectura y escritura en archivos y directorios críticos.</p>
+<ul>
+<li><strong>Concepto:</strong> Restringe los permisos de lectura y escritura en archivos y directorios críticos.</li>
+<li>
+<p><strong>Ejemplo:</strong></p>
+</li>
+<li>
+<p>Utiliza <code>chmod</code> para configurar los permisos de los archivos. Por ejemplo, para un archivo de configuración:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>/etc/app/config.ini
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>chown<span class="w"> </span>root:root<span class="w"> </span>/etc/app/config.ini
+</span></code></pre></div>
+<p>Esto da permisos de lectura y escritura solo al usuario root.</p>
+</li>
+<li>
+<p><strong>Directorios:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>/var/log/app/
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>chown<span class="w"> </span>www-data:www-data<span class="w"> </span>/var/log/app/
+</span></code></pre></div>
+<p>Esto da permisos de lectura, escritura y ejecución al usuario <code>www-data</code>, que es el usuario del servidor web, y restringe el acceso a otros usuarios.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Monitorear y auditar</strong>:</p>
+<p>Revisar regularmente los logs del servidor para detectar actividades sospechosas e implementar herramientas de detección de intrusos (IDS) para identificar intentos de explotación.</p>
+<ul>
+<li>
+<p><strong>Revisar Logs del Servidor:</strong></p>
+</li>
+<li>
+<p><strong>Concepto:</strong> Analiza regularmente los logs del servidor web y de la aplicación para detectar patrones sospechosos, errores inusuales o intentos de acceso a archivos no autorizados.</p>
+</li>
+<li>
+<p><strong>Ejemplo:</strong> Busca en los logs patrones como:</p>
+<ul>
+<li>Intentos de acceder a archivos sensibles (<code>/etc/passwd</code>, archivos de configuración).</li>
+<li>Errores de inclusión de archivos.</li>
+<li>Solicitudes con caracteres sospechosos (<code>../</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>Implementar un WAF (Web Application Firewall):</strong></p>
+</li>
+<li>
+<p><strong>Concepto:</strong> Utiliza un firewall de aplicaciones web (WAF) para proteger aplicaciones expuestas a internet contra ataques como Path Traversal, inyección de código y otras amenazas comunes.</p>
+</li>
+<li><strong>Ejemplo:</strong> Configura un WAF como <a href="https://modsecurity.org/" target="_blank">ModSecurity</a> o servicios en la nube como <a href="https://www.cloudflare.com/" target="_blank">Cloudflare</a> para filtrar y bloquear solicitudes maliciosas.</li>
+</ul>
+<p>Estas herramientas son ideales para proteger aplicaciones web en entornos expuestos a internet, proporcionando una capa adicional de seguridad.</p>
+</li>
+</ol>
+<h3 id="mitigaciones-para-prevenir-inclusion-de-sesiones-en-php">Mitigaciones para prevenir inclusion de sesiones en PHP</h3>
+<ol>
+<li><strong>Mover Archivos de Sesión Fuera del Alcance del Servidor Web</strong>:<br />
+   Configurar <code>session.save_path</code> en <code>php.ini</code> para usar un directorio no accesible desde la web:</li>
+</ol>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="x">session.save_path = &quot;/var/secure/sessions&quot;</span>
+</span></code></pre></div>
+<p>Asegurar permisos: <code>chmod 600 /var/secure/sessions</code>.</p>
+<ol>
+<li><strong>Validación Estricta en LFI</strong>:<br />
+   Usar listas blancas y sanitización de rutas:</li>
+</ol>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="x">$allowed = [&#39;home&#39;, &#39;about&#39;];</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="x">if (!in_array($_GET[&#39;file&#39;], $allowed)) die(&quot;Acceso denegado&quot;);</span>
+</span></code></pre></div>
+<ol>
+<li><strong>Sanitizar Datos de Sesión</strong>:<br />
+   Validar y filtrar entradas antes de almacenarlas en <code>$_SESSION</code>:</li>
+</ol>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="x">$_SESSION[&#39;usuario&#39;] = htmlspecialchars($input);</span>
+</span></code></pre></div>
+<ol>
+<li><strong>Configurar <code>open_basedir</code></strong>:<br />
+   Restringir el acceso a directorios específicos:</li>
+</ol>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="x">open_basedir = /var/www/html:/var/secure/sessions</span>
+</span></code></pre></div>
+<ol>
+<li><strong>Usar Almacenamiento Alternativo</strong>:<br />
+   Cambiar el manejador de sesiones a bases de datos o memoria:</li>
+</ol>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="x">ini_set(&#39;session.save_handler&#39;, &#39;redis&#39;);</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="x">ini_set(&#39;session.save_path&#39;, &#39;tcp://127.0.0.1:6379&#39;);</span>
+</span></code></pre></div>
+<h2 id="conclusion">Conclusión</h2>
+<p>La vulnerabilidad de Local File Inclusion (LFI) es un recordatorio de cómo una mala gestión de las entradas del usuario puede convertirse en un vector de ataque crítico. Aunque puede parecer una falla menor, su combinación con técnicas avanzadas como Path Traversal o Log Poisoning puede escalar rápidamente a una ejecución remota de comandos (RCE), comprometiendo por completo la seguridad de un sistema.</p>
+<p>La clave para mitigar este tipo de vulnerabilidades radica en la implementación de buenas prácticas de desarrollo seguro, como la validación estricta de entradas, el uso de listas blancas, la configuración adecuada del servidor y la desactivación de funciones peligrosas. Además, el monitoreo constante y la auditoría de los sistemas son esenciales para detectar y prevenir intentos de explotación.</p>
+<p>En última instancia, la seguridad no es un estado, sino un proceso continuo. Adoptar un enfoque proactivo y mantener una mentalidad de mejora constante es fundamental para proteger tus aplicaciones y tu infraestructura frente a amenazas como LFI.</p>
+<p>Stay safe. Stay smart. Stay secure.</p>
+<hr />
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <style>
+    .footer-bottom {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        text-align: center;
+        font-size: 0.875rem;
+        @media screen and (max-width: 991px) {
+        font-size: 2vw;
+            
+        }
+    }
+</style>
+
+
+<footer class="md-footer">
+    <div class="footer-bottom">
+        <p>&copy; 2025 Atlansec. All rights reserved.</p>
+    </div>
+    </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["hide_title", "navigation.indexes", "navigation.tabs", "content.code.copy", "i18n", "search.share"], "search": "../../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+        <script src="../../../../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>

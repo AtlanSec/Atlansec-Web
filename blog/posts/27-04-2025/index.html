@@ -1,0 +1,1108 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://atlansec.es/blog/posts/27-04-2025/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>Design Systems: Creating Visual Consistency Across Products - Atlansec</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Design Systems: Creating Visual Consistency Across Products - Atlansec" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="https://atlansec.es/assets/images/social/blog/posts/27-04-2025.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://atlansec.es/blog/posts/27-04-2025/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Design Systems: Creating Visual Consistency Across Products - Atlansec" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="https://atlansec.es/assets/images/social/blog/posts/27-04-2025.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#design-systems-creating-visual-consistency-across-products" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine classes -->
+ 
+
+<style>
+  .md-header {
+    box-shadow: none;
+  }
+
+  .md-post__back {
+    border-bottom: none !important;
+  }
+</style>
+
+<!-- Header -->
+<header class="md-header" data-md-component="header" style="width: 100%">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Link to home -->
+    <a
+      href="../../.."
+      title="Atlansec"
+      class="md-header__button md-logo"
+      aria-label="Atlansec"
+      data-md-component="logo"
+    >
+      
+  <img src="../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Color palette toggle -->
+      
+
+    <!-- User preference: color palette -->
+    
+
+    <!-- Site language selector -->
+     <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../../es/blog/posts/27-04-2025/" hreflang="es" class="md-select__link">
+              Spanish
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>  
+    <style>
+      .md-header__inner,
+      .md-grid {
+        justify-content: space-between;
+      }
+      @media screen and (max-width: 1219px) {
+        .md-search {
+          position: absolute;
+          right: 0;
+        }
+      }
+    </style>
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+    <!-- Repository information -->
+     
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../services/" class="md-tabs__link">
+        
+  
+    
+  
+  Services
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+    
+  
+  Blog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Atlansec" class="md-nav__button md-logo" aria-label="Atlansec" data-md-component="logo">
+      
+  <img src="../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    Atlansec
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../services/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Services
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-design-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is a Design System?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atomic-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atomic Design
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atomic Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ions-design-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ions (Design Tokens)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ions (Design Tokens)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#some-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Some examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atoms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atoms
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#molecules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Molecules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#organisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Organisms
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Templates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-use-atomic-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why use Atomic Design?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benefits-and-drawbacks-of-design-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits and Drawbacks of Design Systems
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Benefits and Drawbacks of Design Systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#benefits-of-implementing-a-design-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits of implementing a Design System
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Benefits of implementing a Design System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#consistency-and-visual-coherence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Consistency and visual coherence
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#development-efficiency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development efficiency
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improved-collaboration-between-teams" class="md-nav__link">
+    <span class="md-ellipsis">
+      Improved collaboration between teams
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scalability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scalability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#facilitates-testing-and-quality-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      Facilitates testing and quality control
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improves-accessibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      Improves accessibility
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduces-technical-and-design-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reduces technical and design debt
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drawbacks-and-challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drawbacks and challenges
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Drawbacks and challenges">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#significant-initial-investment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Significant initial investment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resistance-to-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resistance to change
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuous-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Continuous maintenance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-limit-creativity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can limit creativity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexity-in-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexity in implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requires-organizational-commitment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requires organizational commitment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#learning-curve" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning curve
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-does-it-make-sense-to-implement-a-design-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      When does it make sense to implement a Design System?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next-from-concept-to-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Next: From Concept to Implementation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What's Next: From Concept to Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition-and-documentation-of-design-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definition and Documentation of Design Tokens
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#development-of-the-component-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development of the Component Library
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-and-adoption-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration and Adoption Strategies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references-and-recommended-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      References and Recommended Reading
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="References and Recommended Reading">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#books" class="md-nav__link">
+    <span class="md-ellipsis">
+      Books
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#articles-and-web-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Articles and Web Resources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reference-design-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference Design Systems
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools-and-platforms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tools and Platforms
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="design-systems-creating-visual-consistency-across-products">Design Systems: Creating Visual Consistency Across Products</h1>
+<p>Imagine you're working as a designer for a company, responsible for designing multiple microservices. The first one turns out great, however, when it comes to creating the second one, you notice that there isn't much coherence with the first and that although they look similar, there's something that doesn't make them appear to be from the same company. Different fonts, spacing, styles, colors, and iconography are used...</p>
+<p>Once the designs are completed, the client congratulates you, since they liked them, however, after some time they write to you, saying that while there has been an improvement compared to what they had before, the microservices weren't cohesive, there wasn't a correlation between them, and in short, they seemed like independent pieces rather than a company ecosystem.</p>
+<!-- more -->
+
+<p>It turns out that, faced with this feedback, you're overcome with frustration. After all the effort invested, there are still problems with visual coherence. Determined to solve this challenge once and for all, you begin to research and come across a revelation: a term you had never heard of before, <strong>Design Systems</strong>.</p>
+<h2 id="what-is-a-design-system">What is a Design System?</h2>
+<p>When explaining what a Design System is, I like to make an analogy with <em>LEGO</em>. Just as these famous building blocks allow us to create unique and incredible structures, a Design System provides us with basic elements to build digital interfaces. These elements, called components, are like LEGO pieces: reusable (they can be used in multiple places) and modular (they function independently but integrate perfectly with others). And just as LEGO has themed series (Star Wars, Harry Potter, City) where all the pieces share a coherent aesthetic and combine perfectly with each other, a Design System ensures that all its elements "belong to the same family" visually.</p>
+<p><img alt="" src="../../../assets/posts/2025/04/06/lego.png" /></p>
+<p>Going more into technicalities and setting analogies aside, a <strong>Design System</strong> is a collection of reusable components, guided by clear principles, documented and standardized that allow teams to create designs in a coherent, consistent, and efficient manner. Additionally, it establishes a "common language" of design that greatly facilitates communication between design, development, and product teams.</p>
+<p>Now that we understand what a Design System is and its importance for maintaining visual consistency, the practical question arises: how do we implement it? Creating a complete system from scratch might seem overwhelming, especially if we don't have a clear structure to guide the process. Fortunately, there are proven methodologies that offer a defined path. Among them stands out an approach that, inspired by scientific principles, allows us to build complex systems from simple elements.</p>
+<h2 id="atomic-design">Atomic Design</h2>
+<p>The Atomic Design methodology, created by Brad Frost, is one of the most popular and effective ways to structure a Design System. This methodology takes inspiration from chemistry to organize interface components hierarchically, from the simplest to the most complex.</p>
+<p><img alt="" src="../../../assets/posts/2025/04/06/All.png" /></p>
+<h3 id="ions-design-tokens">Ions (Design Tokens)</h3>
+<p>Ions are the most fundamental and abstract elements of the system. Just as in chemistry ions are charged particles that form part of atoms, in design they represent the basic properties and variables that will define the entire system:</p>
+<ul>
+<li>Colors (primary, secondary, and neutral palettes)</li>
+<li>Typography (families, sizes, weights)</li>
+<li>Spacing (grid system, margins, paddings)</li>
+<li>Shadows and elevations</li>
+<li>Borders and radii</li>
+<li>Opacities</li>
+<li>Transitions and animations</li>
+</ul>
+<h4 id="some-examples">Some examples</h4>
+<p><img alt="" src="../../../assets/posts/2025/04/06/colors.png" /></p>
+<p><img alt="" src="../../../assets/posts/2025/04/06/typography.png" /></p>
+<p><img alt="" src="../../../assets/posts/2025/04/06/spacing.png" /></p>
+<p>These elements, also known as "Design Tokens," have no functionality by themselves, but they are crucial as they define the visual identity of the system and affect all other components. They are the fundamental properties that, as variables, can be modified to alter the entire appearance of the system without changing its structure.</p>
+<h3 id="atoms">Atoms</h3>
+<p>Atoms are the most basic and indivisible components of a Design System. Just as atoms in chemistry are the fundamental building blocks of matter, in design they represent the simplest elements of an interface:</p>
+<ul>
+<li>Buttons</li>
+<li>Text fields</li>
+<li>Icons</li>
+<li>Labels</li>
+<li>Checkboxes</li>
+<li>Simple selectors</li>
+<li>Avatars</li>
+</ul>
+<p>These elements can be implemented independently and have a specific function, but they cannot be broken down further without losing that function. A button, for example, applies ionic properties (colors, typography, spacing), but constitutes an indivisible functional unit.</p>
+<p><img alt="" src="../../../assets/posts/2025/04/06/atom.png" /></p>
+<h3 id="molecules">Molecules</h3>
+<p>Molecules are formed when two or more atoms join together to create components with specific functionalities. Some examples would be:</p>
+<ul>
+<li>A search field (combines a text field, a button, and an icon)</li>
+<li>A selection group (radio buttons with their labels)</li>
+<li>A simple card (combines title, description, and possibly an image)</li>
+</ul>
+<p>Molecules are relatively simple and focus on doing one thing well, but they already provide tangible functionality for the user.</p>
+<p><img alt="" src="../../../assets/posts/2025/04/06/molecules.png" /></p>
+<h3 id="organisms">Organisms</h3>
+<p>Organisms are more complex components formed by combining molecules and/or atoms. They represent distinctive sections of an interface:</p>
+<ul>
+<li>A complete navigation bar (logo, menu, search, account buttons)</li>
+<li>A registration form (fields, validations, submission buttons)</li>
+<li>A product carousel (with product cards, navigation controls)</li>
+<li>A footer with multiple columns of information</li>
+</ul>
+<p>Organisms are components complex enough to constitute complete sections of an interface.</p>
+<p><img alt="" src="../../../assets/posts/2025/04/06/Organisms.png" /></p>
+<h3 id="templates">Templates</h3>
+<p>Templates are page layouts that show how organisms are organized in a coherent design. They don't contain real content but define the structure and layout:</p>
+<ul>
+<li>Home page template</li>
+<li>Product page template</li>
+<li>Contact form template</li>
+<li>Blog template</li>
+</ul>
+<p>Templates act as high-fidelity wireframes, showing the distribution of elements in each type of page.</p>
+<h3 id="pages">Pages</h3>
+<p>Pages are specific instances of templates that show how the interface would look with real content:</p>
+<ul>
+<li>The current home page with seasonal promotions</li>
+<li>A specific product page with its images and descriptions</li>
+<li>A specific blog article with its content</li>
+</ul>
+<p>Pages are the final manifestation of the entire system and allow testing how the Design System works in real scenarios.</p>
+<p><img alt="" src="../../../assets/posts/2025/04/06/all2.png" /></p>
+<h3 id="why-use-atomic-design">Why use Atomic Design?</h3>
+<ul>
+<li><strong>Modularity</strong>: Allows creating, testing, and maintaining components independently.</li>
+<li><strong>Scalability</strong>: Facilitates the addition of new components without breaking existing ones.</li>
+<li><strong>Consistency</strong>: Ensures that the same components are used throughout the interface.</li>
+<li><strong>Efficiency</strong>: Reduces duplication of work by reusing components.</li>
+<li><strong>Collaboration</strong>: Provides a common language for designers and developers.</li>
+</ul>
+<p>If you want to delve deeper into this methodology, this book explains it perfectly and is one I based my understanding on (among others): <a href="https://atomicdesign.bradfrost.com/">Atomic Design</a></p>
+<p>The Atomic Design methodology provides us with a structured framework to organize the components of our Design System, from the simplest elements to complete pages. This systematic approach not only facilitates the creation and maintenance of coherent interfaces, but also reflects many of the inherent advantages of implementing a Design System. However, like any solution, adopting a Design System entails both significant benefits and certain challenges that we must consider. Understanding these implications will help us evaluate whether this investment is appropriate for our specific context and how we can maximize its value while mitigating its potential drawbacks.</p>
+<h2 id="benefits-and-drawbacks-of-design-systems">Benefits and Drawbacks of Design Systems</h2>
+<p>Implementing a Design System is a strategic decision that can profoundly transform the way an organization approaches digital design. Like any strategy, it's important to sit down and analyze the pros and cons of each possible solution before making a decision.</p>
+<h3 id="benefits-of-implementing-a-design-system">Benefits of implementing a Design System</h3>
+<h4 id="consistency-and-visual-coherence"><strong>Consistency and visual coherence</strong></h4>
+<p>Perhaps the most evident benefit and the main reason we started this conversation: a Design System ensures that all of a company's digital products maintain a coherent appearance and behavior. Users perceive a unified experience regardless of the product or service they are using, thus strengthening brand identity.</p>
+<h4 id="development-efficiency"><strong>Development efficiency</strong></h4>
+<p>By having predefined and reusable components, development teams can implement new features or complete products in much less time. It's not necessary to "reinvent the wheel" every time a new interface is created, which significantly reduces delivery times.</p>
+<h4 id="improved-collaboration-between-teams"><strong>Improved collaboration between teams</strong></h4>
+<p>A Design System establishes a common vocabulary between designers, developers, and stakeholders. This "lingua franca" facilitates communication, reduces misunderstandings, and streamlines review and approval processes, creating a more harmonious workflow.</p>
+<h4 id="scalability"><strong>Scalability</strong></h4>
+<p>As a company grows and diversifies its digital products, a well-implemented Design System grows with it. Adding new functionalities or adapting existing ones becomes easier when starting from a solid and structured foundation.</p>
+<h4 id="facilitates-testing-and-quality-control"><strong>Facilitates testing and quality control</strong></h4>
+<p>By using standardized components that have already been thoroughly tested, errors are reduced and the QA process is facilitated. Each component can be validated individually, ensuring it works correctly before integrating it into a broader context.</p>
+<h4 id="improves-accessibility"><strong>Improves accessibility</strong></h4>
+<p>A good Design System incorporates accessibility considerations from its conception. This ensures that all products using it meet accessibility standards without requiring additional efforts from design or development teams.</p>
+<h4 id="reduces-technical-and-design-debt"><strong>Reduces technical and design debt</strong></h4>
+<p>By establishing clear standards and maintaining updated documentation, the accumulation of "patches" or improvised solutions that often generate long-term problems is minimized.</p>
+<h3 id="drawbacks-and-challenges">Drawbacks and challenges</h3>
+<h4 id="significant-initial-investment"><strong>Significant initial investment</strong></h4>
+<p>Developing a complete Design System requires a considerable investment of time, resources, and effort. It's a medium to long-term project whose benefits are not always immediately visible, which can make it difficult to justify in environments where short-term results are prioritized.</p>
+<h4 id="resistance-to-change"><strong>Resistance to change</strong></h4>
+<p>Implementing a Design System involves changes in established workflows. It's common to encounter resistance from teams accustomed to working with greater autonomy or with their own methodologies.</p>
+<h4 id="continuous-maintenance"><strong>Continuous maintenance</strong></h4>
+<p>A Design System is not a project that is completed and archived; it requires constant maintenance, updates, and evolution. Without a firm commitment to its maintenance, it can quickly become obsolete or, worse, become an obstacle rather than a tool.</p>
+<h4 id="can-limit-creativity"><strong>Can limit creativity</strong></h4>
+<p>Some designers may feel that working within the confines of a system limits their creative freedom. Finding the balance between standardization and flexibility is one of the greatest challenges in designing and managing these systems.</p>
+<h4 id="complexity-in-implementation"><strong>Complexity in implementation</strong></h4>
+<p>For large organizations or those with extensive digital ecosystems, the transition to a Design System can be extremely complex, especially if it involves modifying existing products to adapt them to the new system.</p>
+<h4 id="requires-organizational-commitment"><strong>Requires organizational commitment</strong></h4>
+<p>The success of a Design System depends on the commitment of the entire organization, from management to operational teams. Without this cross-cutting support, the project is unlikely to reach its full potential.</p>
+<h4 id="learning-curve"><strong>Learning curve</strong></h4>
+<p>New team members will need time to familiarize themselves with the Design System, its structure, components, and rules. This can initially slow down the incorporation of new talent.</p>
+<p>After understanding the multiple benefits and challenges associated with Design Systems, a pragmatic question inevitably arises: when is it really advantageous to invest in their development? Not all business contexts or projects justify this investment of resources. Like any strategic tool, its implementation must respond to specific needs and align with organizational objectives. Let's analyze, therefore, the scenarios where a Design System can make a significant difference and those where perhaps more efficient alternatives exist.</p>
+<h3 id="when-does-it-make-sense-to-implement-a-design-system">When does it make sense to implement a Design System?</h3>
+<p>A Design System is especially valuable in the following scenarios:</p>
+<ul>
+<li>When the company manages multiple digital products that need to maintain visual and functional coherence.</li>
+<li>In large or distributed teams where communication and coordination pose a challenge.</li>
+<li>In long-term projects where efficiency in development and maintenance is crucial.</li>
+<li>When looking to rapidly scale digital production capacity without compromising quality.</li>
+</ul>
+<p>On the contrary, it might not be the best investment for:</p>
+<ul>
+<li>Startups in very early stages with limited resources and a single product.</li>
+<li>One-time or short-duration projects.</li>
+<li>Very small teams where communication and consistency are managed naturally.</li>
+</ul>
+<p>The decision to implement a Design System should be based on a careful analysis of specific needs, available resources, and long-term organizational objectives. As we've seen, it's not a universal solution, but when implemented in the right context, it can radically transform the efficiency and quality of digital design.</p>
+<p>Once we've evaluated the relevance of implementing a Design System and having decided to embark on this journey, the practical question inevitably arises: where do we start? So far, we've explored the conceptual foundations, from atomic structure to strategic considerations, but the path from theory to technical implementation requires a clear roadmap. Next, we'll outline the steps that will transform these concepts into tangible tools for our design and development teams.</p>
+<h2 id="whats-next-from-concept-to-implementation">What's Next: From Concept to Implementation</h2>
+<p>The true value of a Design System materializes when it goes from being a concept to becoming a set of practical tools that teams use daily. This technical implementation process involves several fundamental steps that connect theory with practice.</p>
+<h3 id="definition-and-documentation-of-design-tokens">Definition and Documentation of Design Tokens</h3>
+<p>The first step consists of transforming our "ions" into concrete and documented design tokens. This involves:</p>
+<ul>
+<li>Coding each color, typography, and spacing value into usable variables</li>
+<li>Establishing clear and coherent naming conventions</li>
+<li>Documenting the purpose and proper use of each token</li>
+<li>Creating versioning systems to manage their evolution</li>
+</ul>
+<h3 id="development-of-the-component-library">Development of the Component Library</h3>
+<p>With tokens defined, the next step is to develop a library of functional components that:</p>
+<ul>
+<li>Implements the atomic principles discussed earlier</li>
+<li>Translates visual designs into reusable code</li>
+<li>Incorporates tokens as variables that determine appearance</li>
+<li>Is accessible from different platforms and frameworks</li>
+</ul>
+<p>This process may involve creating components in different technologies according to team needs (React, Vue, Angular, etc.) and requires close collaboration between designers and developers.</p>
+<h3 id="integration-and-adoption-strategies">Integration and Adoption Strategies</h3>
+<p>Technical implementation must be complemented with strategies that facilitate the system's adoption by all teams involved. This includes:</p>
+<ul>
+<li>Creating testing environments and component visualization (storybooks)</li>
+<li>Developing technical implementation guides</li>
+<li>Establishing workflows for contribution and maintenance</li>
+<li>Training and accompanying teams during the transition</li>
+</ul>
+<p>In upcoming articles, we'll delve into each of these aspects, exploring specific tools, implementation methodologies, and practical cases that will illustrate the complete process of creating and integrating a Design System in different organizational contexts. From configuring token repositories to implementing components in code, through effective documentation strategies and change management, this journey is just beginning.</p>
+<h2 id="references-and-recommended-reading">References and Recommended Reading</h2>
+<p>This article has been nourished by the experience and knowledge shared by professionals and experts in the field. Below are some fundamental references for those who wish to delve deeper into the world of Design Systems:</p>
+<h3 id="books">Books</h3>
+<ul>
+<li>Frost, B. (2016). <em>Atomic Design</em>. <a href="https://atomicdesign.bradfrost.com/">https://atomicdesign.bradfrost.com/</a> This book, available for free online, establishes the foundations of the Atomic Design methodology that we've extensively explored in this article.</li>
+</ul>
+<h3 id="articles-and-web-resources">Articles and Web Resources</h3>
+<ul>
+<li>
+<p>Nielsen Norman Group. (2022). "Design Systems 101". <a href="https://www.nngroup.com/articles/design-systems-101/">https://www.nngroup.com/articles/design-systems-101/</a> A concise but comprehensive introduction to the concept of Design Systems by one of the most respected groups in UX.</p>
+</li>
+<li>
+<p>Toman, J. (2023). "Beyond Atomic Design: Ions, Quarks and Design Tokens". <a href="https://medium.com/designsystemsmastery/beyond-atomic-design-tokens-and-subatomic-particles">https://medium.com/designsystemsmastery/beyond-atomic-design-tokens-and-subatomic-particles</a> Exploration of extensions to the traditional Atomic model, including the concept of ions that we've integrated into our approach.</p>
+</li>
+<li>
+<p>Clark, J. (2021). "The Spectrum of Design Systems". <a href="https://spectrum.adobe.com/page/design-systems/">https://spectrum.adobe.com/page/design-systems/</a> An analysis of different approaches and levels of maturity in Design Systems.</p>
+</li>
+<li>
+<p>Jonatan Hernandez. "LEGO, the best Design System mentor | Part 2 of 2". https://jonatanhernandez.substack.com/p/lego-el-mejor-mentor-de-design-system-69b Another perspective on ions.</p>
+</li>
+</ul>
+<h3 id="reference-design-systems">Reference Design Systems</h3>
+<ul>
+<li>
+<p><a href="https://material.io/">Material Design</a> (Google) One of the most complete and documented Design Systems, which has significantly influenced modern digital design.</p>
+</li>
+<li>
+<p><a href="https://www.carbondesignsystem.com/">Carbon Design System</a> (IBM) An excellent example of a Design System oriented to business products with integrated accessibility considerations.</p>
+</li>
+<li>
+<p><a href="https://polaris.shopify.com/">Polaris</a> (Shopify) Notable for its exhaustive documentation and approach centered on clear design principles.</p>
+</li>
+<li>
+<p><a href="https://atlassian.design/">Atlassian Design System</a> An example of a Design System that balances consistency with flexibility for diverse products.</p>
+</li>
+</ul>
+<h3 id="tools-and-platforms">Tools and Platforms</h3>
+<ul>
+<li>
+<p><a href="https://storybook.js.org/">Storybook</a> Development environment for creating, documenting, and testing user interface components in isolation.</p>
+</li>
+<li>
+<p><a href="https://www.figma.com/">Figma</a> Collaborative design tool that facilitates the creation and maintenance of component libraries.</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <style>
+    .footer-bottom {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        text-align: center;
+        font-size: 0.875rem;
+        @media screen and (max-width: 991px) {
+        font-size: 2vw;
+            
+        }
+    }
+</style>
+
+
+<footer class="md-footer">
+    <div class="footer-bottom">
+        <p>&copy; 2025 Atlansec. All rights reserved.</p>
+    </div>
+    </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["hide_title", "navigation.indexes", "navigation.tabs", "content.code.copy", "i18n", "search.share"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+        <script src="../../../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>

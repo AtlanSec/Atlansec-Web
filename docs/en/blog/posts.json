@@ -1,10 +1,18 @@
 {
   "posts": [
     {
+      "title": "Exploiting Common JWT Vulnerabilities: A Hands-On Lab Walkthrough",
+      "summary": "A comprehensive guide to identifying and exploiting typical JWT vulnerabilities in a Node.js backend, including alg:none bypass, kid injection, algorithm confusion, and payload tampering.",
+      "date": "2025-xx-xx",
+      "tag": "",
+      "lang": "en",
+      "link": "30-05-2025"
+    },
+    {
       "title": "Design Systems: Creating Visual Consistency Across Products",
       "summary": "In this article, we explore the concept of **Design Systems as essential tools for maintaining visual coherence** across multiple digital products. Following the *atomic design methodology*, we demonstrate how breaking interfaces into fundamental components creates a scalable, consistent design language. We believe that **structured design approaches are the best way to solve cohesion challenges** while improving team collaboration and efficiency.",
       "date": "2025-04-27",
-      "tags": "",
+      "tag": "",
       "lang": "en",
       "link": "27-04-2025"
     },

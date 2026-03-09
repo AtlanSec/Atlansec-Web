@@ -6,4 +6,4 @@ social:
     title: Documentation that simply works
 ---
 
-Welcome to Material for MkDocs.
+Welcome to Material for Atlansec MKDOCS
